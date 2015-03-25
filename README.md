@@ -1,5 +1,5 @@
 # justiceleague
 Justice League
 
-#link para tutorial compose and rails
+#Getting started with Compose and Rails
 https://docs.docker.com/compose/rails/
