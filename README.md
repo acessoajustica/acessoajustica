@@ -30,7 +30,7 @@ Simply run:
 sudo docker-compose up
 ```
 
-The app is now running at ```localhost:3000```.
+The app is now running at <code>localhost:3000</code>.
 
 ## Troubleshooting
 
