@@ -24,13 +24,13 @@ cd acessoajustica/build
 
 ## Running the App
 
-Simply run:
+From the project's main directory, run:
 
 ```
 sudo docker-compose up
 ```
 
-The app is now running at <code>localhost:3000</code>.
+The app should now be running at <code>localhost:3000</code>.
 
 ## Troubleshooting
 
