@@ -5,7 +5,7 @@
 set -e
 
 DOCKER='docker'
-DOCKER_COMPOSE='diocker_compose'
+DOCKER_COMPOSE='docker_compose'
 RUBY_RACER="gem 'therubyracer', platforms: :ruby"
 COMMENT_STYLE="# "
 GEMS='Gemfile'
