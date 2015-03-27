@@ -9,4 +9,4 @@ development: &default
 
 test:
   <<: *default
-  database: myapp_test
+  database: acessoajustica_test
