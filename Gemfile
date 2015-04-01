@@ -45,8 +45,14 @@ group :development, :test do
   # Cucumber for acceptance tests
   gem 'cucumber', '~> 2.0.0'
   
-  # rspec for unit tests
+  # Rspec for unit tests
   gem 'rspec', '~> 3.2.0'
+
+  # Less for bootstrap
+  gem "less-rails"
+  
+  # Bootstrap for layout
+  gem 'twitter-bootstrap-rails', '~> 3.2.0'
 end
 
 group :users, :authentication do

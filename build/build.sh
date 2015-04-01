@@ -36,6 +36,12 @@ yes | rm -r ${REMOVE}
 mv build_${GEMS} ${GEMS}
 
 cd ..
+
 # Building our image.
 sudo docker-compose build
 cd -
+
+# Install layout Gems
+sudo docker-compose run web rails generate bootstrap:install less
+sudo docker-compose run web rails generate bootstrap:install static
+sudo docker-compose run web rails g bootstrap:layout Haml
