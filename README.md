@@ -24,6 +24,19 @@ cd acessoajustica/build
 
 ## Running the App
 
+First, stop and remove all docker containers:
+
+```
+sudo docker stop $(sudo docker ps -a -q)
+sudo docker rm $(sudo docker ps -a -q)
+```
+
+Then, remove the latest image of the project:
+
+```
+sudo docker rmi acessoajustica_web
+```
+
 From the project's main directory, run:
 
 ```
