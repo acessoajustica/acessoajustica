@@ -52,3 +52,7 @@ end
 group :users, :authentication do
     gem 'devise'
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
