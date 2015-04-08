@@ -45,6 +45,20 @@ sudo docker-compose up
 
 The app should now be running at <code>localhost:3000</code>.
 
+## Bootstrap
+
+### Installing
+
+docker-compose run web rails generate bootstrap:install less
+
+docker-compose run web rails generate bootstrap:install static
+
+docker-compose run web rails g bootstrap:layout Haml
+
+### Using
+
+docker-compose run web rails g bootstrap:themed [RESOURCE_NAME]
+
 ## Troubleshooting
 
 Refer to https://docs.docker.com/compose/rails/.
