@@ -37,11 +37,22 @@ mv build_${GEMS} ${GEMS}
 
 cd ..
 
+#
+# The repository should be cloned in this step.
+#
+git clone https://github.com/acessoajustica/acessoajustica.git
+
 # Building our image.
 sudo docker-compose build
 cd -
 
+##
+## This is not needed!
+## All gems and rails dependencies will be installed in our
+## project. This build script prepares the user's environment.
+## The ruby code is obtained from the github repo.
+##
 # Install layout Gems
-sudo docker-compose run web rails generate bootstrap:install less
-sudo docker-compose run web rails generate bootstrap:install static
-sudo docker-compose run web rails g bootstrap:layout Haml
+#sudo docker-compose run web rails generate bootstrap:install less
+#sudo docker-compose run web rails generate bootstrap:install static
+#sudo docker-compose run web rails g bootstrap:layout Haml
