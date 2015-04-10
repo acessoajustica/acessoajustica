@@ -20,12 +20,15 @@ class MembrosController < ApplicationController
 
   # GET /membros/1/edit
   def edit
+    @pessoa = @membro
   end
 
   # POST /membros
   # POST /membros.json
   def create
     @membro = Membro.new(membro_params)
+
+    print membro_params
 
     respond_to do |format|
       if @membro.save
@@ -66,10 +69,11 @@ class MembrosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_membro
       @membro = Membro.find(params[:id])
+      # @membro.anoFaculdade = 37
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membro_params
-      params.require(:membro).permit(:ano_facultade)
+      params.require(:membro).permit(:ano_faculdade, :nome, :cpf, :nome_da_mae, :rg, :cor, :identidade_de_genero)
     end
 end

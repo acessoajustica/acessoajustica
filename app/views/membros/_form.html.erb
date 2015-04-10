@@ -1,5 +1,7 @@
 <%= form_for @membro, :html => { :class => "form-horizontal membro" } do |f| %>
 
+    <%= render :partial => 'pessoas/fields', :locals => { :f => f } %>
+
     <% if @membro.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -16,13 +18,12 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :ano_facultade, :class => 'control-label' %>
+    <%= f.label :ano_faculdade, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ano_facultade, :class => 'form-control' %>
+      <%= f.date_field :ano_faculdade, :class => 'form-control' %>
     </div>
-    <%= error_span(@membro[:ano_facultade]) %>
+    <%= error_span(@membro[:ano_faculdade]) %>
   </div>
-
 
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

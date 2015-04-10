@@ -6,7 +6,13 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:ano_facultade) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:cpf) %></th>
+      <th><%= model_class.human_attribute_name(:nome_da_mae) %></th>
+      <th><%= model_class.human_attribute_name(:rg) %></th>
+      <th><%= model_class.human_attribute_name(:cor) %></th>
+      <th><%= model_class.human_attribute_name(:identidade_de_genero) %></th>
+      <th><%= model_class.human_attribute_name(:ano_faculdade) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -15,7 +21,13 @@
     <% @membros.each do |membro| %>
       <tr>
         <td><%= link_to membro.id, membro_path(membro) %></td>
-        <td><%= membro.ano_facultade %></td>
+        <td><%= membro.nome %></td>
+        <td><%= membro.cpf %></td>
+        <td><%= membro.nome_da_mae %></td>
+        <td><%= membro.rg %></td>
+        <td><%= membro.cor %></td>
+        <td><%= membro.identidade_de_genero %></td>
+        <td><%= membro.ano_faculdade %></td>
         <td><%=l membro.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
