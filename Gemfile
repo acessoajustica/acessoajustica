@@ -32,6 +32,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Active Record
+# gem 'activerecord', '>= 4.1.2'
+
+# Multiple Table Inhiterance
+gem 'active_record-acts_as' #, '1.0.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 4.0.4'
