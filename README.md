@@ -18,8 +18,7 @@ finally, run:
 
 ```
 git clone https://github.com/acessoajustica/acessoajustica.git
-cd acessoajustica/build
-./build.sh
+./scripts/init.sh all
 ```
 
 If docker fails to download the images, or the ruby bundler
@@ -36,35 +35,56 @@ Or:
 sudo systemctl restart docker.service
 ```
 
-Finally, apply the database migrations with:
+Finally, run:
 
 ```
-sudo docker-compose run web rake db:migrate
+./scripts/init.sh run
 ```
 
-## Running the App
+## The init script
 
-First, stop and remove all docker containers:
-
-```
-sudo docker stop $(sudo docker ps -a -q)
-sudo docker rm $(sudo docker ps -a -q)
-```
-
-Then, remove the latest image of the project:
+The ```init.sh``` script provides the following functionalities:
 
 ```
-sudo docker rmi acessoajustica_web
+# Builds the image from scratch, creates a new Gemfile.lock, runs all tests.
+./scripts/init.sh all 
+
+#  Runs bundle update, does not remove containers nor Gemfile.lock, runs all tests and migrations.
+./scripts/init.sh update
+
+# Stops and removes all containers.
+./scripts/init.sh clean
+
+# Restarts the app container if its running, starts it otherwise.
+./scripts/init.sh restart
+
+# Runs migrations and starts the app container.
+./scripts/init.sh run
+
+# Runs the migrations.
+./scripts/init.sh migrate
+
+# Runs all migrations and tests.
+./scripts/init.sh test
 ```
 
-Finally, run from the project's main directory:
-
-```
-sudo docker-compose up
-```
-
-The app should now be running at <code>localhost:3000</code>.
+The app runs at ```localhost:3000```.
 
 ## Troubleshooting
 
 Refer to https://docs.docker.com/compose/rails/.
+
+## Bootstrap
+
+### Installing
+
+docker-compose run web rails generate bootstrap:install less
+
+docker-compose run web rails generate bootstrap:install static
+
+docker-compose run web rails g bootstrap:layout Haml
+
+### Using
+
+docker-compose run web rails g bootstrap:themed [RESOURCE_NAME]
+
