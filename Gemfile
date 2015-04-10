@@ -57,6 +57,7 @@ end
 
 group :users, :authentication do
     gem 'devise'
+    gem 'cancan'
 end
 
 group :development, :test do
