@@ -6,10 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
-# create a role named "admin"
+
+# Creating roles.
 admin_role = Role.create!(:name => "admin")
-director_role = Role.create!(:name => "diretor")
-intern_role = Role.create!(:name => "estagiário")
+
+Role.create!(:name => "diretor")
+Role.create!(:name => "calouro")
+Role.create!(:name => "estagiário")
 
 # create an admin user
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
