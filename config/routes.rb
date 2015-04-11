@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :pessoas
 
-  devise_for :users, :controllers => { :registrations => "users/registrations" }
+  devise_for :users, :controllers => { :registrations => "users/registrations", 
+                                       :sessions => "users/sessions"}
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

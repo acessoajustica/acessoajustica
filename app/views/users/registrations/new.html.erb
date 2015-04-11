@@ -23,6 +23,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <% for role in Role.all %>
+    <div>
+    <% if role.name != "admin" %>
+      <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+      <%=h role.name %>
+    <% end %>
+  </div>
+  <% end %>
+  <%= hidden_field_tag "user[role_ids][]", "" %>  
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

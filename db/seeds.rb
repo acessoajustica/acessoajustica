@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+# create a role named "admin"
+admin_role = Role.create!(:name => "admin")
+director_role = Role.create!(:name => "diretor")
+intern_role = Role.create!(:name => "estagiário")
+
+# create an admin user
+admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
+
+# assign the admin role to the admin user.  (This bit of rails
+# magic creates a user_role record in the database.)
+admin_user.roles << admin_role

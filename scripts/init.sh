@@ -27,6 +27,7 @@ function app_restart {
 function app_migrate {
     sudo docker-compose run web rake db:create  # Creates all databases.
     sudo docker-compose run web rake db:migrate # Runs migrations.
+    sudo docker-compose run web rake db:seed    # Adds admin user.
 }
 function app_test {
     app_migrate
