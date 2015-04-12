@@ -10,14 +10,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end 
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    build_resource({})
+    self.resource.membro = Membro.new
+    respond_with self.resource      
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+#  def create
+#    super
+#  end
 
   # GET /resource/edit
   # def edit

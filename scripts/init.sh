@@ -19,6 +19,7 @@ function check_deps {
 function build_clean {
     sudo docker stop $(sudo docker ps -a -q)    # Stops old containers.
     sudo docker rm $(sudo docker ps -a -q)      # Remove old containers.
+    sudo rm ./tmp/pid/server.pid
 }
 function app_restart {
     sudo docker stop $(sudo docker ps -a -q)    # Stops old containers.
@@ -27,7 +28,6 @@ function app_restart {
 function app_migrate {
     sudo docker-compose run web rake db:create  # Creates all databases.
     sudo docker-compose run web rake db:migrate # Runs migrations.
-    sudo docker-compose run web rake db:seed    # Adds admin user.
 }
 function app_test {
     app_migrate
@@ -36,6 +36,7 @@ function app_test {
 }
 function app_run {
     app_migrate
+    sudo docker-compose run web rake db:seed    # Adds admin user.
     sudo docker-compose up                      # Starts the app.
 }
 function build_update {
