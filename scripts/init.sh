@@ -60,6 +60,6 @@ if check_deps; then
     elif [[ $1 == run ]]; then app_run;
     elif [[ $1 == migrate ]]; then app_migrate;
     elif [[ $1 == test ]]; then app_test;
-    else { echo "No arguments, exiting."; exit 0; }
+    else { echo "No valid arguments, exiting."; exit 0; }
     fi
 fi

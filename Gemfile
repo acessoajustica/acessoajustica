@@ -24,6 +24,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Cancan for authentication
 gem 'cancan'
+# Less for bootstrap
+gem "less-rails"
+# Bootstrap for layout
+gem 'twitter-bootstrap-rails', '~> 3.2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -55,14 +59,6 @@ group :development, :test do
   
   # Rspec for unit tests
   gem 'rspec', '~> 3.2.0'
-
-  # Less for bootstrap
-  gem "less-rails"
-  
-  # Bootstrap for layout
-  gem 'twitter-bootstrap-rails', '~> 3.2.0'
-
-  gem 'rspec-rails', '~> 3.0'
 end
 group :users, :authentication do
     gem 'devise'

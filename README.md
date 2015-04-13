@@ -49,7 +49,7 @@ The ```init.sh``` script provides the following functionalities:
 # Builds the image from scratch, creates a new Gemfile.lock, runs all tests.
 ./scripts/init.sh all 
 
-#  Runs bundle update, does not remove containers nor Gemfile.lock, runs all tests and migrations.
+#  Runs bundle update, does not remove containers or Gemfile.lock, runs all tests and migrations.
 ./scripts/init.sh update
 
 # Stops and removes all containers.
@@ -73,18 +73,4 @@ The app runs at ```localhost:3000```.
 ## Troubleshooting
 
 Refer to https://docs.docker.com/compose/rails/.
-
-## Bootstrap
-
-### Installing
-
-docker-compose run web rails generate bootstrap:install less
-
-docker-compose run web rails generate bootstrap:install static
-
-docker-compose run web rails g bootstrap:layout Haml
-
-### Using
-
-docker-compose run web rails g bootstrap:themed [RESOURCE_NAME]
 
