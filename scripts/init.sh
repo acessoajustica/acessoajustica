@@ -10,56 +10,79 @@ DOCKER='docker'
 DOCKER_COMPOSE='docker-compose'
 GEMS='Gemfile'
 
+function usage {
+    echo "usage: ./scripts/init.sh [OPTIONS]:"
+    echo " "
+    echo " all:        Builds everything, images and containers."
+    echo " run:        Runs the app on the latest container."
+    echo " test:       Runs all tests."
+    echo " clean:      Stops and Removes all containers."
+    echo " purge:      Stops and Removes all containers and images."
+    echo " update:     Runs bundle update."
+    echo " migrate:    Runs all migrations. (also done by 'run' and 'all')"
+    echo " restart:    Stops all containers and then 'run'."
+    echo " seed:       Puts initial values on the database."
+    echo " help:       Prints this message."
+    echo " "
+}
 function check_deps {
     # Check dependencies.
     command -v ${DOCKER}>/dev/null 2>&1 || { echo >&2 "I require '${DOCKER}', but it's not installed.  Aborting."; exit 1; }
     command -v ${DOCKER_COMPOSE}>/dev/null 2>&1 || { echo >&2 "I require '${DOCKER_COMPOSE}', but it's not installed.  Aborting."; exit 1; }
     return 0
 }
-function build_clean {
-    sudo docker stop $(sudo docker ps -a -q)    # Stops old containers.
-    sudo docker rm $(sudo docker ps -a -q)      # Remove old containers.
-    sudo rm ./tmp/pid/server.pid
+function app_seed {
+    sudo ${DOCKER_COMPOSE} run web rake seed       # Seeds the database.
 }
 function app_restart {
-    sudo docker stop $(sudo docker ps -a -q)    # Stops old containers.
-    sudo docker-compose up                      # Starts the app.
+    sudo ${DOCKER} stop $(sudo ${DOCKER} ps -a -q) # Stops old containers.
+    sudo ${DOCKER_COMPOSE} up                      # Starts the app.
 }
 function app_migrate {
-    sudo docker-compose run web rake db:create  # Creates all databases.
-    sudo docker-compose run web rake db:migrate # Runs migrations.
+    sudo ${DOCKER_COMPOSE} run web rake db:create  # Creates all databases.
+    sudo ${DOCKER_COMPOSE} run web rake db:migrate # Runs migrations.
 }
 function app_test {
     app_migrate
-    sudo docker-compose run web rake db:create  # Creates all databases.
-    sudo docker-compose run web rake spec       # Runs tests.
+    sudo ${DOCKER_COMPOSE} run web rake spec       # Runs tests.
 }
 function app_run {
     app_migrate
-    sudo docker-compose run web rake db:seed    # Adds admin user.
-    sudo docker-compose up                      # Starts the app.
+    sudo ${DOCKER_COMPOSE} up                      # Starts the app.
 }
 function build_update {
-    sudo docker-compose run web bundle update   # Updating gems.
+    sudo ${DOCKER_COMPOSE} run web bundle update   # Updating gems.
     app_test
 }
-function build_all {
-    PROJECT_DIR=${PWD##*/}                      # Gets current dir name.
+function build_clean {
+    sudo ${DOCKER} stop $(sudo ${DOCKER} ps -a -q) # Stops old containers.
+    sudo ${DOCKER} rm $(sudo ${DOCKER} ps -a -q)   # Remove old containers.
+    sudo rm ./tmp/pid/server.pid
+}
+function build_purge {
     build_clean
-    rm ${GEMS}.lock                             # Purges the lock.
-    sudo docker rmi ${PROJECT_DIR}_web:latest   # Removes old project image.
+    PROJECT_DIR=${PWD##*/}                         # Gets current dir name.
+    rm ${GEMS}.lock                                # Purges the lock.
+    sudo ${DOCKER} rmi ${PROJECT_DIR}_web:latest   # Removes old project image.
+}
+function build_all {
+    build_purge
 
-    sudo docker-compose build                   # Builds a new image.
+    sudo ${DOCKER_COMPOSE} build                   # Builds a new image.
+    sudo ${DOCKER_COMPOSE} run web rake db:seed    # Adds admin user.
     app_test
 }
 if check_deps; then
     if [[ $1 == all ]]; then build_all;
+    elif [[ $1 == purge ]]; then build_purge;
     elif [[ $1 == update ]]; then build_update;
     elif [[ $1 == clean ]]; then build_clean;
     elif [[ $1 == restart ]]; then app_restart;
     elif [[ $1 == run ]]; then app_run;
     elif [[ $1 == migrate ]]; then app_migrate;
     elif [[ $1 == test ]]; then app_test;
+    elif [[ $1 == seed ]]; then app_seed;
+    elif [[ $1 == help ]]; then usage;
     else { echo "No valid arguments, exiting."; exit 0; }
     fi
 fi
