@@ -24,4 +24,10 @@ module Myapp
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
+
+  # console do
+  #   FactoryGirl.definition_file_paths << Pathname.new("spec/factories")
+  #   FactoryGirl.definition_file_paths.uniq!
+  #   FactoryGirl.find_definitions
+  # end
 end
