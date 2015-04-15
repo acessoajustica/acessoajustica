@@ -23,13 +23,13 @@ RSpec.describe PessoasController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Pessoa. As you add validations to Pessoa, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    FactoryGirl.attributes_for(:pessoa)
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    FactoryGirl.attributes_for(:pessoa, :pessoa_invalid)
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
