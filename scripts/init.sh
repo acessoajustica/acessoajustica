@@ -32,7 +32,7 @@ function check_deps {
     return 0
 }
 function app_seed {
-    sudo ${DOCKER_COMPOSE} run web rake seed       # Seeds the database.
+    sudo ${DOCKER_COMPOSE} run web rake db:seed       # Seeds the database.
 }
 function app_restart {
     sudo ${DOCKER} stop $(sudo ${DOCKER} ps -a -q) # Stops old containers.
