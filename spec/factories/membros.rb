@@ -11,5 +11,10 @@ FactoryGirl.define do
     trait :membro_invalid do
       ano_faculdade "1980"
     end
+
+    trait :new_membro do
+      nome "Mario da Silva"
+      ano "1981-01-01"
+    end
   end
 end
