@@ -103,14 +103,14 @@ RSpec.describe PessoasController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:pessoa, :new_pessoa)
       }
 
       it "updates the requested pessoa" do
         pessoa = Pessoa.create! valid_attributes
         put :update, {:id => pessoa.to_param, :pessoa => new_attributes}, valid_session
         pessoa.reload
-        skip("Add assertions for updated state")
+        expect(pessoa[:nome]).to eq(new_attributes[:nome])
       end
 
       it "assigns the requested pessoa as @pessoa" do

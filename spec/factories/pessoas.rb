@@ -10,5 +10,8 @@ FactoryGirl.define do
     trait :pessoa_invalid do
       nome nil
     end
+    trait :new_pessoa do
+      nome "Mario da Silva"
+    end
   end
 end
