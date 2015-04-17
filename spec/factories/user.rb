@@ -7,7 +7,16 @@ FactoryGirl.define do
   end
 
   trait :admin_user do
-      roles { [ FactoryGirl.create(:role, :admin_role) ] }
+    roles { [ FactoryGirl.create(:role, :admin_role) ] }
+  end
+  trait :diretor_user do
+    roles { [ FactoryGirl.create(:role, :diretor_role) ] }
+  end
+  trait :estagiario_user do
+    roles { [ FactoryGirl.create(:role, :estagiario_role) ] }
+  end
+  trait :calouro_user do
+    roles { [ FactoryGirl.create(:role, :calouro_role) ] }
   end
 
   factory :role do
@@ -16,6 +25,15 @@ FactoryGirl.define do
 
   trait :admin_role do
     name { "admin" }
+  end
+  trait :diretor_role do
+    name { "diretor" }
+  end
+  trait :estagiario_role do
+    name { "estagiário" }
+  end
+  trait :calouro_role do
+    name { "calouro" }
   end
 end
 
