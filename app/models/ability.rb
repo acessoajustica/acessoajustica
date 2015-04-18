@@ -7,11 +7,11 @@ class Ability
     if user.role? :admin 
       can :manage, :all 
     elsif user.role? :diretor
-      can :create, User
+      can :manage, :all
     elsif user.role? :estagiário
-      cannot :create, User
+      cannot :manage, :all
     elsif user.role? :calouro
-      cannot :create, User
+      cannot :manage, :all
     end 
   end 
 end

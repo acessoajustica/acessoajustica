@@ -17,14 +17,14 @@
 
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
-  Logged in as <strong><%= current_user.username %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  Bem vindo, <strong><%= current_user.username %></strong>! |
+  <%= link_to 'Modificar Perfil', edit_user_registration_path, :class => 'navbar-link' %> |
   <% if can? :create, current_user %>
-    <%= link_to "Create User", new_user_registration_path, :class => 'navbar-link' %> |
+    <%= link_to "Cadastrar Usuário", new_user_registration_path, :class => 'navbar-link' %> |
   <% end %>
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+  <%= link_to "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 <% elsif current_page?('/users/sign_in') == false %>
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+  <%= link_to "Entrar", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 
 <%= yield %>
