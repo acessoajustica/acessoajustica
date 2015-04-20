@@ -6,7 +6,7 @@ gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 5.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -22,6 +22,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# Cancan for authentication
+gem 'cancan'
+# Less for bootstrap
+gem "less-rails"
+# Bootstrap for layout
+gem 'twitter-bootstrap-rails', '~> 3.2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -31,6 +37,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Active Record
+# gem 'activerecord', '>= 4.1.2'
+
+# Multiple Table Inhiterance
+gem 'active_record-acts_as' #, '1.0.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,7 +57,14 @@ group :development, :test do
   # Cucumber for acceptance tests
   gem 'cucumber', '~> 2.0.0'
   
-  # rspec for unit tests
+  # Rspec for unit tests
   gem 'rspec', '~> 3.2.0'
-end
 
+  gem 'rspec-rails', '~> 3.0'
+
+  gem 'factory_girl', '~> 4.5.0'
+  gem 'shoulda-matchers', '~> 2.8.0'
+end
+group :users, :authentication do
+    gem 'devise'
+end

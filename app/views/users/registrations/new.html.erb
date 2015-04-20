@@ -1,0 +1,76 @@
+<h2>Cadastrar Usuário</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <p><%= f.label "Nome de Usuário" %><br />
+    <%= f.text_field :username %></p>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Senha" %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Confirmação de Senha" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div>
+    <% for role in Role.all %>
+      <div>
+      <% if role.name != "admin" %>
+        <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+        <%=h role.name %>
+      <% end %>
+    </div>
+    <% end %>
+    <%= hidden_field_tag "user[role_ids][]", "" %>  
+  </div>
+
+  <div>
+    <%= f.fields_for :membro do |membro_form| %>
+      <div>
+        <p><%= membro_form.label :nome %><br />
+        <%= membro_form.text_field :nome %></p>
+      </div>
+      <div>
+        <p><%= membro_form.label :cpf %><br />
+        <%= membro_form.text_field :cpf %></p>
+      </div>
+      <div>
+        <p><%= membro_form.label :nome_da_mae %><br />
+        <%= membro_form.text_field :nome_da_mae %></p>
+      </div>
+      <div>
+        <p><%= membro_form.label :rg %><br />
+        <%= membro_form.text_field :rg %></p>
+      </div>
+      <div>
+        <p><%= membro_form.label :cor %><br />
+        <%= membro_form.text_field :cor %></p>
+      </div>
+      <div>
+        <p><%= membro_form.label :identidade_de_genero %><br />
+        <%= membro_form.text_field :identidade_de_genero %></p>
+      </div>
+      <div>
+        <p><%= membro_form.label :ano_faculdade %><br />
+        <%= membro_form.text_field :ano_faculdade %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Cadastrar" %>
+  </div>
+<% end %>
+
+<%# <%= render "users/shared/links" %>

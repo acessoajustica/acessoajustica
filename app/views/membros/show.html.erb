@@ -1,0 +1,31 @@
+<%- model_class = Membro -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:nome) %>:</strong></dt>
+  <dd><%= @membro.nome %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cpf) %>:</strong></dt>
+  <dd><%= @membro.cpf %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:nome_da_mae) %>:</strong></dt>
+  <dd><%= @membro.nome_da_mae %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rg) %>:</strong></dt>
+  <dd><%= @membro.rg %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cor) %>:</strong></dt>
+  <dd><%= @membro.cor %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:identidade_de_genero) %>:</strong></dt>
+  <dd><%= @membro.identidade_de_genero %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ano_faculdade) %>:</strong></dt>
+  <dd><%= @membro.ano_faculdade %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              membros_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_membro_path(@membro), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              membro_path(@membro),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

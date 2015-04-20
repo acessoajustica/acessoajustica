@@ -1,0 +1,9 @@
+<%= form_for @pessoa, :html => { :class => "form-horizontal pessoa" } do |f| %>
+  
+  <%= render :partial => 'fields', :locals => { :f => f } %>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            pessoas_path, :class => 'btn btn-default' %>
+
+<% end %>

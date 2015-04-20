@@ -1,0 +1,48 @@
+<%- model_class = Membro -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:cpf) %></th>
+      <th><%= model_class.human_attribute_name(:nome_da_mae) %></th>
+      <th><%= model_class.human_attribute_name(:rg) %></th>
+      <th><%= model_class.human_attribute_name(:cor) %></th>
+      <th><%= model_class.human_attribute_name(:identidade_de_genero) %></th>
+      <th><%= model_class.human_attribute_name(:ano_faculdade) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @membros.each do |membro| %>
+      <tr>
+        <td><%= link_to membro.id, membro_path(membro) %></td>
+        <td><%= membro.nome %></td>
+        <td><%= membro.cpf %></td>
+        <td><%= membro.nome_da_mae %></td>
+        <td><%= membro.rg %></td>
+        <td><%= membro.cor %></td>
+        <td><%= membro.identidade_de_genero %></td>
+        <td><%= membro.ano_faculdade %></td>
+        <td><%=l membro.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_membro_path(membro), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      membro_path(membro),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_membro_path,
+            :class => 'btn btn-primary' %>

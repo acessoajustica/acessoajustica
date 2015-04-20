@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Myapp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>Acesso à justiça</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<% if notice %>
+<p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+<p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<p class="navbar-text pull-right">
+<% if user_signed_in? %>
+  Bem vindo, <strong><%= current_user.username %></strong>! |
+  <%= link_to 'Modificar Perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+  <% if can? :create, current_user %>
+    <%= link_to "Cadastrar Usuário", new_user_registration_path, :class => 'navbar-link' %> |
+  <% end %>
+  <%= link_to "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% elsif current_page?('/users/sign_in') == false %>
+  <%= link_to "Entrar", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
 
 <%= yield %>
 
