@@ -1,22 +1,26 @@
-<% if @membro.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@membro.errors.count, "error") %> prohibited this membro from being saved:</h3>
+<div class="container-fluid">
+  <% if @membro.errors.any? %>
+      <div id="error_expl" class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= pluralize(@membro.errors.count, "error") %> prohibited this membro from being saved:</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+          <% @membro.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       </div>
-      <div class="panel-body">
-        <ul>
-        <% @membro.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <div class="control-group">
-    <%= f.label :ano_faculdade, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_field :ano_faculdade, :class => 'form-control' %>
-    </div>
-    <%= error_span(@membro[:ano_faculdade]) %>
-  </div>
+    <div class="row">
+      <div class="control-group col-md-3 col-sm-6">
+          <%= f.label :ano_faculdade, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.date_field :ano_faculdade, :class => 'form-control' %>
+          </div>
+          <%= error_span(@membro[:ano_faculdade]) %>
+        </div>
+      </div>
+  </div>  
