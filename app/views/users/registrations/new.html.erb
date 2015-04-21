@@ -37,41 +37,17 @@
     <div class="row">
       <div class="form-group col-md-6">
         <%= f.label "Permissão"%>
-        <%= f.select :role_ids, get_roles_helper, {}, {:multiple => true, :class => 'form-control', :size => 3} %>
+        <%= f.select :role_ids, get_roles_helper, {}, {:multiple => false, :class => 'form-control', :size => 3} %>
       </div>
     </div>
   </div>
 
+
+
   <div>
     <%= f.fields_for :membro do |membro_form| %>
-      <div>
-        <p><%= membro_form.label :nome %><br />
-        <%= membro_form.text_field :nome %></p>
-      </div>
-      <div>
-        <p><%= membro_form.label :cpf %><br />
-        <%= membro_form.text_field :cpf %></p>
-      </div>
-      <div>
-        <p><%= membro_form.label :nome_da_mae %><br />
-        <%= membro_form.text_field :nome_da_mae %></p>
-      </div>
-      <div>
-        <p><%= membro_form.label :rg %><br />
-        <%= membro_form.text_field :rg %></p>
-      </div>
-      <div>
-        <p><%= membro_form.label :cor %><br />
-        <%= membro_form.text_field :cor %></p>
-      </div>
-      <div>
-        <p><%= membro_form.label :identidade_de_genero %><br />
-        <%= membro_form.text_field :identidade_de_genero %></p>
-      </div>
-      <div>
-        <p><%= membro_form.label :ano_faculdade %><br />
-        <%= membro_form.text_field :ano_faculdade %></p>
-      </div>
+      <%= render :partial => 'pessoas/fields', :locals => { :f => membro_form, :@pessoa => resource.membro} %>
+      <%= render :partial => 'membros/fields', :locals => { :f => membro_form, :@membro => resource.membro} %>
     <% end %>
   </div>
 
