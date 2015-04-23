@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Estagiarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Especialidade</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @estagiarios.each do |estagiario| %>
+      <tr>
+        <td><%= estagiario.especialidade %></td>
+        <td><%= link_to 'Show', estagiario %></td>
+        <td><%= link_to 'Edit', edit_estagiario_path(estagiario) %></td>
+        <td><%= link_to 'Destroy', estagiario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Estagiario', new_estagiario_path %>

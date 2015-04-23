@@ -1,0 +1,21 @@
+<%= form_for(@estagiario) do |f| %>
+  <% if @estagiario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@estagiario.errors.count, "error") %> prohibited this estagiario from being saved:</h2>
+
+      <ul>
+      <% @estagiario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :especialidade %><br>
+    <%= f.text_field :especialidade %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
