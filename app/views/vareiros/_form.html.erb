@@ -1,21 +1,9 @@
-<%= form_for(@vareiro) do |f| %>
-  <% if @vareiro.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vareiro.errors.count, "error") %> prohibited this vareiro from being saved:</h2>
+<%= form_for @vareiro, :html => { :class => "form-horizontal vareiro" } do |f| %>
+    
+  <%= render :partial => 'membros/fields', :locals => { :f => f } %>
+  <%= render :partial => 'fields', :locals => { :f => f } %>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      vareiros_path, :class => 'btn btn-default' %>
 
-      <ul>
-      <% @vareiro.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :forum %><br>
-    <%= f.text_field :forum %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
