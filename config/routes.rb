@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :vareiros
+
   resources :calouros
 
   resources :membros
