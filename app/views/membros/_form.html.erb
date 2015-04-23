@@ -1,5 +1,4 @@
-<%= form_for @membro, :html => { :class => "form-horizontal membro" } do |f| %>
-
+<%= form_for @membro do |f| %>
     <%= render :partial => 'pessoas/fields', :locals => { :f => f } %>
     <%= render :partial => 'fields', :locals => { :f => f } %>
 

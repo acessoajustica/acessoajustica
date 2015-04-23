@@ -3,34 +3,57 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <p><%= f.label "Nome de Usuário" %><br />
-    <%= f.text_field :username %></p>
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <div class="container-fluid">
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <p><%= f.label "Nome de Usuário", :class => 'control-label' %><br />
+        <div class="controls">
+          <%= f.text_field :username, :class => 'form-control' %></p>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label "Nova Senha" %> <i>(deixe em branco se não quiser mudar)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= f.label :email, :class => 'control-label' %><br />
+        <div class="controls">
+          <%= f.email_field :email, autofocus: true, :class => 'form-control'%>
+        </div>
+      </div>
+    </div>
+  
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+  
+    <div class="row">
+      <div class="form-group col-md-2 col-sm-4" data-toggle="tooltip" data-placement="left" title="deixe em branco se não quiser mudar">
+        <%= f.label "Nova Senha", :class => 'control-label' %> <i>()</i><br />
+        <div class="controls">
+          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group col-md-2 col-sm-4">
+        <%= f.label "Confirmar Nova Senha", :class => 'control-label'%><br />
+        <div class="controls">
+          <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group col-md-2 col-sm-4">
+         <%= f.label "Senha Atual" , :class => 'control-label'%> <i>(precisamos dela para confirmar as mudanças)</i><br />
+        <div class="controls">
+          <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control' %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label "Confirmar Nova Senha" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= f.submit "Modificar" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label "Senha Atual" %> <i>(precisamos dela para confirmar as mudanças)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Modificar" %>
   </div>
 <% end %>
 
