@@ -1,34 +1,40 @@
-<%= form_for @estagiario, :html => { :class => "estagiario" } do |f| %>
+<%= form_for @estagiario do |f| %>
 
+  <div class="container-fluid">
     <% if @estagiario.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@estagiario.errors.count, "error") %> prohibited this estagiario from being saved:</h3>
+      <div id="error_expl" class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= pluralize(@estagiario.errors.count, "error") %> prohibited this estagiario from being saved:</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+          <% @estagiario.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       </div>
-      <div class="panel-body">
-        <ul>
-        <% @estagiario.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
+    <% end %>
+  
+    <div class="row">
+      <div class="form-group  col-md-6">
+        <%= f.label :especialidade, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :especialidade, :class => 'form-control' %>
+        </div>
+        <%= error_span(@estagiario[:especialidade]) %>
       </div>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="form-group  col-md-6">
-      <%= f.label :especialidade, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :especialidade, :class => 'form-control' %>
-      </div>
-      <%= error_span(@estagiario[:especialidade]) %>
-    </div>
-  </div>  
+    </div>  
+  </div>
 
   <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @estagiario } %>
-  <%#<%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @estagiario } %>
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            estagiarios_path, :class => 'btn btn-default' %>
+  <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @estagiario } %>  
+  <br>
+  
+  <div class="container-fluid">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      estagiarios_path, :class => 'btn btn-default' %>
+  </div>
 
 <% end %>
