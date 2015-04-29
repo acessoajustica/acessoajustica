@@ -25,7 +25,6 @@ class ClientesController < ApplicationController
   # POST /clientes.json
   def create
     @cliente = Cliente.new(cliente_params)
-
     respond_to do |format|
       if @cliente.save
         format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
@@ -69,6 +68,9 @@ class ClientesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
-      params.require(:cliente).permit(:filhos_quantidade, :profissao_nome, :familia_quantidade, :familia_renda, :contribuintes_quantidade, :estado_civil_id, :moradia_type_id, :profissao_type_id)
+      params.require(:cliente).permit(:filhos_quantidade, :profissao_nome, :familia_quantidade, 
+                                      :familia_renda, :contribuintes_quantidade, :estado_civil_id,
+                                      :moradia_type_id, :profissao_type_id, :nome, :cpf, 
+                                      :nome_da_mae, :rg, :cor, :identidade_de_genero)
     end
 end
