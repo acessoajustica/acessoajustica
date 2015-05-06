@@ -24,9 +24,18 @@ class ClientesController < ApplicationController
   # POST /clientes
   # POST /clientes.json
   def create
-    @cliente = Cliente.new(cliente_params)
+    @cliente = Cliente.new(cliente_params.select do |key, value|
+      key != "relato" and key != "accepted" 
+    end)
     respond_to do |format|
       if @cliente.save
+
+        @caso = Caso.new
+        # @caso.relato = cliente_params.relato
+        @caso.status = cliente_params.accepted
+        @caso.cliente_id = @cliente.id
+        @caso.save
+
         format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
         format.json { render :show, status: :created, location: @cliente }
       else
@@ -71,6 +80,6 @@ class ClientesController < ApplicationController
       params.require(:cliente).permit(:filhos_quantidade, :profissao_nome, :familia_quantidade, 
                                       :familia_renda, :contribuintes_quantidade, :estado_civil_id,
                                       :moradia_type_id, :profissao_type_id, :nome, :cpf, 
-                                      :nome_da_mae, :rg, :cor, :identidade_de_genero)
+                                      :nome_da_mae, :rg, :cor, :identidade_de_genero, :status)
     end
 end

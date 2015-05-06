@@ -92,7 +92,6 @@
             </div>  
           </div>
         </div>
-        
 
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -112,6 +111,33 @@
                 <%= f.select :profissao_type_id, ProfissaoType.all.collect {|profession| [profession.description.capitalize, profession.id]}, {}, {:class => 'form-control'} %>
               </div>
               <%= error_span(@cliente[:profissao_type_id]) %>
+            </div>
+          </div>
+        </div>      
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Relato inicial</h3>
+          </div>
+          <div class="panel-body row">
+            <div class="form-group col-md-12 col-sm-12">
+              <%# <%= f.label :relatos, :class => 'control-label' %>
+              <div class="controls">
+                <textarea class="form-control" rows="7">
+                </textarea>
+              </div>
+              <%= error_span(@cliente[:relato]) %>
+              <div class="form-group col-md-6 col-sm-6">
+                <%= f.label :categoria, :class => 'control-label' %>
+                <div class="controls">
+                  <select class="form-control">
+                    <option value=true>Aceitar</option>
+                    <option value=false>Rejeitar</option>
+                  </select>
+                </div>
+                <%= error_span(@cliente[:status]) %>
+              </div>
+
             </div>
           </div>
         </div>      

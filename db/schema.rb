@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429170243) do
+ActiveRecord::Schema.define(version: 20150506195014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "casos", force: :cascade do |t|
+    t.boolean  "status"
+    t.integer  "cliente_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "casos", ["cliente_id"], name: "index_casos_on_cliente_id", using: :btree
 
   create_table "clientes", force: :cascade do |t|
     t.integer  "filhos_quantidade"
@@ -70,6 +79,15 @@ ActiveRecord::Schema.define(version: 20150429170243) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "relatos", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "caso_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relatos", ["caso_id"], name: "index_relatos_on_caso_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -102,7 +120,9 @@ ActiveRecord::Schema.define(version: 20150429170243) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "casos", "clientes"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"
+  add_foreign_key "relatos", "casos"
 end
