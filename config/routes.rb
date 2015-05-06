@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :casos
+
   resources :clientes
 
   resources :membros
