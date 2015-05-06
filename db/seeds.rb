@@ -11,6 +11,7 @@
 admin_role = Role.create!(:name => "admin")
 
 Role.create!(:name => "diretor")
+Role.create!(:name => "vareiro")
 Role.create!(:name => "calouro")
 Role.create!(:name => "estagiário")
 

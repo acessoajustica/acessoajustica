@@ -2,6 +2,7 @@
     <%= render :partial => 'pessoas/fields', :locals => { :f => f } %>
     <%= render :partial => 'fields', :locals => { :f => f } %>
 
+  <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             membros_path, :class => 'btn btn-default' %>

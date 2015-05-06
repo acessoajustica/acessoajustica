@@ -16,6 +16,7 @@ class MembrosController < ApplicationController
   def new
     @membro = Membro.new
     @pessoa = @membro
+    @user_id = params[:user_id]
   end
 
   # GET /membros/1/edit
@@ -26,12 +27,12 @@ class MembrosController < ApplicationController
   # POST /membros
   # POST /membros.json
   def create
-    @membro = Membro.new(membro_params)
-
-    print membro_params
-
+    @membro = Membro.new(membro_params.select { |key, value| key != 'user_id' } )
     respond_to do |format|
       if @membro.save
+        @user = User.find(membro_params[:user_id])
+        @user.membro_id = @membro.id
+        @user.save
         format.html { redirect_to @membro, notice: 'Membro was successfully created.' }
         format.json { render :show, status: :created, location: @membro }
       else
@@ -74,6 +75,6 @@ class MembrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membro_params
-      params.require(:membro).permit(:ano_faculdade, :nome, :cpf, :nome_da_mae, :rg, :cor, :identidade_de_genero)
+      params.require(:membro).permit(:ano_faculdade, :nome, :cpf, :nome_da_mae, :rg, :cor, :identidade_de_genero, :user_id)
     end
 end
