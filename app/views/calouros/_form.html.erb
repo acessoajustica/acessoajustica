@@ -1,17 +1,25 @@
-<%= form_for(@calouro) do |f| %>
-  <% if @calouro.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@calouro.errors.count, "error") %> prohibited this calouro from being saved:</h2>
+<%= form_for @calouro, :html => { :class => "form-horizontal calouro" } do |f| %>
 
-      <ul>
-      <% @calouro.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @calouro.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@calouro.errors.count, "error") %> prohibited this calouro from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @calouro.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @calouro} %>
+  <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @calouro } %>
+  <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            calouros_path, :class => 'btn btn-default' %>
+
 <% end %>

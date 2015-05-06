@@ -37,7 +37,7 @@
     <div class="row">
       <div class="form-group col-md-6">
         <%= f.label "Permissão"%>
-        <%= f.select :role_ids, get_roles_helper, {}, {:class => 'form-control'} %>
+        <%= f.select :role_ids, get_roles_helper, {}, {:multiple => true, :class => 'form-control', :size => 3} %>
       </div>
     </div>
   </div>

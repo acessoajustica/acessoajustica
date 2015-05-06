@@ -15,6 +15,7 @@ class CalourosController < ApplicationController
   # GET /calouros/new
   def new
     @calouro = Calouro.new
+    @user_id = params[:user_id]
   end
 
   # GET /calouros/1/edit
@@ -24,10 +25,13 @@ class CalourosController < ApplicationController
   # POST /calouros
   # POST /calouros.json
   def create
-    @calouro = Calouro.new(calouro_params)
+    @calouro = Calouro.new(calouro_params.select {|key, value| key != 'user_id'})
 
     respond_to do |format|
       if @calouro.save
+        @user = User.find(calouro_params[:user_id])
+        @user.membro_id = Membro.find_by({:actable_type => "Calouro", :actable_id => @calouro.id}).id;
+        @user.save
         format.html { redirect_to @calouro, notice: 'Calouro was successfully created.' }
         format.json { render :show, status: :created, location: @calouro }
       else
@@ -37,11 +41,30 @@ class CalourosController < ApplicationController
     end
   end
 
+  # def create
+  #   @membro = Membro.new(membro_params.select { |key, value| key != 'user_id' } )
+  #   respond_to do |format|
+  #     if @membro.save
+  #       @user = User.find(membro_params[:user_id])
+  #       @user.membro_id = @membro.id
+  #       @user.save
+  #       format.html { redirect_to @membro, notice: 'Membro was successfully created.' }
+  #       format.json { render :show, status: :created, location: @membro }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @membro.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   # PATCH/PUT /calouros/1
   # PATCH/PUT /calouros/1.json
   def update
     respond_to do |format|
-      if @calouro.update(calouro_params)
+      if @calouro.update(calouro_params.select {|key, value| key != user_id})
+        @user = User.find(calouro_params[:user_id])
+        @user.membro_id = Membro.find_by({:actable_type => "Calouro", :actable_id => @calouro.id}).id;
+        @user.save
         format.html { redirect_to @calouro, notice: 'Calouro was successfully updated.' }
         format.json { render :show, status: :ok, location: @calouro }
       else
@@ -69,6 +92,7 @@ class CalourosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calouro_params
-      params[:calouro]
+      params.require(:calouro).permit(:ano_faculdade, :nome, :cpf, :nome_da_mae, :rg, :cor, :identidade_de_genero, :user_id)
     end
+
 end

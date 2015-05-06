@@ -27,12 +27,9 @@ class MembrosController < ApplicationController
   # POST /membros
   # POST /membros.json
   def create
-    @membro = Membro.new(membro_params.select { |key, value| key != 'user_id' } )
+    @membro = Membro.new(membro_params)
     respond_to do |format|
       if @membro.save
-        @user = User.find(membro_params[:user_id])
-        @user.membro_id = @membro.id
-        @user.save
         format.html { redirect_to @membro, notice: 'Membro was successfully created.' }
         format.json { render :show, status: :created, location: @membro }
       else

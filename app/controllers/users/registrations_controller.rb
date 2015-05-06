@@ -17,9 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-#  def create
-#    super
-#  end
+  # def create
+  #    super
+  # end
 
   # GET /resource/edit
   # def edit
@@ -48,9 +48,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   # You can put the params you want to permit in the empty array.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) << :role
+  end
 
   # You can put the params you want to permit in the empty array.
   # def configure_account_update_params
@@ -59,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    return url_for(:controller => '/membros', :action => 'new', :user_id => resource.id)
+    return url_for(:controller => parse_role(resource), :action => 'new', :user_id => resource.id)
   end
 
   def sign_up(resource_name, resource)
@@ -70,4 +70,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def parse_role(resource)
+    return '/' + Role.find(resource.role_ids[0]).name + 's'
+  end
+
+
+
+
 end
