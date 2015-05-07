@@ -15,6 +15,7 @@ class VareirosController < ApplicationController
   # GET /vareiros/new
   def new
     @vareiro = Vareiro.new
+    @user_id = params[:user_id]
   end
 
   # GET /vareiros/1/edit
@@ -24,10 +25,13 @@ class VareirosController < ApplicationController
   # POST /vareiros
   # POST /vareiros.json
   def create
-    @vareiro = Vareiro.new(vareiro_params)
+      @vareiro = Vareiro.new(vareiro_params.select { | key, value | key != "user_id" })
 
     respond_to do |format|
       if @vareiro.save
+        @user = User.find(vareiro_params[:user_id])
+        @user.membro_id = Membro.find_by( { :actable_type => "Vareiro", :actable_id => @vareiro.id } ).id;
+        @user.save
         format.html { redirect_to @vareiro, notice: 'Vareiro was successfully created.' }
         format.json { render :show, status: :created, location: @vareiro }
       else
@@ -42,6 +46,9 @@ class VareirosController < ApplicationController
   def update
     respond_to do |format|
       if @vareiro.update(vareiro_params)
+        @user = User.find(vareiro_params[:user_id])
+        @user.membro_id = Membro.find_by( { :actable_type => "Vareiro", :actable_id => @vareiro.id } ).id;
+        @user.save
         format.html { redirect_to @vareiro, notice: 'Vareiro was successfully updated.' }
         format.json { render :show, status: :ok, location: @vareiro }
       else
@@ -69,6 +76,7 @@ class VareirosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vareiro_params
-      params.require(:vareiro).permit(:forum)
+      params.require(:vareiro).permit(:forum, :ano_faculdade, :nome, :cpf, 
+                                      :nome_da_mae, :rg, :cor, :identidade_de_genero, :user_id)
     end
 end
