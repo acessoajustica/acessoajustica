@@ -60,6 +60,8 @@ group :development, :test do
   # Rspec for unit tests
   gem 'rspec', '~> 3.2.0'
 
+  gem 'mocha', '1.1.0'
+
   gem 'rspec-rails', '~> 3.0'
 
   gem 'factory_girl', '~> 4.5.0'
