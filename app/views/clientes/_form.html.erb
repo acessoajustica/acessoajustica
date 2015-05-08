@@ -131,15 +131,9 @@
               <%= f.label :categoria, :class => 'control-label' %>
               <div class="controls">
                 <%= f.fields_for :casos do |builder| %>
-                  <%# <%= f.select :status, options_for_select([['Válido', true], ['Inválido', false]], :selected => f.object.status), :prompt => 'Choose the correct answer' %>
                   <%= f.select :profissao_type_id, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
                   <%# <%= render 'question_fields', f: builder %>
                 <% end %>
-                <!-- <select class="form&#45;control"> -->
-                <!--   <option value=""></option> -->
-                <!--   <option value=true>Aceitar</option> -->
-                <!--   <option value=false>Rejeitar</option> -->
-                <!-- </select> -->
               </div>
               <%= error_span(@cliente[:status]) %>
             </div>
