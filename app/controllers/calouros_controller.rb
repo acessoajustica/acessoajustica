@@ -62,9 +62,6 @@ class CalourosController < ApplicationController
   def update
     respond_to do |format|
       if @calouro.update(calouro_params.select {|key, value| key != user_id})
-        @user = User.find(calouro_params[:user_id])
-        @user.membro_id = Membro.find_by({:actable_type => "Calouro", :actable_id => @calouro.id}).id;
-        @user.save
         format.html { redirect_to @calouro, notice: 'Calouro was successfully updated.' }
         format.json { render :show, status: :ok, location: @calouro }
       else

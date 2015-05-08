@@ -46,9 +46,6 @@ class VareirosController < ApplicationController
   def update
     respond_to do |format|
       if @vareiro.update(vareiro_params)
-        @user = User.find(vareiro_params[:user_id])
-        @user.membro_id = Membro.find_by( { :actable_type => "Vareiro", :actable_id => @vareiro.id } ).id;
-        @user.save
         format.html { redirect_to @vareiro, notice: 'Vareiro was successfully updated.' }
         format.json { render :show, status: :ok, location: @vareiro }
       else

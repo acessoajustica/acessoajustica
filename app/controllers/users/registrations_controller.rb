@@ -72,10 +72,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def parse_role(resource)
-    return '/' + Role.find(resource.role_ids[0]).name + 's'
+    role_name = resource.role_ids[0]
+    return '/' + I18n.transliterate(Role.find(resource.role_ids[0]).name) + 's'
   end
-
-
-
 
 end

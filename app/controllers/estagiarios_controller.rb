@@ -15,6 +15,7 @@ class EstagiariosController < ApplicationController
   # GET /estagiarios/new
   def new
     @estagiario = Estagiario.new
+    @user_id = params[:user_id]
   end
 
   # GET /estagiarios/1/edit
@@ -24,10 +25,13 @@ class EstagiariosController < ApplicationController
   # POST /estagiarios
   # POST /estagiarios.json
   def create
-    @estagiario = Estagiario.new(estagiario_params)
+    @estagiario = Estagiario.new(estagiario_params.select { | key, value | key != "user_id" })
 
     respond_to do |format|
       if @estagiario.save
+        @user = User.find(estagiario_params[:user_id])
+        @user.membro_id = Membro.find_by( { :actable_type => "Estagiario", :actable_id => @estagiario.id } ).id;
+        @user.save
         format.html { redirect_to @estagiario, notice: 'Estagiario was successfully created.' }
         format.json { render :show, status: :created, location: @estagiario }
       else
@@ -69,6 +73,8 @@ class EstagiariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def estagiario_params
-      params.require(:estagiario).permit(:especialidade)
+      params.require(:estagiario).permit(:especialidade, :ano_faculdade, :nome,
+                                         :cpf, :nome_da_mae, :rg, :cor, 
+                                         :identidade_de_genero, :user_id)
     end
 end
