@@ -11,11 +11,12 @@
 admin_role = Role.create!(:name => "admin")
 
 Role.create!(:name => "diretor")
-Role.create!(:name => "calouro")
+calouro_role = Role.create!(:name => "calouro")
 Role.create!(:name => "estagiário")
 
 # Creating admin users
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
+calouro_user = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
 
 # Creating estado_civil's
 EstadoCivil.create!(:description => "solteiro")
@@ -26,3 +27,5 @@ EstadoCivil.create!(:description => "viúvo")
 # assign the admin role to the admin user.  (This bit of rails
 # magic creates a user_role record in the database.)
 admin_user.roles << admin_role
+
+calouro_user.roles << calouro_role

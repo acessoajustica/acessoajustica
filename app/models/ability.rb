@@ -11,7 +11,7 @@ class Ability
     elsif user.role? :estagiário
       cannot :manage, :all
     elsif user.role? :calouro
-      cannot :manage, :all
+      can :manage, Cliente
     end 
   end 
 end
