@@ -121,23 +121,27 @@
           </div>
           <div class="panel-body row">
             <div class="form-group col-md-12 col-sm-12">
-              <%# <%= f.label :relatos, :class => 'control-label' %>
               <div class="controls">
                 <textarea class="form-control" rows="7">
                 </textarea>
               </div>
               <%= error_span(@cliente[:relato]) %>
-              <div class="form-group col-md-6 col-sm-6">
-                <%= f.label :categoria, :class => 'control-label' %>
-                <div class="controls">
-                  <select class="form-control">
-                    <option value=true>Aceitar</option>
-                    <option value=false>Rejeitar</option>
-                  </select>
-                </div>
-                <%= error_span(@cliente[:status]) %>
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+              <%= f.label :categoria, :class => 'control-label' %>
+              <div class="controls">
+                <%= f.fields_for :casos do |builder| %>
+                  <%# <%= f.select :status, options_for_select([['Válido', true], ['Inválido', false]], :selected => f.object.status), :prompt => 'Choose the correct answer' %>
+                  <%= f.select :profissao_type_id, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+                  <%# <%= render 'question_fields', f: builder %>
+                <% end %>
+                <!-- <select class="form&#45;control"> -->
+                <!--   <option value=""></option> -->
+                <!--   <option value=true>Aceitar</option> -->
+                <!--   <option value=false>Rejeitar</option> -->
+                <!-- </select> -->
               </div>
-
+              <%= error_span(@cliente[:status]) %>
             </div>
           </div>
         </div>      

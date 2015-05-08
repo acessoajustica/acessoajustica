@@ -1,42 +1,42 @@
 class ClientesController < ApplicationController
-  before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+    before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
-  # GET /clientes
-  # GET /clientes.json
-  def index
-    @clientes = Cliente.all
-  end
+    # GET /clientes
+    # GET /clientes.json
+    def index
+      @clientes = Cliente.all
+    end
 
-  # GET /clientes/1
-  # GET /clientes/1.json
-  def show
-  end
+    # GET /clientes/1
+    # GET /clientes/1.json
+    def show
+    end
 
-  # GET /clientes/new
-  def new
-    @cliente = Cliente.new
-  end
+    # GET /clientes/new
+    def new
+      @cliente = Cliente.new
+    end
 
-  # GET /clientes/1/edit
-  def edit
-  end
+    # GET /clientes/1/edit
+    def edit
+    end
 
-  # POST /clientes
-  # POST /clientes.json
-  def create
-    @cliente = Cliente.new(cliente_params.select do |key, value|
-      key != "relato" and key != "accepted" 
-    end)
-    respond_to do |format|
-      if @cliente.save
+    # POST /clientes
+    # POST /clientes.json
+    def create
+      @cliente = Cliente.new(cliente_params.select do |key, value|
+        key != "relato" and key != "accepted" 
+      end)
+      respond_to do |format|
+        if @cliente.save
 
-        @caso = Caso.new
-        # @caso.relato = cliente_params.relato
-        @caso.status = cliente_params.accepted
-        @caso.cliente_id = @cliente.id
-        @caso.save
+          @caso = Caso.new
+          # @caso.relato = cliente_params.relato
+          # @caso.status = cliente_params.accepted
+          @caso.cliente_id = @cliente.id
+          @caso.save
 
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+          format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
         format.json { render :show, status: :created, location: @cliente }
       else
         format.html { render :new }
