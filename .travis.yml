@@ -7,7 +7,7 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - RAILS_ENV=test bundle exec rake db:setup db:migrate --trace
   - export BUNDLE_GEMFILE=$PWD/Gemfile
-  # - export CODECLIMATE_REPO_TOKEN=6bf95f17eb6f76312a655acafc20c446a81f601c2f9a2c5d3771c95712da11d4
+  - export CODECLIMATE_REPO_TOKEN=aae1f8c4fcd3a49fe5f6a1f163f2c99327651ddb48c063e7a1d2673ea92f5122
 
 script:
   - bundle exec rake spec
