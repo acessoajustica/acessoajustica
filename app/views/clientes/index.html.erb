@@ -1,0 +1,50 @@
+<%- model_class = Cliente -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:filhos_quantidade) %></th>
+      <th><%= model_class.human_attribute_name(:profissao_nome) %></th>
+      <th><%= model_class.human_attribute_name(:familia_quantidade) %></th>
+      <th><%= model_class.human_attribute_name(:familia_renda) %></th>
+      <th><%= model_class.human_attribute_name(:contribuintes_quantidade) %></th>
+      <th><%= model_class.human_attribute_name(:estado_civil_id) %></th>
+      <th><%= model_class.human_attribute_name(:moradia_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:profissao_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clientes.each do |cliente| %>
+      <tr>
+        <td><%= link_to cliente.id, cliente_path(cliente) %></td>
+        <td><%= cliente.filhos_quantidade %></td>
+        <td><%= cliente.profissao_nome %></td>
+        <td><%= cliente.familia_quantidade %></td>
+        <td><%= cliente.familia_renda %></td>
+        <td><%= cliente.contribuintes_quantidade %></td>
+        <td><%= cliente.estado_civil_id %></td>
+        <td><%= cliente.moradia_type_id %></td>
+        <td><%= cliente.profissao_type_id %></td>
+        <td><%=l cliente.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_cliente_path(cliente), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      cliente_path(cliente),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_cliente_path,
+            :class => 'btn btn-primary' %>

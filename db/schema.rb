@@ -27,12 +27,41 @@ ActiveRecord::Schema.define(version: 20150423200659) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "clientes", force: :cascade do |t|
+    t.integer  "filhos_quantidade"
+    t.string   "profissao_nome"
+    t.string   "familia_quantidade"
+    t.decimal  "familia_renda"
+    t.integer  "contribuintes_quantidade"
+    t.integer  "estado_civil_id"
+    t.integer  "moradia_type_id"
+    t.integer  "profissao_type_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "clientes", ["estado_civil_id"], name: "index_clientes_on_estado_civil_id", using: :btree
+  add_index "clientes", ["moradia_type_id"], name: "index_clientes_on_moradia_type_id", using: :btree
+  add_index "clientes", ["profissao_type_id"], name: "index_clientes_on_profissao_type_id", using: :btree
+
+  create_table "estado_civils", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "membros", force: :cascade do |t|
     t.date     "ano_faculdade"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "actable_id"
     t.string   "actable_type"
+  end
+
+  create_table "moradia_types", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "pessoas", force: :cascade do |t|
@@ -46,6 +75,12 @@ ActiveRecord::Schema.define(version: 20150423200659) do
     t.datetime "updated_at",           null: false
     t.integer  "actable_id"
     t.string   "actable_type"
+  end
+
+  create_table "profissao_types", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -86,4 +121,7 @@ ActiveRecord::Schema.define(version: 20150423200659) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "clientes", "estado_civils"
+  add_foreign_key "clientes", "moradia_types"
+  add_foreign_key "clientes", "profissao_types"
 end

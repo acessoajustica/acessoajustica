@@ -15,8 +15,14 @@ Role.create!(:name => "vareiro")
 Role.create!(:name => "calouro")
 Role.create!(:name => "estagiário")
 
-# create an admin user
+# Creating admin users
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
+
+# Creating estado_civil's
+EstadoCivil.create!(:description => "solteiro")
+EstadoCivil.create!(:description => "casado")
+EstadoCivil.create!(:description => "divorciado")
+EstadoCivil.create!(:description => "viúvo")
 
 # assign the admin role to the admin user.  (This bit of rails
 # magic creates a user_role record in the database.)
