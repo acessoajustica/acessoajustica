@@ -47,6 +47,8 @@ GEM
     byebug (4.0.5)
       columnize (= 0.9.0)
     cancan (1.6.10)
+    codeclimate-test-reporter (0.4.7)
+      simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -74,6 +76,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.5.2)
     factory_girl (4.5.0)
@@ -180,6 +183,11 @@ GEM
       rdoc (~> 4.0)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     spring (1.3.6)
     sprockets (3.1.0)
       rack (~> 1.0)
@@ -220,6 +228,7 @@ DEPENDENCIES
   active_record-acts_as
   byebug (~> 4.0.4)
   cancan
+  codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   cucumber (~> 2.0.0)
   devise
