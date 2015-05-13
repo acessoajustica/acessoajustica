@@ -23,13 +23,22 @@ RSpec.describe VareirosController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Vareiro. As you add validations to Vareiro, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    FactoryGirl.attributes_for(:vareiro)
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    FactoryGirl.attributes_for(:vareiro, :vareiro_invalid)
+  end
+
+  let(:new_attributes) do
+    FactoryGirl.attributes_for(:vareiro, :new_vareiro)
+  end
+
+  before :each do
+      @user = FactoryGirl.build :user
+      User.stubs(:find).returns(@user)
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -102,15 +111,11 @@ RSpec.describe VareirosController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
       it "updates the requested vareiro" do
         vareiro = Vareiro.create! valid_attributes
         put :update, {:id => vareiro.to_param, :vareiro => new_attributes}, valid_session
         vareiro.reload
-        skip("Add assertions for updated state")
+        expect(vareiro.nome).to eq(new_attributes[:nome])
       end
 
       it "assigns the requested vareiro as @vareiro" do
