@@ -55,9 +55,16 @@ function build_update {
     app_test
 }
 function build_clean {
-    sudo ${DOCKER} stop $(sudo ${DOCKER} ps -a -q) # Stops old containers.
-    sudo ${DOCKER} rm $(sudo ${DOCKER} ps -a -q)   # Remove old containers.
-    sudo rm ./tmp/pid/server.pid
+    COMPOSER=$(sudo ${DOCKER} ps -a -q)
+    if [[ -n $COMPOSER ]] 
+    then
+        sudo ${DOCKER} stop $COMPOSER # Stops old containers.
+        sudo ${DOCKER} rm $COMPOSER   # Remove old containers.
+    fi
+    if [[ -f ./tmp/pid/server.pid ]]
+    then
+        sudo rm ./tmp/pid/server.pid
+    fi
 }
 function build_purge {
     build_clean
@@ -83,6 +90,6 @@ if check_deps; then
     elif [[ $1 == test ]]; then app_test;
     elif [[ $1 == seed ]]; then app_seed;
     elif [[ $1 == help ]]; then usage;
-    else { echo "No valid arguments, exiting."; exit 0; }
+    else { echo ""; echo "Error: no valid argument."; echo ""; usage; echo "Exiting..."; exit 0; }
     fi
 fi
