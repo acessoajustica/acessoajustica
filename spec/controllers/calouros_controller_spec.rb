@@ -32,6 +32,10 @@ RSpec.describe CalourosController, type: :controller do
     FactoryGirl.attributes_for(:calouro, :calouro_invalid)
   end
 
+  let(:new_attributes) do
+    FactoryGirl.attributes_for(:calouro, :new_calouro)
+  end
+
   before :each do
       @user = FactoryGirl.build :user
       User.stubs(:find).returns(@user)
@@ -108,15 +112,11 @@ RSpec.describe CalourosController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-          FactoryGirl.attributes_for(:calouro, :new_calouro)
-      }
-
       it "updates the requested calouro" do
         calouro = Calouro.create! valid_attributes
         put :update, {:id => calouro.to_param, :calouro => new_attributes}, valid_session
-        calouro.reloadz
-        skip("Add assertions for updated state")
+        calouro.reload
+        expect(calouro.nome).to eq(new_attributes[:nome])
       end
 
       it "assigns the requested calouro as @calouro" do
