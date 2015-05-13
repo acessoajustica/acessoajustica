@@ -48,6 +48,9 @@ group :development, :test do
 
   # Create test coverage with codeclimate
   gem "codeclimate-test-reporter", group: :test, require: nil
+ 
+  # Create test coverage with coveralls
+  gem 'coveralls', require: false
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 4.0.4'
