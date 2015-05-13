@@ -1,4 +1,9 @@
-# LabXP 2015: Acesso à Justiça
+LabXP 2015: Acesso à Justiça
+==============================
+
+[![Code Climate](https://codeclimate.com/github/acessoajustica/acessoajustica/badges/gpa.svg)](https://codeclimate.com/github/acessoajustica/acessoajustica)
+[![Build Status](https://travis-ci.org/acessoajustica/acessoajustica.svg?branch=dev)](https://travis-ci.org/acessoajustica/acessoajustica)
+[![Test Coverage](https://codeclimate.com/github/acessoajustica/acessoajustica/badges/coverage.svg)](https://codeclimate.com/github/acessoajustica/acessoajustica/coverage)
 
 This repository contains a ruby on rails project for the
 [Legal Department XI de Agosto](http://djonzedeagosto.org.br/). The project
