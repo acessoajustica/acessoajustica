@@ -6,16 +6,20 @@ FactoryGirl.define do
     rg "12.345.678-9"
     cor "Negro"
     identidade_de_genero "Homem"
-    # familia_renda 1500.00
-    # filhos_quantidade 6
-    # profissao_nome "Assistente Administrativo"
-    # familia_quantidade 9
-    # contribuintes_quantidade 4
+    familia_renda 1500.00
+    filhos_quantidade 6
+    profissao_nome "Assistente Administrativo"
+    familia_quantidade 9
+    contribuintes_quantidade 4
+    
+    trait :cliente_with_caso do
+      casos  [FactoryGirl.build(:caso)]
+    end
 
-    trait :pessoa_invalid do
+    trait :cliente_invalid do
       nome nil
     end
-    trait :new_pessoa do
+    trait :new_cliente do
       nome "Mario da Silva"
     end
   end

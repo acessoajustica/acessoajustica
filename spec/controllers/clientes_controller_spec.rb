@@ -27,9 +27,15 @@ RSpec.describe ClientesController, type: :controller do
     FactoryGirl.attributes_for(:cliente)
   end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes_with_caso) do
+    FactoryGirl.attributes_for(:cliente, :cliente_with_caso)
+  end
+
+  let(:invalid_attributes) do
+    FactoryGirl.attributes_for(:cliente, :cliente_invalid)
+  end
+    
+  
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -71,18 +77,18 @@ RSpec.describe ClientesController, type: :controller do
     context "with valid params" do
       it "creates a new Cliente" do
         expect {
-          post :create, {:cliente => valid_attributes}, valid_session
+          post :create, {:cliente => valid_attributes_with_caso}, valid_session
         }.to change(Cliente, :count).by(1)
       end
 
       it "assigns a newly created cliente as @cliente" do
-        post :create, {:cliente => valid_attributes}, valid_session
+        post :create, {:cliente => valid_attributes_with_caso}, valid_session
         expect(assigns(:cliente)).to be_a(Cliente)
         expect(assigns(:cliente)).to be_persisted
       end
 
       it "redirects to the created cliente" do
-        post :create, {:cliente => valid_attributes}, valid_session
+        post :create, {:cliente => valid_attributes_with_caso}, valid_session
         expect(response).to redirect_to(Cliente.last)
       end
     end
@@ -102,9 +108,10 @@ RSpec.describe ClientesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+
+      let(:new_attributes) do
+        FactoryGirl.attributes_for(:cliente, :new_cliente)
+      end
 
       it "updates the requested cliente" do
         cliente = Cliente.create! valid_attributes

@@ -1,33 +1,43 @@
 class ClientesController < ApplicationController
-  before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+    before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
-  # GET /clientes
-  # GET /clientes.json
-  def index
-    @clientes = Cliente.all
-  end
+    # GET /clientes
+    # GET /clientes.json
+    def index
+      @clientes = Cliente.all
+    end
 
-  # GET /clientes/1
-  # GET /clientes/1.json
-  def show
-  end
+    # GET /clientes/1
+    # GET /clientes/1.json
+    def show
+    end
 
-  # GET /clientes/new
-  def new
-    @cliente = Cliente.new
-  end
+    # GET /clientes/new
+    def new
+      @cliente = Cliente.new
+      @caso = Caso.new
+      @relato = Relato.new
+    end
 
-  # GET /clientes/1/edit
-  def edit
-  end
+    # GET /clientes/1/edit
+    def edit
+    end
 
-  # POST /clientes
-  # POST /clientes.json
-  def create
-    @cliente = Cliente.new(cliente_params)
-    respond_to do |format|
-      if @cliente.save
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+    # POST /clientes
+    # POST /clientes.json
+    def create
+      @cliente = Cliente.new(cliente_params)
+      respond_to do |format|
+        if @cliente.save
+
+          @caso = Caso.new(caso_params)
+          @relato = Relato.new(relato_params)
+          @relato.save
+          @caso.relatos << @relato
+          @caso.cliente_id = @cliente.id
+          @caso.save
+
+          format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
         format.json { render :show, status: :created, location: @cliente }
       else
         format.html { render :new }
@@ -72,5 +82,13 @@ class ClientesController < ApplicationController
                                       :familia_renda, :contribuintes_quantidade, :estado_civil_id,
                                       :moradia_type_id, :profissao_type_id, :nome, :cpf, 
                                       :nome_da_mae, :rg, :cor, :identidade_de_genero)
+    end
+
+    def caso_params
+      params.require(:cliente).permit(:caso).permit(:status)
+    end
+
+    def relato_params
+      params.require(:cliente).permit(:relato).permit(:description)
     end
 end

@@ -24,6 +24,11 @@ EstadoCivil.create!(:description => "casado")
 EstadoCivil.create!(:description => "divorciado")
 EstadoCivil.create!(:description => "viúvo")
 
+# Creating profissao's
+ProfissaoType.create!(:description => "Primário")
+ProfissaoType.create!(:description => "Secundário")
+ProfissaoType.create!(:description => "Terciário")
+
 # assign the admin role to the admin user.  (This bit of rails
 # magic creates a user_role record in the database.)
 admin_user.roles << admin_role

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :calouros
 
+  resources :relatos
+
+  resources :casos
+
   resources :clientes
 
   resources :membros
