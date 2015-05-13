@@ -122,20 +122,21 @@
           <div class="panel-body row">
             <div class="form-group col-md-12 col-sm-12">
               <div class="controls">
-                <textarea class="form-control" rows="7">
-                </textarea>
+                <%= f.fields_for @relato do |r| %>
+                  <%= r.text_area :description,  {:class => 'form-control', :rows => 7 } %>
+                <% end %>
               </div>
               <%= error_span(@cliente[:relato]) %>
             </div>
             <div class="form-group col-md-12 col-sm-12">
               <%= f.label :categoria, :class => 'control-label' %>
               <div class="controls">
-                <%= f.fields_for :casos do |builder| %>
-                  <%= f.select :profissao_type_id, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+                <%= f.fields_for @caso do |c| %>
+                  <%= c.select :status, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
                   <%# <%= render 'question_fields', f: builder %>
                 <% end %>
               </div>
-              <%= error_span(@cliente[:status]) %>
+              <%= error_span(@caso[:status]) %>
             </div>
           </div>
         </div>      
