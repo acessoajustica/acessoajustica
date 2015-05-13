@@ -1,0 +1,14 @@
+language: ruby
+
+rvm:
+  - 2.2.2
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - RAILS_ENV=test bundle exec rake db:setup db:migrate --trace
+  - export BUNDLE_GEMFILE=$PWD/Gemfile
+  # - export CODECLIMATE_REPO_TOKEN=6bf95f17eb6f76312a655acafc20c446a81f601c2f9a2c5d3771c95712da11d4
+
+script:
+  - bundle exec rake spec
+  - bundle exec rake cucumber
