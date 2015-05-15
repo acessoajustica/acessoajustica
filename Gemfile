@@ -72,7 +72,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 
   gem 'factory_girl', '~> 4.5.0'
+
   gem 'shoulda-matchers', '~> 2.8.0'
+
+  gem 'cucumber-rails'
+  
+  gem 'database_cleaner'
+
 end
 group :users, :authentication do
     gem 'devise'
