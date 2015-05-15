@@ -1,0 +1,28 @@
+<%= form_for @estagiario, :html => { :class => "form-horizontal estagiario" } do |f| %>
+
+    <% if @estagiario.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@estagiario.errors.count, "error") %> prohibited this estagiario from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @estagiario.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+
+  <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @estagiario} %>
+  <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @estagiario } %>
+  <%= render :partial => 'fields', :locals => { :f => f } %>
+  <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            estagiarios_path, :class => 'btn btn-default' %>
+
+<% end %>

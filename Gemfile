@@ -45,6 +45,13 @@ gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'active_record-acts_as' #, '1.0.2'
 
 group :development, :test do
+
+  # Create test coverage with codeclimate
+  gem "codeclimate-test-reporter", group: :test, require: nil
+ 
+  # Create test coverage with coveralls
+  gem 'coveralls', require: false
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 4.0.4'
 
@@ -59,6 +66,8 @@ group :development, :test do
   
   # Rspec for unit tests
   gem 'rspec', '~> 3.2.0'
+
+  gem 'mocha', '1.1.0'
 
   gem 'rspec-rails', '~> 3.0'
 

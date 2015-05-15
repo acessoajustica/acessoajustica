@@ -1,0 +1,25 @@
+<%= form_for(@caso) do |f| %>
+  <% if @caso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@caso.errors.count, "error") %> prohibited this caso from being saved:</h2>
+
+      <ul>
+      <% @caso.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.check_box :status %>
+  </div>
+  <div class="field">
+    <%= f.label :cliente_id %><br>
+    <%= f.text_field :cliente_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

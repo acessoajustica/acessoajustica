@@ -1,4 +1,5 @@
 class Membro < ActiveRecord::Base
+  actable
   acts_as :pessoa
   has_one :user
 

@@ -13,45 +13,53 @@
   </div>
 <% end %>
 
-<div class="control-group">
-  <%= f.label :nome, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :nome, :class => 'form-control' %>
+<div class="row">
+  <div class="form-group col-md-12">
+      <%= f.label :nome, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :nome, :class => 'form-control' %>
+      </div>
+      <%= error_span(@pessoa[:nome]) %>
   </div>
-  <%= error_span(@pessoa[:nome]) %>
 </div>
-<div class="control-group">
-  <%= f.label :cpf, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :cpf, :class => 'form-control' %>
+<div class="row">
+  <div class="form-group col-md-12">
+    <%= f.label :nome_da_mae, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nome_da_mae, :class => 'form-control' %>
+    </div>
+    <%= error_span(@pessoa[:nome_da_mae]) %>
   </div>
-  <%= error_span(@pessoa[:cpf]) %>
 </div>
-<div class="control-group">
-  <%= f.label :nome_da_mae, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :nome_da_mae, :class => 'form-control' %>
+<div class="row">
+  <div class="form-group col-md-6 col-sm-6">
+    <%= f.label :cpf, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cpf, :class => 'form-control' %>
+    </div>
+    <%= error_span(@pessoa[:cpf]) %>
   </div>
-  <%= error_span(@pessoa[:nome_da_mae]) %>
+  <div class="form-group col-md-6 col-sm-6">
+    <%= f.label :rg, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :rg, :class => 'form-control' %>
+    </div>
+    <%= error_span(@pessoa[:rg]) %>
+  </div>
 </div>
-<div class="control-group">
-  <%= f.label :rg, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :rg, :class => 'form-control' %>
+<div class="row">
+  <div class="form-group col-md-6 col-sm-6">
+    <%= f.label :cor, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cor, :class => 'form-control' %>
+    </div>
+    <%= error_span(@pessoa[:cor]) %>
   </div>
-  <%= error_span(@pessoa[:rg]) %>
+  <div class="form-group col-md-6 col-sm-6">
+    <%= f.label :identidade_de_genero, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :identidade_de_genero, :class => 'form-control' %>
+    </div>
+    <%= error_span(@pessoa[:identidade_de_genero]) %>
+  </div>
 </div>
-<div class="control-group">
-  <%= f.label :cor, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :cor, :class => 'form-control' %>
-  </div>
-  <%= error_span(@pessoa[:cor]) %>
-</div>
-<div class="control-group">
-  <%= f.label :identidade_de_genero, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :identidade_de_genero, :class => 'form-control' %>
-  </div>
-  <%= error_span(@pessoa[:identidade_de_genero]) %>
-</div>  

@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+
+  resources :estagiarios
+
+  resources :vareiros
+
+  resources :calouros
+
+  resources :relatos
+
+  resources :casos
+
+  resources :clientes
+
   resources :membros
 
   resources :pessoas
