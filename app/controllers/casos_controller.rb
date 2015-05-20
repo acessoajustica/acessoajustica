@@ -7,6 +7,11 @@ class CasosController < ApplicationController
     @casos = Caso.all
   end
 
+  # GET /casos/my-cases
+  def my_cases
+    @casos = Caso.where("estagiario_id = ?", current_user.membro_id);
+  end
+
   # GET /casos/1
   # GET /casos/1.json
   def show
