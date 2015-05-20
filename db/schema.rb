@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506195014) do
+ActiveRecord::Schema.define(version: 20150520185230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,11 +24,13 @@ ActiveRecord::Schema.define(version: 20150506195014) do
   create_table "casos", force: :cascade do |t|
     t.boolean  "status"
     t.integer  "cliente_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "estagiario_id"
   end
 
   add_index "casos", ["cliente_id"], name: "index_casos_on_cliente_id", using: :btree
+  add_index "casos", ["estagiario_id"], name: "index_casos_on_estagiario_id", using: :btree
 
   create_table "clientes", force: :cascade do |t|
     t.integer  "filhos_quantidade"
@@ -140,6 +142,7 @@ ActiveRecord::Schema.define(version: 20150506195014) do
   end
 
   add_foreign_key "casos", "clientes"
+  add_foreign_key "casos", "estagiarios"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"
