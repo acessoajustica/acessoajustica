@@ -32,26 +32,27 @@ function check_deps {
     return 0
 }
 function app_seed {
-    sudo ${DOCKER_COMPOSE} run web rake db:seed       # Seeds the database.
+    sudo ${DOCKER_COMPOSE} run web rake db:seed                 # Seeds the database.
+    sudo ${DOCKER_COMPOSE} run web rake db:seed RAILS_ENV=test  # Seeds the database.
 }
 function app_restart {
-    sudo ${DOCKER} stop $(sudo ${DOCKER} ps -a -q) # Stops old containers.
-    sudo ${DOCKER_COMPOSE} up                      # Starts the app.
+    sudo ${DOCKER} stop $(sudo ${DOCKER} ps -a -q)              # Stops old containers.
+    sudo ${DOCKER_COMPOSE} up                                   # Starts the app.
 }
 function app_migrate {
-    sudo ${DOCKER_COMPOSE} run web rake db:create  # Creates all databases.
-    sudo ${DOCKER_COMPOSE} run web rake db:migrate # Runs migrations.
+    sudo ${DOCKER_COMPOSE} run web rake db:create               # Creates all databases.
+    sudo ${DOCKER_COMPOSE} run web rake db:migrate              # Runs migrations.
 }
 function app_test {
     app_migrate
-    sudo ${DOCKER_COMPOSE} run web rake spec       # Runs tests.
+    sudo ${DOCKER_COMPOSE} run web rake spec                    # Runs tests.
 }
 function app_run {
     app_migrate
-    sudo ${DOCKER_COMPOSE} up                      # Starts the app.
+    sudo ${DOCKER_COMPOSE} up                                   # Starts the app.
 }
 function build_update {
-    sudo ${DOCKER_COMPOSE} run web bundle update   # Updating gems.
+    sudo ${DOCKER_COMPOSE} run web bundle update                # Updating gems.
     app_test
 }
 function build_clean {
