@@ -23,9 +23,9 @@ RSpec.describe CasosController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Caso. As you add validations to Caso, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    FactoryGirl.attributes_for(:caso)
+  end
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
@@ -36,10 +36,26 @@ RSpec.describe CasosController, type: :controller do
   # CasosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    user = double('user')
+    allow(request.env['warden']).to receive(:authenticate!) { user }
+    authenticatellow(controller).to receive(:current_user) { user }
+  end
+
   describe "GET #index" do
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
       get :index, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+    end
+  end
+
+  describe "GET #my-casos" do
+    it "assigns specific casos as @casos" do
+      caso = Caso.create! valid_attributes
+      caso.estagiario = @user.membro
+      caso.save
+      get :my_cases, {}, valid_session
       expect(assigns(:casos)).to eq([caso])
     end
   end
