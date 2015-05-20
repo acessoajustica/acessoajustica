@@ -74,12 +74,14 @@ group :development, :test do
   gem 'factory_girl', '~> 4.5.0'
 
   gem 'shoulda-matchers', '~> 2.8.0'
-
-  gem 'cucumber-rails'
   
   gem 'database_cleaner'
 
 end
 group :users, :authentication do
     gem 'devise'
+end
+
+group :test do
+  gem 'cucumber-rails', :require => false
 end
