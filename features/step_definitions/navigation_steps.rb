@@ -2,6 +2,9 @@ Given(/^I am on "([^"]*)"$/) do |page_name|
   visit path_to(page_name)
 end
 
+Given(/^I am not authenticated$/) do
+end
+
 And(/^I fill in "([^\"]*)" with "([^\"]*)"$/) do |field, value|
   fill_in(field.gsub(' ', '_'), :with => value)
 end
