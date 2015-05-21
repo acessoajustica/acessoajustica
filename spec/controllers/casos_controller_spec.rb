@@ -18,7 +18,10 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
+  
 RSpec.describe CasosController, type: :controller do
+
+  let(:user) { FactoryGirl.create(:user, :another) } # factory girl
 
   # This should return the minimal set of attributes required to create a valid
   # Caso. As you add validations to Caso, be sure to
@@ -43,12 +46,6 @@ RSpec.describe CasosController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # CasosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
-  before :each do
-    user = double('user')
-    allow(request.env['warden']).to receive(:authenticate!) { user }
-    authenticatellow(controller).to receive(:current_user) { user }
-  end
 
   describe "GET #index" do
     it "assigns all casos as @casos" do
@@ -83,11 +80,16 @@ RSpec.describe CasosController, type: :controller do
 
   describe "GET #my-casos" do
     it "assigns specific casos as @casos" do
+      sign_in user
       caso = Caso.create! valid_attributes
-      caso.estagiario = @user.membro
+      caso.estagiario = FactoryGirl.create(:estagiario)
       caso.save
+      user.membro_id = caso.estagiario_id
+      user.save
+      User.stubs(:membro_id).returns(caso.estagiario_id)
       get :my_cases, {}, valid_session
       expect(assigns(:casos)).to eq([caso])
+      caso.destroy
     end
   end
 
