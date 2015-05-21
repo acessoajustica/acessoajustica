@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
 
-  resources :estagiarios
+  authenticate :user do
+    resources :estagiarios
 
-  resources :vareiros
+    resources :vareiros
 
-  resources :calouros
+    resources :calouros
 
-  resources :relatos
+    resources :relatos
 
-  resources :casos
+    resources :casos
 
-  resources :clientes
+    resources :clientes
 
-  resources :membros
+    resources :membros
 
-  resources :pessoas
+    resources :pessoas
+  end
 
   devise_for :users, :controllers => { :registrations => "users/registrations", 
                                        :sessions => "users/sessions"}
