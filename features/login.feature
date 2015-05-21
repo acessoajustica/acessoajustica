@@ -4,8 +4,8 @@ Feature: Login
   Should log in the system
  
   Scenario: admin post login form
-      Given I am on "login page"
-      And I fill in "user login" with "admin"
-      And I fill in "user password" with "password"
-      When I press "submit"
-      Then I should be on "homepage"
+    Given I am on "login page"
+    And I fill in "user login" with "admin"
+    And I fill in "user password" with "password"
+    When I press "submit"
+    Then I should be on "homepage"
