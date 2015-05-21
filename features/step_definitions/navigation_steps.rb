@@ -31,6 +31,13 @@ Given(/^I am logged as "([^"]*)"$/) do |user_role|
   sign_in(user_role)
 end
 
+Given(/^I am not authenticated$/) do
+end
+
+And(/^I fill in "([^\"]*)" with "([^\"]*)"$/) do |field, value|
+  fill_in(field.gsub(' ', '_'), :with => value)
+end
+
 When (/^I press "([^\"]*)"$/) do |button|
   click_button(button)
 end
