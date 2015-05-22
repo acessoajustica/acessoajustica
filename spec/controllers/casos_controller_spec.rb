@@ -23,13 +23,21 @@ RSpec.describe CasosController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Caso. As you add validations to Caso, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    FactoryGirl.attributes_for(:caso)
+  end
 
-  let(:invalid_attributes) {
+  let(:valid_old_caso) do
+    FactoryGirl.attributes_for(:caso, :old)
+  end
+
+  let(:valid_non_accepted) do
+    FactoryGirl.attributes_for(:caso, :non_accepted)
+  end
+
+  let(:invalid_attributes) do
     skip("Add a hash of attributes invalid for your model")
-  }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -39,6 +47,29 @@ RSpec.describe CasosController, type: :controller do
   describe "GET #index" do
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
+      get :index, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+    end
+
+    it "assigns all casos as @casos (except old casos)" do
+      caso = Caso.create! valid_attributes
+      old_caso = Caso.create! valid_old_caso
+      get :index, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+    end
+
+    it "assigns all casos as @casos (except non accepted)" do
+      caso = Caso.create! valid_attributes
+      non_accepted_caso = Caso.create! valid_non_accepted
+      get :index, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+    end
+
+    it "assigns all casos as @casos (except already attended)" do
+      caso = Caso.create! valid_attributes
+      already_attended_caso = Caso.create! valid_attributes
+      already_attended_caso.stubs(:estagiario).returns(FactoryGirl.build(:estagiario))
+      Caso.stubs(:where).returns([caso, already_attended_caso])
       get :index, {}, valid_session
       expect(assigns(:casos)).to eq([caso])
     end

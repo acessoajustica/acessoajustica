@@ -4,8 +4,10 @@ class CasosController < ApplicationController
   # GET /casos
   # GET /casos.json
   def index
-    @casos = Caso.all
-  end
+    @casos = Caso.where("created_at >= ?", Time.zone.now.beginning_of_day).select do |caso|
+      caso.status == true and caso.estagiario == nil
+    end
+  end 
 
   # GET /casos/1
   # GET /casos/1.json
