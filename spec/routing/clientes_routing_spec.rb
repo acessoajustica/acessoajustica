@@ -1,5 +1,4 @@
 require "rails_helper"
-require "spec_helper"
 
 RSpec.describe ClientesController, type: :routing do
   describe "routing" do
