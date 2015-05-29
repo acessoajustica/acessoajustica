@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529174014) do
+ActiveRecord::Schema.define(version: 20150529180010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20150529174014) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "estagiario_id"
+    t.integer  "caso_type_id"
   end
 
+  add_index "casos", ["caso_type_id"], name: "index_casos_on_caso_type_id", using: :btree
   add_index "casos", ["cliente_id"], name: "index_casos_on_cliente_id", using: :btree
   add_index "casos", ["estagiario_id"], name: "index_casos_on_estagiario_id", using: :btree
 
@@ -147,6 +149,7 @@ ActiveRecord::Schema.define(version: 20150529174014) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "casos", "caso_types"
   add_foreign_key "casos", "clientes"
   add_foreign_key "casos", "estagiarios"
   add_foreign_key "clientes", "estado_civils"
