@@ -11,7 +11,7 @@ class CasosController < ApplicationController
 
   # GET /casos/my-cases
   def my_cases
-    @casos = Caso.where("estagiario_id = ?", Membro.find(current_user.membro_id).actable_id);
+    @casos = Caso.all_of_user(current_user)
   end
 
   # GET /casos/1
