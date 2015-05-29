@@ -2,21 +2,28 @@
 <div class="container-fluid">
   <h1>Listing Casos</h1>
   <% @casos.each do |caso| %>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+      <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="heading<%= caso.id %>">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <a data-toggle="collapse" data-parent="#accordion" class="collapsed" href="#collapse<%= caso.id %>" aria-expanded="false" aria-controls="collapse<%= caso.id %>">
+              <div>
               <%= caso.cliente.nome%>
+              </div>
             </a>
           </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapse<%= caso.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%= caso.id %>">
           <div class="panel-body">
             <% Relato.where(:caso => caso).each do |relato| %>
               <%= relato.description %>
-              <%= link_to 'Show', caso %>
-              <%= link_to 'Edit', edit_caso_path(caso) %>
+              <!-- <%= link_to 'Show', caso %>
+              <%= link_to 'Edit', edit_caso_path(caso) %> -->
+              <a href="casos/<%= caso.id %>" class="btn btn-primary btn-xs pull-right">
+                <i class="glyphicon glyphicon-eye"></i>
+                ver caso
+              </a>  
+              <a href="<%= edit_caso_path(caso) %>" class="btn btn-warning btn-xs pull-right">editar caso</a>  
             <% end %>
           </div>
         </div>

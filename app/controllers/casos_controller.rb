@@ -7,11 +7,13 @@ class CasosController < ApplicationController
     @casos = Caso.where("created_at >= ?", Time.zone.now.beginning_of_day).select do |caso|
       caso.status == true and caso.estagiario == nil
     end
+    authorize! :manage, @casos
   end 
 
   # GET /casos/1
   # GET /casos/1.json
   def show
+
   end
 
   # GET /casos/new

@@ -45,6 +45,10 @@ RSpec.describe CasosController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
+
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
       get :index, {}, valid_session

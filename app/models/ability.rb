@@ -10,6 +10,8 @@ class Ability
       can :manage, :all
     elsif user.role? :estagiário
       cannot :manage, :all
+      can :manage, Caso
+      can :manage, Cliente
     elsif user.role? :calouro
       can :manage, Cliente
     end 
