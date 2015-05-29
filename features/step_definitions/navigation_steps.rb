@@ -31,7 +31,12 @@ Given(/^I am logged as "([^"]*)"$/) do |user_role|
   sign_in(user_role)
 end
 
+And(/^I am estagiario with id "([^\"]*)"$/) do |value|
+  
+end
+
 When (/^I press "([^\"]*)"$/) do |button|
+	
   click_button(button)
 end
 
@@ -59,4 +64,5 @@ Given(/^exists an? "([^"]*)" that belongs to an? "([^"]*)"$/) do |property, owne
   owners_list = owners.split(/, to an? | and to an? /)
   property_entity = bind(property, owners_list)
   property_entity.save
+
 end

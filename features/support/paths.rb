@@ -2,6 +2,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
  
+    when /my cases/
+      '/casos/my-cases'
   	when /login page/
       '/users/sign_in'
     when /home\s?page/
