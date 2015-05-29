@@ -10,7 +10,7 @@ FactoryGirl.define do
       created_at Date.new(1970, 1, 1)
     end
 
-    trait :non_accepted do
+    trait :rejected do
       status false
     end
 

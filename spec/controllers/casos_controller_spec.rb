@@ -32,7 +32,7 @@ RSpec.describe CasosController, type: :controller do
   end
 
   let(:valid_non_accepted) do
-    FactoryGirl.attributes_for(:caso, :non_accepted)
+    FactoryGirl.attributes_for(:caso, :rejected)
   end
 
   let(:invalid_attributes) do
