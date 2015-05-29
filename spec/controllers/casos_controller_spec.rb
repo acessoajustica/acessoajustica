@@ -47,6 +47,12 @@ RSpec.describe CasosController, type: :controller do
   # CasosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    user = double('user')
+    allow(request.env['warden']).to receive(:authenticate!) { user }
+    authenticatellow(controller).to receive(:current_user) { user }
+  end
+
   describe "GET #index" do
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
@@ -90,6 +96,16 @@ RSpec.describe CasosController, type: :controller do
       get :my_cases, {}, valid_session
       expect(assigns(:casos)).to eq([caso])
       caso.destroy
+    end
+  end
+
+  describe "GET #my-casos" do
+    it "assigns specific casos as @casos" do
+      caso = Caso.create! valid_attributes
+      caso.estagiario = @user.membro
+      caso.save
+      get :my_cases, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
     end
   end
 
