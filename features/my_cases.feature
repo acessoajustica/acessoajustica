@@ -7,4 +7,3 @@ Feature: My Cases
         Given I am logged as "estagiario"
         And exists a "caso" that belongs to an "estagiario"
         When I am on "my cases"
-

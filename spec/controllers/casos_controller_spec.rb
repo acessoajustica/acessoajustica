@@ -108,6 +108,21 @@ RSpec.describe CasosController, type: :controller do
     end
   end
 
+  describe "GET #my-casos" do
+    it "assigns specific casos as @casos" do
+      sign_in user
+      caso = Caso.create! valid_attributes
+      caso.estagiario = FactoryGirl.create(:estagiario)
+      caso.save
+      user.membro_id = caso.estagiario_id
+      user.save
+      User.stubs(:membro_id).returns(caso.estagiario_id)
+      get :my_cases, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+      caso.destroy
+    end
+  end
+
   describe "GET #show" do
     it "assigns the requested caso as @caso" do
       caso = Caso.create! valid_attributes
