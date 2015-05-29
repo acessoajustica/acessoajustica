@@ -7,8 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:cliente_id) %></th>
-      <th><%= model_class.human_attribute_name(:estagiario_id) %></th>
+      <th><%= model_class.human_attribute_name(:cliente) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -17,9 +16,8 @@
     <% @casos.each do |caso| %>
       <tr>
         <td><%= link_to caso.id, caso_path(caso) %></td>
-        <td><%= caso.status %></td>
-        <td><%= caso.cliente_id %></td>
-        <td><%= caso.estagiario_id %></td>
+        <td><%= caso.status ? "Aprovado" : "Não Aprovado" %></td>
+        <td><%= caso.cliente.nome %></td>
         <td><%=l caso.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

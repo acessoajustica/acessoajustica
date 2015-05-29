@@ -11,17 +11,7 @@ class CasosController < ApplicationController
 
   # GET /casos/my-cases
   def my_cases
-    @casos = Caso.where("estagiario_id = ?", current_user.membro_id);
-  end
-
-  # GET /casos/my-cases
-  def my_cases
-    @casos = Caso.where("estagiario_id = ?", current_user.membro_id);
-  end
-
-  # GET /casos/my-cases
-  def my_cases
-    @casos = Caso.where("estagiario_id = ?", current_user.membro_id);
+    @casos = Caso.where("estagiario_id = ?", Membro.find(current_user.membro_id).actable_id);
   end
 
   # GET /casos/1
