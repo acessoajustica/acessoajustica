@@ -7,5 +7,5 @@ Feature: Login
     Given I am on "login page"
     And I fill in "user login" with "admin"
     And I fill in "user password" with "password"
-    When I press "commit"
+    When I press "submit"
     Then I should be on "homepage"

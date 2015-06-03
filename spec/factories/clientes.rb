@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :cliente do
-    nome "João da Silva"
+    nome "Joana Silveira"
     cpf "123.456.789-00"
     nome_da_mae "Maria da Penha"
     rg "12.345.678-9"
@@ -19,7 +19,7 @@ FactoryGirl.define do
     trait :cliente_invalid do
       nome nil
     end
-    trait :new_cliente do
+    trait :another do
       nome "Mario da Silva"
     end
   end

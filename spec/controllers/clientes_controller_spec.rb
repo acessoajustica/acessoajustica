@@ -112,7 +112,7 @@ RSpec.describe ClientesController, type: :controller do
     context "with valid params" do
 
       let(:new_attributes) do
-        FactoryGirl.attributes_for(:cliente, :new_cliente)
+        FactoryGirl.attributes_for(:cliente, :another)
       end
 
       it "updates the requested cliente" do

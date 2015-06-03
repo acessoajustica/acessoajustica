@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :estagiario do
-    nome "João da Silva"
+    nome "Joana Silveira"
     cpf "123.456.789-00"
     nome_da_mae "Maria da Penha"
     rg "12.345.678-9"
