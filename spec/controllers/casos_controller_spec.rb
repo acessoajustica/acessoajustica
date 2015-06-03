@@ -21,8 +21,6 @@ require 'rails_helper'
   
 RSpec.describe CasosController, type: :controller do
 
-  let(:user) { FactoryGirl.create(:user, :another) } # factory girl
-
   # This should return the minimal set of attributes required to create a valid
   # Caso. As you add validations to Caso, be sure to
   # adjust the attributes here as well.
@@ -82,8 +80,11 @@ RSpec.describe CasosController, type: :controller do
   end
 
   describe "GET #my-cases" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
+    
     it "assigns specific casos as @casos" do
-      sign_in user
       caso = Caso.create! valid_attributes
       Caso.stubs(:all_of_user).returns([caso])
       get :my_cases, valid_session

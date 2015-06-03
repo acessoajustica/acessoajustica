@@ -13,6 +13,7 @@ class CasosController < ApplicationController
 
   # GET /casos/my-cases
   def my_cases
+    authorize! :read, Caso
     @casos = Caso.all_of_user(current_user)
   end
 
