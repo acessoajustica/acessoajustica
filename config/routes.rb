@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :relatos
 
-  resources :casos
+  resources :casos do
+    collection do
+      get 'my-cases'
+    end
+  end
 
   resources :clientes
 

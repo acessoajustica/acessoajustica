@@ -15,5 +15,8 @@ FactoryGirl.define do
     trait :new_estagiario do
       nome "Criminal da Silva"
     end
+    trait :another do
+      nome "Maria da Silva"
+    end
   end
 end

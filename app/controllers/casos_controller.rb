@@ -11,6 +11,11 @@ class CasosController < ApplicationController
 #    authorize! :manage, @casos
   end 
 
+  # GET /casos/my-cases
+  def my_cases
+    @casos = Caso.all_of_user(current_user)
+  end
+
   # GET /casos/1
   # GET /casos/1.json
   def show

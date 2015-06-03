@@ -7,8 +7,13 @@
         <div class="panel-heading" role="tab" id="heading<%= caso.id %>">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" class="collapsed" href="#collapse<%= caso.id %>" aria-expanded="false" aria-controls="collapse<%= caso.id %>">
-              <div>
-              <%= caso.cliente.nome%>
+              <div class="row">
+                <div class="col-md-6">
+                  <%= caso.cliente.nome%>
+                </div>
+                <div class="col-md-6">
+                  <%= caso.type_description %>
+                </div>
               </div>
             </a>
           </h4>
@@ -34,6 +39,3 @@
 
   <%= link_to 'New Caso', new_caso_path, :class => "btn btn-primary"%>
 </div>
-
-
-

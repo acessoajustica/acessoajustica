@@ -31,7 +31,16 @@ Given(/^I am logged as "([^"]*)"$/) do |user_role|
   sign_in(user_role)
 end
 
+And(/^I am estagiario with id "([^\"]*)"$/) do |value|
+  
+end
+
+And(/^I am estagiario with id "([^\"]*)"$/) do |value|
+  
+end
+
 When (/^I press "([^\"]*)"$/) do |button|
+	
   click_button(button)
 end
 
