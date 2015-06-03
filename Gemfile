@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Cancan for authentication
-gem 'cancan'
+gem 'cancancan', '~> 1.10.1'
 # Less for bootstrap
 gem "less-rails"
 # Bootstrap for layout

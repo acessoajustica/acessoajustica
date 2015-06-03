@@ -48,7 +48,6 @@ RSpec.describe CasosController, type: :controller do
     before (:each) do
       sign_in FactoryGirl.create(:user, :estagiario_user) 
     end
-
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
       get :index, {}, valid_session
@@ -103,6 +102,9 @@ RSpec.describe CasosController, type: :controller do
   end
 
   describe "POST #create" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
     context "with valid params" do
       it "creates a new Caso" do
         expect {
@@ -136,6 +138,9 @@ RSpec.describe CasosController, type: :controller do
   end
 
   describe "PUT #update" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
     context "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
@@ -177,6 +182,9 @@ RSpec.describe CasosController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
     it "destroys the requested caso" do
       caso = Caso.create! valid_attributes
       expect {

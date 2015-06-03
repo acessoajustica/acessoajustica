@@ -1,4 +1,5 @@
 class CasosController < ApplicationController
+  load_and_authorize_resource
   before_action :set_caso, only: [:show, :edit, :update, :destroy]
 
   # GET /casos
@@ -7,7 +8,7 @@ class CasosController < ApplicationController
     @casos = Caso.where("created_at >= ?", Time.zone.now.beginning_of_day).select do |caso|
       caso.status == true and caso.estagiario == nil
     end
-    authorize! :manage, @casos
+#    authorize! :manage, @casos
   end 
 
   # GET /casos/1
