@@ -36,6 +36,10 @@ RSpec.describe PessoasController, type: :controller do
   # PessoasController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before (:each) do
+    sign_in FactoryGirl.create(:user, :admin_user) 
+  end
+
   describe "GET #index" do
     it "assigns all pessoas as @pessoas" do
       pessoa = Pessoa.create! valid_attributes

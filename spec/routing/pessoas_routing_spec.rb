@@ -1,7 +1,11 @@
 require "rails_helper"
 
-RSpec.describe PessoasController, type: :routing do
+RSpec.describe PessoasController, type: :controller do
   describe "routing" do
+
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :admin_user) 
+    end
 
     it "routes to #index" do
       expect(:get => "/pessoas").to route_to("pessoas#index")

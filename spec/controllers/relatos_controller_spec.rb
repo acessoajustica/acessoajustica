@@ -36,6 +36,10 @@ RSpec.describe RelatosController, type: :controller do
   # RelatosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before (:each) do
+    sign_in FactoryGirl.create(:user, :admin_user) 
+  end
+
   describe "GET #index" do
     it "assigns all relatos as @relatos" do
       relato = Relato.create! valid_attributes

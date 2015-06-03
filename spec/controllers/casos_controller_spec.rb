@@ -36,6 +36,10 @@ RSpec.describe CasosController, type: :controller do
   # CasosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    sign_in FactoryGirl.build(:user, :admin_user) 
+  end
+
   describe "GET #index" do
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
