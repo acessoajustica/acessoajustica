@@ -84,4 +84,6 @@ end
 
 group :test do
   gem 'cucumber-rails', :require => false
+  gem "poltergeist" 
+  gem 'selenium-webdriver', :require => false
 end

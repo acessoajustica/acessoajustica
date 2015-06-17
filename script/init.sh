@@ -33,7 +33,7 @@ function check_deps {
 }
 function app_seed {
     sudo ${DOCKER_COMPOSE} run web rake db:seed                 # Seeds the database.
-    sudo ${DOCKER_COMPOSE} run web rake db:seed RAILS_ENV=test  # Seeds the database.
+    sudo ${DOCKER_COMPOSE} run web rake db:seed RAILS_ENV=test  # Seeds the test database.
 }
 function app_restart {
     sudo ${DOCKER} stop $(sudo ${DOCKER} ps -a -q)              # Stops old containers.
@@ -46,6 +46,10 @@ function app_migrate {
 function app_test {
     app_migrate
     sudo ${DOCKER_COMPOSE} run web rake spec                    # Runs tests.
+}
+function app_cucumber {
+    app_migrate
+    sudo ${DOCKER_COMPOSE} run web ./script/cucumber            # Runs acceptance tests.
 }
 function app_run {
     app_migrate
@@ -89,6 +93,7 @@ if check_deps; then
     elif [[ $1 == run ]]; then app_run;
     elif [[ $1 == migrate ]]; then app_migrate;
     elif [[ $1 == test ]]; then app_test;
+    elif [[ $1 == cucumber ]]; then app_cucumber;
     elif [[ $1 == seed ]]; then app_seed;
     elif [[ $1 == help ]]; then usage;
     else { echo ""; echo "Error: no valid argument."; echo ""; usage; echo "Exiting..."; exit 0; }

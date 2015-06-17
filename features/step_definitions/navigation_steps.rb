@@ -31,11 +31,11 @@ Given(/^I am logged as "([^"]*)"$/) do |user_role|
   sign_in(user_role)
 end
 
-And(/^I am estagiario with id "([^\"]*)"$/) do |value|
+Given(/^I am estagiario with id "([^\"]*)"$/) do |value|
   
 end
 
-And(/^I am estagiario with id "([^\"]*)"$/) do |value|
+Given(/^I am estagiario with id "([^\"]*)"$/) do |value|
   
 end
 
@@ -50,6 +50,10 @@ end
 
 When(/^I click on "([^"]*)" link$/) do |link_text|
 	click_link link_text
+end
+
+When(/^I take a picture of the page$/) do
+  page.save_screenshot("/tmp/picture.png")
 end
 
 Then (/^I should be on "([^\"]*)"$/) do |page_name|
@@ -68,4 +72,9 @@ Given(/^exists an? "([^"]*)" that belongs to an? "([^"]*)"$/) do |property, owne
   owners_list = owners.split(/, to an? | and to an? /)
   property_entity = bind(property, owners_list)
   property_entity.save
+end
+
+Given(/^exists an? "([^"]*)"$/) do |name|
+  entity = create(name)
+  entity.save
 end
