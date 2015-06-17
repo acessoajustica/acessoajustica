@@ -18,3 +18,8 @@ Feature: My Cases
     When I am on "my cases"
     Then I should see "Joana Silveira"
     But I should not see "Mario da Silva"
+
+  Scenario: Access my cases
+    Given I am logged as "estagiario"
+    When I am on "login page"
+    Then I should see "Meus Atendimentos"
