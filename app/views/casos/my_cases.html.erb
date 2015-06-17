@@ -1,34 +1,70 @@
 <%- model_class = Caso -%>
-<div class="page-header">
-  <h1> Meus Atendimentos </h1>
+<div class="container">
+  <h1>Meus Atendimentos</h1>
+  <div class="row">
+
+  <br><br><br><br><br>
+  <table class = "table table-bordered table-striped col-md-12">
+    <div class="row">
+      <div class="col-md-10 col-sm-10">
+        <div class = "col-md-2 col-sm-2 text-center"><h4><%= model_class.human_attribute_name(:id) %></h4></div>
+        <div class = "col-md-2 col-sm-2 text-center"><h4><%= model_class.human_attribute_name(:status) %></h4></div>
+        <div class = "col-md-4 col-sm-4 text-center"><h4><%= model_class.human_attribute_name(:cliente) %></h4></div>
+        <div class = "col-md-2 col-sm-2 text-center register_time"><h4><%= model_class.human_attribute_name(:created_at) %></h4></div>
+      </div>
+      <div class = "col-md-2 col-sm-2 text-center"><h4><%=t '.actions', :default => t("helpers.actions") %></h4></div>
+      </div>
+      <div id="accordion" role="tablist" aria-multiselectable="false">
+          <% @casos.each do |caso| %>
+    <tr><td>
+      <div role="tab" id="heading<%= caso.id %>">
+        <h5>
+          <div class="row">
+          <div data-toggle="collapse" data-parent="#accordion" href="#collapse<%= caso.id %>" aria-expanded="false" aria-controls="collapse<%= caso.id %>" style="cursor: pointer;">
+            <div class="col-md-10 col-sm-10">
+              <div class = "col-md-2 col-sm-2 text-center"><%= caso.id%></div>
+              <div class = "col-md-2 col-sm-2 text-center"><%= caso.status%></div>
+              <div class = "col-md-4 col-sm-4 text-center"><%= caso.cliente.nome%></div>
+              <div class = "col-md-2 col-sm-2 text-center register_time"><%= caso.created_at.strftime("%d/%m/%Y")  %></div>
+            </div>
+          </div>
+              <div class = "col-md-2 col-sm-2 text-center">
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                            edit_caso_path(caso), :class => 'btn btn-default btn-xs' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                            caso_path(caso),
+                            :method => :delete,
+                            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                            :class => 'btn btn-xs btn-danger' %>
+             
+             </div>
+            </div>
+            </h5>
+          </div>
+        
+      </div>
+      <div id="collapse<%= caso.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= caso.id %>">
+        <div class="panel-body">
+          <% Relato.where(:caso => caso).each do |relato| %>
+            <%= relato.description %>
+            <br> <br>
+          <% end %>
+        </div>
+      </div>
+    </td></tr>
+  <% end %>
+  </div>
+  </table>
+  </div>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:cliente) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @casos.each do |caso| %>
-      <tr>
-        <td><%= link_to caso.id, caso_path(caso) %></td>
-        <td><%= caso.status ? "Aprovado" : "Não Aprovado" %></td>
-        <td><%= caso.cliente.nome %></td>
-        <td><%= caso.created_at.strftime("%d/%m/%Y") %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_caso_path(caso), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      caso_path(caso),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
