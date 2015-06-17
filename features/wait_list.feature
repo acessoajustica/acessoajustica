@@ -32,3 +32,10 @@ Feature: Wait list
     And I am on "the casos page"
     Then I should not see "Joana Silveira"
     But I should see "Mario da Silva"
+
+  Scenario: The Wait List is sorted
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "another cliente"
+    And exists a "caso" that belongs to a "cliente"
+    And I am on "the casos page"
+    Then the list should be sorted by "register_time"
