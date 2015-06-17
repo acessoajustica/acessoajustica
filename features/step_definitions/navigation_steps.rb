@@ -46,8 +46,8 @@ When(/^I click on "([^"]*)" link$/) do |link_text|
 	click_link link_text
 end
 
-When(/^I take a picture of the page$/) do
-  page.save_screenshot("/tmp/picture.png")
+When(/^I take "([^"]*)" picture of the page$/) do |text|
+  page.save_screenshot("./tmp/" + text.gsub(" ", "_") + "_picture.png")
 end
 
 Then (/^I should be on "([^\"]*)"$/) do |page_name|
@@ -73,3 +73,14 @@ Given(/^exists an? "([^"]*)"$/) do |name|
   entity.save
 end
 
+When(/^I click at css "([^"]*)"$/) do |arg1|
+  find(:css, arg1).trigger("click")
+end
+
+When(/^I wait a second$/) do
+  sleep 1
+end
+
+Then(/^I should see the pattern "([^"]*)"$/) do |arg1|
+  page.text.should match(arg1)
+end

@@ -39,3 +39,42 @@ Feature: Wait list
     And exists a "caso" that belongs to a "cliente"
     And I am on "the casos page"
     Then the list should be sorted by "register_time"
+  
+  @javascript
+  Scenario: Accordion not Clicked
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "cliente"
+    And I am on "the casos page"
+    Then I should not see "Uma descrição"
+
+  @javascript
+  Scenario: Expand the Accordion
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "cliente"
+    And I am on "the casos page"
+    When I click at css "#Joana_Silveira"
+    And I wait a second
+    Then I should see "Uma descrição"
+
+  @javascript
+  Scenario: Contract the Accordion
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "cliente"
+    And I am on "the casos page"
+    When I click at css "#Joana_Silveira"
+    And I wait a second
+    And I click at css "#Joana_Silveira"
+    And I wait a second
+    Then I should not see "Uma descrição"
+
+  Scenario: See Caso Type
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "cliente and to a caso_type"
+    And I am on "the casos page"
+    Then I should see "Criminal"
+
+  Scenario: See Caso Time
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "cliente"
+    And I am on "the casos page"
+    Then I should see the pattern "\d\d:\d\d"

@@ -12,7 +12,7 @@
         <h5>
           <div data-toggle="collapse" data-parent="#accordion" href="#collapse<%= caso.id %>" aria-expanded="false" aria-controls="collapse<%= caso.id %>" style="cursor: pointer;">
             <div class="row">
-              <div class = "col-md-8 col-sm-8"><%= caso.cliente.nome%></div>
+              <div id="<%=caso.cliente.nome.gsub(' ','_')%>" class = "col-md-8 col-sm-8"><%= caso.cliente.nome%></div>
               <div class = "col-md-2 col-sm-2 text-right register_time"><%= caso.created_at.strftime("%H:%M") %></div>
               <div class = "col-md-2 col-sm-2 text-right"><span class="badge"><%= caso.type_description %></span></div>
             </div>
