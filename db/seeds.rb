@@ -37,22 +37,35 @@ case Rails.env
   when "development"
     # Creating cliente
     cliente = Cliente.create!( :nome => "João da Silva",
-              :cpf  =>"123.456.789-00",
+              :cpf  => "123.456.789-00",
               :nome_da_mae => "Maria d,a Penha",
               :rg  => "12.345.678-9",
               :cor  => "Negro",
               :identidade_de_genero => "Homem",
               :familia_renda  => 1500.00,
               :filhos_quantidade  => 6,
-              :profissao_nome  =>"Assistente Administrativo",
+              :profissao_nome  => "Assistente Administrativo",
               :familia_quantidade => 9,
               :contribuintes_quantidade => 4)
 
+    estagiario = Estagiario.create!( :nome => "Joana Silveira ",
+             :cpf =>"123.456.789-00",
+             :nome_da_mae  =>  "Maria da Penha",
+             :rg  => "12.345.678-9",
+             :cor  => "Negro",
+             :identidade_de_genero  => "Homem",
+             :ano_faculdade  => "1991-03-02",
+             :especialidade =>  "Ovos")
+    estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'12345678',:membro_id => estagiario.membro.id)
+
     # Creating caso
     caso1 = Caso.create!(:status => true, :cliente => cliente)
-    caso2 =Caso.create!(:status => false, :cliente => cliente)
+    caso2 = Caso.create!(:status => false, :cliente => cliente)
+    caso3 = Caso.create!(:status => true, :cliente => cliente, :estagiario => estagiario)
 
     # Creating relato
     relato = Relato.create!(:description => "Relato teste para teste que será testado nesse teste.",
             :caso => caso1)
+
+
 end

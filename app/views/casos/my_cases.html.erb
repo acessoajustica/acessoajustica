@@ -18,7 +18,7 @@
         <td><%= link_to caso.id, caso_path(caso) %></td>
         <td><%= caso.status ? "Aprovado" : "Não Aprovado" %></td>
         <td><%= caso.cliente.nome %></td>
-        <td><%=l caso.created_at %></td>
+        <td><%= caso.created_at.strftime("%d/%m/%Y") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_caso_path(caso), :class => 'btn btn-default btn-xs' %>
@@ -32,7 +32,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_caso_path,
-            :class => 'btn btn-primary' %>
