@@ -42,7 +42,6 @@
     password "password"
     roles { [ FactoryGirl.create(:role, :admin_role) ] }
   end
-end
 
   trait :another do
     username "adilsons"

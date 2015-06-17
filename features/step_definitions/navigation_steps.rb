@@ -42,10 +42,6 @@ When (/^I press "([^\"]*)"$/) do |button|
   click_button(button)
 end
 
-When (/^I fill in "([^\"]*)" with "([^\"]*)"$/) do |field, value|
-  fill_in(field.gsub(' ', '_'), :with => value)
-end
-
 When(/^I click on "([^"]*)" link$/) do |link_text|
 	click_link link_text
 end
