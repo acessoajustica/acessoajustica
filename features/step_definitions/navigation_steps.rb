@@ -31,16 +31,14 @@ Given(/^I am logged as "([^"]*)"$/) do |user_role|
   sign_in(user_role)
 end
 
-Given(/^I am estagiario with id "([^\"]*)"$/) do |value|
-  
+Given(/^I am not authenticated$/) do
 end
 
-Given(/^I am estagiario with id "([^\"]*)"$/) do |value|
-  
+And(/^I fill in "([^\"]*)" with "([^\"]*)"$/) do |field, value|
+  fill_in(field.gsub(' ', '_'), :with => value)
 end
 
 When (/^I press "([^\"]*)"$/) do |button|
-	
   click_button(button)
 end
 
@@ -78,3 +76,4 @@ Given(/^exists an? "([^"]*)"$/) do |name|
   entity = create(name)
   entity.save
 end
+
