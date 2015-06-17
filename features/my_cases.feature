@@ -28,3 +28,8 @@ Feature: My Cases
     And I should see "Uma descrição"
     And I should see "Outra descrição"
     And I should see "Mais uma descrição"
+
+  Scenario: Access my cases
+    Given I am logged as "estagiario"
+    When I am on "login page"
+    Then I should see "Meus Atendimentos"

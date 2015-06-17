@@ -9,11 +9,10 @@
 
 # Creating roles.
 admin_role = Role.create!(:name => "admin")
-
-Role.create!(:name => "diretor")
-Role.create!(:name => "vareiro")
-Role.create!(:name => "calouro")
-Role.create!(:name => "estagiário")
+diretor_role = Role.create!(:name => "diretor")
+vavreiro_role = Role.create!(:name => "vareiro")
+calouro_role = Role.create!(:name => "calouro")
+estagiario_role = Role.create!(:name => "estagiário")
 
 # Creating admin users
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
@@ -38,7 +37,7 @@ case Rails.env
     # Creating cliente
     cliente = Cliente.create!( :nome => "João da Silva",
               :cpf  => "123.456.789-00",
-              :nome_da_mae => "Maria d,a Penha",
+              :nome_da_mae => "Maria da Penha",
               :rg  => "12.345.678-9",
               :cor  => "Negro",
               :identidade_de_genero => "Homem",
@@ -49,14 +48,20 @@ case Rails.env
               :contribuintes_quantidade => 4)
 
     estagiario = Estagiario.create!( :nome => "Joana Silveira ",
-             :cpf =>"123.456.789-00",
-             :nome_da_mae  =>  "Maria da Penha",
-             :rg  => "12.345.678-9",
-             :cor  => "Negro",
-             :identidade_de_genero  => "Homem",
-             :ano_faculdade  => "1991-03-02",
-             :especialidade =>  "Ovos")
-    estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'12345678',:membro_id => estagiario.membro.id)
+              :cpf =>"123.456.789-00",
+              :nome_da_mae  =>  "Maria da Penha",
+              :rg  => "12.345.678-9",
+              :cor  => "Negro",
+              :identidade_de_genero  => "Homem",
+              :ano_faculdade  => "1991-03-02",
+              :especialidade =>  "Ovos")
+
+    estagiario_user = User.create!(:email=>'estagiario@test.com',
+              :username=>'estagiario',
+              :password=>'12345678',
+              :membro_id => estagiario.membro.id)
+    
+    estagiario_user.roles << estagiario_role
 
     # Creating caso
     caso1 = Caso.create!(:status => true, :cliente => cliente)
