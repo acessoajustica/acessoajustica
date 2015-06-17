@@ -17,6 +17,17 @@ class CasosController < ApplicationController
     @casos = Caso.all_of_user(current_user)
   end
 
+  # GET /casos/select-cases
+  def select_case
+    authorize! :update, Caso
+    @caso = Caso.find(params[:id])
+    @membro = Membro.find(current_user.membro_id)
+    @caso.update(estagiario_id: @membro.actable_id)
+    #@caso.update(estagiario_id: current_user.id)
+    redirect_to casos_url
+  end
+
+
   # GET /casos/1
   # GET /casos/1.json
   def show

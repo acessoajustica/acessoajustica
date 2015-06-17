@@ -10,9 +10,11 @@ Rails.application.routes.draw do
 
   resources :casos do
     collection do
-      get 'my-cases'
+      get 'my-cases' 
     end
   end
+
+  get "casos/:id/select-case" => "casos#select_case" , as: :select_case
 
   resources :clientes
 

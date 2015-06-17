@@ -23,7 +23,7 @@
         <div class="panel-body">
           <% Relato.where(:caso => caso).each do |relato| %>
             <%= relato.description %>
-            <%= link_to 'Escolher', new_caso_path, :class => "btn-default btn-xs pull-right"%>
+            <%= link_to 'Escolher', select_case_path(caso.id), :class => "btn-info btn-xs pull-right"%>
           <% end %>
         </div>
       </div>
