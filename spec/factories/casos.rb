@@ -23,4 +23,10 @@ FactoryGirl.define do
     description "Criminal"
   end
   
+  trait :restless do
+    relatos [Relato.new({:description => 'Uma descrição'}),
+             Relato.new({:description => 'Outra descrição'}),
+             Relato.new({:description => 'Mais uma descrição'})]
+  end
+
 end
