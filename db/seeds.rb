@@ -35,7 +35,7 @@ admin_user.roles << admin_role
 case Rails.env
   when "development"
     # Creating cliente
-    cliente = Cliente.create!( :nome => "João da Silva",
+    cliente = Cliente.create!(:nome => "João da Silva",
               :cpf  => "123.456.789-00",
               :nome_da_mae => "Maria da Penha",
               :rg  => "12.345.678-9",
@@ -47,7 +47,7 @@ case Rails.env
               :familia_quantidade => 9,
               :contribuintes_quantidade => 4)
 
-    estagiario = Estagiario.create!( :nome => "Joana Silveira ",
+    estagiario = Estagiario.create!(:nome => "Joana Silveira ",
               :cpf =>"123.456.789-00",
               :nome_da_mae  =>  "Maria da Penha",
               :rg  => "12.345.678-9",
@@ -63,10 +63,13 @@ case Rails.env
     
     estagiario_user.roles << estagiario_role
 
+    resultado_type = CasoResultado.create!(:description => "Orientação")
+
     # Creating caso
     caso1 = Caso.create!(:status => true, :cliente => cliente)
     caso2 = Caso.create!(:status => false, :cliente => cliente)
-    caso3 = Caso.create!(:status => true, :cliente => cliente, :estagiario => estagiario)
+    caso3 = Caso.create!(:status => true, :cliente => cliente, :estagiario => estagiario,
+      :caso_resultado => resultado_type)
 
     # Creating relato
     relato = Relato.create!(:description => "Relato teste para teste que será testado nesse teste.",
