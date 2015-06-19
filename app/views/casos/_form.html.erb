@@ -45,10 +45,15 @@
           <%= error_span(@caso[:relatos]) %>
         </div>
 
+        <div class="control-group col-md-12">
         <%= f.submit nil, :class => 'btn btn-primary' %>
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   casos_path, :class => 'btn btn-default' %>
+        </div>  
       </div>
+
+      <div class="col-md-6"><%= render :partial => 'cliente_data' %></div>
+
     </div>
 
   </div> 
