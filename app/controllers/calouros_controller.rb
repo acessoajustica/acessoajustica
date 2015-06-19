@@ -1,5 +1,5 @@
 class CalourosController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   before_action :set_calouro, only: [:show, :edit, :update, :destroy]
 
   # GET /calouros

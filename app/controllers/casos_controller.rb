@@ -1,5 +1,5 @@
 class CasosController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
   before_action :set_caso, only: [:show, :edit, :update, :destroy]
 
   # GET /casos
