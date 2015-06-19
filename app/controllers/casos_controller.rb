@@ -26,6 +26,7 @@ class CasosController < ApplicationController
 
   # GET /casos/1/edit
   def edit
+    @relato = Relato.new
   end
 
   # POST /casos
@@ -48,7 +49,8 @@ class CasosController < ApplicationController
   # PATCH/PUT /casos/1.json
   def update
     respond_to do |format|
-      if @caso.update(caso_params)
+      @caso.relatos.build(:description => caso_params[:new_relato])
+      if @caso.update(caso_params.except(:new_relato))
         format.html { redirect_to @caso, notice: 'Caso was successfully updated.' }
         format.json { render :show, status: :ok, location: @caso }
       else
@@ -76,6 +78,6 @@ class CasosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caso_params
-      params.require(:caso).permit(:status, :cliente_id)
+      params.require(:caso).permit(:status, :cliente_id, :caso_type_id, :new_relato)
     end
 end
