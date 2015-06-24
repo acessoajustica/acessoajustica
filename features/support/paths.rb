@@ -6,6 +6,8 @@ module NavigationHelpers
       '/casos/my-cases'
   	when /login page/
       '/users/sign_in'
+    when /edit caso (\d+)/
+      '/casos/' + $1 + '/edit'
     when /home\s?page/
       '/'
     else

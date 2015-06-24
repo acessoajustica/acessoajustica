@@ -1,9 +1,9 @@
 def sign_in (user_role)
-	user = FactoryGirl.create(:user, user_role + "_user")
-	visit path_to('login page')
-	fill_in "user_login", :with => user.username
-	fill_in "user_password", :with => user.password
-	click_button("submit")
+  user = FactoryGirl.create(:user, user_role + "_user")
+  visit path_to('login page')
+  fill_in "user_login", :with => user.username
+  fill_in "user_password", :with => user.password
+  click_button("submit")
 end
 
 def bind (property, owners_list)
@@ -31,16 +31,7 @@ Given(/^I am logged as "([^"]*)"$/) do |user_role|
   sign_in(user_role)
 end
 
-And(/^I am estagiario with id "([^\"]*)"$/) do |value|
-  
-end
-
-And(/^I am estagiario with id "([^\"]*)"$/) do |value|
-  
-end
-
 When (/^I press "([^\"]*)"$/) do |button|
-	
   click_button(button)
 end
 
@@ -49,7 +40,11 @@ When (/^I fill in "([^\"]*)" with "([^\"]*)"$/) do |field, value|
 end
 
 When(/^I click on "([^"]*)" link$/) do |link_text|
-	click_link link_text
+  click_link link_text
+end
+
+When(/^I select the option "([^"]*)" in "([^"]*)"$/) do |option, select|
+  select(option, :from => select.gsub(' ', '_'))
 end
 
 Then (/^I should be on "([^\"]*)"$/) do |page_name|
@@ -57,7 +52,7 @@ Then (/^I should be on "([^\"]*)"$/) do |page_name|
 end
 
 Then(/^I should see "([^"]*)"$/) do |text|
-	page.should have_content(text)
+  page.should have_content(text)
 end
 
 Then(/^I should not see "([^"]*)"$/) do |text|
@@ -68,4 +63,8 @@ Given(/^exists an? "([^"]*)" that belongs to an? "([^"]*)"$/) do |property, owne
   owners_list = owners.split(/, to an? | and to an? /)
   property_entity = bind(property, owners_list)
   property_entity.save
+end
+
+Given(/^exists an? "([^"]*)"$/) do |entity|
+  create(entity).save
 end

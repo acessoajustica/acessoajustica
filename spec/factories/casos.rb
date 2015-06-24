@@ -18,10 +18,6 @@ FactoryGirl.define do
   trait :invalid do
     cliente nil
   end
-
-  factory :caso_type do
-    description "Criminal"
-  end
   
   trait :restless do
     relatos [Relato.new({:description => 'Uma descrição'}),
