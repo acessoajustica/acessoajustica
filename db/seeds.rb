@@ -9,11 +9,10 @@
 
 # Creating roles.
 admin_role = Role.create!(:name => "admin")
-
-Role.create!(:name => "diretor")
-Role.create!(:name => "vareiro")
-Role.create!(:name => "calouro")
-Role.create!(:name => "estagiário")
+diretor_role = Role.create!(:name => "diretor")
+vavreiro_role = Role.create!(:name => "vareiro")
+calouro_role = Role.create!(:name => "calouro")
+estagiario_role = Role.create!(:name => "estagiário")
 
 # Creating admin users
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
@@ -36,26 +35,45 @@ admin_user.roles << admin_role
 case Rails.env
   when "development"
     # Creating cliente
-    cliente = Cliente.create!( :nome => "João da Silva",
-              :cpf  =>"123.456.789-00",
-              :nome_da_mae => "Maria d,a Penha",
+    cliente = Cliente.create!(:nome => "João da Silva",
+              :cpf  => "123.456.789-00",
+              :nome_da_mae => "Maria da Penha",
               :rg  => "12.345.678-9",
               :cor  => "Negro",
               :identidade_de_genero => "Homem",
               :familia_renda  => 1500.00,
               :filhos_quantidade  => 6,
-              :profissao_nome  =>"Assistente Administrativo",
+              :profissao_nome  => "Assistente Administrativo",
               :familia_quantidade => 9,
               :contribuintes_quantidade => 4)
 
+    estagiario = Estagiario.create!(:nome => "Joana Silveira ",
+              :cpf =>"123.456.789-00",
+              :nome_da_mae  =>  "Maria da Penha",
+              :rg  => "12.345.678-9",
+              :cor  => "Negro",
+              :identidade_de_genero  => "Homem",
+              :ano_faculdade  => "1991-03-02",
+              :especialidade =>  "Ovos")
+
+    estagiario_user = User.create!(:email=>'estagiario@test.com',
+              :username=>'estagiario',
+              :password=>'12345678',
+              :membro_id => estagiario.membro.id)
+    
+    estagiario_user.roles << estagiario_role
+
+    resultado_type = CasoResultado.create!(:description => "Orientação")
+
     # Creating caso
     caso1 = Caso.create!(:status => true, :cliente => cliente)
-    caso2 =Caso.create!(:status => false, :cliente => cliente)
+    caso2 = Caso.create!(:status => false, :cliente => cliente)
+    caso3 = Caso.create!(:status => true, :cliente => cliente, :estagiario => estagiario,
+      :caso_resultado => resultado_type)
 
     # Creating relato
     relato = Relato.create!(:description => "Relato teste para teste que será testado nesse teste.",
             :caso => caso1)
-
 
     cliente2 = Cliente.create!( :nome => "Abreu da Silva Sauro",
               :cpf  =>"123.456.789-00",

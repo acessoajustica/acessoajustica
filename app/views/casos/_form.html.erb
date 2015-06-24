@@ -15,31 +15,47 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :status, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :status, :class => 'form-control' %>
-    </div>
-    <%= error_span(@caso[:status]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :cliente_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :cliente_id, :class => 'form-control' %>
-    </div>
-    <%= error_span(@caso[:cliente_id]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :estagiario_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :estagiario_id, :class => 'form-control' %>
-    </div>
-    <%= error_span(@caso[:estagiario_id]) %>
-  </div>
+  <div class="container-fluid">
 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="control-group col-md-6">
+          <%= f.label :categoria, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :status, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+          </div>
+          <%= error_span(@caso[:status]) %>
+        </div>
+        <div class="control-group col-md-6">
+          <%= f.label :tipo_de_caso, :class => 'control-label' %>
+          <div class="controls">
+             <%= f.select :caso_type_id, 
+                           CasoType.all.collect {|caso_type| [caso_type.description.capitalize,caso_type.id]},
+                           {:include_blank => true},
+                           {:class => 'form-control'}
+             %>
+          </div>
+          <%= error_span(@caso[:caso_type_id]) %>
+        </div>
+        <div class="control-group col-md-12">
+          <%= f.label :novo_relato, :class => 'control-label' %>
+          <div class="controls">
+            <textarea class="form-control" rows="7" name="caso[new_relato]" id="caso_new_relato"></textarea>
+          </div>
+          <%= error_span(@caso[:relatos]) %>
+        </div>
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            casos_path, :class => 'btn btn-default' %>
+        <div class="control-group col-md-12">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  casos_path, :class => 'btn btn-default' %>
+        </div>  
+      </div>
+
+      <div class="col-md-6"><%= render :partial => 'cliente_data' %></div>
+
+    </div>
+
+  </div> 
 
 <% end %>

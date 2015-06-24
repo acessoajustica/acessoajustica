@@ -8,6 +8,8 @@ module NavigationHelpers
       '/clientes/new'
   	when /login page/
       '/users/sign_in'
+    when /edit caso (\d+)/
+      '/casos/' + $1 + '/edit'
     when /home\s?page/
       '/'
     when /pessoas page/

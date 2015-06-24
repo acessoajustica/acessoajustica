@@ -1,5 +1,4 @@
 def sign_in (user_role)
-	#user = FactoryGirl.create(:user, user_role + "_user")
   user = bind_user(user_role)
 	visit path_to('login page')
 	fill_in "user_login", :with => user.username
@@ -52,7 +51,11 @@ When (/^I press "([^\"]*)"$/) do |button|
 end
 
 When(/^I click on "([^"]*)" link$/) do |link_text|
-	click_link link_text
+  click_link link_text
+end
+
+When(/^I select the option "([^"]*)" in "([^"]*)"$/) do |option, select|
+  select(option, :from => select.gsub(' ', '_'))
 end
 
 When(/^I take "([^"]*)" picture of the page$/) do |text|
@@ -64,7 +67,7 @@ Then (/^I should be on "([^\"]*)"$/) do |page_name|
 end
 
 Then(/^I should see "([^"]*)"$/) do |text|
-	page.should have_content(text)
+  page.should have_content(text)
 end
 
 Then(/^I should not see "([^"]*)"$/) do |text|
