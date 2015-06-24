@@ -36,6 +36,10 @@ RSpec.describe MembrosController, type: :controller do
   # MembrosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before (:each) do
+    sign_in FactoryGirl.create(:user, :admin_user) 
+  end
+
   describe "GET #index" do
     it "assigns all membros as @membros" do
       membro = Membro.create! valid_attributes

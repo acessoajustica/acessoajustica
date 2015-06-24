@@ -5,15 +5,15 @@
 
   <br><br><br><br><br>
   <table class = "table table-bordered table-striped col-md-12">
-  <div id="accordion" role="tablist" aria-multiselectable="false">
-  <% @casos.each do |caso| %>
+      <div id="accordion" role="tablist" aria-multiselectable="false">
+          <% @casos.sort{ |caso1,caso2| caso1.created_at <=> caso2.created_at }.each do |caso| %>
     <tr><td>
       <div role="tab" id="heading<%= caso.id %>">
         <h5>
           <div data-toggle="collapse" data-parent="#accordion" href="#collapse<%= caso.id %>" aria-expanded="false" aria-controls="collapse<%= caso.id %>" style="cursor: pointer;">
             <div class="row">
-              <div class = "col-md-8 col-sm-8"><%= caso.cliente.nome%></div>
-              <div class = "col-md-2 col-sm-2 text-right"><%= caso.created_at.strftime("%H:%M") %></div>
+              <div id="<%=caso.cliente.nome.gsub(' ','_')%>" class = "col-md-8 col-sm-8"><%= caso.cliente.nome%></div>
+              <div class = "col-md-2 col-sm-2 text-right register_time"><%= caso.created_at.strftime("%H:%M") %></div>
               <div class = "col-md-2 col-sm-2 text-right"><span class="badge"><%= caso.type_description %></span></div>
             </div>
           </div>

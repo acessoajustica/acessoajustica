@@ -16,5 +16,6 @@ Feature: My Cases
     And I am that estagiario
     And exists a "caso" that belongs to an "another estagiario and to an another cliente"
     When I am on "my cases"
+    # And I take a picture of the page
     Then I should see "Joana Silveira"
     But I should not see "Mario da Silva"

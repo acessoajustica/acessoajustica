@@ -34,13 +34,15 @@ RSpec.describe ClientesController, type: :controller do
   let(:invalid_attributes) do
     FactoryGirl.attributes_for(:cliente, :cliente_invalid)
   end
-    
-  
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ClientesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before (:each) do
+    sign_in FactoryGirl.create(:user, :admin_user) 
+  end
 
   describe "GET #index" do
     it "assigns all clientes as @clientes" do

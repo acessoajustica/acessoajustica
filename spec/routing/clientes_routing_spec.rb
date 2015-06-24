@@ -1,7 +1,12 @@
 require "rails_helper"
+require "spec_helper"
 
-RSpec.describe ClientesController, type: :routing do
+RSpec.describe ClientesController, type: :controller do
   describe "routing" do
+
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :admin_user) 
+    end
 
     it "routes to #index" do
       expect(:get => "/clientes").to route_to("clientes#index")

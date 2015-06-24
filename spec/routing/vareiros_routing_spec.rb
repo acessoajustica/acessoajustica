@@ -1,7 +1,11 @@
 require "rails_helper"
 
-RSpec.describe VareirosController, type: :routing do
+RSpec.describe VareirosController, type: :controller do
   describe "routing" do
+
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
 
     it "routes to #index" do
       expect(:get => "/vareiros").to route_to("vareiros#index")

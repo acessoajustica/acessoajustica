@@ -37,8 +37,9 @@ RSpec.describe CalourosController, type: :controller do
   end
 
   before :each do
-      @user = FactoryGirl.build :user
-      User.stubs(:find).returns(@user)
+    @user = FactoryGirl.build :user
+    User.stubs(:find).returns(@user)
+    sign_in FactoryGirl.create(:user, :admin_user) 
   end
 
   # This should return the minimal set of values that should be in the session

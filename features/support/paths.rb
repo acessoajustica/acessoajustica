@@ -10,6 +10,38 @@ module NavigationHelpers
       '/users/sign_in'
     when /home\s?page/
       '/'
+    when /pessoas page/
+      '/pessoas'
+    when /new pessoas page/
+      '/pessoas/new'
+    when /estagiarios page/
+      '/estagiarios'
+    when /new estagiarios page/
+      '/estagiarios/new'
+    when /calouros page/
+      '/calouros'
+    when /new calouros page/
+      '/calouros/new'
+    when /vareiros page/
+      '/vareiros'
+    when /new vareiros page/
+      '/vareiros/new'
+    when /membros page/
+      '/membros'
+    when /new membros page/
+      '/membros/new'
+    when /clientes page/
+      '/clientes'
+    when /new clientes page/
+      '/clientes/new'
+    when /casos page/
+      '/casos'
+    when /new casos page/
+      '/clientes/new'
+    when /relatos page/
+      '/relatos'
+    when /new relatos page/
+      '/relatos/new'
     else
       begin
         page_name =~ /the (.*) page/

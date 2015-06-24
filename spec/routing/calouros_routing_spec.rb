@@ -1,6 +1,9 @@
 require "rails_helper"
 
-RSpec.describe CalourosController, type: :routing do
+RSpec.describe CalourosController, type: :controller do
+  before (:each) do
+    sign_in FactoryGirl.create(:user, :admin_user) 
+  end
   describe "routing" do
 
     it "routes to #index" do
