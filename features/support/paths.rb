@@ -4,6 +4,8 @@ module NavigationHelpers
  
     when /my cases/
       '/casos/my-cases'
+    when /clientes new/
+      '/clientes/new'
   	when /login page/
       '/users/sign_in'
     when /home\s?page/

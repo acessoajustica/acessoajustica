@@ -32,7 +32,7 @@
               <div class="form-group col-md-6">
                 <%= f.label :estado_civil_id, :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.select :profissao_type_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
+                  <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
                 </div>
                 <%= error_span(@cliente[:estado_civil_id]) %>
               </div>

@@ -31,16 +31,7 @@ Given(/^I am logged as "([^"]*)"$/) do |user_role|
   sign_in(user_role)
 end
 
-And(/^I am estagiario with id "([^\"]*)"$/) do |value|
-  
-end
-
-And(/^I am estagiario with id "([^\"]*)"$/) do |value|
-  
-end
-
 When (/^I press "([^\"]*)"$/) do |button|
-	
   click_button(button)
 end
 
@@ -64,8 +55,16 @@ Then(/^I should not see "([^"]*)"$/) do |text|
   page.should have_no_content(text)
 end
 
+When(/^I select the option "([^"]*)" in "([^"]*)"$/) do |option, select|
+  select(option, :from =>  select.gsub(' ', '_'))
+end
+
 Given(/^exists an? "([^"]*)" that belongs to an? "([^"]*)"$/) do |property, owners|
   owners_list = owners.split(/, to an? | and to an? /)
   property_entity = bind(property, owners_list)
   property_entity.save
+end
+
+Given(/^exists an? "([^"]*)"$/) do |entity|
+  create(entity).save
 end
