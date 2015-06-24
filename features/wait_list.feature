@@ -78,3 +78,14 @@ Feature: Wait list
     And exists a "caso" that belongs to a "cliente"
     And I am on "the casos page"
     Then I should see the pattern "\d\d:\d\d"
+
+  @javascript
+  Scenario: Select a caso
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "cliente" 
+    And I am on "the casos page"
+    When I click at css "#Joana_Silveira"
+    And I wait a second
+    And I take "Joana" picture of the page
+    And I click at css "#collapse1 > div > a"
+    Then I should not see "Joana Silveira"

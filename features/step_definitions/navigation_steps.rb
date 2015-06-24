@@ -1,9 +1,18 @@
 def sign_in (user_role)
-	user = FactoryGirl.create(:user, user_role + "_user")
+	#user = FactoryGirl.create(:user, user_role + "_user")
+  user = bind_user(user_role)
 	visit path_to('login page')
 	fill_in "user_login", :with => user.username
 	fill_in "user_password", :with => user.password
 	click_button("submit")
+end
+
+def bind_user (user_role)
+  user_entity = FactoryGirl.create(:user, user_role + "_user") 
+  membro_entity = FactoryGirl.create(user_role)
+  user_entity.membro_id = membro_entity.actable_id
+  user_entity.save
+  user_entity
 end
 
 def bind (property, owners_list)
