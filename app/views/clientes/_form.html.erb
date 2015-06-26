@@ -132,7 +132,7 @@
               <%= f.label :categoria, :class => 'control-label' %>
               <div class="controls">
                 <%= f.fields_for @caso do |c| %>
-                  <%= c.select :status, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+                  <%= c.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
                   <%# <%= render 'question_fields', f: builder %>
                 <% end %>
               </div>
