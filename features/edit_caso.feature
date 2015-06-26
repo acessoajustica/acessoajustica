@@ -13,7 +13,7 @@ Feature: Edit Caso
   Scenario: Update a category
     Given I am logged as "estagiario"
     And I am editing a caso
-    When I select the option "Válido" in "caso status"
+    When I select the option "Aprovado" in "caso status"
     And I press "Atualizar Caso"
     Then I should see "Status: true"
 
