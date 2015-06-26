@@ -22,7 +22,7 @@
         <div class="control-group col-md-6">
           <%= f.label :categoria, :class => 'control-label' %>
           <div class="controls">
-            <%= f.select :status, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+            <%= f.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
           </div>
           <%= error_span(@caso[:status]) %>
         </div>
