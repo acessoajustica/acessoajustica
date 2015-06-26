@@ -7,7 +7,7 @@ def sign_in (user_role)
 end
 
 def bind_user (user_role)
-  user_entity = FactoryGirl.create(:user, user_role + "_user") 
+  user_entity = FactoryGirl.create(:user, user_role + "_user")
   membro_entity = FactoryGirl.create(user_role)
   user_entity.membro_id = membro_entity.actable_id
   user_entity.save
@@ -72,10 +72,6 @@ end
 
 Then(/^I should not see "([^"]*)"$/) do |text|
   page.should have_no_content(text)
-end
-
-When(/^I select the option "([^"]*)" in "([^"]*)"$/) do |option, select|
-  select(option, :from =>  select.gsub(' ', '_'))
 end
 
 Given(/^exists an? "([^"]*)" that belongs to an? "([^"]*)"$/) do |property, owners|
