@@ -5,16 +5,13 @@ class CasosController < ApplicationController
   # GET /casos
   # GET /casos.json
   def index
-    @casos = Caso.where("created_at >= ?", Time.zone.now.beginning_of_day).select do |caso|
-      caso.status == true and caso.estagiario == nil
-    end
-#    authorize! :manage, @casos
+    @casos = Caso.from_beginning_of_day
   end 
 
   # GET /casos/my-cases
   def my_cases
     authorize! :read, Caso
-    @casos = Caso.all_of_user(current_user)
+    @casos = Caso.all_for(current_user)
   end
 
   # GET /casos/select-cases
@@ -23,7 +20,6 @@ class CasosController < ApplicationController
     @caso = Caso.find(params[:id])
     @membro = Membro.find(current_user.membro_id)
     @caso.update(estagiario_id: @membro.actable_id)
-    #@caso.update(estagiario_id: current_user.id)
     redirect_to casos_url
   end
 
@@ -31,7 +27,6 @@ class CasosController < ApplicationController
   # GET /casos/1
   # GET /casos/1.json
   def show
-
   end
 
   # GET /casos/new
