@@ -90,7 +90,7 @@ RSpec.describe CasosController, type: :controller do
     
     it "assigns specific casos as @casos" do
       caso = Caso.create! valid_attributes
-      Caso.stubs(:all_of_user).returns([caso])
+      Caso.stubs(:all_for).returns([caso])
       get :my_cases, valid_session
       expect(assigns(:casos)).to eq([caso])
       caso.destroy

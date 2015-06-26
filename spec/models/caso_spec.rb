@@ -10,7 +10,7 @@ RSpec.describe Caso, type: :model do
       Caso.stubs(:where).returns([caso])
       Membro.stubs(:find).returns(membro)
 
-      expect(Caso.all_of_user(FactoryGirl.build(:user))).to eq([caso])
+      expect(Caso.all_for(FactoryGirl.build(:user))).to eq([caso])
     end
   end
 
