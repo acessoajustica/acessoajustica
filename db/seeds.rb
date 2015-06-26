@@ -10,12 +10,16 @@
 # Creating roles.
 admin_role = Role.create!(:name => "admin")
 diretor_role = Role.create!(:name => "diretor")
-vavreiro_role = Role.create!(:name => "vareiro")
+vareiro_role = Role.create!(:name => "vareiro")
 calouro_role = Role.create!(:name => "calouro")
 estagiario_role = Role.create!(:name => "estagiário")
 
 # Creating admin users
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
+estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
+calouro_user = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
+vareiro_user = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
+diretor_user = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
 
 # Creating estado_civil's
 EstadoCivil.create!(:description => "solteiro")
@@ -30,6 +34,9 @@ ProfissaoType.create!(:description => "Terciário")
 
 # assign the admin role to the admin user.  (This bit of rails
 # magic creates a user_role record in the database.)
+admin_user.roles << admin_role
+admin_user.roles << admin_role
+admin_user.roles << admin_role
 admin_user.roles << admin_role
 
 case Rails.env
@@ -60,7 +67,7 @@ case Rails.env
               :username=>'estagiario',
               :password=>'12345678',
               :membro_id => estagiario.membro.id)
-    
+
     estagiario_user.roles << estagiario_role
 
     resultado_type = CasoResultado.create!(:description => "Orientação")
