@@ -21,10 +21,16 @@
       </div>
       <div id="collapse<%= caso.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= caso.id %>">
         <div class="panel-body">
+        <div class="row">
+        <div class = "col-md-10 col-sm-8 text-left">
           <% Relato.where(:caso => caso).each do |relato| %>
             <%= relato.description %>
-            <%= link_to 'Escolher', select_case_path(caso.id), :class => "btn-info btn-xs pull-right"%>
           <% end %>
+        </div>
+        <div class = "col-md-2 col-sm-2">
+            <%= link_to 'Escolher', select_case_path(caso.id), :class => "btn-info btn-xs pull-right"%>
+        </div>
+        </div>
         </div>
       </div>
     </td></tr>
