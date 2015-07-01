@@ -67,6 +67,7 @@ case Rails.env
               :especialidade =>  "Ovos")
 
     estagiario_user.membro_id = estagiario.membro.id
+    estagiario_user.save
 
     resultado_type = CasoResultado.create!(:description => "Orientação")
 
