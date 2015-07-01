@@ -6,11 +6,11 @@
   <br><br><br><br><br>
   <table class = "table table-bordered table-striped col-md-12">
       <div id="accordion" role="tablist" aria-multiselectable="false">
-          <% @casos.sort{ |caso1,caso2| caso1.created_at <=> caso2.created_at }.each do |caso| %>
+          <% @casos.sort{ |caso1,caso2| caso1.created_at <=> caso2.created_at }.each do |caso, index| %>
     <tr><td>
-      <div role="tab" id="heading<%= caso.id %>">
+      <div role="tab" id="heading<%= index %>">
         <h5>
-          <div data-toggle="collapse" data-parent="#accordion" href="#collapse<%= caso.id %>" aria-expanded="false" aria-controls="collapse<%= caso.id %>" style="cursor: pointer;">
+          <div data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>" style="cursor: pointer;">
             <div class="row">
               <div id="<%=caso.cliente.nome.gsub(' ','_')%>" class = "col-md-8 col-sm-8"><%= caso.cliente.nome%></div>
               <div class = "col-md-2 col-sm-2 text-right register_time"><%= caso.created_at.strftime("%H:%M") %></div>
@@ -19,7 +19,7 @@
           </div>
         </h5>
       </div>
-      <div id="collapse<%= caso.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= caso.id %>">
+      <div id="collapse<%= index %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
         <div class="panel-body">
         <div class="row">
         <div class = "col-md-10 col-sm-8 text-left">

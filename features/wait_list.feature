@@ -86,6 +86,7 @@ Feature: Wait list
     And I am on "the casos page"
     When I click at css "#Joana_Silveira"
     And I wait a second
+    And I click at css "#Joana_Silveira"
+    And I wait a second
     And I take "Joana" picture of the page
-    And I click at css "#collapse1 > div > a"
-    Then I should not see "Joana Silveira"
+    Then I should not see "Uma Descrição"
