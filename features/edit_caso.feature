@@ -24,3 +24,8 @@ Feature: Edit Caso
     When I select the option "Criminal" in "caso caso type id"
     And I press "Atualizar Caso"
     Then I should see "Caso was successfully updated"
+
+  Scenario: See old Relato
+    Given I am logged as "estagiario"
+    And I am editing a caso
+    Then I should see "Uma descrição"
