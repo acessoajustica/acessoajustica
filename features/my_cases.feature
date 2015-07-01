@@ -16,7 +16,6 @@ Feature: My Cases
     And I am that estagiario
     And exists a "caso" that belongs to an "another estagiario and to an another cliente"
     When I am on "my cases"
-    # And I take a picture of the page
     Then I should see "Joana Silveira"
     But I should not see "Mario da Silva"
 
@@ -26,11 +25,21 @@ Feature: My Cases
     And exists a "caso" that belongs to a "estagiario and to a cliente"
     And I am that estagiario
     When I am on "my cases"
-    And I take "Maria" picture of the page
-    When I click at css "#Joana_Silveira"
+    And I click at css "#Joana_Silveira"
     And I wait a second
-    And I take "Maria2" picture of the page
     Then I should see "Uma descrição"
+    
+  @javascript
+  Scenario: Contract the Accordion II (the accordion strikes back)
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to a "estagiario and to a cliente"
+    And I am that estagiario
+    When I am on "my cases"
+    And I click at css "#Joana_Silveira"
+    And I wait a second
+    And I click at css "#Joana_Silveira"
+    And I wait a second
+    Then I should not see "Uma descrição"
 
   Scenario: List my cases
     Given I am logged as "estagiario"
