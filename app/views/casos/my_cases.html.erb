@@ -24,7 +24,7 @@
             <div class="col-md-10 col-sm-10">
               <div class = "col-md-2 col-sm-2 text-center"><%= caso.id%></div>
               <div class = "col-md-2 col-sm-2 text-center"><%= caso.status%></div>
-              <div class = "col-md-4 col-sm-4 text-center"><%= caso.cliente.nome%></div>
+              <div id="<%=caso.cliente.nome.gsub(' ','_')%>" class = "col-md-4 col-sm-4 text-center"><%= caso.cliente.nome%></div>
               <div class = "col-md-2 col-sm-2 text-center register_time"><%= caso.created_at.strftime("%d/%m/%Y")  %></div>
             </div>
           </div>
