@@ -3,6 +3,24 @@ Feature: RestrictAccess
   An unauthenticated user
   Should not view anything but the Login Page
 
+  Scenario: Non authenticated user tries to accesss 'Casos'
+    Given I am not authenticated
+    When I am on "casos page"
+    Then I should be on "home page"
+
+  Scenario: Authenticated estagiario tries to edit a Caso
+    Given I am logged as "estagiario"
+    And exists a "caso" that belongs to an "estagiario and to a cliente"
+    And I am that estagiario
+    And I am editing a caso
+    Then I should see "Joana Silveira"
+  
+  Scenario: Non authenticated user tries to edit a 'Caso'
+    Given I am not authenticated
+    And exists a "caso" that belongs to an "estagiario and to a cliente"
+    And I am editing a caso
+    Then I should not see "Joana Silveira"
+
   Scenario: Non authenticated user tries to Access 'Pessoas'
     Given I am not authenticated
     When I am on "pessoas page"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617234827) do
+ActiveRecord::Schema.define(version: 20150701181307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 20150617234827) do
   add_index "clientes", ["moradia_type_id"], name: "index_clientes_on_moradia_type_id", using: :btree
   add_index "clientes", ["profissao_type_id"], name: "index_clientes_on_profissao_type_id", using: :btree
 
+  create_table "especialidades", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "especialidades_estagiarios", id: false, force: :cascade do |t|
+    t.integer "especialidade_id"
+    t.integer "estagiario_id"
+  end
+
   create_table "estado_civils", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -72,9 +83,8 @@ ActiveRecord::Schema.define(version: 20150617234827) do
   end
 
   create_table "estagiarios", force: :cascade do |t|
-    t.string   "especialidade"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "membros", force: :cascade do |t|
