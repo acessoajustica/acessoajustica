@@ -32,15 +32,18 @@ ProfissaoType.create!(:description => "Primário")
 ProfissaoType.create!(:description => "Secundário")
 ProfissaoType.create!(:description => "Terciário")
 
+
 # assign the admin role to the admin user.  (This bit of rails
 # magic creates a user_role record in the database.)
 admin_user.roles << admin_role
-admin_user.roles << admin_role
-admin_user.roles << admin_role
-admin_user.roles << admin_role
+estagiario_user.roles << estagiario_role
+calouro_user.roles << calouro_role
+vareiro_user.roles << vareiro_role
+diretor_user.roles << diretor_role
 
 case Rails.env
   when "development"
+
     # Creating cliente
     cliente = Cliente.create!(:nome => "João da Silva",
               :cpf  => "123.456.789-00",
@@ -63,12 +66,7 @@ case Rails.env
               :ano_faculdade  => "1991-03-02",
               :especialidade =>  "Ovos")
 
-    estagiario_user = User.create!(:email=>'estagiario@test.com',
-              :username=>'estagiario',
-              :password=>'12345678',
-              :membro_id => estagiario.membro.id)
-
-    estagiario_user.roles << estagiario_role
+    estagiario_user.membro_id = estagiario.membro.id
 
     resultado_type = CasoResultado.create!(:description => "Orientação")
 
