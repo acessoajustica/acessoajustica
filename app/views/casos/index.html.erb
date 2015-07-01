@@ -28,7 +28,7 @@
           <% end %>
         </div>
         <div class = "col-md-2 col-sm-2">
-            <%= link_to 'Escolher', select_case_path(caso.id), :class => "btn-info btn-xs pull-right"%>
+            <%= link_to 'Escolher', select_case_path(caso.id), :class => "btn-info btn-xs pull-right", :id =>  "Escolher_" + index.to_s %>
         </div>
         </div>
         </div>
