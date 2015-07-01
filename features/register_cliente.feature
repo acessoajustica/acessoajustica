@@ -5,7 +5,8 @@ Feature: Register a Cliente
 
   Scenario: Register a valid 'Cliente'
   	Given I am logged as "calouro"
-  	And exists a "moradia_type"
+    And exists a "moradia_type"
+  	And exists a "estado_civil"
   	And I am on "clientes new"
   	When I fill in "cliente nome" with "Fernanda Monteiro"
   	And I fill in "cliente nome da mae" with "Mariana Monteiro"
