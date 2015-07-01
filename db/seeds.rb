@@ -32,6 +32,9 @@ ProfissaoType.create!(:description => "Primário")
 ProfissaoType.create!(:description => "Secundário")
 ProfissaoType.create!(:description => "Terciário")
 
+# Creating caso_types
+CasoType.create!(:description => "Atendimento")
+CasoType.create!(:description => "Orientação")
 
 # assign the admin role to the admin user.  (This bit of rails
 # magic creates a user_role record in the database.)
