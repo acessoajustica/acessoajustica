@@ -63,8 +63,7 @@ case Rails.env
               :rg  => "12.345.678-9",
               :cor  => "Negro",
               :identidade_de_genero  => "Homem",
-              :ano_faculdade  => "1991-03-02",
-              :especialidade =>  "Ovos")
+              :ano_faculdade  => "1991-03-02")
 
     estagiario_user.membro_id = estagiario.membro.id
     estagiario_user.save

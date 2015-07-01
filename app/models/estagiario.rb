@@ -1,5 +1,4 @@
 class Estagiario < ActiveRecord::Base
   acts_as :membro
-
-  validates :especialidade, presence: true
+  has_and_belongs_to_many :especialidade
 end
