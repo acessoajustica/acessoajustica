@@ -20,7 +20,7 @@ class Ability
       can :manage, Caso
       can :edit,   Calouro
     elsif user.role? :vareiro
-      can :edit,   Vareiro
+      can :edit, Vareiro
     end 
   end 
 end
