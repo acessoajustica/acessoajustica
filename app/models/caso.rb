@@ -17,8 +17,14 @@ class Caso < ActiveRecord::Base
   end
 
   def type_description
-  	if (caso_type)
-  	  caso_type.description
-  	end
+    if (caso_type)
+      caso_type.description
+    end
   end
+
+  def canTakeMe?(estagiario)
+    intersection = caso_type.especialidades & estagiario.especialidades
+    intersection.any?
+  end
+
 end

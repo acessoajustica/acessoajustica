@@ -1,4 +1,5 @@
 class EstagiariosController < ApplicationController
+  include EstagiariosHelper
   authorize_resource 
   before_action :set_estagiario, only: [:show, :edit, :update, :destroy]
 
@@ -26,8 +27,8 @@ class EstagiariosController < ApplicationController
   # POST /estagiarios
   # POST /estagiarios.json
   def create
-    @estagiario = Estagiario.new(estagiario_params.select { | key, value | key != "user_id" })
-
+    @estagiario = Estagiario.new(estagiario_params.select { | key, value | key != "user_id" and key != "especialidades"})
+    add_all_especialidades(@estagiario, estagiario_params[:especialidades])
     respond_to do |format|
       if @estagiario.save
         @user = User.find(estagiario_params[:user_id])
@@ -74,8 +75,8 @@ class EstagiariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def estagiario_params
-      params.require(:estagiario).permit(:especialidade, :ano_faculdade, :nome,
+      params.require(:estagiario).permit(:ano_faculdade, :nome,
                                          :cpf, :nome_da_mae, :rg, :cor, 
-                                         :identidade_de_genero, :user_id)
+                                         :identidade_de_genero, :user_id, :especialidades => [])
     end
 end

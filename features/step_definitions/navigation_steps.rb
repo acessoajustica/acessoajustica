@@ -8,8 +8,8 @@ end
 
 def bind_user (user_role)
   user_entity = FactoryGirl.create(:user, user_role + "_user")
-  membro_entity = FactoryGirl.create(user_role)
-  user_entity.membro_id = membro_entity.actable_id
+  membro_entity = FactoryGirl.create(user_role) if user_role != 'admin'
+  user_entity.membro_id = membro_entity.actable_id if user_role != 'admin'
   user_entity.save
   user_entity
 end

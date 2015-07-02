@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617234827) do
+ActiveRecord::Schema.define(version: 20150702002805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,18 @@ ActiveRecord::Schema.define(version: 20150617234827) do
   add_index "clientes", ["moradia_type_id"], name: "index_clientes_on_moradia_type_id", using: :btree
   add_index "clientes", ["profissao_type_id"], name: "index_clientes_on_profissao_type_id", using: :btree
 
+  create_table "especialidades", force: :cascade do |t|
+    t.string "description"
+  end
+
+  create_table "especialidades_caso_types", id: false, force: :cascade do |t|
+    t.integer "especialidade_id"
+    t.integer "caso_type_id"
+  end
+
+  add_index "especialidades_caso_types", ["caso_type_id"], name: "index_especialidades_caso_types_on_caso_type_id", using: :btree
+  add_index "especialidades_caso_types", ["especialidade_id"], name: "index_especialidades_caso_types_on_especialidade_id", using: :btree
+
   create_table "estado_civils", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -72,10 +84,17 @@ ActiveRecord::Schema.define(version: 20150617234827) do
   end
 
   create_table "estagiarios", force: :cascade do |t|
-    t.string   "especialidade"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  create_table "estagiarios_especialidades", id: false, force: :cascade do |t|
+    t.integer "estagiario_id"
+    t.integer "especialidade_id"
+  end
+
+  add_index "estagiarios_especialidades", ["especialidade_id"], name: "index_estagiarios_especialidades_on_especialidade_id", using: :btree
+  add_index "estagiarios_especialidades", ["estagiario_id"], name: "index_estagiarios_especialidades_on_estagiario_id", using: :btree
 
   create_table "membros", force: :cascade do |t|
     t.date     "ano_faculdade"

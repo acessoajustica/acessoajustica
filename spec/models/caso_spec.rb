@@ -27,6 +27,31 @@ RSpec.describe Caso, type: :model do
       caso = FactoryGirl.build(:caso)
       expect(caso.type_description).to eq(nil)
     end
+
+  it "knows what caso_type goes with what especialidade" do
+    caso = FactoryGirl.build(:caso)
+    caso_type = FactoryGirl.build(:caso_type)
+    estagiario = FactoryGirl.build(:estagiario)
+    especialidade = FactoryGirl.build(:especialidade)
+    estagiario.especialidades << especialidade
+    caso_type.especialidades << especialidade
+    caso.caso_type = caso_type
+    expect(caso.canTakeMe?(estagiario)).to eq(true)
+  end
+  
+  it "knows what caso_type does not goes with what especialidade" do
+    caso = FactoryGirl.build(:caso)
+    caso_type = FactoryGirl.build(:caso_type)
+    estagiario = FactoryGirl.build(:estagiario)
+    especialidade = FactoryGirl.build(:especialidade)
+    especialidade2 = FactoryGirl.build(:especialidade, :another)
+    estagiario.especialidades << especialidade
+    caso_type.especialidades << especialidade2
+    caso.caso_type = caso_type
+    expect(caso.canTakeMe?(estagiario)).to eq(false)
+  end
+
+
   
   end
 end
