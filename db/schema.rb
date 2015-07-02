@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701204924) do
+ActiveRecord::Schema.define(version: 20150702002805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20150701204924) do
   create_table "especialidades", force: :cascade do |t|
     t.string "description"
   end
+
+  create_table "especialidades_caso_types", id: false, force: :cascade do |t|
+    t.integer "especialidade_id"
+    t.integer "caso_type_id"
+  end
+
+  add_index "especialidades_caso_types", ["caso_type_id"], name: "index_especialidades_caso_types_on_caso_type_id", using: :btree
+  add_index "especialidades_caso_types", ["especialidade_id"], name: "index_especialidades_caso_types_on_especialidade_id", using: :btree
 
   create_table "estado_civils", force: :cascade do |t|
     t.string   "description"
