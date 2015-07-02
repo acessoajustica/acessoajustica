@@ -81,12 +81,12 @@ ActiveRecord::Schema.define(version: 20150701204924) do
   end
 
   create_table "estagiarios_especialidades", id: false, force: :cascade do |t|
-    t.integer "estagiarios_id"
-    t.integer "especialidades_id"
+    t.integer "estagiario_id"
+    t.integer "especialidade_id"
   end
 
-  add_index "estagiarios_especialidades", ["especialidades_id"], name: "index_estagiarios_especialidades_on_especialidades_id", using: :btree
-  add_index "estagiarios_especialidades", ["estagiarios_id"], name: "index_estagiarios_especialidades_on_estagiarios_id", using: :btree
+  add_index "estagiarios_especialidades", ["especialidade_id"], name: "index_estagiarios_especialidades_on_especialidade_id", using: :btree
+  add_index "estagiarios_especialidades", ["estagiario_id"], name: "index_estagiarios_especialidades_on_estagiario_id", using: :btree
 
   create_table "membros", force: :cascade do |t|
     t.date     "ano_faculdade"
