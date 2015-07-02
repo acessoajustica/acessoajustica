@@ -5,6 +5,7 @@ Feature: Register a Cliente
 
   Scenario: Creating a estagiario
     Given I am logged as "admin"
+    And exists a "estagiario_role role"
     And exists an "especialidade"
     And I am on "the homepage"
     When I click on "Cadastrar Usuário" link
