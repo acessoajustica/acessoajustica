@@ -76,7 +76,9 @@ The ```alfredo``` script provides the following functionalities:
 ./script/alfredo test
 ```
 For more information, run the help option:
+```
 ./script/alfredo help
+```
 
 The app runs at ```localhost:3000```.
 
