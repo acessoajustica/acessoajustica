@@ -22,11 +22,12 @@
   <% if can? :create, current_user %>
     <%= link_to "Cadastrar Usuário", new_user_registration_path, :class => 'navbar-link' %> |
   <% end %>
-  
   <% if can? :create, Cliente %>
     <%= link_to "Cadastrar Cliente", new_cliente_path, :class => 'navbar-link' %> |
   <% end %>
-  
+    <% if current_user.role?("estagiário") %>
+    <%= link_to "Meus Atendimentos", "/casos/my-cases", :class => 'navbar-link' %> |
+  <% end %>
   <%= link_to "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 <% elsif current_page?('/users/sign_in') == false %>
   <%= link_to "Entrar", new_user_session_path, :class => 'navbar-link'  %>

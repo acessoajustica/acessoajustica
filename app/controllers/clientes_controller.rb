@@ -1,4 +1,5 @@
 class ClientesController < ApplicationController
+  authorize_resource
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
   # GET /clientes

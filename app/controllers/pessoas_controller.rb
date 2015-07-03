@@ -1,4 +1,5 @@
 class PessoasController < ApplicationController
+  authorize_resource
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
 
   # GET /pessoas

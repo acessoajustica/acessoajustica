@@ -1,4 +1,4 @@
-FactoryGirl.define do
+  FactoryGirl.define do
   factory :user do
     username "adilson"
     email "adilson@gmail.com"
@@ -35,5 +35,17 @@ FactoryGirl.define do
   trait :calouro_role do
     name { "calouro" }
   end
-end
 
+  factory :user_admin do
+    username "admin"
+    email "admin@gmail.com"
+    password "password"
+    roles { [ FactoryGirl.create(:role, :admin_role) ] }
+  end
+
+  trait :another do
+    username "adilsons"
+    email "adilsons@gmail.com"
+  end
+  
+end

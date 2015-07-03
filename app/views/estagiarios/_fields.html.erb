@@ -16,11 +16,8 @@
 
     <div class="row">
       <div class="control-group col-md-3 col-sm-6">
-          <%= f.label :especialidade, :class => 'control-label' %>
-          <div class="controls">
-            <%= f.text_field :especialidade, :class => 'form-control' %>
-          </div>
-          <%= error_span(@estagiario[:especialidade]) %>
-        </div>
+        <%= f.label "Especialidades"%> 
+        <%= f.select :especialidades, get_especialidades_helper(nil), {}, {:multiple => true, :class => 'form-control', :size => 3} %>
       </div>
+    </div>
 </div>  

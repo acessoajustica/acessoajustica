@@ -1,7 +1,11 @@
 require "rails_helper"
 
-RSpec.describe RelatosController, type: :routing do
+RSpec.describe RelatosController, type: :controller do
   describe "routing" do
+
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
 
     it "routes to #index" do
       expect(:get => "/relatos").to route_to("relatos#index")

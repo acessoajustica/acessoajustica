@@ -18,31 +18,85 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
+  
 RSpec.describe CasosController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Caso. As you add validations to Caso, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    FactoryGirl.attributes_for(:caso)
+  end
 
-  let(:invalid_attributes) {
+  let(:valid_old_caso) do
+    FactoryGirl.attributes_for(:caso, :old)
+  end
+
+  let(:valid_non_accepted) do
+    FactoryGirl.attributes_for(:caso, :rejected)
+  end
+
+  let(:invalid_attributes) do
     skip("Add a hash of attributes invalid for your model")
-  }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # CasosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    sign_in FactoryGirl.build(:user, :admin_user) 
+  end
+
   describe "GET #index" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:casos)).to eq([caso])
     end
+
+    it "assigns all casos as @casos (except old casos)" do
+      caso = Caso.create! valid_attributes
+      old_caso = Caso.create! valid_old_caso
+      get :index, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+    end
+
+    it "assigns all casos as @casos (except non accepted)" do
+      caso = Caso.create! valid_attributes
+      non_accepted_caso = Caso.create! valid_non_accepted
+      get :index, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+    end
+
+    it "assigns all casos as @casos (except already attended)" do
+      caso = Caso.create! valid_attributes
+      already_attended_caso = Caso.create! valid_attributes
+      already_attended_caso.stubs(:estagiario).returns(FactoryGirl.build(:estagiario))
+      Caso.stubs(:where).returns([caso, already_attended_caso])
+      get :index, {}, valid_session
+      expect(assigns(:casos)).to eq([caso])
+    end
   end
+
+  describe "GET #my-cases" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
+    
+    it "assigns specific casos as @casos" do
+      caso = Caso.create! valid_attributes
+      Caso.stubs(:all_for).returns([caso])
+      get :my_cases, valid_session
+      expect(assigns(:casos)).to eq([caso])
+      caso.destroy
+    end
+  end
+
 
   describe "GET #show" do
     it "assigns the requested caso as @caso" do
@@ -68,6 +122,9 @@ RSpec.describe CasosController, type: :controller do
   end
 
   describe "POST #create" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
     context "with valid params" do
       it "creates a new Caso" do
         expect {
@@ -101,6 +158,9 @@ RSpec.describe CasosController, type: :controller do
   end
 
   describe "PUT #update" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
     context "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
@@ -142,6 +202,9 @@ RSpec.describe CasosController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    before (:each) do
+      sign_in FactoryGirl.create(:user, :estagiario_user) 
+    end
     it "destroys the requested caso" do
       caso = Caso.create! valid_attributes
       expect {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506195014) do
+ActiveRecord::Schema.define(version: 20150702002805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,32 @@ ActiveRecord::Schema.define(version: 20150506195014) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "caso_resultados", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "caso_types", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "casos", force: :cascade do |t|
     t.boolean  "status"
     t.integer  "cliente_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "estagiario_id"
+    t.integer  "caso_type_id"
+    t.integer  "caso_resultado_id"
   end
 
+  add_index "casos", ["caso_resultado_id"], name: "index_casos_on_caso_resultado_id", using: :btree
+  add_index "casos", ["caso_type_id"], name: "index_casos_on_caso_type_id", using: :btree
   add_index "casos", ["cliente_id"], name: "index_casos_on_cliente_id", using: :btree
+  add_index "casos", ["estagiario_id"], name: "index_casos_on_estagiario_id", using: :btree
 
   create_table "clientes", force: :cascade do |t|
     t.integer  "filhos_quantidade"
@@ -47,6 +65,18 @@ ActiveRecord::Schema.define(version: 20150506195014) do
   add_index "clientes", ["moradia_type_id"], name: "index_clientes_on_moradia_type_id", using: :btree
   add_index "clientes", ["profissao_type_id"], name: "index_clientes_on_profissao_type_id", using: :btree
 
+  create_table "especialidades", force: :cascade do |t|
+    t.string "description"
+  end
+
+  create_table "especialidades_caso_types", id: false, force: :cascade do |t|
+    t.integer "especialidade_id"
+    t.integer "caso_type_id"
+  end
+
+  add_index "especialidades_caso_types", ["caso_type_id"], name: "index_especialidades_caso_types_on_caso_type_id", using: :btree
+  add_index "especialidades_caso_types", ["especialidade_id"], name: "index_especialidades_caso_types_on_especialidade_id", using: :btree
+
   create_table "estado_civils", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -54,10 +84,17 @@ ActiveRecord::Schema.define(version: 20150506195014) do
   end
 
   create_table "estagiarios", force: :cascade do |t|
-    t.string   "especialidade"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  create_table "estagiarios_especialidades", id: false, force: :cascade do |t|
+    t.integer "estagiario_id"
+    t.integer "especialidade_id"
+  end
+
+  add_index "estagiarios_especialidades", ["especialidade_id"], name: "index_estagiarios_especialidades_on_especialidade_id", using: :btree
+  add_index "estagiarios_especialidades", ["estagiario_id"], name: "index_estagiarios_especialidades_on_estagiario_id", using: :btree
 
   create_table "membros", force: :cascade do |t|
     t.date     "ano_faculdade"
@@ -139,7 +176,10 @@ ActiveRecord::Schema.define(version: 20150506195014) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "casos", "caso_resultados"
+  add_foreign_key "casos", "caso_types"
   add_foreign_key "casos", "clientes"
+  add_foreign_key "casos", "estagiarios"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"

@@ -7,6 +7,9 @@ development: &default
   password:
   host: db
 
-test:
+test: &test
   <<: *default
   database: acessoajustica_test
+
+cucumber:
+  <<: *test

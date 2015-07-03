@@ -11,6 +11,8 @@ gem 'sass-rails', '>= 5.0.3'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+
+gem 'libv8', '3.16.14.7'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
@@ -23,7 +25,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Cancan for authentication
-gem 'cancan'
+gem 'cancancan', '~> 1.10.1'
 # Less for bootstrap
 gem "less-rails"
 # Bootstrap for layout
@@ -68,12 +70,24 @@ group :development, :test do
   gem 'rspec', '~> 3.2.0'
 
   gem 'mocha', '1.1.0'
-
+  
+  gem 'libv8', '3.16.14.7'
+  
   gem 'rspec-rails', '~> 3.0'
 
   gem 'factory_girl', '~> 4.5.0'
+
   gem 'shoulda-matchers', '~> 2.8.0'
+  
+  gem 'database_cleaner'
+
 end
 group :users, :authentication do
     gem 'devise'
+end
+
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem "poltergeist" 
+  gem 'selenium-webdriver', :require => false
 end

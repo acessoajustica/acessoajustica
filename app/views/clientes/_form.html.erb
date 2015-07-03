@@ -32,7 +32,7 @@
               <div class="form-group col-md-6">
                 <%= f.label :estado_civil_id, :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.select :profissao_type_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
+                  <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
                 </div>
                 <%= error_span(@cliente[:estado_civil_id]) %>
               </div>
@@ -132,7 +132,7 @@
               <%= f.label :categoria, :class => 'control-label' %>
               <div class="controls">
                 <%= f.fields_for @caso do |c| %>
-                  <%= c.select :status, options_for_select([['Válido', true], ['Inválido', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+                  <%= c.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
                   <%# <%= render 'question_fields', f: builder %>
                 <% end %>
               </div>

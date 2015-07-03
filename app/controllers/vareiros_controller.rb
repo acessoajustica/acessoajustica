@@ -1,4 +1,5 @@
 class VareirosController < ApplicationController
+  authorize_resource
   before_action :set_vareiro, only: [:show, :edit, :update, :destroy]
 
   # GET /vareiros

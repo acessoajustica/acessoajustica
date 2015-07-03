@@ -1,4 +1,5 @@
 class MembrosController < ApplicationController
+  authorize_resource
   before_action :set_membro, only: [:show, :edit, :update, :destroy]
 
   # GET /membros

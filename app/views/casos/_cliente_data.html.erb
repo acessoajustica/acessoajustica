@@ -1,0 +1,95 @@
+<div class = "row">
+  <h3> Dados do Cliente</h3>
+</div>
+
+<div class="row">
+  <h4> Dados Pessoais</h4>
+</div>
+
+<div class="row">
+  <table class = "col-md-9 col-sm-9 col-xs-12">
+    <tr>
+      <td width="50%"><b>Nome: </b></td>
+      <td><%=@caso.cliente.nome%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Nome da mae: </b></td>
+      <td><%=@caso.cliente.nome_da_mae%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Cpf: </b></td>
+      <td><%=@caso.cliente.cpf%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Rg: </b></td>
+      <td><%=@caso.cliente.rg%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Cor: </b></td>
+      <td><%=@caso.cliente.cor%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Identidade de gênero: </b></td>
+      <td><%=@caso.cliente.identidade_de_genero%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Estado civil: </b></td>
+      <td><%=@caso.cliente.estado_civil_description%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Tipo de moradia: </b></td>
+      <td><%=@caso.cliente.moradia_description%></td>
+    </tr>
+  </table>
+</div>
+
+<div class = "row">
+  <h4> Dados Familiares</h4>
+</div>
+
+<div class = "row">
+  <table class = "col-md-9 col-sm-9 col-xs-12">
+    <tr>
+      <td width="50%"><b>Renda total: </b></td>
+      <td><%=@caso.cliente.familia_renda%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Quantidade total de pessoas: </b></td>
+      <td><%=@caso.cliente.familia_quantidade%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Quantidade de filhos: </b></td>
+      <td><%=@caso.cliente.filhos_quantidade%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Quantidade de contribuites: </b></td>
+      <td><%=@caso.cliente.contribuintes_quantidade%></td>
+    </tr>
+  </table>
+</div>
+
+<div class = "row">
+  <h4> Dados Profissionais</h4>
+</div>
+
+<div class = "row">
+  <table class = "col-md-9 col-sm-9 col-xs-12">
+    <tr>
+      <td width="50%"><b>Profissão: </b></td>
+      <td><%=@caso.cliente.profissao_nome%></td>
+    </tr>
+    <tr>
+      <td width="50%"><b>Categoria: </b></td>
+      <td><%=@caso.cliente.profissao_type_description%></td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
