@@ -26,7 +26,7 @@ finally, run:
 
 ```
 git clone https://github.com/acessoajustica/acessoajustica.git
-./scripts/init.sh all
+./script/alfredo build
 ```
 
 If docker fails to download the images, or the ruby bundler
@@ -46,34 +46,38 @@ sudo systemctl restart docker.service
 Finally, run:
 
 ```
-./scripts/init.sh run
+./script/alfredo run
 ```
 
-## The init script
+## The alfredo script
 
-The ```init.sh``` script provides the following functionalities:
+The ```alfredo``` script provides the following functionalities:
 
 ```
 # Builds the image from scratch, creates a new Gemfile.lock, runs all tests.
-./scripts/init.sh all 
+./script/alfredo build
 
 #  Runs bundle update, does not remove containers or Gemfile.lock, runs all tests and migrations.
-./scripts/init.sh update
+./script/alfredo update
 
 # Stops and removes all containers.
-./scripts/init.sh clean
+./script/alfredo clean
 
 # Restarts the app container if its running, starts it otherwise.
-./scripts/init.sh restart
+./script/alfredo restart
 
 # Runs migrations and starts the app container.
-./scripts/init.sh run
+./script/alfredo run
 
 # Runs the migrations.
-./scripts/init.sh migrate
+./script/alfredo migrate
 
-# Runs all migrations and tests.
-./scripts/init.sh test
+# Runs unit and acceptance tests.
+./script/alfredo test
+```
+For more information, run the help option:
+```
+./script/alfredo help
 ```
 
 The app runs at ```localhost:3000```.
