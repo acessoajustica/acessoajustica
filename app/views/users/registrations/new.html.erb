@@ -7,46 +7,79 @@
 
   <div class= "container-fluid">
     <div class="row">
-      <div class="form-group col-md-6">
-        <%= f.label "Nome de Usuário"%>
-        <%= f.text_field :username, :class => 'form-control' %>
+      <div class="col-md-2"></div>
+      <div class = "col-md-8">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Dados do Usuário</h3>
+          </div>
+          <div class="panel-body">
+
+            <div class="row"><!-- Nome do Usuário-->
+              <div class="form-group col-md-12">
+                  <%= f.label "Nome do Usuário", :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.text_field :username, :class => 'form-control' %>
+                  </div>
+                  <%= error_span(@user[:username]) %>
+              </div>
+            </div>
+
+            <div class="row"><!-- Email -->
+              <div class="form-group col-md-12">
+                  <%= f.label "Email", :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.email_field :email, :class => 'form-control' %>
+                  </div>
+                  <%= error_span(@user[:email]) %>
+              </div>
+            </div>
+
+            <div class="row"><!-- Senha e Confirmação de Senha-->
+              <div class="form-group col-md-6">
+                <%= f.label :Senha, :class => 'control-label' %>
+                <% if @validatable %>
+                  <em>(No mínimo <%= @minimum_password_length %> caracteres.)</em>
+                <% end %><br />
+                <div class="controls">
+                  <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+                </div>
+                <%= error_span(@user[:password]) %>
+              </div>
+
+              <div class="form-group col-md-6">
+                <%= f.label "Confirmação de Senha", :class => 'control-label' %>
+                <% if @validatable %>
+                  <em>(No mínimo <%= @minimum_password_length %> caracteres.)</em>
+                <% end %><br />
+                <div class="controls">
+                  <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+                </div>
+                <%= error_span(@user[:password_confirmation]) %>
+              </div>
+            </div>
+
+            <div class="row"><!-- Permissão-->
+              <div class="form-group col-md-12">
+                  <%= f.label "Permissão", :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.select :role_ids, get_roles_helper, {}, {:multiple => true, :class => 'form-control', :size => 3} %>
+                  </div>
+                  <%= error_span(@user[:role_ids]) %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="text-right">
+          <%= f.submit "Próximo", :class => 'btn btn-primary' %>
+        </div>
+        <hr>
       </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-6">
-        <%= f.label "Email"%>
-        <%= f.email_field :email, :class => 'form-control' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-3 col-sm-6">
-        <%= f.label "Senha"%>
-        <% if @validatable %>
-          <em>(No mínimo <%= @minimum_password_length %> caracteres.)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
-      </div>
-      <div class="form-group col-md-3 col-sm-6">
-        <%= f.label "Confirmação de Senha"%>
-        <% if @validatable %>
-          <em>(No mínimo <%= @minimum_password_length %> caracteres.)</em>
-        <% end %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-6">
-        <%= f.label "Permissão"%>
-        <%= f.select :role_ids, get_roles_helper, {}, {:multiple => true, :class => 'form-control', :size => 3} %>
-      </div>
-    </div>
-  </div>
-  </br>
-  <div class="container-fluid">
-    <div class="actions form-group">
-      <%= f.submit "Próximo", :class => "btn btn-primary" %>
-    </div>
-  </div>
+    </div><!-- /row -->
+
 <% end %>
 
 <%# <%= render "users/shared/links" %>
