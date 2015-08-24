@@ -53,7 +53,6 @@ Feature: Wait list
     And exists a "caso" that belongs to a "cliente"
     And I am on "the casos page"
     When I click at css "#Joana_Silveira"
-    And I wait a second
     Then I should see "Uma descrição"
 
   @javascript
