@@ -1,23 +1,21 @@
-<div class="container-fluid">
-  <% if @estagiario.errors.any? %>
-      <div id="error_expl" class="panel panel-danger">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= pluralize(@estagiario.errors.count, "error") %> prohibited this estagiario from being saved:</h3>
-        </div>
-        <div class="panel-body">
-          <ul>
-          <% @estagiario.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      </div>
-    <% end %>
-
-    <div class="row">
-      <div class="control-group col-md-3 col-sm-6">
-        <%= f.label "Especialidades"%> 
-        <%= f.select :especialidades, get_especialidades_helper(nil), {}, {:multiple => true, :class => 'form-control', :size => 3} %>
-      </div>
+<% if @estagiario.errors.any? %>
+  <div id="error_expl" class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= pluralize(@estagiario.errors.count, "error") %> prohibited this estagiario from being saved:</h3>
     </div>
-</div>  
+    <div class="panel-body">
+      <ul>
+      <% @estagiario.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="control-group col-md-12">
+    <%= f.label "Especialidades"%> 
+    <%= f.select :especialidades, get_especialidades_helper(nil), {}, {:multiple => true, :class => 'form-control', :size => 3} %>
+  </div>
+</div>

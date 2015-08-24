@@ -1,6 +1,6 @@
-<%= form_for @estagiario, :html => { :class => "form-horizontal estagiario" } do |f| %>
+<%= form_for @estagiario, :html => { :class => "estagiario" } do |f| %>
 
-    <% if @estagiario.errors.any? %>
+  <% if @estagiario.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
         <h3 class="panel-title"><%= pluralize(@estagiario.errors.count, "error") %> prohibited this estagiario from being saved:</h3>
@@ -15,14 +15,48 @@
     </div>
   <% end %>
 
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
 
-  <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @estagiario} %>
-  <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @estagiario } %>
-  <%= render :partial => 'fields', :locals => { :f => f } %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Dados Pessoais</h3>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @estagiario} %>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Informações Adicionais</h3>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'fields', :locals => { :f => f } %>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @estagiario } %>
+          </div>
+        </div>
+
+
+
+        <div class="text-right">
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            estagiarios_path, :class => 'btn btn-default' %>
+        </div>
+        <hr>
+
+      </div>
+    </div><!-- /row -->
+    
+  </div>
+
+
   <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            estagiarios_path, :class => 'btn btn-default' %>
 
 <% end %>
