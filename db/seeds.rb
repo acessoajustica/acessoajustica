@@ -38,7 +38,11 @@ case Rails.env
     calouro_user = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
     vareiro_user = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
     diretor_user = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
-  
+
+    #Creating especialidades
+    Especialidade.create!(:description => "Criminal");
+    Especialidade.create!(:description => "Penal");
+
     # assign the admin role to the admin user.  (This bit of rails
     # magic creates a user_role record in the database.)
     admin_user.roles << admin_role

@@ -1,4 +1,4 @@
-<h2>Cadastrar Usuário</h2>
+<h2>Cadastro de Usuário</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -18,7 +18,7 @@
 
             <div class="row"><!-- Nome do Usuário-->
               <div class="form-group col-md-12">
-                  <%= f.label "Nome do Usuário", :class => 'control-label' %>
+                  <%= f.label "Login do Usuário", :class => 'control-label' %>
                   <div class="controls">
                     <%= f.text_field :username, :class => 'form-control' %>
                   </div>

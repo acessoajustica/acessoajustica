@@ -4,12 +4,10 @@
     <h2 class="form-signin-heading">Entrar</h2>
 
     <%= f.label "Nome de Usuário", :class => "sr-only"%>
-    <%= f.text_field :login, :class => "form-control",  :placeholder => "Nome do Usuário", :required => "", :autofocus => "" %>
+    <%= f.text_field :login, :class => "form-control",  :placeholder => "Nome do Usuário", :required => "", :autofocus => "", :title => "Por favor, preencha este campo." %>
 
-  
     <%= f.label "Senha", :class => "sr-only", :for => "inputSenha" %>
     <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "Senha", :required => "" %>
-
 
     <div class="checkbox">
       <%= render "users/shared/login_links" %>
@@ -18,16 +16,11 @@
     <%= f.submit "Entrar", :id => 'submit', :class => "btn btn-lg btn-primary btn-block" %>
     
     <% if devise_mapping.rememberable? -%>
-
       <div class="checkbox">
         <label>
           <input type="checkbox" value="remember_me"> Mantenha-me conectado
-
         </label>
       </div>
-      
-
-
     <% end -%>
 
   <% end %>  

@@ -15,7 +15,7 @@
     <% @estagiarios.each do |estagiario| %>
       <tr>
         <td><%= link_to estagiario.id, estagiario_path(estagiario) %></td>
-        <td><%= estagiario.especialidade %></td>
+        <td><%= estagiario.especialidades[0] %></td>
         <td><%=l estagiario.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
