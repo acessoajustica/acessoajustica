@@ -37,6 +37,7 @@ class EstagiariosController < ApplicationController
         format.html { redirect_to @estagiario, notice: 'Estagiario was successfully created.' }
         format.json { render :show, status: :created, location: @estagiario }
       else
+        @user_id = estagiario_params[:user_id]
         format.html { render :new }
         format.json { render json: @estagiario.errors, status: :unprocessable_entity }
       end
