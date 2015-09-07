@@ -31,22 +31,24 @@
     <%= error_span(@pessoa[:nome_da_mae]) %>
   </div>
 </div>
+<!-- CPF / RG -->
 <div class="row">
   <div class="form-group col-md-6 col-sm-6">
     <%= f.label "CPF", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :cpf, :class => 'form-control' %>
+      <%= f.text_field :cpf, :class => 'form-control cpf' %>
     </div>
     <%= error_span(@pessoa[:cpf]) %>
   </div>
   <div class="form-group col-md-6 col-sm-6">
     <%= f.label "RG", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :rg, :class => 'form-control' %>
+      <%= f.text_field :rg, :class => 'form-control rg' %>
     </div>
     <%= error_span(@pessoa[:rg]) %>
   </div>
 </div>
+<!-- Cor / Identidade de Gênero -->
 <div class="row">
   <div class="form-group col-md-6 col-sm-6">
     <%= f.label :cor, :class => 'control-label' %>
@@ -63,3 +65,5 @@
     <%= error_span(@pessoa[:identidade_de_genero]) %>
   </div>
 </div>
+
+
