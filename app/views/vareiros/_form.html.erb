@@ -1,26 +1,63 @@
-<%= form_for @vareiro, :html => { :class => "form-horizontal vareiro" } do |f| %>
+<%= form_for @vareiro, :html => { :class => "vareiro" } do |f| %>
+
+  <div class="container-fluid">
 
     <% if @vareiro.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@vareiro.errors.count, "error") %> prohibited this vareiro from being saved:</h3>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class = "col-md-8">
+          <div class="alert alert-danger" role="alert" >
+            <strong><%= pluralize(@vareiro.errors.count, "error") %> prohibited this vareiro from being saved:</strong>
+            <ul>
+              <% @vareiro.errors.full_messages.each  do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="panel-body">
-        <ul>
-        <% @vareiro.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @vareiro} %>
-  <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @vareiro } %>
-  <%= render :partial => 'fields', :locals => { :f => f } %>
-  <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <!-- Painel de Dados Pessoais -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Dados Pessoais</h3>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @vareiro} %>
+          </div>
+        </div>
+        <!-- Painel de Dados Adicionais -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Dados Adicionais</h3>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @vareiro } %>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'fields', :locals => { :f => f } %>
+          </div>
+        </div>
+        <!-- Buttons-->
+        <div class="text-right">
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             vareiros_path, :class => 'btn btn-default' %>
+        </div>
+        <hr>
+      </div>
+    </div><!-- /row -->
+  </div>
+
+  <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
 
 <% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("div#error_expl").hide();
+});
+</script>
