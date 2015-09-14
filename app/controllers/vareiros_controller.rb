@@ -36,6 +36,7 @@ class VareirosController < ApplicationController
         format.html { redirect_to @vareiro, notice: 'Vareiro was successfully created.' }
         format.json { render :show, status: :created, location: @vareiro }
       else
+        @user_id = vareiro_params[:user_id]
         format.html { render :new }
         format.json { render json: @vareiro.errors, status: :unprocessable_entity }
       end
