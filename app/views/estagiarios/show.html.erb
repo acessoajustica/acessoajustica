@@ -17,8 +17,8 @@
 			            <div class="thumbnail">
 			            	<%= image_tag("perfil.jpg", size: "150x150", alt: "foto do perfil", class: "img-circle") %>
 				              <div class="caption ">
-				                <p class="lead" style="font-size:20px; text-align:center;"> 
-				                  Estagiário
+				                <p class="lead" style="font-size:20px; text-align:center;">
+				                  <%= model_class.model_name.human.titleize %>
 				                </p>
 				              </div>
 			            </div>
@@ -74,5 +74,3 @@
   		</div>
   	</div><!-- /row -->
 </div><!-- /container-fluid -->
-
-

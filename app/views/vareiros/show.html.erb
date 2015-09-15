@@ -1,19 +1,76 @@
 <%- model_class = Vareiro -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%=t '.title', :default => "Perfil" %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:forum) %>:</strong></dt>
-  <dd><%= @vareiro.forum %></dd>
-</dl>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              vareiros_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_vareiro_path(@vareiro), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              vareiro_path(@vareiro),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<div class= "container-fluid">
+	<div class="row">
+  		<div class="col-md-2"></div>
+  		<div class = "col-md-8">
+  			<div class="panel panel-default">
+          		<div class="panel-heading">
+            		<h3 class="panel-title"><%= @vareiro.pessoa.nome %></h3>
+          		</div>
+          	<div class="panel-body">
+          		<div class="row">
+          			<div class="col-md-4">
+			            <div class="thumbnail">
+			            	<%= image_tag("perfil.jpg", size: "150x150", alt: "foto do perfil", class: "img-circle") %>
+				              <div class="caption ">
+				                <p class="lead" style="font-size:20px; text-align:center;">
+				                  <%= model_class.model_name.human.titleize %>
+				                </p>
+				              </div>
+			            </div>
+			        </div>
+      				<div class="col-md-8">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <strong>Usuário:</strong>
+                    <%= @vareiro.user.username %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Email:</strong>
+                    <%= @vareiro.user.email %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Nome da Mãe:</strong>
+                    <%= @vareiro.pessoa.nome_da_mae %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>CPF:</strong>
+                    <%= @vareiro.pessoa.cpf %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>RG:</strong>
+                    <%= @vareiro.pessoa.rg %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Cor:</strong>
+                    <%= @vareiro.pessoa.cor %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Identidade de Gênero:</strong>
+                    <%= @vareiro.pessoa.identidade_de_genero %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Ano da Faculdade:</strong>
+                    <%= @vareiro.ano_faculdade %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Fórum:</strong>
+                    <%= @vareiro.forum %>
+                  </li>
+                </ul>
+              </div>
+      		</div>
+          <div class="text-right">
+            <%= link_to t('.back', :default => t("helpers.links.back")),
+                          vareiros_path, :class => 'btn btn-default'  %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                          edit_vareiro_path(@vareiro), :class => 'btn btn-default' %>
+          </div>
+        </div><!-- /panel-body -->
+  		</div>
+  	</div><!-- /row -->
+</div><!-- /container-fluid -->
