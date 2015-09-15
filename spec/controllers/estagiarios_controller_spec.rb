@@ -38,7 +38,7 @@ RSpec.describe EstagiariosController, type: :controller do
   before :each do
       @user = FactoryGirl.build :user
       User.stubs(:find).returns(@user)
-      sign_in FactoryGirl.create(:user, :admin_user)       
+      sign_in FactoryGirl.create(:user, :admin_user)
   end
 
   # This should return the minimal set of values that should be in the session
@@ -148,19 +148,5 @@ RSpec.describe EstagiariosController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested estagiario" do
-      estagiario = Estagiario.create! valid_attributes
-      expect {
-        delete :destroy, {:id => estagiario.to_param}, valid_session
-      }.to change(Estagiario, :count).by(-1)
-    end
-
-    it "redirects to the estagiarios list" do
-      estagiario = Estagiario.create! valid_attributes
-      delete :destroy, {:id => estagiario.to_param}, valid_session
-      expect(response).to redirect_to(estagiarios_url)
-    end
-  end
 
 end

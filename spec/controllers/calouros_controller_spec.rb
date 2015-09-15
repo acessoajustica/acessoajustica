@@ -39,7 +39,7 @@ RSpec.describe CalourosController, type: :controller do
   before :each do
     @user = FactoryGirl.build :user
     User.stubs(:find).returns(@user)
-    sign_in FactoryGirl.create(:user, :admin_user) 
+    sign_in FactoryGirl.create(:user, :admin_user)
   end
 
   # This should return the minimal set of values that should be in the session
@@ -145,21 +145,6 @@ RSpec.describe CalourosController, type: :controller do
         put :update, {:id => calouro.to_param, :calouro => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested calouro" do
-      calouro = Calouro.create! valid_attributes
-      expect {
-        delete :destroy, {:id => calouro.to_param}, valid_session
-      }.to change(Calouro, :count).by(-1)
-    end
-
-    it "redirects to the calouros list" do
-      calouro = Calouro.create! valid_attributes
-      delete :destroy, {:id => calouro.to_param}, valid_session
-      expect(response).to redirect_to(calouros_url)
     end
   end
 

@@ -1,6 +1,6 @@
 class EstagiariosController < ApplicationController
   include EstagiariosHelper
-  authorize_resource 
+  authorize_resource
   before_action :set_estagiario, only: [:show, :edit, :update, :destroy]
 
   # GET /estagiarios
@@ -58,16 +58,6 @@ class EstagiariosController < ApplicationController
     end
   end
 
-  # DELETE /estagiarios/1
-  # DELETE /estagiarios/1.json
-  def destroy
-    @estagiario.destroy
-    respond_to do |format|
-      format.html { redirect_to estagiarios_url, notice: 'Estagiario was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_estagiario
@@ -77,7 +67,7 @@ class EstagiariosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def estagiario_params
       params.require(:estagiario).permit(:ano_faculdade, :nome,
-                                         :cpf, :nome_da_mae, :rg, :cor, 
+                                         :cpf, :nome_da_mae, :rg, :cor,
                                          :identidade_de_genero, :user_id, :especialidades => [])
     end
 end

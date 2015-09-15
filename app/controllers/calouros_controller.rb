@@ -54,16 +54,6 @@ class CalourosController < ApplicationController
     end
   end
 
-  # DELETE /calouros/1
-  # DELETE /calouros/1.json
-  def destroy
-    @calouro.destroy
-    respond_to do |format|
-      format.html { redirect_to calouros_url, notice: 'Calouro was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_calouro

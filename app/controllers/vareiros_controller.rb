@@ -57,16 +57,6 @@ class VareirosController < ApplicationController
     end
   end
 
-  # DELETE /vareiros/1
-  # DELETE /vareiros/1.json
-  def destroy
-    @vareiro.destroy
-    respond_to do |format|
-      format.html { redirect_to vareiros_url, notice: 'Vareiro was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vareiro
@@ -75,7 +65,7 @@ class VareirosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vareiro_params
-      params.require(:vareiro).permit(:forum, :ano_faculdade, :nome, :cpf, 
+      params.require(:vareiro).permit(:forum, :ano_faculdade, :nome, :cpf,
                                       :nome_da_mae, :rg, :cor, :identidade_de_genero, :user_id)
     end
 end

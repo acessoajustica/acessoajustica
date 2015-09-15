@@ -38,7 +38,7 @@ RSpec.describe VareirosController, type: :controller do
   before :each do
       @user = FactoryGirl.build :user
       User.stubs(:find).returns(@user)
-      sign_in FactoryGirl.create(:user, :admin_user) 
+      sign_in FactoryGirl.create(:user, :admin_user)
   end
 
   # This should return the minimal set of values that should be in the session
@@ -144,21 +144,6 @@ RSpec.describe VareirosController, type: :controller do
         put :update, {:id => vareiro.to_param, :vareiro => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested vareiro" do
-      vareiro = Vareiro.create! valid_attributes
-      expect {
-        delete :destroy, {:id => vareiro.to_param}, valid_session
-      }.to change(Vareiro, :count).by(-1)
-    end
-
-    it "redirects to the vareiros list" do
-      vareiro = Vareiro.create! valid_attributes
-      delete :destroy, {:id => vareiro.to_param}, valid_session
-      expect(response).to redirect_to(vareiros_url)
     end
   end
 
