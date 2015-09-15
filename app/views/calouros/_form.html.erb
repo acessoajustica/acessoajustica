@@ -1,25 +1,60 @@
-<%= form_for @calouro, :html => { :class => "form-horizontal calouro" } do |f| %>
+<%= form_for @calouro, :html => { :class => "calouro" } do |f| %>
+
+  <div class="container-fluid">
 
     <% if @calouro.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@calouro.errors.count, "error") %> prohibited this calouro from being saved:</h3>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class = "col-md-8">
+          <div class="alert alert-danger" role="alert" >
+            <strong><%= pluralize(@calouro.errors.count, "error") %> prohibited this calouro from being saved:</strong>
+            <ul>
+              <% @calouro.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+          </ul>
+          </div>
+        </div>
       </div>
-      <div class="panel-body">
-        <ul>
-        <% @calouro.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <!-- Painel Dados Pessoais -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Dados Pessoais</h3>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @calouro} %>
+          </div>
+        </div>
+        <!-- Painel Informações Adicionais-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Informações Adicionais</h3>
+          </div>
+          <div class="panel-body">
+            <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @calouro } %>
+          </div>
+        </div>
+        <!-- Botões -->
+        <div class="text-right">
+          <%= f.submit nil, :class => 'btn btn-primary' %>
+          <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    calouros_path, :class => 'btn btn-default' %>
+        </div>
+        <hr>
+
+        <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
+
       </div>
-    </div>
-  <% end %>
-
-  <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @calouro} %>
-  <%= render :partial => 'membros/fields', :locals => { :f => f, :@membro => @calouro } %>
-  <%= f.text_field :user_id , {:hidden => true, :value => @user_id} %>
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            calouros_path, :class => 'btn btn-default' %>
-
+    </div><!-- /row -->
+  </div><!-- /container-fluid -->
 <% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("div#error_expl").hide();
+});
+</script>

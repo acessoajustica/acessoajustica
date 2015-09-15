@@ -36,6 +36,7 @@ class CalourosController < ApplicationController
         format.html { redirect_to @calouro, notice: 'Calouro was successfully created.' }
         format.json { render :show, status: :created, location: @calouro }
       else
+        @user_id = calouro_params[:user_id] 
         format.html { render :new }
         format.json { render json: @calouro.errors, status: :unprocessable_entity }
       end
