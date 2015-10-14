@@ -31,17 +31,12 @@
               <div class = "col-md-2 col-sm-2 text-center">
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_caso_path(caso), :class => 'btn btn-default btn-xs' %>
-              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                            caso_path(caso),
-                            :method => :delete,
-                            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                            :class => 'btn btn-xs btn-danger' %>
-             
+             <%= link_to "Ver detalher", caso_path(caso), :class => 'btn btn-default btn-xs' %>
              </div>
             </div>
             </h5>
           </div>
-        
+
       </div>
       <div id="collapse<%= caso.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= caso.id %>">
         <div class="panel-body">
@@ -57,14 +52,3 @@
   </table>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-

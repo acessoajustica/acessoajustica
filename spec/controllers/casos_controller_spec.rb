@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-  
+
 RSpec.describe CasosController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
@@ -46,12 +46,12 @@ RSpec.describe CasosController, type: :controller do
   let(:valid_session) { {} }
 
   before :each do
-    sign_in FactoryGirl.build(:user, :admin_user) 
+    sign_in FactoryGirl.build(:user, :admin_user)
   end
 
   describe "GET #index" do
     before (:each) do
-      sign_in FactoryGirl.create(:user, :estagiario_user) 
+      sign_in FactoryGirl.create(:user, :estagiario_user)
     end
     it "assigns all casos as @casos" do
       caso = Caso.create! valid_attributes
@@ -85,9 +85,9 @@ RSpec.describe CasosController, type: :controller do
 
   describe "GET #my-cases" do
     before (:each) do
-      sign_in FactoryGirl.create(:user, :estagiario_user) 
+      sign_in FactoryGirl.create(:user, :estagiario_user)
     end
-    
+
     it "assigns specific casos as @casos" do
       caso = Caso.create! valid_attributes
       Caso.stubs(:all_for).returns([caso])
@@ -123,7 +123,7 @@ RSpec.describe CasosController, type: :controller do
 
   describe "POST #create" do
     before (:each) do
-      sign_in FactoryGirl.create(:user, :estagiario_user) 
+      sign_in FactoryGirl.create(:user, :estagiario_user)
     end
     context "with valid params" do
       it "creates a new Caso" do
@@ -159,7 +159,7 @@ RSpec.describe CasosController, type: :controller do
 
   describe "PUT #update" do
     before (:each) do
-      sign_in FactoryGirl.create(:user, :estagiario_user) 
+      sign_in FactoryGirl.create(:user, :estagiario_user)
     end
     context "with valid params" do
       let(:new_attributes) {
@@ -198,24 +198,6 @@ RSpec.describe CasosController, type: :controller do
         put :update, {:id => caso.to_param, :caso => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    before (:each) do
-      sign_in FactoryGirl.create(:user, :estagiario_user) 
-    end
-    it "destroys the requested caso" do
-      caso = Caso.create! valid_attributes
-      expect {
-        delete :destroy, {:id => caso.to_param}, valid_session
-      }.to change(Caso, :count).by(-1)
-    end
-
-    it "redirects to the casos list" do
-      caso = Caso.create! valid_attributes
-      delete :destroy, {:id => caso.to_param}, valid_session
-      expect(response).to redirect_to(casos_url)
     end
   end
 

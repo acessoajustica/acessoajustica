@@ -6,7 +6,7 @@ class CasosController < ApplicationController
   # GET /casos.json
   def index
     @casos = Caso.from_beginning_of_day
-  end 
+  end
 
   # GET /casos/my-cases
   def my_cases
@@ -67,16 +67,6 @@ class CasosController < ApplicationController
         format.html { render :edit }
         format.json { render json: @caso.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /casos/1
-  # DELETE /casos/1.json
-  def destroy
-    @caso.destroy
-    respond_to do |format|
-      format.html { redirect_to casos_url, notice: 'Caso was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
