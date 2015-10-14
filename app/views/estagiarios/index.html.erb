@@ -2,35 +2,40 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:especialidade) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @estagiarios.each do |estagiario| %>
-      <tr>
-        <td><%= link_to estagiario.id, estagiario_path(estagiario) %></td>
-        <td><%= estagiario.especialidades[0] %></td>
-        <td><%=l estagiario.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_estagiario_path(estagiario), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      estagiario_path(estagiario),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_estagiario_path,
-            :class => 'btn btn-primary' %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= model_class.human_attribute_name(:id) %></th>
+            <th><%= model_class.human_attribute_name(:nome) %></th>
+            <th><%= model_class.human_attribute_name(:created_at) %></th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @estagiarios.each do |estagiario| %>
+            <tr>
+              <td><%= link_to estagiario.id, estagiario_path(estagiario) %></td>
+              <td><%= estagiario.nome %></td>
+              <td><%= estagiario.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
+              <td>
+                <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                            edit_estagiario_path(estagiario), :class => 'btn btn-default btn-xs' %>
+                <%= link_to "Ver detalhes", estagiario_path(estagiario), :class => 'btn btn-default btn-xs'%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <hr>
+      <div class="text-right">
+        <%= link_to t('.new', :default => t("helpers.links.new")),
+                    new_estagiario_path,
+                    :class => 'btn btn-primary' %>
+      </div>
+    </div><!-- /col-md-8 -->
+  </div><!-- /row -->
+</div><!-- /container-fluid -->

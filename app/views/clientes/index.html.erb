@@ -19,11 +19,12 @@
           <% @clientes.each do |cliente| %>
             <tr>
               <td><%= link_to cliente.id, cliente_path(cliente) %></td>
-              <td><%= cliente.pessoa.nome %></td>
+              <td><%= cliente.nome %></td>
               <td><%=cliente.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
               <td>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_cliente_path(cliente), :class => 'btn btn-default btn-xs' %>
+                <%= link_to "Ver detalhes", cliente_path(cliente), :class => 'btn btn-default btn-xs'%>
               </td>
             </tr>
           <% end %>
