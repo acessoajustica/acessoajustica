@@ -41,7 +41,7 @@ RSpec.describe ClientesController, type: :controller do
   let(:valid_session) { {} }
 
   before (:each) do
-    sign_in FactoryGirl.create(:user, :admin_user) 
+    sign_in FactoryGirl.create(:user, :admin_user)
   end
 
   describe "GET #index" do
@@ -147,21 +147,6 @@ RSpec.describe ClientesController, type: :controller do
         put :update, {:id => cliente.to_param, :cliente => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested cliente" do
-      cliente = Cliente.create! valid_attributes
-      expect {
-        delete :destroy, {:id => cliente.to_param}, valid_session
-      }.to change(Cliente, :count).by(-1)
-    end
-
-    it "redirects to the clientes list" do
-      cliente = Cliente.create! valid_attributes
-      delete :destroy, {:id => cliente.to_param}, valid_session
-      expect(response).to redirect_to(clientes_url)
     end
   end
 

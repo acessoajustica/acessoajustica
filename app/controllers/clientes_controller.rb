@@ -61,16 +61,6 @@ class ClientesController < ApplicationController
     end
   end
 
-  # DELETE /clientes/1
-  # DELETE /clientes/1.json
-  def destroy
-    @cliente.destroy
-    respond_to do |format|
-      format.html { redirect_to clientes_url, notice: 'Cliente was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
@@ -79,9 +69,9 @@ class ClientesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
-      params.require(:cliente).permit(:filhos_quantidade, :profissao_nome, :familia_quantidade, 
+      params.require(:cliente).permit(:filhos_quantidade, :profissao_nome, :familia_quantidade,
                                       :familia_renda, :contribuintes_quantidade, :estado_civil_id,
-                                      :moradia_type_id, :profissao_type_id, :nome, :cpf, 
+                                      :moradia_type_id, :profissao_type_id, :nome, :cpf,
                                       :nome_da_mae, :rg, :cor, :identidade_de_genero)
     end
 
