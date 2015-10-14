@@ -15,22 +15,62 @@
 <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
-<p class="navbar-text pull-right">
 <% if user_signed_in? %>
-  Bem vindo, <strong><%= current_user.username %></strong>! |
-  <%= link_to 'Modificar Perfil', edit_user_registration_path, :class => 'navbar-link' %> |
-  <% if can? :create, current_user %>
-    <%= link_to "Cadastrar Usuário", new_user_registration_path, :class => 'navbar-link' %> |
-  <% end %>
-  <% if can? :create, Cliente %>
-    <%= link_to "Cadastrar Cliente", new_cliente_path, :class => 'navbar-link' %> |
-  <% end %>
-    <% if current_user.role?("estagiário") %>
-    <%= link_to "Meus Atendimentos", "/casos/my-cases", :class => 'navbar-link' %> |
-  <% end %>
-  <%= link_to "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Bem vindo, <strong><%= current_user.username %></strong>!</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Home", '/' %></li>
+        <li><%= link_to 'Modificar Perfil', edit_user_registration_path %></li>
+        <% if can? :create, current_user %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuários<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Cadastrar Usuário", new_user_registration_path %> </li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Lista de Estagiários", estagiarios_path %></li>
+              <li><%= link_to "Lista de Calouros", calouros_path %></li>
+              <li><%= link_to "Lista de Vareiros", vareiros_path %></li>
+            </ul>
+          </li>
+        <% end %>
+        <% if can? :create, Cliente %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Lista de Clientes", clientes_path %> </li>
+              <li><%= link_to "Cadastrar Cliente", new_cliente_path %> </li>
+            </ul>
+          </li>
+        <% end %>
+        <% if current_user.role?("estagiário") %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Atendimentos<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Meus Atendimentos", "/casos/my-cases" %></li>
+              <li><%= link_to "Lista de Atendimentos", casos_path %> </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <% elsif current_page?('/users/sign_in') == false %>
-  <%= link_to "Entrar", new_user_session_path, :class => 'navbar-link'  %>
+
+  <ul class="nav nav-pills navbar-right" style="margin:10px;">
+    <li role="presentation" class="active">
+      <%= link_to "Entrar", new_user_session_path %>
+    </li>
+  </ul>
 <% end %>
 
 <%= yield %>
