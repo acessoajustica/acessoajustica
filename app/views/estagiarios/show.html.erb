@@ -8,21 +8,21 @@
   		<div class="col-md-2"></div>
   		<div class = "col-md-8">
   			<div class="panel panel-default">
-          		<div class="panel-heading">
-            		<h3 class="panel-title"><%= @estagiario.pessoa.nome %></h3>
-          		</div>
-          	<div class="panel-body">
-          		<div class="row">
-          			<div class="col-md-4">
-			            <div class="thumbnail">
-			            	<%= image_tag("perfil.jpg", size: "150x150", alt: "foto do perfil", class: "img-circle") %>
-				              <div class="caption ">
-				                <p class="lead" style="font-size:20px; text-align:center;">
-				                  <%= model_class.model_name.human.titleize %>
-				                </p>
-				              </div>
-			            </div>
-			        </div>
+      		<div class="panel-heading">
+        		<h3 class="panel-title"><%= @estagiario.pessoa.nome %></h3>
+      		</div>
+        	<div class="panel-body">
+        		<div class="row">
+        			<div class="col-md-4">
+  	            <div class="thumbnail">
+  	            	<%= image_tag("perfil.jpg", size: "150x150", alt: "foto do perfil", class: "img-circle") %>
+  	              <div class="caption ">
+  	                <p class="lead" style="font-size:20px; text-align:center;">
+  	                  <%= model_class.model_name.human.titleize %>
+  	                </p>
+  	              </div>
+                </div>
+              </div>
       				<div class="col-md-8">
                 <ul class="list-group">
                   <li class="list-group-item">
@@ -64,13 +64,13 @@
                     <%end%>
                   </li>
                 </ul>
-              </div>
-      		</div>
-          <div class="text-right">
-            <%= link_to t('.back', :default => t("helpers.links.back")), estagiarios_path, :class => 'btn btn-default'  %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_estagiario_path(@estagiario), :class => 'btn btn-default' %>
-          </div>
-        </div><!-- /panel-body -->
-  		</div>
+              </div><!-- /col-md-8 -->
+  		      </div><!-- /row -->
+            <div class="text-right">
+              <%= link_to t('.back', :default => t("helpers.links.back")), estagiarios_path, :class => 'btn btn-default'  %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_estagiario_path(@estagiario), :class => 'btn btn-default' %>
+            </div>
+          </div><!-- /panel-body -->
+		    </div>
   	</div><!-- /row -->
 </div><!-- /container-fluid -->

@@ -3,31 +3,123 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:filhos_quantidade) %>:</strong></dt>
-  <dd><%= @cliente.filhos_quantidade %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:profissao_nome) %>:</strong></dt>
-  <dd><%= @cliente.profissao_nome %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:familia_quantidade) %>:</strong></dt>
-  <dd><%= @cliente.familia_quantidade %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:familia_renda) %>:</strong></dt>
-  <dd><%= @cliente.familia_renda %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contribuintes_quantidade) %>:</strong></dt>
-  <dd><%= @cliente.contribuintes_quantidade %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:estado_civil_id) %>:</strong></dt>
-  <dd><%= @cliente.estado_civil_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:moradia_type_id) %>:</strong></dt>
-  <dd><%= @cliente.moradia_type_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:profissao_type_id) %>:</strong></dt>
-  <dd><%= @cliente.profissao_type_id %></dd>
-</dl>
+<div class="container-fluid">
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              clientes_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_cliente_path(@cliente), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              cliente_path(@cliente),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class = "col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dados Pessoais</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Nome:</strong>
+              <%= @cliente.nome %>
+            </li>
+            <li class="list-group-item">
+              <strong>Nome da Mãe:</strong>
+              <%= @cliente.nome_da_mae %>
+            </li>
+            <li class="list-group-item">
+              <strong>CPF:</strong>
+              <%= @cliente.cpf %>
+            </li>
+            <li class="list-group-item">
+              <strong>RG:</strong>
+              <%= @cliente.rg %>
+            </li>
+            <li class="list-group-item">
+              <strong>Cor:</strong>
+              <%= @cliente.cor %>
+            </li>
+            <li class="list-group-item">
+              <strong>Identidade de Gênero:</strong>
+              <%= @cliente.identidade_de_genero %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dados Familiares</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Renda Familiar:</strong>
+              <%= @cliente.familia_renda %>
+            </li>
+            <li class="list-group-item">
+              <strong>Qtd. Total de Pessoas:</strong>
+              <%= @cliente.familia_quantidade %>
+            </li>
+            <li class="list-group-item">
+              <strong>Qtd. de Filhos:</strong>
+              <%= @cliente.filhos_quantidade %>
+            </li>
+            <li class="list-group-item">
+              <strong>Qtd. de Contribuintes:</strong>
+              <%= @cliente.contribuintes_quantidade %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dados Profissionais</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Profissão:</strong>
+              <%= @cliente.profissao_nome %>
+            </li>
+            <li class="list-group-item">
+              <strong>Categoria:</strong>
+              <%= @cliente.profissao_type_description %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Casos</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <% @cliente.casos.each_with_index do |caso, index| %>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading<%= index %>">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+                          Caso <%= index+1%>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
+                      <div class="panel-body">
+                        <% caso.relatos.each do |relato| %>
+                          <%= relato.description %>
+                          <hr>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                    clientes_path, :class => 'btn btn-default'  %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_cliente_path(@cliente), :class => 'btn btn-default' %>
+      <hr>
+    </div>
+  </div>
+</div>

@@ -8,10 +8,12 @@
 #
 
 # Creating estado_civil's
-EstadoCivil.create!(:description => "solteiro")
-EstadoCivil.create!(:description => "casado")
-EstadoCivil.create!(:description => "divorciado")
-EstadoCivil.create!(:description => "viúvo")
+EstadoCivil.create!(:description => "Solteiro")
+EstadoCivil.create!(:description => "Casado")
+EstadoCivil.create!(:description => "Separação de Fato")
+EstadoCivil.create!(:description => "Separação Judicial")
+EstadoCivil.create!(:description => "Viúvo")
+EstadoCivil.create!(:description => "Vive em União Estável")
 
 # Creating profissao's
 ProfissaoType.create!(:description => "Primário")
@@ -31,7 +33,7 @@ case Rails.env
     vareiro_role = Role.create!(:name => "vareiro")
     calouro_role = Role.create!(:name => "calouro")
     estagiario_role = Role.create!(:name => "estagiário")
-    
+
     # Creating admin users
     admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
     estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
@@ -50,7 +52,7 @@ case Rails.env
     calouro_user.roles << calouro_role
     vareiro_user.roles << vareiro_role
     diretor_user.roles << diretor_role
-  
+
     # Creating cliente
     cliente = Cliente.create!(:nome => "João da Silva",
               :cpf  => "123.456.789-00",

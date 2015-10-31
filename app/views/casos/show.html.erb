@@ -3,6 +3,41 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dados do Cliente</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+
+            <% @caso.cliente.attributes.each do |attr_name, attr_value| %>
+              <li class="list-group-item">
+                <strong><%= attr_name.humanize %>:</strong>
+                <%= attr_value %>
+              </li>
+            <% end %>
+
+
+
+
+
+          </ul>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div><!-- /col-md-8-->
+  </div><!-- /row -->
+</div><!-- /container-fluid -->
+
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
   <dd><%= @caso.status %></dd>
@@ -16,8 +51,3 @@
               casos_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_caso_path(@caso), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              caso_path(@caso),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
