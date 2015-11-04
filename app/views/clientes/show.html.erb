@@ -96,7 +96,8 @@
                     <div class="panel-heading" role="tab" id="heading<%= index %>">
                       <h4 class="panel-title">
                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
-                          Caso <%= index+1%>
+                          <%= index+1%> Caso
+                          <%= link_to "Ver detalhes", caso_path(caso), :class => 'btn btn-default btn-xs pull-right'%>
                         </a>
                       </h4>
                     </div>
@@ -120,6 +121,6 @@
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_cliente_path(@cliente), :class => 'btn btn-default' %>
       <hr>
-    </div>
-  </div>
-</div>
+    </div><!-- /col-md-8 -->
+  </div><!-- /row -->
+</div><!-- /container-fluid -->
