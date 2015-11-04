@@ -13,7 +13,7 @@ EstadoCivil.create!(:description => "Casado")
 EstadoCivil.create!(:description => "Separação de Fato")
 EstadoCivil.create!(:description => "Separação Judicial")
 EstadoCivil.create!(:description => "Viúvo")
-EstadoCivil.create!(:description => "Vive em União Estável")
+EstadoCivil.create!(:description => "Viúve em União Estável")
 
 # Creating profissao's
 ProfissaoType.create!(:description => "Primário")
