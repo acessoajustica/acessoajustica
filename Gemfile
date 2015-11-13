@@ -50,7 +50,7 @@ group :development, :test do
 
   # Create test coverage with codeclimate
   gem "codeclimate-test-reporter", group: :test, require: nil
- 
+
   # Create test coverage with coveralls
   gem 'coveralls', require: false
 
@@ -62,22 +62,23 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  
+
   # Cucumber for acceptance tests
   gem 'cucumber', '~> 2.0.0'
-  
+
   # Rspec for unit tests
   gem 'rspec', '~> 3.2.0'
 
   gem 'mocha', '1.1.0'
-  
+
   gem 'rspec-rails', '~> 3.0'
 
   gem 'factory_girl', '~> 4.5.0'
 
   gem 'shoulda-matchers', '~> 2.8.0'
-  
+
   gem 'database_cleaner'
+
 
 end
 group :users, :authentication do
@@ -86,6 +87,6 @@ end
 
 group :test do
   gem 'cucumber-rails', :require => false
-  gem "poltergeist" 
+  gem "poltergeist"
   gem 'selenium-webdriver', :require => false
 end
