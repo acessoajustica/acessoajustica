@@ -1,64 +1,60 @@
 <h2>Modificar Perfil</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<%= devise_error_messages! %>
 
-  <div class="container-fluid">
+<div class="container-fluid">
 
-    <div class="row">
-      <div class="form-group col-md-6">
-        <p><%= f.label "Nome de Usuário", :class => 'control-label' %><br />
-        <div class="controls">
-          <%= f.text_field :username, :class => 'form-control' %></p>
+  <div class="row">
+    <div class = "col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dados do Usuário</h3>
         </div>
+        <div class="panel-body">
+          <p><%= f.label "Nome de Usuário", :class => 'control-label' %><br />
+            <div class="controls">
+              <%= f.text_field :username, :class => 'form-control' %></p>
+            </div>
+            <div class="form-group">
+              <%= f.label :email, :class => 'control-label' %><br />
+              <div class="controls">
+                <%= f.email_field :email, autofocus: true, :class => 'form-control'%>
+              </div><br />
+              <div class="row">
+                <div class = "col-md-4">
+                  <%= f.label "Senha Atual" , :class => 'control-label'%>
+                  <div class="controls">
+                    <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control' %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group" data-toggle="tooltip" data-placement="left" title="deixe em branco se não quiser mudar">
+                    <%= f.label "Nova Senha", :class => 'control-label' %> <br />
+                    <div class="controls">
+                      <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <%= f.label "Confirmar Nova Senha", :class => 'control-label'%><br />
+                  <div class="controls">
+                    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <%= f.submit "Modificar" , class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
       </div>
     </div>
-
-    <div class="row">
-      <div class="form-group col-md-6">
-        <%= f.label :email, :class => 'control-label' %><br />
-        <div class="controls">
-          <%= f.email_field :email, autofocus: true, :class => 'form-control'%>
-        </div>
-      </div>
-    </div>
-  
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-  
-    <div class="row">
-      <div class="form-group col-md-2 col-sm-4" data-toggle="tooltip" data-placement="left" title="deixe em branco se não quiser mudar">
-        <%= f.label "Nova Senha", :class => 'control-label' %> <i>()</i><br />
-        <div class="controls">
-          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group col-md-2 col-sm-4">
-        <%= f.label "Confirmar Nova Senha", :class => 'control-label'%><br />
-        <div class="controls">
-          <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group col-md-2 col-sm-4">
-         <%= f.label "Senha Atual" , :class => 'control-label'%> <i>(precisamos dela para confirmar as mudanças)</i><br />
-        <div class="controls">
-          <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control' %>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-md-6">
-        <%= f.submit "Modificar" %>
-      </div>
-    </div>
-
   </div>
-<% end %>
 
-<h3>Cancelar Minha Conta</h3>
-
-<p>Não está contente? <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Tem certeza?" }, method: :delete %></p>
-
-<%= link_to "Voltar", :back %>
+  <% end %>
