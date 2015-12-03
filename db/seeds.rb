@@ -24,6 +24,16 @@ ProfissaoType.create!(:description => "Terciário")
 CasoType.create!(:description => "Atendimento")
 CasoType.create!(:description => "Orientação")
 
+# Creating moradia_types
+MoradiaType.create!(:description => "Casa")
+MoradiaType.create!(:description => "Apartamento")
+MoradiaType.create!(:description => "Pensão")
+MoradiaType.create!(:description => "República")
+MoradiaType.create!(:description => "Alvenaria")
+MoradiaType.create!(:description => "Palafita")
+MoradiaType.create!(:description => "Quitinete")
+
+
 case Rails.env
   when "development"
 
