@@ -1,5 +1,5 @@
 class MoradiaTypesController < ApplicationController
-
+  authorize_resource
   def index
     @moradia = MoradiaType.all
   end
@@ -8,15 +8,12 @@ class MoradiaTypesController < ApplicationController
     @moradia_type = MoradiaType.new
   end
 
-  def show
-  end
-
   def create
     @moradia_type = MoradiaType.new(moradia_type_params)
     respond_to do |format|
       if @moradia_type.save
 
-        format.html { redirect_to @moradia_type , notice: 'Moradia cadastrada com sucesso.' }
+        format.html { redirect_to :action => "index" , notice: 'Moradia cadastrada com sucesso.' }
       else
         format.html { render :new }
         format.json { render json: @moradia_type.errors, status: :unprocessable_entity }
