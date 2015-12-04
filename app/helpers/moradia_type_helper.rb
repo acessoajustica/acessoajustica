@@ -1,0 +1,2 @@
+module MoradiaTypeHelper
+end
