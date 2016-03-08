@@ -24,6 +24,13 @@ class ClientesController < ApplicationController
   def edit
   end
 
+  def search
+  end
+
+  def search_result
+    @search = Cliente.search(params[:search])
+    render :search
+  end
   # POST /clientes
   # POST /clientes.json
   def create

@@ -1,0 +1,48 @@
+<%= form_tag search_result_clientes_path, :method => 'post' do %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "Procure por Nome ou CPF ..." %>
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="submit">Buscar</button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div>
+</div>
+
+<% if @search.present? %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Data de Registro</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @search.each do |cliente| %>
+          <tr>
+            <td><%= link_to cliente.id, cliente_path(cliente) %></td>
+            <td><%= cliente.nome %></td>
+            <td><%= cliente.cpf %></td>
+            <td><%=cliente.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
+            <td>
+              <%= link_to "Ver detalhes", cliente_path(cliente), :class => 'btn btn-default btn-xs'%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div><!-- /col-md-8 -->
+</div><!-- /row -->
+<% end %>
+<% end %>
