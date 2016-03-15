@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Tipo de Moradia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @moradia.each do |moradia| %>
+          <tr>
+            <td><%= moradia.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div><!-- /col-md-8 -->
+</div><!-- /row -->

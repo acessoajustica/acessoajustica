@@ -34,6 +34,15 @@ estagiario_role = Role.create!(:name => "estagiário")
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
 admin_user.roles << admin_role
 
+# Creating moradia_types
+MoradiaType.create!(:description => "Casa")
+MoradiaType.create!(:description => "Apartamento")
+MoradiaType.create!(:description => "Pensão")
+MoradiaType.create!(:description => "República")
+MoradiaType.create!(:description => "Alvenaria")
+MoradiaType.create!(:description => "Palafita")
+MoradiaType.create!(:description => "Quitinete")
+
 case Rails.env
   when "development"
 

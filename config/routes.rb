@@ -10,20 +10,30 @@ Rails.application.routes.draw do
 
   resources :casos do
     collection do
-      get 'my-cases' 
+      get 'my-cases'
     end
   end
 
   get "casos/:id/select-case" => "casos#select_case" , as: :select_case
 
-  resources :clientes
+  resources :clientes do
+    collection do
+        get :search
+        post :search_result
+    end
+  end
+
 
   resources :membros
 
   resources :pessoas
 
-  devise_for :users, :controllers => { :registrations => "users/registrations", 
+  resources :moradia_types
+
+  devise_for :users, :controllers => { :registrations => "users/registrations",
                                        :sessions => "users/sessions"}
+
+
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

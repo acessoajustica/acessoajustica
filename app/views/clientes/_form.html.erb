@@ -54,7 +54,7 @@
             <h3 class="panel-title">Dados Familiares</h3>
           </div>
           <div class="panel-body">
-            
+
             <div class="row">
               <div class="form-group col-md-6 col-sm-6">
                 <%= f.label :renda_total, :class => 'control-label' %>
@@ -83,13 +83,13 @@
               </div>
 
               <div class="form-group col-md-6 col-sm-6">
-                <%= f.label :quantidade_de_contribuites, :class => 'control-label' %>
+                <%= f.label :contribuintes_quantidade, :class => 'control-label' %>
                 <div class="controls">
                   <%= f.number_field :contribuintes_quantidade, :class => 'form-control', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:contribuintes_quantidade]) %>
               </div>
-            </div>  
+            </div>
           </div>
         </div>
 
@@ -113,7 +113,7 @@
               <%= error_span(@cliente[:profissao_type_id]) %>
             </div>
           </div>
-        </div>      
+        </div>
 
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -139,8 +139,8 @@
               <%= error_span(@caso[:status]) %>
             </div>
           </div>
-        </div>      
-        
+        </div>
+
         <div class="text-right">
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                     clientes_path, :class => 'btn btn-default' %>
