@@ -29,7 +29,7 @@ gem 'cancancan', '~> 1.10.1'
 # Less for bootstrap
 gem "less-rails"
 # Bootstrap for layout
-gem 'twitter-bootstrap-rails', '~> 3.2.0'
+gem 'twitter-bootstrap-rails', '3.2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
