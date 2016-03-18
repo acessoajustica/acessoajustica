@@ -9,6 +9,8 @@ Feature: Register a Cliente
     And exists a "estagiario_role role"
     And exists an "especialidade"
     And I am on "the homepage"
+    When I click on "Usuários" link
+    When I click on "Cadastrar Usuário" link
     And I fill in "user username" with "username"
     And I fill in "user email" with "username@teste.com"
     And I fill in "user password" with "password"
