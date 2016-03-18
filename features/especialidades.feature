@@ -3,16 +3,18 @@ Feature: Register a Cliente
   I Want to register a 'Estagiario' with especialidade'
   In order to know with 'caso he can take'
 
+  @javascript
   Scenario: Creating a estagiario
     Given I am logged as "admin"
     And exists a "estagiario_role role"
     And exists an "especialidade"
     And I am on "the homepage"
-    When I click on "Cadastrar Usuário" link
     And I fill in "user username" with "username"
     And I fill in "user email" with "username@teste.com"
     And I fill in "user password" with "password"
     And I fill in "user password confirmation" with "password"
+    And I wait a second
+    And I take "FotoEstagiario" picture of the page
     And I select the option "estagiário" in "user role ids"
     And I press "Próximo"
     And I fill in "estagiario nome" with "Estela"

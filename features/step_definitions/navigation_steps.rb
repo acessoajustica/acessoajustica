@@ -55,7 +55,8 @@ When(/^I click on "([^"]*)" link$/) do |link_text|
 end
 
 When(/^I select the option "([^"]*)" in "([^"]*)"$/) do |option, select|
-  select(option, :from => select.gsub(' ', '_'))
+  find(:select, select.gsub(' ', '_')).first(:option, option).select_option
+  # select(option, :from => select.gsub(' ', '_'))
 end
 
 When(/^I take "([^"]*)" picture of the page$/) do |text|
