@@ -70,6 +70,9 @@ GEM
     columnize (0.9.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.1)
+    correios-cep (0.6.1)
+      log-me (~> 0.0.10)
+      ox (~> 2.2.2)
     coveralls (0.8.13)
       json (~> 1.8)
       simplecov (~> 0.11.0)
@@ -128,6 +131,7 @@ GEM
       sprockets (> 2, < 4)
       tilt
     libv8 (3.16.14.7)
+    log-me (0.0.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -143,6 +147,7 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
+    ox (2.2.4)
     pg (0.18.4)
     poltergeist (1.9.0)
       capybara (~> 2.1)
@@ -277,6 +282,7 @@ DEPENDENCIES
   cancancan (~> 1.10.1)
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
+  correios-cep (~> 0.6.1)
   coveralls
   cucumber (~> 2.0.0)
   cucumber-rails

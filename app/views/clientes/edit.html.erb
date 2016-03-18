@@ -79,14 +79,6 @@
 
             <div class = "row">
               <div class="form-group col-md-6 col-sm-6">
-                <%= f.label :quantidade_de_filhos, :class => 'control-label' %>
-                <div class="controls">
-                  <%= f.number_field :filhos_quantidade, :class => 'form-control', :min => 0 %>
-                </div>
-                <%= error_span(@cliente[:filhos_quantidade]) %>
-              </div>
-
-              <div class="form-group col-md-6 col-sm-6">
                 <%= f.label :quantidade_de_contribuites, :class => 'control-label' %>
                 <div class="controls">
                   <%= f.number_field :contribuintes_quantidade, :class => 'form-control', :min => 0 %>

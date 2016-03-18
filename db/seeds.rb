@@ -72,7 +72,6 @@ case Rails.env
               :cor  => "Negro",
               :identidade_de_genero => "Homem",
               :familia_renda  => 1500.00,
-              :filhos_quantidade  => 6,
               :profissao_nome  => "Assistente Administrativo",
               :familia_quantidade => 9,
               :contribuintes_quantidade => 4)
@@ -107,7 +106,6 @@ case Rails.env
               :cor  => "Negro",
               :identidade_de_genero => "Homem",
               :familia_renda  => 1500.00,
-              :filhos_quantidade  => 6,
               :profissao_nome  =>"Assistente Administrativo",
               :familia_quantidade => 9,
               :contribuintes_quantidade => 4)

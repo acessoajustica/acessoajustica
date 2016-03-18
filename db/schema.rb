@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702002805) do
+ActiveRecord::Schema.define(version: 20160318222457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20150702002805) do
   add_index "casos", ["estagiario_id"], name: "index_casos_on_estagiario_id", using: :btree
 
   create_table "clientes", force: :cascade do |t|
-    t.integer  "filhos_quantidade"
     t.string   "profissao_nome"
     t.string   "familia_quantidade"
     t.decimal  "familia_renda"
@@ -57,8 +56,34 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.integer  "estado_civil_id"
     t.integer  "moradia_type_id"
     t.integer  "profissao_type_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "endereço"
+    t.string   "bairro"
+    t.string   "cep"
+    t.string   "cidade"
+    t.string   "estado"
+    t.boolean  "tem_filhos"
+    t.integer  "filhos_menores_quantidades"
+    t.integer  "filhos_maiores_quantidades"
+    t.boolean  "faz_bicos"
+    t.decimal  "salario"
+    t.decimal  "contribuicao_valor"
+    t.decimal  "alimentacao_despesa"
+    t.decimal  "saude"
+    t.decimal  "aluguel"
+    t.decimal  "condominio"
+    t.decimal  "agua"
+    t.decimal  "luz"
+    t.decimal  "gas"
+    t.decimal  "telefone"
+    t.decimal  "transporte"
+    t.decimal  "educacao"
+    t.decimal  "obrigacoes_judiciais"
+    t.decimal  "financiamentos"
+    t.decimal  "iptu"
+    t.decimal  "total_despesas_fixas"
+    t.decimal  "valor_liquido_rendimento_mensal"
   end
 
   add_index "clientes", ["estado_civil_id"], name: "index_clientes_on_estado_civil_id", using: :btree
@@ -109,6 +134,8 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "moradia_types", ["description"], name: "index_moradia_types_on_description", unique: true, using: :btree
 
   create_table "pessoas", force: :cascade do |t|
     t.string   "nome"
