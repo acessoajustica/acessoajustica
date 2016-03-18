@@ -106,6 +106,10 @@ function build {
     ${DOCKER_COMPOSE} run web rake db:seed    # Adds admin user.
     app_test
 }
+function start_docker_machine {
+    docker-machine start default
+    eval "$(docker-machine env default)"
+}
 
 if check_deps; then
     if [[ $1 == build ]]; then build;
@@ -122,6 +126,7 @@ if check_deps; then
     elif [[ $1 == test ]]; then app_test;
     elif [[ $1 == seed ]]; then app_seed;
     elif [[ $1 == help ]]; then usage;
+  elif [[ $1 == machine ]]; then start_docker_machine;
     else { echo ""; echo "Error: no valid argument."; echo ""; usage; echo "Exiting..."; exit 0; }
     fi
 fi
