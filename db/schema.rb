@@ -110,8 +110,6 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "moradia_types", ["description"], name: "index_moradia_types_on_description", unique: true, using: :btree
-
   create_table "pessoas", force: :cascade do |t|
     t.string   "nome"
     t.string   "cpf"

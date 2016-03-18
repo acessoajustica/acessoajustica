@@ -47,5 +47,5 @@
     username "adilsons"
     email "adilsons@gmail.com"
   end
-  
+
 end

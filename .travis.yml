@@ -1,11 +1,11 @@
 language: ruby
 
 rvm:
-  - 2.2.2
+  - 2.2.0
 
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - RAILS_ENV=test bundle exec rake db:setup db:migrate --trace
+  - RAILS_ENV=test bundle exec rake db:reset --trace
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   - export CODECLIMATE_REPO_TOKEN=aae1f8c4fcd3a49fe5f6a1f163f2c99327651ddb48c063e7a1d2673ea92f5122
 
