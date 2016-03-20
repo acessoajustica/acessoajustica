@@ -18,36 +18,129 @@
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class = "col-md-8">
-
+      <div class = "col-md-8 col-md-offset-2">
+        <!-- Panel - Dados para Cadastro do Cliente -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Dados Pessoais</h3>
+            <h3 class="panel-title"><strong>Dados para Cadastro do Cliente</strong></h3>
           </div>
           <div class="panel-body">
             <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @cliente} %>
-
             <div class="row">
               <div class="form-group col-md-6">
-                <%= f.label :estado_civil_id, :class => 'control-label' %>
+                <%= f.label :telefone, "Telefone", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :telefone, :class => 'form-control telefone' %>
+                </div>
+                <%= error_span(@cliente[:telefone]) %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Panel - Endereço -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Endereço</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <%= f.label :cep, "CEP", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :cep, :class =>'form-control cep' %>
+                </div>
+                <%= error_span(@cliente[:cep]) %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.label :estado, "Estado", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :estado, :class => "form-control" %>
+                </div>
+                <%= error_span(@cliente[:estado]) %>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-6">
+                <%= f.label :cidade, "Cidade", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :cidade, :class => "form-control" %>
+                </div>
+                <%= error_span(@cliente[:cidade]) %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.label :bairro, "Bairro", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :bairro, :class => "form-control" %>
+                </div>
+                <%= error_span(@cliente[:bairro]) %>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-2">
+                <%= f.label :moradia_type_id, "Logradouro", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.select :moradia_type_id, MoradiaType.all.collect {|desc| [desc.description.capitalize, desc.id]}, {}, {:class => 'form-control'} %>
+                </div>
+                <%= error_span(@cliente[:moradia_type_id]) %>
+              </div>
+              <div class="form-group col-md-10">
+                <%= f.label :endereco, "Endereço", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :endereco, :class => "form-control" %>
+                </div>
+                <%= error_span(@cliente[:endereco]) %>
+              </div>
+            </div><!-- /row -->
+          </div>
+        </div>
+        <!-- Painel - Triagem -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Triagem</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <%= f.label :estado_civil_id, "Estado Civil", :class => 'control-label' %>
                 <div class="controls">
                   <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
                 </div>
                 <%= error_span(@cliente[:estado_civil_id]) %>
               </div>
-
               <div class="form-group col-md-6">
-                <%= f.label :tipo_de_moradia, :class => 'control-label' %>
+                <%= f.label :tem_filhos, "Filhos", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.select :moradia_type_id, MoradiaType.all.collect {|place_type| [place_type.description.capitalize, place_type.id]}, {}, {:class => 'form-control'} %>
+                  <%= radio_button_tag(:filhos, "sim") %>
+                  <%= label_tag(:filhos_sim, "Sim") %>
+                  <%= radio_button_tag(:filhos, "nao") %>
+                  <%= label_tag(:filhos_nao, "Não") %>
                 </div>
-                <%= error_span(@cliente[:moradia_type_id]) %>
+                <%= error_span(@cliente[:tem_filhos]) %>
               </div>
-            </div>
-
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-6">
+                <%= f.label :estado_civil_id, "Estado Civil", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
+                </div>
+                <%= error_span(@cliente[:estado_civil_id]) %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.label :tem_filhos, "Filhos", :class => 'control-label' %>
+                <div class="controls">
+                  <%= radio_button_tag(:filhos, "sim") %>
+                  <%= label_tag(:filhos_sim, "Sim") %>
+                  <%= radio_button_tag(:filhos, "nao") %>
+                  <%= label_tag(:filhos_nao, "Não") %>
+                </div>
+                <%= error_span(@cliente[:tem_filhos]) %>
+              </div>
+            </div><!-- /row -->
           </div>
         </div>
+
+
 
         <div class="panel panel-default">
           <div class="panel-heading">

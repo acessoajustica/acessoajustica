@@ -3,6 +3,7 @@ Feature: Register a Cliente
   I Want to register a 'Cliente'
   In order to create a 'Caso'
 
+  @wip
   Scenario: Register a valid 'Cliente'
   	Given I am logged as "calouro"
     And exists a "moradia_type"
@@ -34,4 +35,3 @@ Feature: Register a Cliente
   	And I select the option "Casa" in "cliente moradia type id"
   	And I press "Criar Cliente"
   	Then I should see "Cliente was successfully created."
-

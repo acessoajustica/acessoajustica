@@ -15,7 +15,7 @@
 
 <div class="row">
   <div class="form-group col-md-12">
-      <%= f.label "Nome Completo", :class => 'control-label' %>
+      <%= f.label :nome_completo, "Nome Completo", :class => 'control-label' %>
       <div class="controls">
         <%= f.text_field :nome, :class => 'form-control' %>
       </div>
@@ -24,7 +24,7 @@
 </div>
 <div class="row">
   <div class="form-group col-md-12">
-    <%= f.label "Nome da Mãe", :class => 'control-label' %>
+    <%= f.label :nome_da_mae, "Nome da Mãe", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :nome_da_mae, :class => 'form-control' %>
     </div>
@@ -34,7 +34,7 @@
 <!-- CPF / RG -->
 <div class="row">
   <div class="form-group col-md-6 col-sm-6">
-    <%= f.label "CPF", :class => 'control-label' %>
+    <%= f.label :cpf, "CPF", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :cpf, :class => 'form-control cpf' %>
     </div>
@@ -58,7 +58,7 @@
     <%= error_span(@pessoa[:cor]) %>
   </div>
   <div class="form-group col-md-6 col-sm-6">
-    <%= f.label "Identidade de Gênero", :class => 'control-label' %>
+    <%= f.label :identidade_de_genero, "Identidade de Gênero", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :identidade_de_genero, :class => 'form-control' %>
     </div>

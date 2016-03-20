@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318222457) do
+ActiveRecord::Schema.define(version: 20160320225123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160318222457) do
     t.integer  "profissao_type_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "endereço"
+    t.string   "endereco"
     t.string   "bairro"
     t.string   "cep"
     t.string   "cidade"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20160318222457) do
     t.decimal  "iptu"
     t.decimal  "total_despesas_fixas"
     t.decimal  "valor_liquido_rendimento_mensal"
+    t.string   "codigo"
   end
 
   add_index "clientes", ["estado_civil_id"], name: "index_clientes_on_estado_civil_id", using: :btree
