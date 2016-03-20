@@ -1,7 +1,7 @@
 Feature: Register a Cliente
   As a 'Calouro'
   I Want to register a 'Cliente'
-  In order to create a 'Caso'
+  In order to create a 'Atendimento'
 
   Scenario: Register a valid 'Cliente'
   	Given I am logged as "calouro"

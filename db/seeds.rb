@@ -20,9 +20,9 @@ ProfissaoType.create!(:description => "Primário")
 ProfissaoType.create!(:description => "Secundário")
 ProfissaoType.create!(:description => "Terciário")
 
-# Creating caso_types
-CasoType.create!(:description => "Atendimento")
-CasoType.create!(:description => "Orientação")
+# Creating atendimento_types
+AtendimentoType.create!(:description => "Atendimento")
+AtendimentoType.create!(:description => "Orientação")
 
 # Creating roles.
 admin_role = Role.create!(:name => "admin")
@@ -88,17 +88,17 @@ case Rails.env
     estagiario_user.membro_id = estagiario.membro.id
     estagiario_user.save
 
-    resultado_type = CasoResultado.create!(:description => "Orientação")
+    resultado_type = AtendimentoResultado.create!(:description => "Orientação")
 
-    # Creating caso
-    caso1 = Caso.create!(:status => true, :cliente => cliente)
-    caso2 = Caso.create!(:status => false, :cliente => cliente)
-    caso3 = Caso.create!(:status => true, :cliente => cliente, :estagiario => estagiario,
-      :caso_resultado => resultado_type)
+    # Creating atendimento
+    atendimento1 = Atendimento.create!(:status => true, :cliente => cliente)
+    atendimento2 = Atendimento.create!(:status => false, :cliente => cliente)
+    atendimento3 = Atendimento.create!(:status => true, :cliente => cliente, :estagiario => estagiario,
+      :atendimento_resultado => resultado_type)
 
     # Creating relato
     relato = Relato.create!(:description => "Relato teste para teste que será testado nesse teste.",
-            :caso => caso1)
+            :atendimento => atendimento1)
 
     cliente2 = Cliente.create!( :nome => "Abreu da Silva Sauro",
               :cpf  =>"123.456.789-00",
@@ -112,10 +112,10 @@ case Rails.env
               :familia_quantidade => 9,
               :contribuintes_quantidade => 4)
 
-    # Creating caso
-    caso3 = Caso.create!(:status => true, :cliente => cliente2)
+    # Creating atendimento
+    atendimento3 = Atendimento.create!(:status => true, :cliente => cliente2)
 
     # Creating relato
     relato = Relato.create!(:description => "Relato teste para teste que será testado nesse teste. Relato teste para teste que será testado nesse teste. Relato teste para teste que será testado nesse teste. Relato teste para teste que será testado nesse teste.",
-            :caso => caso3)
+            :atendimento => atendimento3)
 end

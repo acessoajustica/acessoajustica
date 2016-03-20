@@ -12,8 +12,8 @@ FactoryGirl.define do
     familia_quantidade 9
     contribuintes_quantidade 4
     
-    trait :cliente_with_caso do
-      casos  [FactoryGirl.build(:caso)]
+    trait :cliente_with_atendimento do
+      atendimentos  [FactoryGirl.build(:atendimento)]
     end
 
     trait :cliente_invalid do

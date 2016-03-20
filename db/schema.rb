@@ -16,6 +16,33 @@ ActiveRecord::Schema.define(version: 20150702002805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "atendimento_resultados", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "atendimento_types", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "atendimentos", force: :cascade do |t|
+    t.boolean  "status"
+    t.integer  "cliente_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "estagiario_id"
+    t.integer  "atendimento_type_id"
+    t.integer  "atendimento_resultado_id"
+  end
+
+  add_index "atendimentos", ["atendimento_resultado_id"], name: "index_atendimentos_on_atendimento_resultado_id", using: :btree
+  add_index "atendimentos", ["atendimento_type_id"], name: "index_atendimentos_on_atendimento_type_id", using: :btree
+  add_index "atendimentos", ["cliente_id"], name: "index_atendimentos_on_cliente_id", using: :btree
+  add_index "atendimentos", ["estagiario_id"], name: "index_atendimentos_on_estagiario_id", using: :btree
+
   create_table "calouros", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -69,6 +96,14 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.string "description"
   end
 
+  create_table "especialidades_atendimento_types", id: false, force: :cascade do |t|
+    t.integer "especialidade_id"
+    t.integer "atendimento_type_id"
+  end
+
+  add_index "especialidades_atendimento_types", ["atendimento_type_id"], name: "index_especialidades_atendimento_types_on_atendimento_type_id", using: :btree
+  add_index "especialidades_atendimento_types", ["especialidade_id"], name: "index_especialidades_atendimento_types_on_especialidade_id", using: :btree
+
   create_table "especialidades_caso_types", id: false, force: :cascade do |t|
     t.integer "especialidade_id"
     t.integer "caso_type_id"
@@ -110,8 +145,6 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "moradia_types", ["description"], name: "index_moradia_types_on_description", unique: true, using: :btree
-
   create_table "pessoas", force: :cascade do |t|
     t.string   "nome"
     t.string   "cpf"
@@ -133,12 +166,12 @@ ActiveRecord::Schema.define(version: 20150702002805) do
 
   create_table "relatos", force: :cascade do |t|
     t.string   "description"
-    t.integer  "caso_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "atendimento_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "relatos", ["caso_id"], name: "index_relatos_on_caso_id", using: :btree
+  add_index "relatos", ["atendimento_id"], name: "index_relatos_on_atendimento_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -178,12 +211,14 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "atendimentos", "atendimento_resultados"
+  add_foreign_key "atendimentos", "atendimento_types"
+  add_foreign_key "atendimentos", "clientes"
+  add_foreign_key "atendimentos", "estagiarios"
   add_foreign_key "casos", "caso_resultados"
   add_foreign_key "casos", "caso_types"
-  add_foreign_key "casos", "clientes"
-  add_foreign_key "casos", "estagiarios"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"
-  add_foreign_key "relatos", "casos"
+  add_foreign_key "relatos", "atendimentos"
 end

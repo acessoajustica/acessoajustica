@@ -27,8 +27,8 @@ RSpec.describe ClientesController, type: :controller do
     FactoryGirl.attributes_for(:cliente)
   end
 
-  let(:valid_attributes_with_caso) do
-    FactoryGirl.attributes_for(:cliente, :cliente_with_caso)
+  let(:valid_attributes_with_atendimento) do
+    FactoryGirl.attributes_for(:cliente, :cliente_with_atendimento)
   end
 
   let(:invalid_attributes) do
@@ -79,18 +79,18 @@ RSpec.describe ClientesController, type: :controller do
     context "with valid params" do
       it "creates a new Cliente" do
         expect {
-          post :create, {:cliente => valid_attributes_with_caso}, valid_session
+          post :create, {:cliente => valid_attributes_with_atendimento}, valid_session
         }.to change(Cliente, :count).by(1)
       end
 
       it "assigns a newly created cliente as @cliente" do
-        post :create, {:cliente => valid_attributes_with_caso}, valid_session
+        post :create, {:cliente => valid_attributes_with_atendimento}, valid_session
         expect(assigns(:cliente)).to be_a(Cliente)
         expect(assigns(:cliente)).to be_persisted
       end
 
       it "redirects to the created cliente" do
-        post :create, {:cliente => valid_attributes_with_caso}, valid_session
+        post :create, {:cliente => valid_attributes_with_atendimento}, valid_session
         expect(response).to redirect_to(Cliente.last)
       end
     end

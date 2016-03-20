@@ -3,13 +3,13 @@ module NavigationHelpers
     case page_name
  
     when /my cases/
-      '/casos/my-cases'
+      '/atendimentos/my-cases'
     when /clientes new/
       '/clientes/new'
   	when /login page/
       '/users/sign_in'
-    when /edit caso (\d+)/
-      '/casos/' + $1 + '/edit'
+    when /edit atendimento (\d+)/
+      '/atendimentos/' + $1 + '/edit'
     when /home\s?page/
       '/'
     when /pessoas page/
@@ -36,9 +36,9 @@ module NavigationHelpers
       '/clientes'
     when /new clientes page/
       '/clientes/new'
-    when /casos page/
-      '/casos'
-    when /new casos page/
+    when /atendimentos page/
+      '/atendimentos'
+    when /new atendimentos page/
       '/clientes/new'
     when /relatos page/
       '/relatos'

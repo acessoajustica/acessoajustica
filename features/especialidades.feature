@@ -1,7 +1,7 @@
 Feature: Register a Cliente
   As a 'Admin'
   I Want to register a 'Estagiario' with especialidade'
-  In order to know with 'caso he can take'
+  In order to know with 'atendimento he can take'
 
   @javascript
   Scenario: Creating a estagiario
