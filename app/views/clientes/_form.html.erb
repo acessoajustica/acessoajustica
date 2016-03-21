@@ -100,15 +100,17 @@
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-12">
                 <%= f.label :estado_civil_id, "Estado Civil", :class => 'control-label' %>
                 <div class="controls">
                   <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
                 </div>
                 <%= error_span(@cliente[:estado_civil_id]) %>
               </div>
-              <div class="form-group col-md-6">
-                <%= f.label :tem_filhos, "Filhos", :class => 'control-label' %>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-12">
+                <strong><%= f.label :tem_filhos, "Filhos", :class => 'control-label' %></strong>
                 <div class="controls">
                   <%= radio_button_tag(:filhos, "sim") %>
                   <%= label_tag(:filhos_sim, "Sim") %>
@@ -119,22 +121,12 @@
               </div>
             </div><!-- /row -->
             <div class="row">
-              <div class="form-group col-md-6">
-                <%= f.label :estado_civil_id, "Estado Civil", :class => 'control-label' %>
+              <div class="form-group col-md-6 col-sm-6">
+                <%= f.label :menores_moram_quantidades, :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
+                  <%= f.number_field :contribuintes_quantidade, :class => 'form-control', :min => 0 %>
                 </div>
-                <%= error_span(@cliente[:estado_civil_id]) %>
-              </div>
-              <div class="form-group col-md-6">
-                <%= f.label :tem_filhos, "Filhos", :class => 'control-label' %>
-                <div class="controls">
-                  <%= radio_button_tag(:filhos, "sim") %>
-                  <%= label_tag(:filhos_sim, "Sim") %>
-                  <%= radio_button_tag(:filhos, "nao") %>
-                  <%= label_tag(:filhos_nao, "Não") %>
-                </div>
-                <%= error_span(@cliente[:tem_filhos]) %>
+                <%= error_span(@cliente[:contribuintes_quantidade]) %>
               </div>
             </div><!-- /row -->
           </div>

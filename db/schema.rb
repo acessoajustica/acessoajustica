@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320225123) do
+ActiveRecord::Schema.define(version: 20160320231220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 20160320225123) do
     t.string   "cidade"
     t.string   "estado"
     t.boolean  "tem_filhos"
-    t.integer  "filhos_menores_quantidades"
-    t.integer  "filhos_maiores_quantidades"
+    t.integer  "menores_moram_quantidades"
+    t.integer  "maiores_moram_quantidades"
     t.boolean  "faz_bicos"
     t.decimal  "salario"
     t.decimal  "contribuicao_valor"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20160320225123) do
     t.decimal  "total_despesas_fixas"
     t.decimal  "valor_liquido_rendimento_mensal"
     t.string   "codigo"
+    t.integer  "menores_nao_moram_quantidades"
+    t.integer  "maiores_nao_moram_quantidades"
   end
 
   add_index "clientes", ["estado_civil_id"], name: "index_clientes_on_estado_civil_id", using: :btree
