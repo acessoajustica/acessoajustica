@@ -1,12 +1,29 @@
 LabXP 2015: Acesso à Justiça
 ==============================
 
-[![Code Climate](https://codeclimate.com/github/acessoajustica/acessoajustica/badges/gpa.svg)](https://codeclimate.com/github/acessoajustica/acessoajustica)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/acessoajustica/acessoajustica/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/acessoajustica/acessoajustica/?branch=dev)
-[![Build Status](https://travis-ci.org/acessoajustica/acessoajustica.svg?branch=dev)](https://travis-ci.org/acessoajustica/acessoajustica)
-[![Coverage Status](https://coveralls.io/repos/acessoajustica/acessoajustica/badge.svg?branch=dev)](https://coveralls.io/r/acessoajustica/acessoajustica?branch=dev)
-[![Dependency Status](https://gemnasium.com/acessoajustica/acessoajustica.svg)](https://gemnasium.com/acessoajustica/acessoajustica)
-[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/acessoajustica/acessoajustica/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/acessoajustica/acessoajustica.svg)]
+                (https://travis-ci.org/acessoajustica/acessoajustica)
+[![Coverage Status](https://img.shields.io/coveralls/acessoajustica/acessoajustica.svg)]
+                   (https://coveralls.io/r/acessoajustica/acessoajustica?branch=dev)
+[![Dependency Status](https://img.shields.io/gemnasium/acessoajustica/acessoajustica.svg)]
+                     (https://gemnasium.com/acessoajustica/acessoajustica)
+[![Code Climate](https://img.shields.io/codeclimate/github/acessoajustica/acessoajustica.svg)]
+                (https://codeclimate.com/github/acessoajustica/acessoajustica)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/acessoajustica/acessoajustica.svg)]
+               (https://scrutinizer-ci.com/g/acessoajustica/acessoajustica)
+[![License](https://img.shields.io/github/license/acessoajustica/acessoajustica.svg)]
+           (https://github.com/acessoajustica/acessoajustica/blob/master/LICENSE)
+
+[![Backlog](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Backlog)]
+           (http://waffle.io/acessoajustica/acessoajustica)
+[![Ready](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Ready)]
+         (http://waffle.io/acessoajustica/acessoajustica)
+[![In Progress](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=In Progress)]
+               (http://waffle.io/acessoajustica/acessoajustica)
+[![Testing](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Testing)]
+           (http://waffle.io/acessoajustica/acessoajustica)
+[![Done](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Done)]
+        (http://waffle.io/acessoajustica/acessoajustica)
 
 This repository contains a ruby on rails project for the
 [Legal Department XI de Agosto](http://djonzedeagosto.org.br/). The project
@@ -85,4 +102,3 @@ The app runs at ```localhost:3000```.
 ## Troubleshooting
 
 Refer to https://docs.docker.com/compose/rails/.
-

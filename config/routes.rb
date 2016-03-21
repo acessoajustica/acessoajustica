@@ -8,13 +8,13 @@ Rails.application.routes.draw do
 
   resources :relatos
 
-  resources :casos do
+  resources :atendimentos do
     collection do
       get 'my-cases'
     end
   end
 
-  get "casos/:id/select-case" => "casos#select_case" , as: :select_case
+  get "atendimentos/:id/select-case" => "atendimentos#select_case" , as: :select_case
 
   resources :clientes do
     collection do

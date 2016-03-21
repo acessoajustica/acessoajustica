@@ -16,7 +16,7 @@ class ClientesController < ApplicationController
   # GET /clientes/new
   def new
     @cliente = Cliente.new
-    @caso = Caso.new
+    @atendimento = Atendimento.new
     @relato = Relato.new
   end
 
@@ -38,12 +38,12 @@ class ClientesController < ApplicationController
     respond_to do |format|
       if @cliente.save
 
-        @caso = Caso.new(caso_params)
+        @atendimento = Atendimento.new(atendimento_params)
         @relato = Relato.new(relato_params)
         @relato.save
-        @caso.relatos << @relato
-        @caso.cliente_id = @cliente.id
-        @caso.save
+        @atendimento.relatos << @relato
+        @atendimento.cliente_id = @cliente.id
+        @atendimento.save
 
         format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
         format.json { render :show, status: :created, location: @cliente }
@@ -82,8 +82,8 @@ class ClientesController < ApplicationController
                                       :nome_da_mae, :rg, :cor, :identidade_de_genero)
     end
 
-    def caso_params
-      params.require(:cliente).permit(:caso).permit(:status)
+    def atendimento_params
+      params.require(:cliente).permit(:atendimento).permit(:status)
     end
 
     def relato_params

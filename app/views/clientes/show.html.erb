@@ -81,25 +81,25 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Casos</h3>
+          <h3 class="panel-title">Atendimentos</h3>
         </div>
         <div class="panel-body">
           <ul class="list-group">
             <li class="list-group-item">
-              <% @cliente.casos.each_with_index do |caso, index| %>
+              <% @cliente.atendimentos.each_with_index do |atendimento, index| %>
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="heading<%= index %>">
                       <h4 class="panel-title">
                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
-                          <%= index+1%> Caso
-                          <%= link_to "Ver detalhes", caso_path(caso), :class => 'btn btn-default btn-xs pull-right'%>
+                          <%= index+1%> Atendimento
+                          <%= link_to "Ver detalhes", atendimento_path(atendimento), :class => 'btn btn-default btn-xs pull-right'%>
                         </a>
                       </h4>
                     </div>
                     <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
                       <div class="panel-body">
-                        <% caso.relatos.each do |relato| %>
+                        <% atendimento.relatos.each do |relato| %>
                           <%= relato.description %>
                           <hr>
                         <% end %>

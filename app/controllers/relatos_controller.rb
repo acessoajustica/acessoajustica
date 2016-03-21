@@ -70,6 +70,6 @@ class RelatosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def relato_params
-      params.require(:relato).permit(:description, :caso_id)
+      params.require(:relato).permit(:description, :atendimento_id)
     end
 end

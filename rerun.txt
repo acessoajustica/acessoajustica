@@ -1,1 +1,1 @@
-features/edit_caso.feature:6:14:21:29 features/especialidades.feature:6 features/register_cliente.feature:6 features/restrict_access.feature:11
+features/edit_atendimento.feature:6:14:21:29 features/especialidades.feature:6 features/register_cliente.feature:6 features/restrict_access.feature:11

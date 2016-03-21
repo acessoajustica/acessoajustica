@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th>Caso</th>
+      <th>Atendimento</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @relatos.each do |relato| %>
       <tr>
         <td><%= relato.description %></td>
-        <td><%= relato.caso %></td>
+        <td><%= relato.atendimento %></td>
         <td><%= link_to 'Show', relato %></td>
         <td><%= link_to 'Edit', edit_relato_path(relato) %></td>
         <td><%= link_to 'Destroy', relato, method: :delete, data: { confirm: 'Are you sure?' } %></td>

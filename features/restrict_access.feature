@@ -3,22 +3,22 @@ Feature: RestrictAccess
   An unauthenticated user
   Should not view anything but the Login Page
 
-  Scenario: Non authenticated user tries to accesss 'Casos'
+  Scenario: Non authenticated user tries to accesss 'Atendimentos'
     Given I am not authenticated
-    When I am on "casos page"
+    When I am on "atendimentos page"
     Then I should be on "home page"
 
-  Scenario: Authenticated estagiario tries to edit a Caso
+  Scenario: Authenticated estagiario tries to edit a Atendimento
     Given I am logged as "estagiario"
-    And exists a "caso" that belongs to an "estagiario and to a cliente"
+    And exists a "atendimento" that belongs to an "estagiario and to a cliente"
     And I am that estagiario
-    And I am editing a caso
+    And I am editing a atendimento
     Then I should see "Joana Silveira"
   
-  Scenario: Non authenticated user tries to edit a 'Caso'
+  Scenario: Non authenticated user tries to edit a 'Atendimento'
     Given I am not authenticated
-    And exists a "caso" that belongs to an "estagiario and to a cliente"
-    And I am editing a caso
+    And exists a "atendimento" that belongs to an "estagiario and to a cliente"
+    And I am editing a atendimento
     Then I should not see "Joana Silveira"
 
   Scenario: Non authenticated user tries to Access 'Pessoas'
@@ -210,30 +210,30 @@ Feature: RestrictAccess
     When I am on "new relatos page"
     Then I should be on " new relatos page"
 
-  Scenario: Non authenticated user tries to Access 'casos'
+  Scenario: Non authenticated user tries to Access 'atendimentos'
     Given I am not authenticated
-    When I am on "casos page"
+    When I am on "atendimentos page"
     Then I should be on "home page"
 
-  Scenario: Authenticated user tries to Access 'casos'
+  Scenario: Authenticated user tries to Access 'atendimentos'
     Given exists an "admin_user user"
     And I am on "login page"
     And I fill in "user login" with "adilson"
     And I fill in "user password" with "adilson123"
     And I press "submit"
-    When I am on "casos page"
+    When I am on "atendimentos page"
  
-  Scenario: Non authenticated user tries to Access 'casos New'
+  Scenario: Non authenticated user tries to Access 'atendimentos New'
     Given I am not authenticated
-    When I am on "new casos page"
+    When I am on "new atendimentos page"
     Then I should be on "home page"
 
-  Scenario: Authenticated user tries to Access 'casos New'
+  Scenario: Authenticated user tries to Access 'atendimentos New'
     Given exists an "admin_user user"
     And I am on "login page"
     And I fill in "user login" with "adilson"
     And I fill in "user password" with "adilson123"
     And I press "submit"
-    When I am on "new casos page"
-    Then I should be on " new casos page"
+    When I am on "new atendimentos page"
+    Then I should be on " new atendimentos page"
 

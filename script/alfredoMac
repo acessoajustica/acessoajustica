@@ -27,6 +27,7 @@ function usage {
     echo " restart:    Stops all containers and then 'run'."
     echo " seed:       Puts initial values on the database."
     echo " help:       Prints this message."
+    echo " open:       Opens the rails site (default container ip + port 3000)."
     echo " "
 }
 function check_deps {
@@ -72,6 +73,7 @@ function app_run {
     then
         rm ./tmp/pid/server.pid
     fi
+    app_open
     ${DOCKER_COMPOSE} up                                   # Starts the app.
 }
 function build_update {
@@ -110,6 +112,11 @@ function start_docker_machine {
     docker-machine start default
     eval "$(docker-machine env default)"
 }
+function app_open {
+  IP=$(docker-machine ip default)
+  echo "url -> http://$IP:3000"
+  open "http://$(docker-machine ip default):3000"
+}
 
 if check_deps; then
     if [[ $1 == build ]]; then build;
@@ -126,7 +133,8 @@ if check_deps; then
     elif [[ $1 == test ]]; then app_test;
     elif [[ $1 == seed ]]; then app_seed;
     elif [[ $1 == help ]]; then usage;
-  elif [[ $1 == machine ]]; then start_docker_machine;
+    elif [[ $1 == machine ]]; then start_docker_machine;
+    elif [[ $1 == open ]]; then app_open;
     else { echo ""; echo "Error: no valid argument."; echo ""; usage; echo "Exiting..."; exit 0; }
     fi
 fi
