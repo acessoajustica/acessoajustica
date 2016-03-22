@@ -51,6 +51,8 @@ gem 'active_record-acts_as' #, '1.0.2'
 # Access an IRB console on exception pages or by using <%= console %> in views
 gem 'web-console', '~> 2.0', group: :development
 
+gem 'quiet_assets', group: :development
+
 group :development, :test do
 
   # Create test coverage with codeclimate
