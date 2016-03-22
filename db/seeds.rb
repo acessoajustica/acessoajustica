@@ -16,9 +16,10 @@ EstadoCivil.create!(:description => "Viúvo")
 EstadoCivil.create!(:description => "Vive em União Estável")
 
 # Creating profissao's
-ProfissaoType.create!(:description => "Primário")
-ProfissaoType.create!(:description => "Secundário")
-ProfissaoType.create!(:description => "Terciário")
+ProfissaoType.create!(:description => "Registrado")
+ProfissaoType.create!(:description => "Informal")
+ProfissaoType.create!(:description => "Aposentado")
+ProfissaoType.create!(:description => "Desempregado")
 
 # Creating atendimento_types
 AtendimentoType.create!(:description => "Atendimento")
@@ -35,13 +36,13 @@ admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>
 admin_user.roles << admin_role
 
 # Creating moradia_types
-MoradiaType.create!(:description => "Casa")
-MoradiaType.create!(:description => "Apartamento")
-MoradiaType.create!(:description => "Pensão")
-MoradiaType.create!(:description => "República")
-MoradiaType.create!(:description => "Alvenaria")
-MoradiaType.create!(:description => "Palafita")
-MoradiaType.create!(:description => "Quitinete")
+MoradiaType.create!(:description => "Morador de Rua")
+MoradiaType.create!(:description => "Aluguel / Pensão")
+MoradiaType.create!(:description => "Moradia Irregular")
+MoradiaType.create!(:description => "Própria")
+MoradiaType.create!(:description => "Cedida")
+MoradiaType.create!(:description => "Outra")
+
 
 case Rails.env
   when "development"
