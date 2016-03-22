@@ -14,9 +14,7 @@
       </div>
     </div>
   <% end %>
-
   <div class="container-fluid">
-
     <div class="row">
       <div class = "col-md-8 col-md-offset-2">
         <!-- Panel - Dados para Cadastro do Cliente -->
@@ -54,7 +52,7 @@
               <div class="form-group col-md-6">
                 <%= f.label :estado, "Estado", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.text_field :estado, :class => "form-control" %>
+                  <%= f.text_field :estado, :class => "form-control", :maxlength => 2 %>
                 </div>
                 <%= error_span(@cliente[:estado]) %>
               </div>
@@ -105,46 +103,48 @@
               <div class="form-group col-md-12">
                 <strong><%= f.label :tem_filhos, "Filhos", :class => 'control-label' %></strong>
                 <div class="controls">
-                  <%= radio_button_tag(:filhos, "sim") %>
-                  <%= label_tag(:filhos_sim, "Sim") %>
-                  <%= radio_button_tag(:filhos, "nao") %>
-                  <%= label_tag(:filhos_nao, "Não") %>
+                  <%= f.radio_button :tem_filhos, "True"%>
+                  <%= f.label :filhos_sim, "Sim" %>
+                  <%= f.radio_button :tem_filhos, "False", :checked => true%>
+                  <%= f.label :filhos_nao, "Não" %>
                 </div>
                 <%= error_span(@cliente[:tem_filhos]) %>
               </div>
             </div><!-- /row -->
-            <div class="row">
-              <div class="form-group col-md-6 col-sm-6">
-                <%= f.label :menores_moram_quantidades, "Quantos menores moram com o declarante?", :class => 'control-label' %>
-                <div class="controls">
-                  <%= f.number_field :menores_moram_quantidades, :class => 'form-control', :min => 0 %>
+            <div id="qtd_filhos">
+              <div class="row">
+                <div class="form-group col-md-6 col-sm-6">
+                  <%= f.label :menores_moram_quantidades, "Quantos menores moram com o declarante?", :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.number_field :menores_moram_quantidades, :class => 'form-control', :min => 0 %>
+                  </div>
+                  <%= error_span(@cliente[:menores_moram_quantidades]) %>
                 </div>
-                <%= error_span(@cliente[:menores_moram_quantidades]) %>
-              </div>
-              <div class="form-group col-md-6 col-sm-6">
-                <%= f.label :menores_nao_moram_quantidades, "Quantos menores não moram com o declarante?", :class => 'control-label' %>
-                <div class="controls">
-                  <%= f.number_field :menores_nao_moram_quantidades, :class => 'form-control', :min => 0 %>
+                <div class="form-group col-md-6 col-sm-6">
+                  <%= f.label :menores_nao_moram_quantidades, "Quantos menores não moram com o declarante?", :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.number_field :menores_nao_moram_quantidades, :class => 'form-control', :min => 0 %>
+                  </div>
+                  <%= error_span(@cliente[:menores_nao_moram_quantidades]) %>
                 </div>
-                <%= error_span(@cliente[:menores_nao_moram_quantidades]) %>
-              </div>
-            </div><!-- /row -->
-            <div class="row">
-              <div class="form-group col-md-6 col-sm-6">
-                <%= f.label :menores_moram_quantidades, "Quantos maiores moram com o declarante?", :class => 'control-label' %>
-                <div class="controls">
-                  <%= f.number_field :maiores_moram_quantidades, :class => 'form-control', :min => 0 %>
+              </div><!-- /row -->
+              <div class="row">
+                <div class="form-group col-md-6 col-sm-6">
+                  <%= f.label :maiores_moram_quantidades, "Quantos maiores moram com o declarante?", :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.number_field :maiores_moram_quantidades, :class => 'form-control', :min => 0 %>
+                  </div>
+                  <%= error_span(@cliente[:maiores_moram_quantidades]) %>
                 </div>
-                <%= error_span(@cliente[:maiores_moram_quantidades]) %>
-              </div>
-              <div class="form-group col-md-6 col-sm-6">
-                <%= f.label :maiores_nao_moram_quantidades, "Quantos maiores não moram com o declarante?", :class => 'control-label' %>
-                <div class="controls">
-                  <%= f.number_field :maiores_nao_moram_quantidades, :class => 'form-control', :min => 0 %>
+                <div class="form-group col-md-6 col-sm-6">
+                  <%= f.label :maiores_nao_moram_quantidades, "Quantos maiores não moram com o declarante?", :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.number_field :maiores_nao_moram_quantidades, :class => 'form-control', :min => 0 %>
+                  </div>
+                  <%= error_span(@cliente[:maiores_nao_moram_quantidades]) %>
                 </div>
-                <%= error_span(@cliente[:maiores_nao_moram_quantidades]) %>
-              </div>
-            </div><!-- /row -->
+              </div><!-- /row -->
+            </div><!-- id="qtd_filhos" -->
           </div>
         </div>
         <!-- Dados Profissionais -->
@@ -162,9 +162,8 @@
                 <%= error_span(@cliente[:profissao_nome]) %>
               </div>
               <div class="form-group col-md-4 col-sm-4">
-                <div class="controls">
-                  <%= f.check_box :faz_bicos, :class => 'form-control' %>
-                </div>
+                <%= f.label :faz_bicos, "Faz bico?", :class => 'control-label' %>
+                <%= f.check_box :faz_bicos, :class => 'form-control' %>
                 <%= error_span(@cliente[:faz_bicos]) %>
               </div>
             </div><!-- /row -->
@@ -180,7 +179,7 @@
                 <%= f.label :salario, "Salário", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :salario, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :salario, :class => 'form-control moeda' %>
                 </div>
                 <%= error_span(@cliente[:salario]) %>
               </div>
@@ -190,7 +189,7 @@
                 <%= f.label :renda_total, "Renda Familiar Média", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :familia_renda, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :familia_renda, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:familia_renda]) %>
               </div>
@@ -210,7 +209,7 @@
               </div>
             </div><!-- /row -->
             <div class="row">
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-6">
                 <%= f.label :moradia_type_id, "Moradia", :class => 'control-label' %>
                 <div class="controls">
                   <%= f.select :moradia_type_id, MoradiaType.all.collect {|desc| [desc.description.capitalize, desc.id]}, {}, {:class => 'form-control'} %>
@@ -227,117 +226,125 @@
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :alimentacao_despesa, "Alimentação", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :alimentacao_despesa, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :alimentacao_despesa, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:alimentacao_despesa]) %>
               </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :saude, "Saúde", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :saude, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :saude, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:saude]) %>
               </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :aluguel, "Aluguel", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :aluguel, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :aluguel, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:aluguel]) %>
               </div>
-              <div class="form-group col-md-10">
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-4">
                 <%= f.label :condominio, "Condomínio", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :condominio, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :condominio, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:condominio]) %>
               </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :agua, "Água", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :agua, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :agua, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:agua]) %>
               </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :luz, "Luz", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :luz, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :luz, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:luz]) %>
               </div>
-              <div class="form-group col-md-10">
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-4">
                 <%= f.label :gas, "Gás", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :gas, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :gas, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:gas]) %>
               </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :telefone, "Telefone", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :telefone, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :telefone, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:telefone]) %>
               </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :transporte, "Transporte", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :transporte, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :transporte, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:transporte]) %>
               </div>
-              <div class="form-group col-md-10">
-                <%= f.label :obrigacoes_judiciais, "Obrigações Judiciais (ex: pensão alimentícia)", :class => 'control-label' %>
-                <div class="input-group">
-                  <div class="input-group-addon">R$</div>
-                  <%= f.number_field :obrigacoes_judiciais, :class => 'form-control', :min => 0 %>
-                </div>
-                <%= error_span(@cliente[:obrigacoes_judiciais]) %>
-              </div>
-              <div class="form-group col-md-10">
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-4">
                 <%= f.label :financiamentos, "Financiamentos", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :financiamentos, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :financiamentos, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:financiamentos]) %>
               </div>
-              <div class="form-group col-md-10">
-                <%= f.label :iptu, "Imposto Predial Territorial Urbano (IPTU)", :class => 'control-label' %>
-                <div class="input-group">
-                  <div class="input-group-addon">R$</div>
-                  <%= f.number_field :iptu, :class => 'form-control', :min => 0 %>
-                </div>
-                <%= error_span(@cliente[:iptu]) %>
-              </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :total_despesas_fixas, "Valor total das Despesas Fixas", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :total_despesas_fixas, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :total_despesas_fixas, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:total_despesas_fixas]) %>
               </div>
-              <div class="form-group col-md-10">
+              <div class="form-group col-md-4">
                 <%= f.label :valor_liquido_rendimento_mensal, "Valor líquido do Rendimento Mensal", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :valor_liquido_rendimento_mensal, :class => 'form-control', :min => 0 %>
+                  <%= f.text_field :valor_liquido_rendimento_mensal, :class => 'form-control moeda', :min => 0 %>
                 </div>
                 <%= error_span(@cliente[:valor_liquido_rendimento_mensal]) %>
+              </div>
+            </div><!-- /row -->
+            <div class="row">
+              <div class="form-group col-md-4">
+                <%= f.label :obrigacoes_judiciais, "Obrigações Judiciais (ex: pensão alimentícia)", :class => 'control-label' %>
+                <div class="input-group">
+                  <div class="input-group-addon">R$</div>
+                  <%= f.text_field :obrigacoes_judiciais, :class => 'form-control moeda', :min => 0 %>
+                </div>
+                <%= error_span(@cliente[:obrigacoes_judiciais]) %>
+              </div>
+              <div class="form-group col-md-4">
+                <%= f.label :iptu, "Imposto Predial Territorial Urbano (IPTU)", :class => 'control-label' %>
+                <div class="input-group">
+                  <div class="input-group-addon">R$</div>
+                  <%= f.text_field :iptu, :class => 'form-control moeda', :min => 0 %>
+                </div>
+                <%= error_span(@cliente[:iptu]) %>
               </div>
             </div><!-- /row -->
           </div>
@@ -367,7 +374,6 @@
             </div>
           </div>
         </div>
-
         <div class="text-right">
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                     clientes_path, :class => 'btn btn-default' %>
