@@ -31,6 +31,8 @@ gem "less-rails"
 # Bootstrap for layout
 gem 'twitter-bootstrap-rails', '3.2.0'
 
+gem 'bootstrap-material-design'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
