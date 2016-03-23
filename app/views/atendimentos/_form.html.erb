@@ -16,7 +16,11 @@
   <% end %>
 
   <div class="container-fluid">
-
+    <div class='row'>
+      <div class="col-md-12">
+        <%= render :partial => 'cliente_data' %>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <div class="control-group col-md-6">
@@ -29,7 +33,7 @@
         <div class="control-group col-md-6">
           <%= f.label :tipo_de_atendimento, :class => 'control-label' %>
           <div class="controls">
-             <%= f.select :atendimento_type_id, 
+             <%= f.select :atendimento_type_id,
                            AtendimentoType.all.collect {|atendimento_type| [atendimento_type.description.capitalize,atendimento_type.id]},
                            {:include_blank => true},
                            {:class => 'form-control'}
@@ -62,11 +66,8 @@
           </div>
         </div>
       </div>
-
-      <div class="col-md-6"><%= render :partial => 'cliente_data' %></div>
-
     </div>
 
-  </div> 
+  </div>
 
 <% end %>

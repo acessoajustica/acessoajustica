@@ -48,7 +48,7 @@ class AtendimentosController < ApplicationController
 
     respond_to do |format|
       if @atendimento.save
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully created.' }
+        format.html { redirect_to @atendimento, notice: 'Atendimento criado com sucesso!' }
         format.json { render :show, status: :created, location: @atendimento }
       else
         format.html { render :new }
@@ -63,7 +63,7 @@ class AtendimentosController < ApplicationController
     respond_to do |format|
       @atendimento.relatos.build(:description => atendimento_params[:new_relato])
       if @atendimento.update(atendimento_params.except(:new_relato))
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully updated.' }
+        format.html { redirect_to @atendimento, notice: 'Atendimento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @atendimento }
       else
         format.html { render :edit }
