@@ -73,14 +73,4 @@ class ClientesController < ApplicationController
                                       :nome_da_mae, :rg, :cor, :identidade_de_genero)
     end
 
-=begin
-    def atendimento_params
-      params.require(:cliente).permit(:atendimento).permit(:status)
-    end
-
-    def relato_params
-      params.require(:cliente).permit(:relato).permit(:description)
-    end
-=end
-
 end

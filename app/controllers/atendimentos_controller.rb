@@ -38,7 +38,6 @@ class AtendimentosController < ApplicationController
 
   # GET /atendimentos/1/edit
   def edit
-    @relato = Relato.new
   end
 
   # POST /atendimentos

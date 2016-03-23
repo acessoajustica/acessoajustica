@@ -4,7 +4,6 @@ FactoryGirl.define do
     # association :cliente, factory: :cliente, strategy: :build
     cliente Cliente.new()
     # association :cliente, factory: :cliente, strategy: :build
-    relatos [Relato.new({:description => 'Uma descrição'})]
   end
 
   trait :old do
@@ -18,10 +17,10 @@ FactoryGirl.define do
   trait :invalid do
     cliente nil
   end
-  
+
   trait :restless do
-    relatos [Relato.new({:description => 'Uma descrição'}),
-             Relato.new({:description => 'Outra descrição'}),
-             Relato.new({:description => 'Mais uma descrição'})]
+    relatos ['Uma descrição',
+             'Outra descrição',
+             'Mais uma descrição']
   end
 end
