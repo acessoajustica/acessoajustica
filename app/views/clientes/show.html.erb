@@ -112,6 +112,7 @@
                   </div>
                 </div>
               <% end %>
+              <%= link_to 'Novo atendimento', new_atendimento_path(cliente_id: @cliente.id), class: 'btn btn-md btn-info' %>
             </li>
           </ul>
         </div>
@@ -119,7 +120,7 @@
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     clientes_path, :class => 'btn btn-default'  %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                    edit_cliente_path(@cliente), :class => 'btn btn-default' %>
+                    edit_cliente_path(@cliente), :class => 'btn btn-primary' %>
       <hr>
     </div><!-- /col-md-8 -->
   </div><!-- /row -->

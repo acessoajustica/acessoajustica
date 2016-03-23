@@ -1,5 +1,6 @@
 class AtendimentosController < ApplicationController
   load_and_authorize_resource
+  before_action :set_cliente, only: [:new]
   before_action :set_atendimento, only: [:show, :edit, :update, :destroy]
 
   # GET /atendimentos
@@ -32,6 +33,7 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos/new
   def new
     @atendimento = Atendimento.new
+    @atendimento.cliente = @cliente
   end
 
   # GET /atendimentos/1/edit
@@ -74,6 +76,10 @@ class AtendimentosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_atendimento
       @atendimento = Atendimento.find(params[:id])
+    end
+
+    def set_cliente
+      @cliente = Cliente.find(params[:cliente_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
