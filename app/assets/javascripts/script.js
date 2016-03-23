@@ -1,11 +1,10 @@
-$(function(){
+$(document).ready(function() {
+
 	$(".cpf").mask("999.999.999-99",{placeholder:" "});
 	$(".rg").mask("99.999.999-99",{placeholder:" "});
 	$(".telefone").mask("(99) 99999-9999",{placeholder:" "});
 	$(".cep").mask("99999-999",{placeholder:" "});
-  $('.moeda').mask("###.###.##0,00", {reverse: true});
-});
-$(document).ready(function() {
+	$('.moeda').mask("###.###.##0,00", {reverse: true});
 
 	$("#qtd_filhos").hide();
 

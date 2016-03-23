@@ -3,11 +3,14 @@ Feature: Edit Atendimento
   An estagiario
   Should edit the atendimento
 
+  @javascript
   Scenario: Add new Relato
     Given I am logged as "estagiario"
     And I am editing a atendimento
     When I fill in "atendimento new relato" with "Mais um novo relato"
     And I press "Atualizar Atendimento"
+    And I wait a second
+    And I take "newAtendimento" picture of the page
     Then I should see "Atendimento was successfully updated"
 
   Scenario: Update a category

@@ -1,26 +1,66 @@
 <%= form_for @cliente, :html => { :class => " cliente" } do |f| %>
-
-    <% if @cliente.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@cliente.errors.count, "error") %> prohibited this cliente from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @cliente.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <% if @cliente.errors.any? %>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= pluralize(@cliente.errors.count, "erro") %> impediu o cadastro:</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+              <% @cliente.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+
+        <% if @atendimento.errors.any? %>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= pluralize(@atendimento.errors.count, "erro") %> impediu o cadastro:</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+              <% @atendimento.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+        <p class="lead" style="text-align: justify;">
+          <strong>ATENÇÃO:</strong> Este formulário só deverá ser preenchido na hipótese de patrocínio da ação, e seu intuito é caracterizar a incidência da Lei n<sup>o</sup> 1.060/1950.
+          Em caso de negativa, o cliente não poderá ter o caso patrocinado por este Departamento Jurídico.
+        </p>
+      </div>
+    </div><!-- /row -->
+    <div class="row">
       <div class = "col-md-8 col-md-offset-2">
+        <!-- Panel - DADOS PARA CADASTRO INTERNO -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>1. Dados para Cadastro Interno</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="form-group col-md-12">
+                <%= f.label :codigo, "Código da Orientação / Número do Encaminhamento da Defensoria Pública", :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :codigo, :class => 'form-control' %>
+                </div>
+                <%= error_span(@cliente[:codigo]) %>
+                <%= f.hidden_field :user, :value => current_user %>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Panel - Dados para Cadastro do Cliente -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Dados para Cadastro do Cliente</strong></h3>
+            <h3 class="panel-title"><strong>2. Dados para Cadastro do Cliente</strong></h3>
           </div>
           <div class="panel-body">
             <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @cliente} %>
@@ -87,21 +127,21 @@
         <!-- Painel - Triagem -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Triagem</strong></h3>
+            <h3 class="panel-title"><strong>3. Triagem</strong></h3>
           </div>
           <div class="panel-body">
             <div class="row">
               <div class="form-group col-md-12">
                 <%= f.label :estado_civil_id, "Estado Civil", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {}, {:class => 'form-control'} %>
+                  <%= f.select :estado_civil_id, EstadoCivil.all.collect {|civil_status| [civil_status.description.capitalize, civil_status.id]}, {:include_blank => true}, {:class => 'form-control'} %>
                 </div>
                 <%= error_span(@cliente[:estado_civil_id]) %>
               </div>
             </div><!-- /row -->
             <div class="row">
               <div class="form-group col-md-12">
-                <strong><%= f.label :tem_filhos, "Filhos", :class => 'control-label' %></strong>
+                <strong><%= f.label :tem_filhos, "Filhos?", :class => 'control-label' %></strong>
                 <div class="controls">
                   <%= f.radio_button :tem_filhos, "True"%>
                   <%= f.label :filhos_sim, "Sim" %>
@@ -161,9 +201,14 @@
                 </div>
                 <%= error_span(@cliente[:profissao_nome]) %>
               </div>
-              <div class="form-group col-md-4 col-sm-4">
-                <%= f.label :faz_bicos, "Faz bico?", :class => 'control-label' %>
-                <%= f.check_box :faz_bicos, :class => 'form-control' %>
+              <div class="form-group col-md-4">
+                <strong><%= f.label :faz_bicos, "Faz bico?", :class => 'control-label' %></strong>
+                <div class="controls">
+                  <%= f.radio_button :faz_bicos, "True"%>
+                  <%= f.label :faz_bico_sim, "Sim" %>
+                  <%= f.radio_button :faz_bicos, "False", :checked => true%>
+                  <%= f.label :faz_bico__nao, "Não" %>
+                </div>
                 <%= error_span(@cliente[:faz_bicos]) %>
               </div>
             </div><!-- /row -->
@@ -171,7 +216,7 @@
               <div class="form-group col-md-6 col-sm-6">
                 <%= f.label :categoria, "Complementação", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.select :profissao_type_id, ProfissaoType.all.collect {|profession| [profession.description.capitalize, profession.id]}, {}, {:class => 'form-control'} %>
+                  <%= f.select :profissao_type_id, ProfissaoType.all.collect {|profession| [profession.description.capitalize, profession.id]}, {:include_blank => true}, {:class => 'form-control'} %>
                 </div>
                 <%= error_span(@cliente[:profissao_type_id]) %>
               </div>
@@ -212,7 +257,7 @@
               <div class="form-group col-md-6">
                 <%= f.label :moradia_type_id, "Moradia", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.select :moradia_type_id, MoradiaType.all.collect {|desc| [desc.description.capitalize, desc.id]}, {}, {:class => 'form-control'} %>
+                  <%= f.select :moradia_type_id, MoradiaType.all.collect {|desc| [desc.description.capitalize, desc.id]}, {:include_blank => true}, {:class => 'form-control'} %>
                 </div>
                 <%= error_span(@cliente[:moradia_type_id]) %>
               </div><!-- /row -->
@@ -351,23 +396,14 @@
         </div><!-- /panel -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Relato inicial</h3>
+            <h3 class="panel-title"><strong>4. Parecer do Setor de Assistência Social</strong></h3>
           </div>
           <div class="panel-body row">
             <div class="form-group col-md-12 col-sm-12">
-              <div class="controls">
-                <%= f.fields_for @relato do |r| %>
-                  <%= r.text_area :description,  {:class => 'form-control', :rows => 7 } %>
-                <% end %>
-              </div>
-              <%= error_span(@cliente[:relato]) %>
-            </div>
-            <div class="form-group col-md-12 col-sm-12">
-              <%= f.label :categoria, :class => 'control-label' %>
+              <%= f.label :categoria, "O cliente enquadra­se na hipótese da Lei no 1.060/50?", :class => 'control-label' %>
               <div class="controls">
                 <%= f.fields_for @atendimento do |c| %>
-                  <%= c.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
-                  <%# <%= render 'question_fields', f: builder %>
+                  <%= c.select :status, options_for_select([['Sim', true], ['Não', false]]), {:include_blank => true}, {:class => 'form-control'} %>
                 <% end %>
               </div>
               <%= error_span(@atendimento[:status]) %>
@@ -385,3 +421,8 @@
   </div>
 
 <% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("div#error_expl").hide();
+});
+</script>

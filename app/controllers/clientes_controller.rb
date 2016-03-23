@@ -35,18 +35,17 @@ class ClientesController < ApplicationController
   # POST /clientes.json
   def create
     @cliente = Cliente.new(cliente_params)
+    @atendimento = Atendimento.new(atendimento_params)
     respond_to do |format|
       if @cliente.save
-
-        @atendimento = Atendimento.new(atendimento_params)
-        @relato = Relato.new(relato_params)
-        @relato.save
-        @atendimento.relatos << @relato
         @atendimento.cliente_id = @cliente.id
-        @atendimento.save
-
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
-        format.json { render :show, status: :created, location: @cliente }
+        if @atendimento.save
+          format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+          format.json { render :show, status: :created, location: @cliente }
+        else
+          format.html { render :new }
+          format.json { render json: @atendimento.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new }
         format.json { render json: @cliente.errors, status: :unprocessable_entity }
