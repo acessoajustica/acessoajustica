@@ -55,23 +55,27 @@
           <ul class="list-group">
             <li class="list-group-item">
               <strong>Criado em:</strong>
-              <%= @atendimento.created_at.strftime("%d/%m/%Y")%>
+              <%= @atendimento.created_at.strftime("%d/%m/%Y %H:%M:%S")%>
             </li>
             <li class="list-group-item">
-              <strong>Status:</strong>
-              <%= @atendimento.status %>
+              <strong>Última atualização:</strong>
+              <%= time_ago_in_words(@atendimento.created_at) %> atrás
             </li>
             <li class="list-group-item">
               <strong>Estagiário:</strong>
               <%= @atendimento.estagiario if @atendimento.estagiario.present? %>
             </li>
             <li class="list-group-item">
+              <strong>Categoria:</strong>
+              <%= @atendimento.status_name %>
+            </li>
+            <li class="list-group-item">
               <strong>Tipo do Atendimento:</strong>
-              <%= @atendimento.atendimento_type.name if @atendimento.atendimento_type.present? %>
+              <%= @atendimento.atendimento_type.description if @atendimento.atendimento_type.present? %>
             </li>
             <li class="list-group-item">
               <strong>Resultado:</strong>
-              <%= @atendimento.atendimento_resultado.name if @atendimento.atendimento_resultado.present? %>
+              <%= @atendimento.atendimento_resultado.description if @atendimento.atendimento_resultado.present? %>
             </li>
             <li class="list-group-item">
               <hr>
@@ -79,13 +83,13 @@
             <% if @atendimento.initial_description.present? %>
               <li class="list-group-item">
                 <h4>Relato Inicial</h4>
-                <p><%= @atendimento.initial_description %></p>
+                <p><%= simple_format(@atendimento.initial_description) %></p>
               </li>
             <% end %>
             <% if @atendimento.detailed_description.present? %>
               <li class="list-group-item">
                 <h4>Relato Detalhado</h4>
-                <p><%= @atendimento.detailed_description %></p>
+                <p><%= simple_format(@atendimento.detailed_description) %></p>
               </li>
             <% end %>
           </ul>

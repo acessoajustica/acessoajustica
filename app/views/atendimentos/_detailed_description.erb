@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Relato Detalhado</h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-12">
+        <div class="form-group">
+            <% if current_user.role? :calouro %> <!-- TODO usar can can-->
+              <p class="text-danger">Você não tem permissão para preencher o relato detalhado!</p>
+            <% elsif atendimento.initial_description.present? %>
+              <label for='detailed_description' class='control-label'>Digite abaixo o Relato Detalhado:</label>
+              <%= f.text_area :detailed_description, :class => 'form-control', size: "30x30" %>
+              <%= error_span(atendimento[:detailed_description]) %>
+            <% else %>
+              <p class="text-warning">Você deve preencher o relato inicial primeiro!</p>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

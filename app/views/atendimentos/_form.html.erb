@@ -15,59 +15,51 @@
 </div>
 <% end %>
 
-<div class="container-fluid">
+<div class="container">
+  <%= f.hidden_field :cliente_id %>
+  <%= render :partial => 'cliente_data' %>
+  <%= render :partial => 'initial_description',  :locals => { :f => f, :atendimento => @atendimento } %>
+  <%= render :partial => 'detailed_description', :locals => { :f => f, :atendimento => @atendimento } %>
+
   <div class='row'>
-    <div class="col-md-12">
-      <%= render :partial => 'cliente_data' %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title">Relatos</h3>
-        </div>
-        <div class="panel-body">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Classificação</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <% if current_user.role? :calouro %>
+          <!-- TODO usar can can-->
+          <p class="text-danger">Você não tem permissão para classificar o atendimento!</p>
+        <% else %>
           <div class="form-group">
-            <%= f.label :initial_description, :class => 'control-label' %>
-            <%= f.text_area :initial_description, :class => 'form-control' %>
-            <%= error_span(@atendimento[:initial_description]) %>
+            <%= f.label :categoria, :class => 'control-label' %>
+            <div class="controls">
+              <%= f.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+            </div>
+            <%= error_span(@atendimento[:status]) %>
           </div>
           <div class="form-group">
-            <%= f.label :detailed_description, :class => 'control-label' %>
-            <%= f.text_area :detailed_description, :class => 'form-control' %>
-            <%= error_span(@atendimento[:detailed_description]) %>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.label :categoria, :class => 'control-label' %>
-              <div class="controls">
-                <%= f.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
-              </div>
-              <%= error_span(@atendimento[:status]) %>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.label :tipo_de_atendimento, :class => 'control-label' %>
-              <div class="controls">
-                <%= f.select :atendimento_type_id,
-                           AtendimentoType.all.collect {|atendimento_type| [atendimento_type.description.capitalize,atendimento_type.id]},
-                           {:include_blank => true}, {:class =>
+            <%= f.label :tipo_de_atendimento, :class => 'control-label' %>
+            <div class="controls">
+              <%= f.select :atendimento_type_id,
+                         AtendimentoType.all.collect {|atendimento_type| [atendimento_type.description.capitalize,atendimento_type.id]},
+                         {:include_blank => true}, {:class => 'form-control'}
 
-
-                  'form-control'} %>
-              </div>
-              <%= error_span(@atendimento[:atendimento_type_id]) %>
+                           %>
             </div>
+            <%= error_span(@atendimento[:atendimento_type_id]) %>
           </div>
-          <div class="control-group">
-            <%= f.submit nil, :class => 'btn btn-primary' %>
-            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                    atendimentos_path, :class => 'btn btn-default' %>
-          </div>
+          <% end %>
         </div>
       </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class="control-group">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+              atendimentos_path, :class => 'btn btn-default' %>
     </div>
   </div>
 </div>

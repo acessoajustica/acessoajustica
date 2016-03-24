@@ -44,7 +44,6 @@ class AtendimentosController < ApplicationController
   # POST /atendimentos.json
   def create
     @atendimento = Atendimento.new(atendimento_params)
-
     respond_to do |format|
       if @atendimento.save
         format.html { redirect_to @atendimento, notice: 'Atendimento criado com sucesso!' }
@@ -60,8 +59,7 @@ class AtendimentosController < ApplicationController
   # PATCH/PUT /atendimentos/1.json
   def update
     respond_to do |format|
-      @atendimento.relatos.build(:description => atendimento_params[:new_relato])
-      if @atendimento.update(atendimento_params.except(:new_relato))
+      if @atendimento.update(atendimento_params)
         format.html { redirect_to @atendimento, notice: 'Atendimento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @atendimento }
       else
@@ -83,6 +81,6 @@ class AtendimentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def atendimento_params
-      params.require(:atendimento).permit(:status, :cliente_id, :atendimento_type_id, :new_relato)
+      params.require(:atendimento).permit(:status, :cliente_id, :atendimento_type_id, :initial_description, :detailed_description)
     end
 end

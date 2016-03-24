@@ -8,6 +8,8 @@ class Atendimento < ActiveRecord::Base
             presence: true,
             allow_blank: false
 
+  validates :cliente, presence: true
+
   def self.all_for (user)
     where("estagiario_id = ?", Membro.find(user.membro_id).actable_id)
   end
@@ -28,6 +30,14 @@ class Atendimento < ActiveRecord::Base
   def canTakeMe?(estagiario)
     intersection = atendimento_type.especialidades & estagiario.especialidades
     intersection.any?
+  end
+
+  def status_name
+    if self.status
+      'Aprovado'
+    else
+      'Não aprovado'
+    end
   end
 
 end
