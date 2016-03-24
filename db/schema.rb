@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322231641) do
+ActiveRecord::Schema.define(version: 20160324000738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,33 +48,6 @@ ActiveRecord::Schema.define(version: 20160322231641) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "caso_resultados", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "caso_types", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "casos", force: :cascade do |t|
-    t.boolean  "status"
-    t.integer  "cliente_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "estagiario_id"
-    t.integer  "caso_type_id"
-    t.integer  "caso_resultado_id"
-  end
-
-  add_index "casos", ["caso_resultado_id"], name: "index_casos_on_caso_resultado_id", using: :btree
-  add_index "casos", ["caso_type_id"], name: "index_casos_on_caso_type_id", using: :btree
-  add_index "casos", ["cliente_id"], name: "index_casos_on_cliente_id", using: :btree
-  add_index "casos", ["estagiario_id"], name: "index_casos_on_estagiario_id", using: :btree
-
   create_table "clientes", force: :cascade do |t|
     t.string   "profissao_nome"
     t.string   "familia_quantidade"
@@ -103,7 +76,7 @@ ActiveRecord::Schema.define(version: 20160322231641) do
     t.decimal  "agua"
     t.decimal  "luz"
     t.decimal  "gas"
-    t.decimal  "telefone"
+    t.decimal  "telefone_despesa"
     t.decimal  "transporte"
     t.decimal  "educacao"
     t.decimal  "obrigacoes_judiciais"
@@ -115,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160322231641) do
     t.integer  "menores_nao_moram_quantidades"
     t.integer  "maiores_nao_moram_quantidades"
     t.integer  "user_id"
+    t.string   "telefone_contato"
   end
 
   add_index "clientes", ["estado_civil_id"], name: "index_clientes_on_estado_civil_id", using: :btree
@@ -133,14 +107,6 @@ ActiveRecord::Schema.define(version: 20160322231641) do
 
   add_index "especialidades_atendimento_types", ["atendimento_type_id"], name: "index_especialidades_atendimento_types_on_atendimento_type_id", using: :btree
   add_index "especialidades_atendimento_types", ["especialidade_id"], name: "index_especialidades_atendimento_types_on_especialidade_id", using: :btree
-
-  create_table "especialidades_caso_types", id: false, force: :cascade do |t|
-    t.integer "especialidade_id"
-    t.integer "caso_type_id"
-  end
-
-  add_index "especialidades_caso_types", ["caso_type_id"], name: "index_especialidades_caso_types_on_caso_type_id", using: :btree
-  add_index "especialidades_caso_types", ["especialidade_id"], name: "index_especialidades_caso_types_on_especialidade_id", using: :btree
 
   create_table "estado_civils", force: :cascade do |t|
     t.string   "description"
@@ -247,8 +213,6 @@ ActiveRecord::Schema.define(version: 20160322231641) do
   add_foreign_key "atendimentos", "atendimento_types"
   add_foreign_key "atendimentos", "clientes"
   add_foreign_key "atendimentos", "estagiarios"
-  add_foreign_key "casos", "caso_resultados"
-  add_foreign_key "casos", "caso_types"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"
