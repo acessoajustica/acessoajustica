@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702002805) do
+ActiveRecord::Schema.define(version: 20160323215641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.integer  "estagiario_id"
     t.integer  "atendimento_type_id"
     t.integer  "atendimento_resultado_id"
+    t.string   "initial_description"
+    t.string   "detailed_description"
   end
 
   add_index "atendimentos", ["atendimento_resultado_id"], name: "index_atendimentos_on_atendimento_resultado_id", using: :btree
@@ -131,15 +133,6 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "relatos", force: :cascade do |t|
-    t.string   "description"
-    t.integer  "atendimento_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "relatos", ["atendimento_id"], name: "index_relatos_on_atendimento_id", using: :btree
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -185,5 +178,4 @@ ActiveRecord::Schema.define(version: 20150702002805) do
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"
-  add_foreign_key "relatos", "atendimentos"
 end

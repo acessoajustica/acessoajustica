@@ -4,6 +4,10 @@ class Atendimento < ActiveRecord::Base
   belongs_to :atendimento_type
   belongs_to :atendimento_resultado
 
+  validates :initial_description,
+            presence: true,
+            allow_blank: false
+
   def self.all_for (user)
     where("estagiario_id = ?", Membro.find(user.membro_id).actable_id)
   end

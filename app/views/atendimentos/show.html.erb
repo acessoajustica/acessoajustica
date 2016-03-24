@@ -61,31 +61,41 @@
               <strong>Status:</strong>
               <%= @atendimento.status %>
             </li>
-          </ul>
-        </div>
-      </div>
-      <!-- Relatos -->
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            Relatos
-          </h3>
-        </div>
-        <div class="panel-body">
-          <ul class="list-group">
-            <% @atendimento.relatos.each_with_index do |relato, index| %>
+            <li class="list-group-item">
+              <strong>Estagiário:</strong>
+              <%= @atendimento.estagiario if @atendimento.estagiario.present? %>
+            </li>
+            <li class="list-group-item">
+              <strong>Tipo do Atendimento:</strong>
+              <%= @atendimento.atendimento_type.name if @atendimento.atendimento_type.present? %>
+            </li>
+            <li class="list-group-item">
+              <strong>Resultado:</strong>
+              <%= @atendimento.atendimento_resultado.name if @atendimento.atendimento_resultado.present? %>
+            </li>
+            <li class="list-group-item">
+              <hr>
+            </li>
+            <% if @atendimento.initial_description.present? %>
               <li class="list-group-item">
-                <strong><%= index+1 %> Relato:</strong>
-                <%= relato.description %>
+                <h4>Relato Inicial</h4>
+                <p><%= @atendimento.initial_description %></p>
+              </li>
+            <% end %>
+            <% if @atendimento.detailed_description.present? %>
+              <li class="list-group-item">
+                <h4>Relato Detalhado</h4>
+                <p><%= @atendimento.detailed_description %></p>
               </li>
             <% end %>
           </ul>
         </div>
       </div>
+      <!-- Relatos -->
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     atendimentos_path, :class => 'btn btn-default'  %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                    edit_atendimento_path(@atendimento), :class => 'btn btn-default' %>
+                    edit_atendimento_path(@atendimento), :class => 'btn btn-primary' %>
       <hr>
     </div><!-- /col-md-8-->
   </div><!-- /row -->

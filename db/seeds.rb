@@ -7,55 +7,56 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
+puts 'seeding...'
+
 # Creating estado_civil's
-EstadoCivil.create!(:description => "Solteiro")
-EstadoCivil.create!(:description => "Casado")
-EstadoCivil.create!(:description => "Separação de Fato")
-EstadoCivil.create!(:description => "Separação Judicial")
-EstadoCivil.create!(:description => "Viúvo")
-EstadoCivil.create!(:description => "Viúve em União Estável")
+EstadoCivil.find_or_create_by!(:description => "Solteiro")
+EstadoCivil.find_or_create_by!(:description => "Casado")
+EstadoCivil.find_or_create_by!(:description => "Separação de Fato")
+EstadoCivil.find_or_create_by!(:description => "Separação Judicial")
+EstadoCivil.find_or_create_by!(:description => "Viúvo")
+EstadoCivil.find_or_create_by!(:description => "Viúve em União Estável")
 
 # Creating profissao's
-ProfissaoType.create!(:description => "Primário")
-ProfissaoType.create!(:description => "Secundário")
-ProfissaoType.create!(:description => "Terciário")
+ProfissaoType.find_or_create_by!(:description => "Primário")
+ProfissaoType.find_or_create_by!(:description => "Secundário")
+ProfissaoType.find_or_create_by!(:description => "Terciário")
 
 # Creating atendimento_types
-AtendimentoType.create!(:description => "Atendimento")
-AtendimentoType.create!(:description => "Orientação")
+AtendimentoType.find_or_create_by!(:description => "Atendimento")
+AtendimentoType.find_or_create_by!(:description => "Orientação")
 
 # Creating roles.
-admin_role = Role.create!(:name => "admin")
-diretor_role = Role.create!(:name => "diretor")
-vareiro_role = Role.create!(:name => "vareiro")
-calouro_role = Role.create!(:name => "calouro")
-estagiario_role = Role.create!(:name => "estagiário")
+admin_role      = Role.find_or_create_by!(:name => "admin")
+diretor_role    = Role.find_or_create_by!(:name => "diretor")
+vareiro_role    = Role.find_or_create_by!(:name => "vareiro")
+calouro_role    = Role.find_or_create_by!(:name => "calouro")
+estagiario_role = Role.find_or_create_by!(:name => "estagiário")
 
 admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>'password')
 admin_user.roles << admin_role
 
 # Creating moradia_types
-MoradiaType.create!(:description => "Casa")
-MoradiaType.create!(:description => "Apartamento")
-MoradiaType.create!(:description => "Pensão")
-MoradiaType.create!(:description => "República")
-MoradiaType.create!(:description => "Alvenaria")
-MoradiaType.create!(:description => "Palafita")
-MoradiaType.create!(:description => "Quitinete")
+MoradiaType.find_or_create_by!(:description => "Casa")
+MoradiaType.find_or_create_by!(:description => "Apartamento")
+MoradiaType.find_or_create_by!(:description => "Pensão")
+MoradiaType.find_or_create_by!(:description => "República")
+MoradiaType.find_or_create_by!(:description => "Alvenaria")
+MoradiaType.find_or_create_by!(:description => "Palafita")
+MoradiaType.find_or_create_by!(:description => "Quitinete")
 
 case Rails.env
   when "development"
 
-
     # Creating admin users
     estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
-    calouro_user = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
-    vareiro_user = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
-    diretor_user = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
+    calouro_user    = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
+    vareiro_user    = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
+    diretor_user    = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
 
     #Creating especialidades
-    Especialidade.create!(:description => "Criminal");
-    Especialidade.create!(:description => "Penal");
+    Especialidade.find_or_create_by!(:description => "Criminal");
+    Especialidade.find_or_create_by!(:description => "Penal");
 
     # assign the admin role to the admin user.  (This bit of rails
     # magic creates a user_role record in the database.)
@@ -65,57 +66,60 @@ case Rails.env
     diretor_user.roles << diretor_role
 
     # Creating cliente
-    cliente = Cliente.create!(:nome => "João da Silva",
-              :cpf  => "123.456.789-00",
-              :nome_da_mae => "Maria da Penha",
-              :rg  => "12.345.678-9",
-              :cor  => "Negro",
-              :identidade_de_genero => "Homem",
-              :familia_renda  => 1500.00,
-              :filhos_quantidade  => 6,
-              :profissao_nome  => "Assistente Administrativo",
-              :familia_quantidade => 9,
-              :contribuintes_quantidade => 4)
+    cliente = Cliente.find_or_create_by!(:nome => "João da Silva",
+                                         :cpf  => "123.456.789-00",
+                                         :nome_da_mae => "Maria da Penha",
+                                         :rg  => "12.345.678-9",
+                                         :cor  => "Negro",
+                                         :identidade_de_genero => "Homem",
+                                         :familia_renda  => 1500.00,
+                                         :filhos_quantidade  => 6,
+                                         :profissao_nome  => "Assistente Administrativo",
+                                         :familia_quantidade => 9,
+                                         :contribuintes_quantidade => 4)
 
     estagiario = Estagiario.create!(:nome => "Joana Silveira ",
-              :cpf =>"123.456.789-00",
-              :nome_da_mae  =>  "Maria da Penha",
-              :rg  => "12.345.678-9",
-              :cor  => "Negro",
-              :identidade_de_genero  => "Homem",
-              :ano_faculdade  => "1991-03-02")
+                                               :cpf =>"123.456.789-00",
+                                               :nome_da_mae  =>  "Maria da Penha",
+                                               :rg  => "12.345.678-9",
+                                               :cor  => "Negro",
+                                               :identidade_de_genero  => "Homem",
+                                               :ano_faculdade  => "1991-03-02")
 
     estagiario_user.membro_id = estagiario.membro.id
     estagiario_user.save
 
-    resultado_type = AtendimentoResultado.create!(:description => "Orientação")
+    resultado_type = AtendimentoResultado.find_or_create_by!(:description => "Orientação")
 
     # Creating atendimento
-    atendimento1 = Atendimento.create!(:status => true, :cliente => cliente)
-    atendimento2 = Atendimento.create!(:status => false, :cliente => cliente)
-    atendimento3 = Atendimento.create!(:status => true, :cliente => cliente, :estagiario => estagiario,
-      :atendimento_resultado => resultado_type)
+    atendimento1 = Atendimento.find_or_create_by!(:status => true,
+                                                  :cliente => cliente,
+                                                  :initial_description => 'Relato inicial.')
 
-    # Creating relato
-    relato = Relato.create!(:description => "Relato teste para teste que será testado nesse teste.",
-            :atendimento => atendimento1)
+    atendimento2 = Atendimento.find_or_create_by!(:status => false,
+                                                  :cliente => cliente,
+                                                  :initial_description => 'Relato inicial.')
 
-    cliente2 = Cliente.create!( :nome => "Abreu da Silva Sauro",
-              :cpf  =>"123.456.789-00",
-              :nome_da_mae => "Maria d,a Penha",
-              :rg  => "12.345.678-9",
-              :cor  => "Negro",
-              :identidade_de_genero => "Homem",
-              :familia_renda  => 1500.00,
-              :filhos_quantidade  => 6,
-              :profissao_nome  =>"Assistente Administrativo",
-              :familia_quantidade => 9,
-              :contribuintes_quantidade => 4)
+    atendimento3 = Atendimento.find_or_create_by!(:status => true,
+                                                  :cliente => cliente,
+                                                  :initial_description => 'Relato inicial.',
+                                                  :estagiario => estagiario,
+                                                  :atendimento_resultado => resultado_type)
+
+    cliente2 = Cliente.find_or_create_by!(:nome => "Abreu da Silva Sauro",
+                                          :cpf  =>"123.456.789-00",
+                                          :nome_da_mae => "Maria d,a Penha",
+                                          :rg  => "12.345.678-9",
+                                          :cor  => "Negro",
+                                          :identidade_de_genero => "Homem",
+                                          :familia_renda  => 1500.00,
+                                          :filhos_quantidade  => 6,
+                                          :profissao_nome  =>"Assistente Administrativo",
+                                          :familia_quantidade => 9,
+                                          :contribuintes_quantidade => 4)
 
     # Creating atendimento
-    atendimento3 = Atendimento.create!(:status => true, :cliente => cliente2)
-
-    # Creating relato
-    relato = Relato.create!(:description => "Relato teste para teste que será testado nesse teste. Relato teste para teste que será testado nesse teste. Relato teste para teste que será testado nesse teste. Relato teste para teste que será testado nesse teste.",
-            :atendimento => atendimento3)
+    atendimento3 = Atendimento.find_or_create_by!(:status => true,
+                                                  :cliente => cliente2,
+                                                  :initial_description => "Relato inicial.")
 end

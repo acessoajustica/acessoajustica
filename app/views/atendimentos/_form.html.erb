@@ -1,73 +1,75 @@
 <%= form_for @atendimento, :html => { :class => "form-horizontal atendimento" } do |f| %>
 
-    <% if @atendimento.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @atendimento.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="container-fluid">
-    <div class='row'>
-      <div class="col-md-12">
-        <%= render :partial => 'cliente_data' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="control-group col-md-6">
-          <%= f.label :categoria, :class => 'control-label' %>
-          <div class="controls">
-            <%= f.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
-          </div>
-          <%= error_span(@atendimento[:status]) %>
-        </div>
-        <div class="control-group col-md-6">
-          <%= f.label :tipo_de_atendimento, :class => 'control-label' %>
-          <div class="controls">
-             <%= f.select :atendimento_type_id,
-                           AtendimentoType.all.collect {|atendimento_type| [atendimento_type.description.capitalize,atendimento_type.id]},
-                           {:include_blank => true},
-                           {:class => 'form-control'}
-             %>
-          </div>
-          <%= error_span(@atendimento[:atendimento_type_id]) %>
-        </div>
-        <div class="control-group col-md-12">
-          <%= f.label :novo_relato, :class => 'control-label' %>
-          <div class="controls">
-            <textarea class="form-control" rows="7" name="atendimento[new_relato]" id="atendimento_new_relato"></textarea>
-          </div>
-          <%= error_span(@atendimento[:relatos]) %>
-        </div>
-
-        <div class="control-group col-md-12">
-        <%= f.submit nil, :class => 'btn btn-primary' %>
-        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                  atendimentos_path, :class => 'btn btn-default' %>
-        </div>
-
-        <div class="control-group col-md-12">
-          <hr>
-          <%= f.label :relatos_anteriores, :class => 'control-label' %>
-          <div class="controls">
-          <% Relato.where(:atendimento => @atendimento).each do |relato| %>
-            <%= relato.description %>
-            <br>
-          <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<% if @atendimento.errors.any? %>
+<div id="error_expl" class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Foram encontrados alguns erros:</h3>
   </div>
+  <div class="panel-body">
+    <ul>
+      <% @atendimento.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<div class="container-fluid">
+  <div class='row'>
+    <div class="col-md-12">
+      <%= render :partial => 'cliente_data' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Relatos</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <%= f.label :initial_description, :class => 'control-label' %>
+            <%= f.text_area :initial_description, :class => 'form-control' %>
+            <%= error_span(@atendimento[:initial_description]) %>
+          </div>
+          <div class="form-group">
+            <%= f.label :detailed_description, :class => 'control-label' %>
+            <%= f.text_area :detailed_description, :class => 'form-control' %>
+            <%= error_span(@atendimento[:detailed_description]) %>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :categoria, :class => 'control-label' %>
+              <div class="controls">
+                <%= f.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+              </div>
+              <%= error_span(@atendimento[:status]) %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :tipo_de_atendimento, :class => 'control-label' %>
+              <div class="controls">
+                <%= f.select :atendimento_type_id,
+                           AtendimentoType.all.collect {|atendimento_type| [atendimento_type.description.capitalize,atendimento_type.id]},
+                           {:include_blank => true}, {:class =>
+
+
+                  'form-control'} %>
+              </div>
+              <%= error_span(@atendimento[:atendimento_type_id]) %>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= f.submit nil, :class => 'btn btn-primary' %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    atendimentos_path, :class => 'btn btn-default' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% end %>
