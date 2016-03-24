@@ -2,8 +2,11 @@ FactoryGirl.define do
   factory :atendimento do
     status true
     # association :cliente, factory: :cliente, strategy: :build
-    cliente Cliente.new()
-    # association :cliente, factory: :cliente, strategy: :build
+    #association :cliente, factory: :cliente, strategy: :build
+    association :cliente, factory: :cliente, strategy: :build
+    #cliente FactoryGirl.create(:cliente)
+    initial_description "Um relato inicial"
+    detailed_description "Um relato detalhado"
   end
 
   trait :old do
@@ -16,11 +19,11 @@ FactoryGirl.define do
 
   trait :invalid do
     cliente nil
+    initial_description nil
   end
 
   trait :restless do
-    relatos ['Uma descrição',
-             'Outra descrição',
-             'Mais uma descrição']
+    initial_description "Um relato inicial"
+    detailed_description "Um relato detalhado"
   end
 end

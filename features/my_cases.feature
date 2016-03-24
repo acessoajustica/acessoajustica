@@ -27,8 +27,8 @@ Feature: My Cases
     When I am on "my cases"
     And I click at css "#Joana_Silveira"
     And I wait a second
-    Then I should see "Uma descrição"
-    
+    Then I should see "Um relato Inicial"
+
   @javascript
   Scenario: Contract the Accordion II (the accordion strikes back)
     Given I am logged as "estagiario"
@@ -39,7 +39,7 @@ Feature: My Cases
     And I wait a second
     And I click at css "#Joana_Silveira"
     And I wait a second
-    Then I should not see "Uma descrição"
+    Then I should not see "Um relato inicial"
 
   Scenario: List my cases
     Given I am logged as "estagiario"
@@ -47,9 +47,7 @@ Feature: My Cases
     And I am that estagiario
     When I am on "my cases"
     Then I should see "Joana Silveira"
-    And I should see "Uma descrição"
-    And I should see "Outra descrição"
-    And I should see "Mais uma descrição"
+    And I should see "Um relato inicial"
 
   Scenario: Access my cases
     Given I am logged as "estagiario"

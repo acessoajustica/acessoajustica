@@ -11,7 +11,7 @@ FactoryGirl.define do
     profissao_nome "Assistente Administrativo"
     familia_quantidade 9
     contribuintes_quantidade 4
-    
+
     trait :cliente_with_atendimento do
       atendimentos  [FactoryGirl.build(:atendimento)]
     end

@@ -3,12 +3,19 @@ Feature: Edit Atendimento
   An estagiario
   Should edit the atendimento
 
-  Scenario: Add new Relato
+  Scenario: Add Relato Inicial
     Given I am logged as "estagiario"
     And I am editing a atendimento
-    When I fill in "atendimento new relato" with "Mais um novo relato"
+    When I fill in "atendimento relato inicial" with "Mais um novo relato"
     And I press "Atualizar Atendimento"
-    Then I should see "Atendimento was successfully updated"
+    Then I should see "Atendimento atualizado com sucesso"
+
+  Scenario: Add Relato Detalhado
+    Given I am logged as "estagiario"
+    And I am editing a atendimento
+    When I fill in "atendimento relato detalhado" with "Mais um novo relato detalhado"
+    And I press "Atualizar Atendimento"
+    Then I should see "Atendimento atualizado com sucesso"
 
   Scenario: Update a category
     Given I am logged as "estagiario"
@@ -23,9 +30,9 @@ Feature: Edit Atendimento
     And I am editing a atendimento
     When I select the option "Criminal" in "atendimento atendimento type id"
     And I press "Atualizar Atendimento"
-    Then I should see "Atendimento was successfully updated"
+    Then I should see "Atendimento atualizado com sucesso"
 
   Scenario: See old Relato
     Given I am logged as "estagiario"
     And I am editing a atendimento
-    Then I should see "Uma descrição"
+    Then I should see "Um relato inicial"

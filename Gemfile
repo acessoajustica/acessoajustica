@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -77,7 +76,8 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.0'
 
-  gem 'factory_girl', '~> 4.5.0'
+  #gem 'factory_girl', '~> 4.5.0'
+  gem 'factory_girl_rails'
 
   gem 'shoulda-matchers', '~> 2.8.0'
 

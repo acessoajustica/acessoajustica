@@ -39,13 +39,13 @@ Feature: Wait list
     And exists a "atendimento" that belongs to a "cliente"
     And I am on "the atendimentos page"
     Then the list should be sorted by "register_time"
-  
+
   @javascript
   Scenario: Accordion not Clicked
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
     And I am on "the atendimentos page"
-    Then I should not see "Uma descrição"
+    Then I should not see "Um relato Inicial"
 
   @javascript
   Scenario: Expand the Accordion
@@ -53,7 +53,7 @@ Feature: Wait list
     And exists a "atendimento" that belongs to a "cliente"
     And I am on "the atendimentos page"
     When I click at css "#Joana_Silveira"
-    Then I should see "Uma descrição"
+    Then I should see "Um relato Inicial"
 
   @javascript
   Scenario: Contract the Accordion
@@ -64,7 +64,7 @@ Feature: Wait list
     And I wait a second
     And I click at css "#Joana_Silveira"
     And I wait a second
-    Then I should not see "Uma descrição"
+    Then I should not see "Um relato Inicial"
 
   Scenario: See Atendimento Type
     Given I am logged as "estagiario"
@@ -81,11 +81,11 @@ Feature: Wait list
   @javascript
   Scenario: Select a atendimento
     Given I am logged as "estagiario"
-    And exists a "atendimento" that belongs to a "cliente" 
+    And exists a "atendimento" that belongs to a "cliente"
     And I am on "the atendimentos page"
     When I click at css "#Joana_Silveira"
     And I wait a second
     And I click at css "#Joana_Silveira"
     And I wait a second
     And I take "Joana" picture of the page
-    Then I should not see "Uma Descrição"
+    Then I should not see "Um relato Inicial"

@@ -23,9 +23,7 @@
         <div class="panel-body">
         <div class="row">
         <div class = "col-md-10 col-sm-8 text-left">
-          <% Relato.where(:atendimento => atendimento).each do |relato| %>
-            <%= relato.description %>
-          <% end %>
+          <span><%= simple_format(atendimento.initial_description) %></span>
         </div>
         <div class = "col-md-2 col-sm-2">
             <%= link_to 'Escolher', select_case_path(atendimento.id), :class => "btn-info btn-xs pull-right", :id =>  "Escolher_" + index.to_s %>
