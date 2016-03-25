@@ -6,14 +6,14 @@ Feature: Edit Atendimento
   Scenario: Add Relato Inicial
     Given I am logged as "estagiario"
     And I am editing a atendimento
-    When I fill in "atendimento relato inicial" with "Mais um novo relato"
+    When I fill in "atendimento initial description" with "Mais um novo relato"
     And I press "Atualizar Atendimento"
     Then I should see "Atendimento atualizado com sucesso"
 
   Scenario: Add Relato Detalhado
     Given I am logged as "estagiario"
     And I am editing a atendimento
-    When I fill in "atendimento relato detalhado" with "Mais um novo relato detalhado"
+    When I fill in "atendimento detailed description" with "Mais um novo relato detalhado"
     And I press "Atualizar Atendimento"
     Then I should see "Atendimento atualizado com sucesso"
 
@@ -22,7 +22,7 @@ Feature: Edit Atendimento
     And I am editing a atendimento
     When I select the option "Aprovado" in "atendimento status"
     And I press "Atualizar Atendimento"
-    Then I should see "Status: true"
+    Then I should see "Categoria: Aprovado"
 
   Scenario: Update a atendimento type
     Given I am logged as "estagiario"

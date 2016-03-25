@@ -25,19 +25,19 @@ RSpec.describe AtendimentosController, type: :controller do
   # Atendimento. As you add validations to Atendimento, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    FactoryGirl.attributes_for(:atendimento)
+    FactoryGirl.build(:atendimento).attributes
   end
 
   let(:valid_old_atendimento) do
-    FactoryGirl.attributes_for(:atendimento, :old)
+    FactoryGirl.build(:atendimento, :old).attributes
   end
 
   let(:valid_non_accepted) do
-    FactoryGirl.attributes_for(:atendimento, :rejected)
+    FactoryGirl.build(:atendimento, :rejected).attributes
   end
 
   let(:invalid_attributes) do
-    FactoryGirl.attributes_for(:atendimento, :invalid)
+    FactoryGirl.build(:atendimento, :invalid).attributes
   end
 
   # This should return the minimal set of values that should be in the session

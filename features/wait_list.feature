@@ -40,32 +40,6 @@ Feature: Wait list
     And I am on "the atendimentos page"
     Then the list should be sorted by "register_time"
 
-  @javascript
-  Scenario: Accordion not Clicked
-    Given I am logged as "estagiario"
-    And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
-    Then I should not see "Um relato Inicial"
-
-  @javascript
-  Scenario: Expand the Accordion
-    Given I am logged as "estagiario"
-    And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
-    When I click at css "#Joana_Silveira"
-    Then I should see "Um relato Inicial"
-
-  @javascript
-  Scenario: Contract the Accordion
-    Given I am logged as "estagiario"
-    And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
-    When I click at css "#Joana_Silveira"
-    And I wait a second
-    And I click at css "#Joana_Silveira"
-    And I wait a second
-    Then I should not see "Um relato Inicial"
-
   Scenario: See Atendimento Type
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente and to a atendimento_type"
