@@ -6,7 +6,7 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos
   # GET /atendimentos.json
   def index
-    @atendimentos = Atendimento.from_beginning_of_day
+    @atendimentos = Atendimento.waiting_list
   end
 
   # GET /atendimentos/my-cases

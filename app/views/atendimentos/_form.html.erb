@@ -28,10 +28,6 @@
       </div>
       <div class="panel-body">
         <div class="col-md-12">
-          <% if current_user.role? :calouro %>
-          <!-- TODO usar can can-->
-          <p class="text-danger">Você não tem permissão para classificar o atendimento!</p>
-        <% else %>
           <div class="form-group">
             <%= f.label :categoria, :class => 'control-label' %>
             <div class="controls">
@@ -50,7 +46,6 @@
             </div>
             <%= error_span(@atendimento[:atendimento_type_id]) %>
           </div>
-          <% end %>
         </div>
       </div>
     </div>
