@@ -19,8 +19,6 @@ Feature: My Cases
     Then I should see "Joana Silveira"
     But I should not see "Mario da Silva"
 
-  
-
   Scenario: List my cases
     Given I am logged as "estagiario"
     And exists a "restless atendimento" that belongs to an "estagiario and to a cliente"

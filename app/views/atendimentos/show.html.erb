@@ -63,7 +63,7 @@
             </li>
             <li class="list-group-item">
               <strong>Estagiário:</strong>
-              <%= @atendimento.estagiario if @atendimento.estagiario.present? %>
+              <%= @atendimento.estagiario.nome if @atendimento.estagiario.present? %>
             </li>
             <li class="list-group-item">
               <strong>Categoria:</strong>
@@ -91,6 +91,8 @@
                 <h4>Relato Detalhado</h4>
                 <p><%= simple_format(@atendimento.detailed_description) %></p>
               </li>
+            <% elsif !current_user.role? :calouro %>
+              <%= link_to 'Preencher Relato Detalhado', edit_atendimento_path(@atendimento), :class => 'btn btn-warning btn-md' %>
             <% end %>
           </ul>
         </div>

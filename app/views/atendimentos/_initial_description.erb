@@ -6,8 +6,13 @@
     <div class="panel-body">
       <div class="col-md-12">
         <div class="form-group">
+          <p class="text-info">
+            O relato inicial deve ser preenchido para que possa haver uma filtragem e uma
+            classificação dos atendimentos, e para que se possa determinar
+            se o atendimento deve posteriormente virar um caso ou se deve ser apenas uma orientação.
+          </p>
           <label for='initial_description' class='control-label'>Digite abaixo o Relato Inicial:</label>
-          <%= f.text_area :initial_description, :class => 'form-control', size: "30x30" %>
+          <%= f.text_area :initial_description, :class => 'form-control', size: "30x30", placeholder: 'O cliente afirma que ...' %>
           <%= error_span(atendimento[:initial_description]) %>
         </div>
       </div>
