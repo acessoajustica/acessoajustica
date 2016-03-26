@@ -116,9 +116,6 @@
             <% elsif !current_user.role? :calouro and @atendimento.active? %>
               <%= link_to 'Preencher Relato Detalhado', edit_atendimento_path(@atendimento), :class => 'btn btn-warning btn-md' %>
             <% end %>
-            <% if @atendimento.active? %>
-              <%= link_to "Arquivar", archive_atendimento_path(@atendimento), method: :put, :class => 'btn btn-danger btn-xs', :data => {:confirm => 'Tem certeza que deseja arquivar o atendimento?'}  %>
-            <% end %>
           </ul>
         </div>
       </div>
@@ -128,6 +125,7 @@
       <% if @atendimento.active? %>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_atendimento_path(@atendimento), :class => 'btn btn-primary' %>
+        <%= link_to "Arquivar", archive_atendimento_path(@atendimento), method: :put, :class => 'btn btn-danger', :data => {:confirm => 'Tem certeza que deseja arquivar o atendimento?'}  %>
       <% end %>
       <hr>
     </div><!-- /col-md-8-->
