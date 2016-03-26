@@ -2,6 +2,7 @@ class AtendimentosController < ApplicationController
   load_and_authorize_resource
   before_action :set_cliente, only: [:new]
   before_action :set_atendimento, only: [:show, :edit, :update, :destroy]
+  before_action :check_status, only: [:edit, :update, :destroy]
 
   # GET /atendimentos
   # GET /atendimentos.json
@@ -82,5 +83,11 @@ class AtendimentosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def atendimento_params
       params.require(:atendimento).permit(:status, :cliente_id, :justification, :atendimento_type_id, :initial_description, :detailed_description)
+    end
+
+    def check_status
+      unless @atendimento.active?
+        redirect_to @atendimento, flash: { warning: "O atendimento ##{@atendimento.id} está arquivado e não pode ser alterado!"}
+      end
     end
 end

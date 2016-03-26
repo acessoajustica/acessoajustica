@@ -5,7 +5,9 @@ class Atendimento < ActiveRecord::Base
   belongs_to :atendimento_resultado
   before_save :deactivate_depending_on_atendimento_type, :if => :atendimento_type_id_changed?
 
-  default_scope { where(active: 'true').order(created_at: :asc) }
+  default_scope { order(created_at: :asc) }
+
+  scope :active, -> { where(active: true) }
 
   validates :initial_description,
             presence: true,
@@ -19,11 +21,11 @@ class Atendimento < ActiveRecord::Base
   #validates :cliente, presence: true
 
   def self.all_for (user)
-    where("estagiario_id = ?", Membro.find(user.membro_id).actable_id)
+    active.where("estagiario_id = ?", Membro.find(user.membro_id).actable_id)
   end
 
   def self.from_beginning_of_day
-    where("created_at >= ?", Time.zone.now.beginning_of_day)
+    active.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
   def self.waiting_list

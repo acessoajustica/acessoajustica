@@ -1,4 +1,12 @@
 <%- model_class = Atendimento -%>
+
+<% unless @atendimento.active? %>
+  <div class="alert alert-dismissible alert-info">
+    <h4>Atendimento Arquivado</h4>
+    <p>O presente atendimento foi arquivado.</p>
+  </div>
+<% end %>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
@@ -53,6 +61,13 @@
         </div>
         <div class="panel-body">
           <ul class="list-group">
+            <% unless @atendimento.active? %>
+              <li class="list-group-item">
+                <div class="alert alert-dismissible alert-info">
+                  <h4>Atendimento Arquivado</h4>
+                </div>
+              </li>
+            <% end %>
             <li class="list-group-item">
               <strong>Criado em:</strong>
               <%= @atendimento.created_at.strftime("%d/%m/%Y %H:%M:%S")%>
@@ -98,7 +113,7 @@
                 <h4>Relato Detalhado</h4>
                 <p><%= simple_format(@atendimento.detailed_description) %></p>
               </li>
-            <% elsif !current_user.role? :calouro %>
+            <% elsif !current_user.role? :calouro and @atendimento.active? %>
               <%= link_to 'Preencher Relato Detalhado', edit_atendimento_path(@atendimento), :class => 'btn btn-warning btn-md' %>
             <% end %>
           </ul>
@@ -107,8 +122,10 @@
       <!-- Relatos -->
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     atendimentos_path, :class => 'btn btn-default'  %>
-      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+      <% if @atendimento.active? %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_atendimento_path(@atendimento), :class => 'btn btn-primary' %>
+      <% end %>
       <hr>
     </div><!-- /col-md-8-->
   </div><!-- /row -->
