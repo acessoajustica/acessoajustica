@@ -20,6 +20,11 @@ class Atendimento < ActiveRecord::Base
   #TODO quebra os testes...
   #validates :cliente, presence: true
 
+  def deactivate!
+    self.active = false
+    self.save!
+  end
+
   def self.all_for (user)
     active.where("estagiario_id = ?", Membro.find(user.membro_id).actable_id)
   end

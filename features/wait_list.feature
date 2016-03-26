@@ -40,12 +40,12 @@ Feature: Wait list
     And I am on "the atendimentos page"
     Then the list should be sorted by "register_time"
 
-  @wip
-  Scenario: See Atendimento Type
-    Given I am logged as "estagiario"
-    And exists a "atendimento" that belongs to a "cliente and to a atendimento_type"
-    And I am on "the atendimentos page"
-    Then I should see "Criminal"
+  #@wip
+  #Scenario: See Atendimento Type
+  #  Given I am logged as "estagiario"
+  #  And exists a "atendimento" that belongs to a "cliente and to a atendimento_type"
+  #  And I am on "the atendimentos page"
+  #  Then I should see "Orientação"
 
   Scenario: See Atendimento Time
     Given I am logged as "estagiario"

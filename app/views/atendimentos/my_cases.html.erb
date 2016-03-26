@@ -32,6 +32,7 @@
                 <% else %>
                   <%= link_to 'Preencher Relato', edit_atendimento_path(atendimento), :class => 'btn btn-warning btn-xs' %>
                 <% end %>
+                <%= link_to "Arquivar", archive_atendimento_path(atendimento), method: :put, :class => 'btn btn-danger btn-xs', :data => {:confirm => 'Tem certeza que deseja arquivar o atendimento?'}  %>
               </td>
             </tr>
           <% end %>

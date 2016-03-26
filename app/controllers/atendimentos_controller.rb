@@ -1,7 +1,7 @@
 class AtendimentosController < ApplicationController
   load_and_authorize_resource
   before_action :set_cliente, only: [:new]
-  before_action :set_atendimento, only: [:show, :edit, :update, :destroy]
+  before_action :set_atendimento, only: [:show, :edit, :update, :destroy, :archive]
   before_action :check_status, only: [:edit, :update, :destroy]
 
   # GET /atendimentos
@@ -39,6 +39,18 @@ class AtendimentosController < ApplicationController
 
   # GET /atendimentos/1/edit
   def edit
+  end
+
+  def archive
+    respond_to do |format|
+      if @atendimento.deactivate!
+        format.html { redirect_to @atendimento, notice: 'Atendimento arquivado com sucesso!' }
+        format.json { render :show, status: :ok, location: @atendimento }
+      else
+        format.html { render :edit }
+        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /atendimentos

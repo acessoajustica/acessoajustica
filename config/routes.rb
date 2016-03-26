@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     collection do
       get 'my-cases'
     end
+    member do
+      put 'archive'
+    end
   end
 
   get "atendimentos/:id/select-case" => "atendimentos#select_case" , as: :select_case

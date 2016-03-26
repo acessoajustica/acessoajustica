@@ -28,7 +28,7 @@ Feature: Edit Atendimento
     Given I am logged as "estagiario"
     And exists a "atendimento_type"
     And I am editing a atendimento
-    When I select the option "Criminal" in "atendimento atendimento type id"
+    When I select the option "Orientação" in "atendimento atendimento type id"
     And I fill in "atendimento justification" with "Justificativa do tipo."
     And I press "Atualizar Atendimento"
     Then I should see "Atendimento atualizado com sucesso"
