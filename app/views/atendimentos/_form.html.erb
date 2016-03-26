@@ -24,27 +24,59 @@
   <div class='row'>
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">Classificação</h3>
+        <h3 class="panel-title">Categoria</h3>
       </div>
       <div class="panel-body">
         <div class="col-md-12">
           <div class="form-group">
-            <%= f.label :categoria, :class => 'control-label' %>
+            <p class="text-info">
+              O relato deve ser analisado?
+            </p>
+            <%= f.label :status, 'Categoria', :class => 'control-label' %>
             <div class="controls">
-              <%= f.select :status, options_for_select([['Aprovado', true], ['Não aprovado', false]]), {:include_blank => true}, {:class => 'form-control'} %>
+              <%= f.radio_button :status, true %> Aprovado
+              <%= f.radio_button :status, false %> Não aprovado
             </div>
             <%= error_span(@atendimento[:status]) %>
           </div>
-          <div class="form-group">
-            <%= f.label :tipo_de_atendimento, :class => 'control-label' %>
-            <div class="controls">
-              <%= f.select :atendimento_type_id,
-                         AtendimentoType.all.collect {|atendimento_type| [atendimento_type.description.capitalize,atendimento_type.id]},
-                         {:include_blank => true}, {:class => 'form-control'}
+        </div>
+      </div>
+    </div>
+  </div>
 
-                           %>
-            </div>
-            <%= error_span(@atendimento[:atendimento_type_id]) %>
+  <div class='row'>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Tipo de Atendimento</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div class="form-group">
+            <p class="text-info">
+              O tipo de atendimento define o que deve ser feito a partir de agora. <br/>
+              Foi apenas uma orientação?<br/>
+              O caso pode ser resolvido através de uma mediação?<br/>
+              É preciso abrir uma ação?
+            </p>
+            <% if current_user.role? :calouro %> <!-- TODO usar can can-->
+              <p class="text-danger">Você não tem permissão para classificar o atendimento!</p>
+            <% elsif @atendimento.initial_description.present? %>
+              <%= f.label :tipo_de_atendimento, :class => 'control-label' %>
+              <div class="controls">
+                <%= f.select :atendimento_type_id,
+                           AtendimentoType.all.collect {|atendimento_type| [atendimento_type.description.capitalize, atendimento_type.id]},
+                           {:include_blank => true}, {:class => 'form-control'} %>
+
+                <label for='justification' class='control-label'>Justifique:</label>
+                <%= f.text_area :justification, :class => 'form-control', size: "10x10",
+                 placeholder: 'justificativa...',
+                 disabled: current_user.role?(:calouro) %>
+                 <%= error_span(@atendimento[:justification]) %>
+              </div>
+              <%= error_span(@atendimento[:justification]) %>
+            <% else %>
+              <p class="text-warning">Você deve preencher o relato inicial primeiro!</p>
+            <% end %>
           </div>
         </div>
       </div>

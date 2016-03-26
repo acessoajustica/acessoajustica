@@ -78,12 +78,19 @@
               <%= @atendimento.atendimento_resultado.description if @atendimento.atendimento_resultado.present? %>
             </li>
             <li class="list-group-item">
+              <strong>Justificativa:</strong>
+              <p><%= simple_format(@atendimento.justification) %></p>
+            </li>
+            <li class="list-group-item">
               <hr>
             </li>
             <% if @atendimento.initial_description.present? %>
               <li class="list-group-item">
                 <h4>Relato Inicial</h4>
                 <p><%= simple_format(@atendimento.initial_description) %></p>
+              </li>
+              <li class="list-group-item">
+                <hr>
               </li>
             <% end %>
             <% if @atendimento.detailed_description.present? %>

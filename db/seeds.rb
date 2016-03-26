@@ -23,8 +23,9 @@ ProfissaoType.find_or_create_by!(:description => "Secundário")
 ProfissaoType.find_or_create_by!(:description => "Terciário")
 
 # Creating atendimento_types
-AtendimentoType.find_or_create_by!(:description => "Atendimento")
 AtendimentoType.find_or_create_by!(:description => "Orientação")
+AtendimentoType.find_or_create_by!(:description => "Mediação")
+AtendimentoType.find_or_create_by!(:description => "Ação")
 
 # Creating roles.
 admin_role      = Role.find_or_create_by!(:name => "admin")

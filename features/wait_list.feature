@@ -57,9 +57,5 @@ Feature: Wait list
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
     And I am on "the atendimentos page"
-    When I click at css "#Joana_Silveira"
-    And I wait a second
-    And I click at css "#Joana_Silveira"
-    And I wait a second
-    And I take "Joana" picture of the page
+    When I click at css "#btn-escolher-0"
     Then I should not see "Um relato Inicial"

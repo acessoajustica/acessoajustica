@@ -37,20 +37,17 @@ Feature: My Cases
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
     And I am on "the atendimentos page"
-    And I click at css "#Joana_Silveira"
-    And I wait a second
-    When I click at css "#Escolher_0"
+    When I click at css "#btn-escolher-0"
     And I wait a second
     Then I should not see "Joana Silveira"
+    And I should see "Nenhum atendimento em aberto."
 
   @javascript
   Scenario: User sees a selected case
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
     And I am on "the atendimentos page"
-    And I click at css "#Joana_Silveira"
-    And I wait a second
-    When I click at css "#Escolher_0"
+    When I click at css "#btn-escolher-0"
     And I wait a second
     And I am on "my atendimentos page"
     Then I should not see "Joana Silveira"

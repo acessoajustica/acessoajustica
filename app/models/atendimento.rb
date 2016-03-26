@@ -10,21 +10,16 @@ class Atendimento < ActiveRecord::Base
             presence: true,
             allow_blank: false
 
+  validates :justification,
+            presence: true,
+            if: "atendimento_type.present?"
+
   #TODO quebra os testes...
   #validates :cliente, presence: true
 
   def self.all_for (user)
     where("estagiario_id = ?", Membro.find(user.membro_id).actable_id)
   end
-
-=begin
-  def self.from_beginning_of_day
-    atendimentos = self.where("created_at >= ?", Time.zone.now.beginning_of_day).select do |atendimento|
-      atendimento.status == true and atendimento.estagiario == nil
-    end
-    atendimentos
-  end
-=end
 
   def self.from_beginning_of_day
     where("created_at >= ?", Time.zone.now.beginning_of_day)

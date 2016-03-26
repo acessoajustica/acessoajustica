@@ -77,7 +77,7 @@ RSpec.describe AtendimentosController, type: :controller do
       atendimento = Atendimento.create! valid_attributes
       already_attended_atendimento = Atendimento.create! valid_attributes
       already_attended_atendimento.stubs(:estagiario).returns(FactoryGirl.build(:estagiario))
-      Atendimento.stubs(:where).returns([atendimento, already_attended_atendimento])
+      Atendimento.stubs(:waiting_list).returns([atendimento])
       get :index, {}, valid_session
       expect(assigns(:atendimentos)).to eq([atendimento])
     end
