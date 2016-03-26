@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326003247) do
+ActiveRecord::Schema.define(version: 20160326023355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,14 +31,15 @@ ActiveRecord::Schema.define(version: 20160326003247) do
   create_table "atendimentos", force: :cascade do |t|
     t.boolean  "status"
     t.integer  "cliente_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "estagiario_id"
     t.integer  "atendimento_type_id"
     t.integer  "atendimento_resultado_id"
     t.string   "initial_description"
     t.string   "detailed_description"
     t.string   "justification"
+    t.boolean  "active",                   default: true
   end
 
   add_index "atendimentos", ["atendimento_resultado_id"], name: "index_atendimentos_on_atendimento_resultado_id", using: :btree

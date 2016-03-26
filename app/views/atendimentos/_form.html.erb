@@ -54,9 +54,9 @@
           <div class="form-group">
             <p class="text-info">
               O tipo de atendimento define o que deve ser feito a partir de agora. <br/>
-              Foi apenas uma orientação?<br/>
-              O caso pode ser resolvido através de uma mediação?<br/>
-              É preciso abrir uma ação?
+              - Foi apenas uma orientação? Nesse caso, o atendimento será arquivado automaticamente.<br/>
+              - Será preciso fazer uma mediação?<br/>
+              - Será preciso abrir uma ação?
             </p>
             <% if current_user.role? :calouro %> <!-- TODO usar can can-->
               <p class="text-danger">Você não tem permissão para classificar o atendimento!</p>

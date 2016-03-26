@@ -3,8 +3,9 @@ class Atendimento < ActiveRecord::Base
   belongs_to :estagiario
   belongs_to :atendimento_type
   belongs_to :atendimento_resultado
+  before_save :deactivate_depending_on_atendimento_type, :if => :atendimento_type_id_changed?
 
-  default_scope { order(created_at: :asc) }
+  default_scope { where(active: 'true').order(created_at: :asc) }
 
   validates :initial_description,
             presence: true,
@@ -49,5 +50,14 @@ class Atendimento < ActiveRecord::Base
       'Não aprovado'
     end
   end
+
+  protected
+    def deactivate_depending_on_atendimento_type
+      if atendimento_type.present? && atendimento_type.description == 'Orientação'
+        puts "Deactivating atendimento because of atendimento_type == Orientação"
+        self.active = false
+        nil
+      end
+    end
 
 end
