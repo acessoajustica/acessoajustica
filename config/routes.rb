@@ -6,11 +6,12 @@ Rails.application.routes.draw do
 
   resources :calouros
 
-  resources :relatos
-
   resources :atendimentos do
     collection do
       get 'my-cases'
+    end
+    member do
+      put 'archive'
     end
   end
 

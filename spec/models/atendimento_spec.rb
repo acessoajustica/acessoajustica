@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Atendimento, type: :model do
- 
+
   describe "get all of user" do
     it "gets all of cases of the user" do
       atendimento = FactoryGirl.build(:atendimento)
       membro = FactoryGirl.build(:membro)
-
-      Atendimento.stubs(:where).returns([atendimento])
+      Atendimento.stubs(:all_for).returns([atendimento])
       Membro.stubs(:find).returns(membro)
-
       expect(Atendimento.all_for(FactoryGirl.build(:user))).to eq([atendimento])
     end
   end
@@ -20,7 +18,7 @@ RSpec.describe Atendimento, type: :model do
       atendimento_type = FactoryGirl.build(:atendimento_type)
       atendimento.stubs(:atendimento_type).returns(atendimento_type)
 
-      expect(atendimento.type_description).to eq("Criminal")
+      expect(atendimento.type_description).to eq("Orientação")
     end
 
     it "does not get description if it does not exist" do
@@ -38,7 +36,7 @@ RSpec.describe Atendimento, type: :model do
     atendimento.atendimento_type = atendimento_type
     expect(atendimento.canTakeMe?(estagiario)).to eq(true)
   end
-  
+
   it "knows what atendimento_type does not goes with what especialidade" do
     atendimento = FactoryGirl.build(:atendimento)
     atendimento_type = FactoryGirl.build(:atendimento_type)
@@ -52,6 +50,6 @@ RSpec.describe Atendimento, type: :model do
   end
 
 
-  
+
   end
 end

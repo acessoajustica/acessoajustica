@@ -12,12 +12,21 @@ FactoryGirl.define do
     contribuintes_quantidade 4
 
     trait :cliente_with_atendimento do
-      atendimentos  [FactoryGirl.build(:atendimento)]
+      after(:stub) do |c|
+        c.atendimentos = [build_stubbed(:atendimento)]
+      end
+      after(:build) do |c|
+        c.atendimentos = [build(:atendimento)]
+      end
+      after(:create) do |c|
+        c.atendimentos = [create(:atendimento)]
+      end
     end
 
     trait :cliente_invalid do
       nome nil
     end
+    
     trait :another do
       nome "Mario da Silva"
     end

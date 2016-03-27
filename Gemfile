@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -33,6 +32,8 @@ gem 'twitter-bootstrap-rails', '3.2.0'
 # Correios CEP
 gem 'correios-cep', '~> 0.6.1'
 
+gem 'bootstrap-material-design'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -50,6 +51,8 @@ gem 'active_record-acts_as' #, '1.0.2'
 
 # Access an IRB console on exception pages or by using <%= console %> in views
 gem 'web-console', '~> 2.0', group: :development
+
+gem 'quiet_assets', group: :development
 
 group :development, :test do
 
@@ -75,7 +78,8 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.0'
 
-  gem 'factory_girl', '~> 4.5.0'
+  #gem 'factory_girl', '~> 4.5.0'
+  gem 'factory_girl_rails'
 
   gem 'shoulda-matchers', '~> 2.8.0'
 

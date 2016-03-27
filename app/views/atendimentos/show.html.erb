@@ -1,4 +1,12 @@
 <%- model_class = Atendimento -%>
+
+<% unless @atendimento.active? %>
+  <div class="alert alert-dismissible alert-info">
+    <h4>Atendimento Arquivado</h4>
+    <p>O presente atendimento foi arquivado.</p>
+  </div>
+<% end %>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
@@ -53,39 +61,72 @@
         </div>
         <div class="panel-body">
           <ul class="list-group">
+            <% unless @atendimento.active? %>
+              <li class="list-group-item">
+                <div class="alert alert-dismissible alert-info">
+                  <h4>Atendimento Arquivado</h4>
+                </div>
+              </li>
+            <% end %>
             <li class="list-group-item">
               <strong>Criado em:</strong>
-              <%= @atendimento.created_at.strftime("%d/%m/%Y")%>
+              <%= @atendimento.created_at.strftime("%d/%m/%Y %H:%M:%S")%>
             </li>
             <li class="list-group-item">
-              <strong>Status:</strong>
-              <%= @atendimento.status %>
+              <strong>Última atualização:</strong>
+              <%= time_ago_in_words(@atendimento.created_at) %> atrás
             </li>
-          </ul>
-        </div>
-      </div>
-      <!-- Relatos -->
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            Relatos
-          </h3>
-        </div>
-        <div class="panel-body">
-          <ul class="list-group">
-            <% @atendimento.relatos.each_with_index do |relato, index| %>
+            <li class="list-group-item">
+              <strong>Estagiário:</strong>
+              <%= @atendimento.estagiario.nome if @atendimento.estagiario.present? %>
+            </li>
+            <li class="list-group-item">
+              <strong>Categoria:</strong>
+              <%= @atendimento.status_name %>
+            </li>
+            <li class="list-group-item">
+              <strong>Tipo do Atendimento:</strong>
+              <%= @atendimento.atendimento_type.description if @atendimento.atendimento_type.present? %>
+            </li>
+            <li class="list-group-item">
+              <strong>Resultado:</strong>
+              <%= @atendimento.atendimento_resultado.description if @atendimento.atendimento_resultado.present? %>
+            </li>
+            <li class="list-group-item">
+              <strong>Justificativa:</strong>
+              <p><%= simple_format(@atendimento.justification) %></p>
+            </li>
+            <li class="list-group-item">
+              <hr>
+            </li>
+            <% if @atendimento.initial_description.present? %>
               <li class="list-group-item">
-                <strong><%= index+1 %> Relato:</strong>
-                <%= relato.description %>
+                <h4>Relato Inicial</h4>
+                <p><%= simple_format(@atendimento.initial_description) %></p>
               </li>
+              <li class="list-group-item">
+                <hr>
+              </li>
+            <% end %>
+            <% if @atendimento.detailed_description.present? %>
+              <li class="list-group-item">
+                <h4>Relato Detalhado</h4>
+                <p><%= simple_format(@atendimento.detailed_description) %></p>
+              </li>
+            <% elsif !current_user.role? :calouro and @atendimento.active? %>
+              <%= link_to 'Preencher Relato Detalhado', edit_atendimento_path(@atendimento), :class => 'btn btn-warning btn-md' %>
             <% end %>
           </ul>
         </div>
       </div>
+      <!-- Relatos -->
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     atendimentos_path, :class => 'btn btn-default'  %>
-      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                    edit_atendimento_path(@atendimento), :class => 'btn btn-default' %>
+      <% if @atendimento.active? %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_atendimento_path(@atendimento), :class => 'btn btn-primary' %>
+        <%= link_to "Arquivar", archive_atendimento_path(@atendimento), method: :put, :class => 'btn btn-danger', :data => {:confirm => 'Tem certeza que deseja arquivar o atendimento?'}  %>
+      <% end %>
       <hr>
     </div><!-- /col-md-8-->
   </div><!-- /row -->

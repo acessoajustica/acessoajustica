@@ -1,7 +1,7 @@
 module NavigationHelpers
   def path_to(page_name)
     case page_name
- 
+
     when /my cases/
       '/atendimentos/my-cases'
     when /clientes new/
@@ -40,10 +40,6 @@ module NavigationHelpers
       '/atendimentos'
     when /new atendimentos page/
       '/clientes/new'
-    when /relatos page/
-      '/relatos'
-    when /new relatos page/
-      '/relatos/new'
     else
       begin
         page_name =~ /the (.*) page/
