@@ -87,7 +87,7 @@
             <div class="list-group">
               <div class="list-group-item">
                 <div class="row-content">
-                  <div class="least-content"><%= time_ago_in_words(atendimento.created_at) %></div>
+                  <div class="least-content"><td><%= time_ago_in_words(atendimento.created_at) %> <br> <%= waiting_progress_bar(atendimento) %></td></div>
                   <h4 class="list-group-item-heading">Atendimento #<%= index + 1%></h4>
                   <p class="list-group-item-text"><%= truncate(atendimento.initial_description, length: 20) %></p>
                   <p class="list-group-item-text">

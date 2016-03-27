@@ -7,8 +7,11 @@
         <% if @atendimentos.each_with_index do |atendimento, index| %>
           <li class="list-group-item">
             <div class="row">
-              <div class='col-md-2'>[<%= atendimento.created_at.strftime("%H:%M") %>]</div>
-              <div class='col-md-8 text-center'>
+              <div class='col-md-3'>
+                [<%= atendimento.created_at.strftime("%H:%M") %>] <%= time_ago_in_words(atendimento.created_at) %> <br>
+                <%= waiting_progress_bar(atendimento) %>
+              </div>
+              <div class='col-md-7 text-center'>
                 <strong><%= atendimento.cliente.nome%></strong>
                 <span class="badge"><%= atendimento.type_description %></span>
               </div>
@@ -19,6 +22,7 @@
             </div>
             <div class="row">
               <div class='col-md-12'>
+                <h4>Relato inicial</h4>
                 <p><%= simple_format(truncate(atendimento.initial_description, length: 50)) %></p>
                 <hr>
               </div>

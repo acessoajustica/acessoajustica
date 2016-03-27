@@ -8,6 +8,7 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>Tempo em aberto</th>
             <th>Categoria</th>
             <th>Cliente</th>
             <th colspan="3">Relato Inicial</th>
@@ -19,6 +20,7 @@
           <% @atendimentos.each do |atendimento| %>
             <tr>
               <td>#<%= atendimento.id %></td>
+              <td><%= time_ago_in_words(atendimento.created_at) %> <br> <%= waiting_progress_bar(atendimento) %></td>
               <td><%= atendimento.status_name %></td>
               <td><%= atendimento.cliente.nome%></td>
               <td colspan="3">
