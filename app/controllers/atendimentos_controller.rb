@@ -99,7 +99,13 @@ class AtendimentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def atendimento_params
-      params.require(:atendimento).permit(:status, :cliente_id, :justification, :atendimento_type_id, :initial_description, :detailed_description)
+      params.require(:atendimento).permit(:status,
+                                          :cliente_id,
+                                          :justification,
+                                          :atendimento_type_id,
+                                          :initial_description,
+                                          :detailed_description,
+                                          :estagiario_id)
     end
 
     def check_status

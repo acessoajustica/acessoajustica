@@ -13,6 +13,7 @@
             <th>Cliente</th>
             <th colspan="3">Relato Inicial</th>
             <th>Data de Criação</th>
+            <th>Responsável</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -20,13 +21,29 @@
           <% @atendimentos.each do |atendimento| %>
             <tr>
               <td>#<%= atendimento.id %></td>
-              <td><%= time_ago_in_words(atendimento.created_at) %> <br> <%= waiting_progress_bar(atendimento) %></td>
+              <td><%= time_ago_in_words(atendimento.created_at) %>
+                <br>
+                <%= waiting_progress_bar(atendimento) %></td>
               <td><%= atendimento.status_name %></td>
               <td><%= atendimento.cliente.nome%></td>
               <td colspan="3">
                 <p><%= simple_format(truncate(atendimento.initial_description, length: 50)) %></p>
               </td>
               <td><%= atendimento.created_at.strftime("%d/%m/%Y %H:%M")  %></td>
+              <td>
+                <% if can? :manage, Atendimento %>
+                  <%= form_for atendimento, :html => { :class => "form-inline atendimento" } do |f| %>
+                    <div class="form-group">
+                      <%= f.select :estagiario_id,
+                                       Estagiario.all.collect {|e| [e.nome, e.id]},
+                                       {:include_blank => true}, {:class => 'form-control'} %>
+                    </div>
+                    <%= f.submit 'Salvar', :class => 'btn btn-primary btn-xs', data: { confirm: 'Deseja realmente salvar?' } %>
+                  <% end %>
+                <% else %>
+                  <%= atendimento.estagiario.nome if atendimento.estagiario.present? %>
+                <% end %>
+              </td>
               <td class="text-left">
                 <%= link_to "Ver", atendimento_path(atendimento), :class => 'btn btn-default btn-xs' %>
                 <%= link_to "Arquivar", archive_atendimento_path(atendimento), method: :put, :class => 'btn btn-danger btn-xs', :data => {:confirm => 'Tem certeza que deseja arquivar o atendimento?'}  %>
