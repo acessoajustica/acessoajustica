@@ -3,11 +3,16 @@ class AtendimentosController < ApplicationController
   before_action :set_cliente, only: [:new]
   before_action :set_atendimento, only: [:show, :edit, :update, :destroy, :archive]
   before_action :check_status, only: [:edit, :update, :destroy]
+  before_action :diretor_only, only: [:active]
 
   # GET /atendimentos
   # GET /atendimentos.json
   def index
     @atendimentos = Atendimento.waiting_list
+  end
+
+  def active
+    @atendimentos = Atendimento.active.order(created_at: :desc)
   end
 
   # GET /atendimentos/my-cases
@@ -100,6 +105,12 @@ class AtendimentosController < ApplicationController
     def check_status
       unless @atendimento.active?
         redirect_to @atendimento, flash: { warning: "O atendimento ##{@atendimento.id} está arquivado e não pode ser alterado!"}
+      end
+    end
+
+    def diretor_only
+      unless current_user.role? :diretor
+        redirect_to root_path, flash: { warning: "Você não tem autorização para ver a página requisitada!"}
       end
     end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :atendimentos do
     collection do
       get 'my-cases'
+      get 'active'
     end
     member do
       put 'archive'
