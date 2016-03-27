@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   get "atendimentos/:id/select-case" => "atendimentos#select_case" , as: :select_case
+  get "verifica_cpf" => "clientes#verifica_cpf" , as: :verifica_cpf
 
   resources :clientes do
     collection do

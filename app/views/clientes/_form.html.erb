@@ -58,7 +58,7 @@
           </div>
         </div>
         <!-- Panel - Dados para Cadastro do Cliente -->
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-app="clienteCenter" ng-controller="ClientesController">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>2. Dados para Cadastro do Cliente</strong></h3>
           </div>
@@ -408,7 +408,7 @@
           </div>
           <div class="panel-body row">
             <div class="form-group col-md-12 col-sm-12">
-              <%= f.label :categoria, "O cliente enquadra­se na hipótese da Lei no 1.060/50?", :class => 'control-label' %>
+              <%= f.label :categoria, "O cliente se enquadra­ na hipótese da Lei no 1.060/50?", :class => 'control-label' %>
               <div class="controls">
                 <%= f.fields_for @atendimento do |c| %>
                   <%= c.select :status, options_for_select([['Sim', true], ['Não', false]]), {:include_blank => true}, {:class => 'form-control'} %>

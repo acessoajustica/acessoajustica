@@ -67,6 +67,11 @@ class ClientesController < ApplicationController
     end
   end
 
+  def verifica_cpf
+    pessoa = Pessoa.where(:cpf => params[:cpf])
+    render json: pessoa
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
