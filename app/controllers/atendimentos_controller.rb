@@ -105,7 +105,8 @@ class AtendimentosController < ApplicationController
                                           :atendimento_type_id,
                                           :initial_description,
                                           :detailed_description,
-                                          :estagiario_id)
+                                          :estagiario_id,
+                                          :especialidade_id)
     end
 
     def check_status

@@ -77,6 +77,10 @@
               <%= time_ago_in_words(@atendimento.created_at) %> atrás
             </li>
             <li class="list-group-item">
+              <strong>Especialidade:</strong>
+              <span class="label label-success"><%= @atendimento.especialidade.description if @atendimento.especialidade.present? %></span>
+            </li>
+            <li class="list-group-item">
               <strong>Estagiário:</strong>
               <%= @atendimento.estagiario.nome if @atendimento.estagiario.present? %>
             </li>
@@ -85,8 +89,9 @@
               <%= @atendimento.status_name %>
             </li>
             <li class="list-group-item">
-              <strong>Tipo do Atendimento:</strong>
-              <%= @atendimento.atendimento_type.description if @atendimento.atendimento_type.present? %>
+              <div><strong>Tipo do Atendimento:</strong>
+                <span class="badge"><%= @atendimento.atendimento_type.description if @atendimento.atendimento_type.present? %></span>
+              </div>
             </li>
             <li class="list-group-item">
               <strong>Resultado:</strong>

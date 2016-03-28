@@ -3,6 +3,8 @@ class Atendimento < ActiveRecord::Base
   belongs_to :estagiario
   belongs_to :atendimento_type
   belongs_to :atendimento_resultado
+  belongs_to :especialidade
+
   before_save :deactivate_depending_on_atendimento_type, :if => :atendimento_type_id_changed?
 
   default_scope { order(created_at: :asc) }

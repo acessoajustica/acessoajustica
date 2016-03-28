@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326023355) do
+ActiveRecord::Schema.define(version: 20160328180827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,13 @@ ActiveRecord::Schema.define(version: 20160326023355) do
     t.string   "detailed_description"
     t.string   "justification"
     t.boolean  "active",                   default: true
+    t.integer  "especialidade_id"
   end
 
   add_index "atendimentos", ["atendimento_resultado_id"], name: "index_atendimentos_on_atendimento_resultado_id", using: :btree
   add_index "atendimentos", ["atendimento_type_id"], name: "index_atendimentos_on_atendimento_type_id", using: :btree
   add_index "atendimentos", ["cliente_id"], name: "index_atendimentos_on_cliente_id", using: :btree
+  add_index "atendimentos", ["especialidade_id"], name: "index_atendimentos_on_especialidade_id", using: :btree
   add_index "atendimentos", ["estagiario_id"], name: "index_atendimentos_on_estagiario_id", using: :btree
 
   create_table "calouros", force: :cascade do |t|
@@ -206,6 +208,7 @@ ActiveRecord::Schema.define(version: 20160326023355) do
   add_foreign_key "atendimentos", "atendimento_resultados"
   add_foreign_key "atendimentos", "atendimento_types"
   add_foreign_key "atendimentos", "clientes"
+  add_foreign_key "atendimentos", "especialidades"
   add_foreign_key "atendimentos", "estagiarios"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"

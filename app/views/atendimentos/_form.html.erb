@@ -47,6 +47,30 @@
   <div class='row'>
     <div class="panel panel-info">
       <div class="panel-heading">
+        <h3 class="panel-title">Especialidade</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div class="form-group">
+            <p class="text-info">
+              Qual especialidade é necessária para a análise desse atendimento?
+            </p>
+            <%= f.label :especialidade_id, 'Especialidade', :class => 'control-label' %>
+            <div class="controls">
+              <%= f.select :especialidade_id,
+                         Especialidade.all.collect {|especialidade| [especialidade.description, especialidade.id]},
+                         {:include_blank => true}, {:class => 'form-control'} %>
+            </div>
+            <%= error_span(@atendimento[:especialidade_id]) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="panel panel-info">
+      <div class="panel-heading">
         <h3 class="panel-title">Tipo de Atendimento</h3>
       </div>
       <div class="panel-body">
