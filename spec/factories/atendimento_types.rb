@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :atendimento_type do
-    description "Criminal"
+    description "Orientação"
   end
 end

@@ -63,6 +63,10 @@ When(/^I select the option "([^"]*)" in "([^"]*)"$/) do |option, select|
   # select(option, :from => select.gsub(' ', '_'))
 end
 
+When(/^I choose the option "([^"]*)" in "([^"]*)"$/) do |option, select|
+  choose(select.gsub(' ', '_'), option: option)
+end
+
 When(/^I take "([^"]*)" picture of the page$/) do |text|
   page.save_screenshot("./tmp/" + text.gsub(" ", "_") + "_picture.png")
 end

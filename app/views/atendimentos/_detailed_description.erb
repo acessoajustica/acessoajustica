@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Relato Detalhado</h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-12">
+        <div class="form-group">
+          <p class="text-info">
+            O relato detalhado deve ser preenchido por um estagiário que atue na área
+            do caso relatado pelo cliente, e deve ser detalhado o suficiente para que se possa fazer
+            uma avaliação do caso. Se necessário, o caso relatado pode virar um processo, e o relato
+            servirá de base para a escrita do texto do processo.
+          </p>
+          <% if current_user.role? :calouro %> <!-- TODO usar can can-->
+            <p class="text-danger">Você não tem permissão para preencher o relato detalhado!</p>
+          <% elsif atendimento.initial_description.present? %>
+            <label for='detailed_description' class='control-label'>Digite abaixo o Relato Detalhado:</label>
+            <%= f.text_area :detailed_description, :class => 'form-control', size: "30x30",
+            placeholder: 'Em conversa posterior com o cliente, ele afirma que ...',
+            disabled: current_user.role?(:calouro) %>
+            <%= error_span(atendimento[:detailed_description]) %>
+          <% else %>
+            <p class="text-warning">Você deve preencher o relato inicial primeiro!</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

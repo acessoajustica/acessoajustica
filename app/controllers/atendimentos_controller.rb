@@ -1,11 +1,18 @@
 class AtendimentosController < ApplicationController
   load_and_authorize_resource
-  before_action :set_atendimento, only: [:show, :edit, :update, :destroy]
+  before_action :set_cliente, only: [:new]
+  before_action :set_atendimento, only: [:show, :edit, :update, :destroy, :archive]
+  before_action :check_status, only: [:edit, :update, :destroy]
+  before_action :diretor_only, only: [:active]
 
   # GET /atendimentos
   # GET /atendimentos.json
   def index
-    @atendimentos = Atendimento.from_beginning_of_day
+    @atendimentos = Atendimento.waiting_list
+  end
+
+  def active
+    @atendimentos = Atendimento.active.order(created_at: :desc)
   end
 
   # GET /atendimentos/my-cases
@@ -32,21 +39,32 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos/new
   def new
     @atendimento = Atendimento.new
+    @atendimento.cliente = @cliente
   end
 
   # GET /atendimentos/1/edit
   def edit
-    @relato = Relato.new
+  end
+
+  def archive
+    respond_to do |format|
+      if @atendimento.deactivate!
+        format.html { redirect_to @atendimento, notice: 'Atendimento arquivado com sucesso!' }
+        format.json { render :show, status: :ok, location: @atendimento }
+      else
+        format.html { render :edit }
+        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /atendimentos
   # POST /atendimentos.json
   def create
     @atendimento = Atendimento.new(atendimento_params)
-
     respond_to do |format|
       if @atendimento.save
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully created.' }
+        format.html { redirect_to @atendimento, notice: 'Atendimento criado com sucesso!' }
         format.json { render :show, status: :created, location: @atendimento }
       else
         format.html { render :new }
@@ -59,9 +77,8 @@ class AtendimentosController < ApplicationController
   # PATCH/PUT /atendimentos/1.json
   def update
     respond_to do |format|
-      @atendimento.relatos.build(:description => atendimento_params[:new_relato])
-      if @atendimento.update(atendimento_params.except(:new_relato))
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully updated.' }
+      if @atendimento.update(atendimento_params)
+        format.html { redirect_to @atendimento, notice: 'Atendimento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @atendimento }
       else
         format.html { render :edit }
@@ -76,8 +93,30 @@ class AtendimentosController < ApplicationController
       @atendimento = Atendimento.find(params[:id])
     end
 
+    def set_cliente
+      @cliente = Cliente.find(params[:cliente_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def atendimento_params
-      params.require(:atendimento).permit(:status, :cliente_id, :atendimento_type_id, :new_relato)
+      params.require(:atendimento).permit(:status,
+                                          :cliente_id,
+                                          :justification,
+                                          :atendimento_type_id,
+                                          :initial_description,
+                                          :detailed_description,
+                                          :estagiario_id)
+    end
+
+    def check_status
+      unless @atendimento.active?
+        redirect_to @atendimento, flash: { warning: "O atendimento ##{@atendimento.id} está arquivado e não pode ser alterado!"}
+      end
+    end
+
+    def diretor_only
+      unless current_user.role? :diretor
+        redirect_to root_path, flash: { warning: "Você não tem autorização para ver a página requisitada!"}
+      end
     end
 end

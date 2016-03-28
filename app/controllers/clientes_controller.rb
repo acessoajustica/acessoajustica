@@ -17,7 +17,6 @@ class ClientesController < ApplicationController
   def new
     @cliente = Cliente.new
     @atendimento = Atendimento.new
-    @relato = Relato.new
   end
 
   # GET /clientes/1/edit
@@ -37,21 +36,21 @@ class ClientesController < ApplicationController
     @cliente = Cliente.new(cliente_params)
     @atendimento = Atendimento.new(atendimento_params)
     respond_to do |format|
-      if @cliente.save
-        @atendimento.cliente_id = @cliente.id
-        if @atendimento.save
-          format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
-          format.json { render :show, status: :created, location: @cliente }
-        else
-          format.html { render :new }
-          format.json { render json: @atendimento.errors, status: :unprocessable_entity }
-        end
+    if @cliente.save
+      @atendimento.cliente_id = @cliente.id
+      if @atendimento.save
+        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+        format.json { render :show, status: :created, location: @cliente }
       else
         format.html { render :new }
-        format.json { render json: @cliente.errors, status: :unprocessable_entity }
+        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
       end
+    else
+      format.html { render :new }
+      format.json { render json: @cliente.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # PATCH/PUT /clientes/1
   # PATCH/PUT /clientes/1.json
@@ -87,10 +86,7 @@ class ClientesController < ApplicationController
     end
 
     def atendimento_params
-      params.require(:cliente).permit(:atendimento).permit(:status)
-    end
+     params.require(:cliente).permit(:atendimento).permit(:status)
+   end
 
-    def relato_params
-      params.require(:cliente).permit(:relato).permit(:description)
-    end
 end

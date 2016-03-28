@@ -12,6 +12,8 @@ Feature: Register a Cliente
     And exists a "profissao_type"
     And exists a "atendimento"
     And I am on "clientes new"
+    And I wait a second
+    And I take "cliente" picture of the page
     And I fill in "cliente codigo" with "10.XX.0392023"
     And I fill in "cliente nome" with "Athena"
     And I fill in "cliente nome da mae" with "Métis"
