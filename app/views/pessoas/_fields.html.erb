@@ -77,8 +77,9 @@
         <p>Notamos que este CPF já está em nossa base. Para proceder você pode atualizar o perfil socioeconomico ou ir direto para a página com os detalhes deste cliente!</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <% url = request.base_url + "/clientes/" %>
+        <a class="btn btn-default" id="showCliente" role="button" href=<%= url %>>Detalhe do Cliente</a>
+        <a class="btn btn-primary" id="editCliente" role="button" href=<%= url %>>Editar Perfil Socioeconômico</a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -20,7 +20,13 @@ clienteCenter.controller 'ClientesController', ($scope, $filter, Api) ->
 
   $scope.verifica_success = ->
     if $scope.cliente.length > 0
+      showHref = $('#showCliente').attr('href')
+      $('#showCliente').attr 'href', showHref +  $scope.cliente[0].id
+      editHref = $('#editCliente').attr('href')
+      $('#editCliente').attr 'href', editHref + $scope.cliente[0].id + "/edit"
+
       $('#MyModal').modal()
+
     return
   $scope.verifica_fail = ->
     # Growlyflash.error("Ocorreu um erro ao tentar verifica a propota. Por favor, tente novamente mais tarde.")
