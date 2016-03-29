@@ -46,6 +46,23 @@ MoradiaType.find_or_create_by!(:description => "Própria")
 MoradiaType.find_or_create_by!(:description => "Cedida")
 MoradiaType.find_or_create_by!(:description => "Outra")
 
+#Creating especialidades
+Especialidade.find_or_create_by!(:description => "Criminal");
+Especialidade.find_or_create_by!(:description => "Penal");
+
+#TODO remover quando publicar o projeto
+# Creating admin users
+estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
+calouro_user    = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
+vareiro_user    = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
+diretor_user    = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
+
+estagiario_user.roles << estagiario_role
+calouro_user.roles << calouro_role
+vareiro_user.roles << vareiro_role
+diretor_user.roles << diretor_role
+
+
 case Rails.env
   when "development"
 
@@ -54,10 +71,6 @@ case Rails.env
     calouro_user    = User.create!(:email=>'calouro@test.com',:username=>'calouro',:password=>'password')
     vareiro_user    = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
     diretor_user    = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
-
-    #Creating especialidades
-    Especialidade.find_or_create_by!(:description => "Criminal");
-    Especialidade.find_or_create_by!(:description => "Penal");
 
     # assign the admin role to the admin user.  (This bit of rails
     # magic creates a user_role record in the database.)
