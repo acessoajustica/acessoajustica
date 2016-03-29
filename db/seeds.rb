@@ -76,7 +76,8 @@ case Rails.env
               :familia_renda  => 1500.00,
               :profissao_nome  => "Assistente Administrativo",
               :familia_quantidade => 9,
-              :contribuintes_quantidade => 4)
+              :contribuintes_quantidade => 4,
+              :aprovado => true)
 
     estagiario = Estagiario.create!(:nome => "Joana Silveira ",
                                                :cpf =>"123.456.789-00",
@@ -117,7 +118,8 @@ case Rails.env
               :familia_renda  => 1500.00,
               :profissao_nome  =>"Assistente Administrativo",
               :familia_quantidade => 9,
-              :contribuintes_quantidade => 4)
+              :contribuintes_quantidade => 4,
+              :aprovado => true)
 
     # Creating atendimento
     atendimento3 = Atendimento.find_or_create_by!(:status => true,

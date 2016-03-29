@@ -16,21 +16,6 @@
             </div>
           </div>
         <% end %>
-
-        <% if @atendimento.errors.any? %>
-          <div class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= pluralize(@atendimento.errors.count, "erro") %> impediu o cadastro:</h3>
-            </div>
-            <div class="panel-body">
-              <ul>
-              <% @atendimento.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-              </ul>
-            </div>
-          </div>
-        <% end %>
         <p class="lead" style="text-align: justify;">
           <strong>ATENÇÃO:</strong> Este formulário só deverá ser preenchido na hipótese de patrocínio da ação, e seu intuito é caracterizar a incidência da Lei n<sup>o</sup> 1.060/1950.
           Em caso de negativa, o cliente não poderá ter o caso patrocinado por este Departamento Jurídico.
@@ -58,7 +43,7 @@
           </div>
         </div>
         <!-- Panel - Dados para Cadastro do Cliente -->
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-app="clienteCenter" ng-controller="ClientesController">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>2. Dados para Cadastro do Cliente</strong></h3>
           </div>
@@ -66,11 +51,11 @@
             <%= render :partial => 'pessoas/fields', :locals => { :f => f, :@pessoa => @cliente} %>
             <div class="row">
               <div class="form-group col-md-6">
-                <%= f.label :telefone, "Telefone", :class => 'control-label' %>
+                <%= f.label :telefone_contato, "Telefone", :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.text_field :telefone, :class => 'form-control telefone' %>
+                  <%= f.text_field :telefone_contato, :class => 'form-control telefone' %>
                 </div>
-                <%= error_span(@cliente[:telefone]) %>
+                <%= error_span(@cliente[:telefone_contato]) %>
               </div>
             </div>
           </div>
@@ -207,7 +192,7 @@
                   <%= f.radio_button :faz_bicos, "True"%>
                   <%= f.label :faz_bico_sim, "Sim" %>
                   <%= f.radio_button :faz_bicos, "False", :checked => true%>
-                  <%= f.label :faz_bico__nao, "Não" %>
+                  <%= f.label :faz_bico_nao, "Não" %>
                 </div>
                 <%= error_span(@cliente[:faz_bicos]) %>
               </div>
@@ -332,12 +317,12 @@
                 <%= error_span(@cliente[:gas]) %>
               </div>
               <div class="form-group col-md-4">
-                <%= f.label :telefone, "Telefone", :class => 'control-label' %>
+                <%= f.label :telefone_despesa, "Telefone", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
-                  <%= f.text_field :telefone, :class => 'form-control moeda', :min => 0 %>
+                  <%= f.text_field :telefone_despesa, :class => 'form-control moeda', :min => 0 %>
                 </div>
-                <%= error_span(@cliente[:telefone]) %>
+                <%= error_span(@cliente[:telefone_despesa]) %>
               </div>
               <div class="form-group col-md-4">
                 <%= f.label :transporte, "Transporte", :class => 'control-label' %>
@@ -376,6 +361,14 @@
             </div><!-- /row -->
             <div class="row">
               <div class="form-group col-md-4">
+                <%= f.label :educacao, "Educação", :class => 'control-label', :style => "margin-bottom: 24px;" %>
+                <div class="input-group">
+                  <div class="input-group-addon">R$</div>
+                  <%= f.text_field :educacao, :class => 'form-control moeda', :min => 0 %>
+                </div>
+                <%= error_span(@cliente[:educacao]) %>
+              </div>
+              <div class="form-group col-md-4">
                 <%= f.label :obrigacoes_judiciais, "Obrigações Judiciais (ex: pensão alimentícia)", :class => 'control-label' %>
                 <div class="input-group">
                   <div class="input-group-addon">R$</div>
@@ -400,13 +393,11 @@
           </div>
           <div class="panel-body row">
             <div class="form-group col-md-12 col-sm-12">
-              <%= f.label :categoria, "O cliente enquadra­se na hipótese da Lei no 1.060/50?", :class => 'control-label' %>
+              <%= f.label :categoria, "O cliente se enquadra­ na hipótese da Lei no 1.060/50?", :class => 'control-label' %>
               <div class="controls">
-                <%= f.fields_for @atendimento do |c| %>
-                  <%= c.select :status, options_for_select([['Sim', true], ['Não', false]]), {:include_blank => true}, {:class => 'form-control'} %>
-                <% end %>
+                <%= f.select :aprovado, options_for_select([['Sim', true], ['Não', false]]), {:include_blank => true}, {:class => 'form-control'} %>
               </div>
-              <%= error_span(@atendimento[:status]) %>
+              <%= error_span(@cliente[:aprovado]) %>
             </div>
           </div>
         </div>

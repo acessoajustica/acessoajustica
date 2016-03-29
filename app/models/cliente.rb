@@ -5,6 +5,8 @@ class Cliente < ActiveRecord::Base
   belongs_to :profissao_type
   has_many :atendimentos, dependent: :destroy
 
+  validates :aprovado, :presence => true
+
   scope :search, -> (search) { where("lower(pessoas.nome) like :search
   								        or pessoas.CPF like :search", search: "%#{search.downcase}%")
     								}

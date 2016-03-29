@@ -33,16 +33,17 @@ class ClientesController < ApplicationController
   # POST /clientes.json
   def create
     @cliente = Cliente.new(cliente_params)
+
     respond_to do |format|
-      if @cliente.save
-          format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
-          format.json { render :show, status: :created, location: @cliente }
-      else
-        format.html { render :new }
-        format.json { render json: @cliente.errors, status: :unprocessable_entity }
-      end
+    if @cliente.save
+      format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+      format.json { render :show, status: :created, location: @cliente }
+    else
+      format.html { render :new }
+      format.json { render json: @cliente.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # PATCH/PUT /clientes/1
   # PATCH/PUT /clientes/1.json
@@ -58,6 +59,11 @@ class ClientesController < ApplicationController
     end
   end
 
+  def verifica_cpf
+    pessoa = Pessoa.where(:cpf => params[:cpf])
+    render json: pessoa
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
@@ -69,7 +75,7 @@ class ClientesController < ApplicationController
       params.require(:cliente).permit(:profissao_nome, :familia_quantidade,
                                       :familia_renda, :contribuintes_quantidade, :estado_civil_id,
                                       :moradia_type_id, :profissao_type_id, :nome, :cpf,
-                                      :nome_da_mae, :rg, :cor, :identidade_de_genero)
+                                      :nome_da_mae, :rg, :cor, :identidade_de_genero, :aprovado)
     end
 
 end

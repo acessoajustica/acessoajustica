@@ -29,8 +29,10 @@ gem 'cancancan', '~> 1.10.1'
 gem "less-rails"
 # Bootstrap for layout
 gem 'twitter-bootstrap-rails', '3.2.0'
-# Correios CEP
-gem 'correios-cep', '~> 0.6.1'
+
+gem 'growlyflash'
+# angularjs-rails
+gem 'angularjs-rails', '~> 1.4', '>= 1.4.8'
 
 gem 'bootstrap-material-design'
 

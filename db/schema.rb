@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328180827) do
+ActiveRecord::Schema.define(version: 20160328233818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20160328180827) do
     t.decimal  "agua"
     t.decimal  "luz"
     t.decimal  "gas"
-    t.decimal  "telefone"
+    t.decimal  "telefone_despesa"
     t.decimal  "transporte"
     t.decimal  "educacao"
     t.decimal  "obrigacoes_judiciais"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20160328180827) do
     t.integer  "menores_nao_moram_quantidades"
     t.integer  "maiores_nao_moram_quantidades"
     t.integer  "user_id"
+    t.string   "telefone_contato"
+    t.boolean  "aprovado"
   end
 
   add_index "clientes", ["estado_civil_id"], name: "index_clientes_on_estado_civil_id", using: :btree

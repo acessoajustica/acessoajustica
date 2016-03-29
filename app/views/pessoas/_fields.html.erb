@@ -36,7 +36,7 @@
   <div class="form-group col-md-6 col-sm-6">
     <%= f.label :cpf, "CPF", :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :cpf, :class => 'form-control cpf' %>
+      <%= f.text_field :cpf, :class => 'form-control cpf', "ng-blur" => "verifica();", "ng-model" => "cpf" %>
     </div>
     <%= error_span(@pessoa[:cpf]) %>
   </div>
@@ -65,3 +65,22 @@
     <%= error_span(@pessoa[:identidade_de_genero]) %>
   </div>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="MyModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Cliente já cadastrado!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Notamos que este CPF já está em nossa base. Para proceder você pode atualizar o perfil socioeconomico ou ir direto para a página com os detalhes deste cliente!</p>
+      </div>
+      <div class="modal-footer">
+        <% url = request.base_url + "/clientes/" %>
+        <a class="btn btn-default" id="showCliente" role="button" href=<%= url %>>Detalhe do Cliente</a>
+        <a class="btn btn-primary" id="editCliente" role="button" href=<%= url %>>Editar Perfil Socioeconômico</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
