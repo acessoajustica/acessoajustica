@@ -16,7 +16,6 @@ class ClientesController < ApplicationController
   # GET /clientes/new
   def new
     @cliente = Cliente.new
-    @atendimento = Atendimento.new
   end
 
   # GET /clientes/1/edit
@@ -34,17 +33,11 @@ class ClientesController < ApplicationController
   # POST /clientes.json
   def create
     @cliente = Cliente.new(cliente_params)
-    @atendimento = Atendimento.new(atendimento_params)
+
     respond_to do |format|
     if @cliente.save
-      @atendimento.cliente_id = @cliente.id
-      if @atendimento.save
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
-        format.json { render :show, status: :created, location: @cliente }
-      else
-        format.html { render :new }
-        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+      format.json { render :show, status: :created, location: @cliente }
     else
       format.html { render :new }
       format.json { render json: @cliente.errors, status: :unprocessable_entity }
@@ -82,11 +75,7 @@ end
       params.require(:cliente).permit(:profissao_nome, :familia_quantidade,
                                       :familia_renda, :contribuintes_quantidade, :estado_civil_id,
                                       :moradia_type_id, :profissao_type_id, :nome, :cpf,
-                                      :nome_da_mae, :rg, :cor, :identidade_de_genero)
+                                      :nome_da_mae, :rg, :cor, :identidade_de_genero, :aprovado)
     end
-
-    def atendimento_params
-     params.require(:cliente).permit(:atendimento).permit(:status)
-   end
 
 end

@@ -10,7 +10,6 @@ Feature: Register a Cliente
     And exists a "estado_civil"
     And exists a "profissao_type"
     And exists a "profissao_type"
-    And exists a "atendimento"
     And I am on "clientes new"
     And I wait a second
     And I take "cliente" picture of the page
@@ -57,7 +56,7 @@ Feature: Register a Cliente
     And I fill in "cliente iptu" with "100,00"
     And I fill in "cliente total despesas fixas" with "100,00"
     And I fill in "cliente valor liquido rendimento mensal" with "100,00"
-    And I select the option "Não" in "cliente atendimento status"
+    And I select the option "Sim" in "cliente aprovado"
     And I press "Criar Cliente"
     Then I should see "Cliente was successfully created."
 
@@ -68,7 +67,6 @@ Feature: Register a Cliente
       And exists a "estado_civil"
       And exists a "profissao_type"
       And exists a "profissao_type"
-      And exists a "atendimento"
       And I am on "clientes new"
       And I fill in "cliente codigo" with "10.XX.0392023"
       And I fill in "cliente nome" with "Athena"
@@ -113,6 +111,6 @@ Feature: Register a Cliente
       And I fill in "cliente iptu" with "100,00"
       And I fill in "cliente total despesas fixas" with "100,00"
       And I fill in "cliente valor liquido rendimento mensal" with "100,00"
-      And I select the option "Não" in "cliente atendimento status"
+      And I select the option "Sim" in "cliente aprovado"
       And I press "Criar Cliente"
       Then I should see "Cliente was successfully created."

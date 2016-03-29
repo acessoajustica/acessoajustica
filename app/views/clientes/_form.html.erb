@@ -16,21 +16,6 @@
             </div>
           </div>
         <% end %>
-
-        <% if @atendimento.errors.any? %>
-          <div class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= pluralize(@atendimento.errors.count, "erro") %> impediu o cadastro:</h3>
-            </div>
-            <div class="panel-body">
-              <ul>
-              <% @atendimento.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-              </ul>
-            </div>
-          </div>
-        <% end %>
         <p class="lead" style="text-align: justify;">
           <strong>ATENÇÃO:</strong> Este formulário só deverá ser preenchido na hipótese de patrocínio da ação, e seu intuito é caracterizar a incidência da Lei n<sup>o</sup> 1.060/1950.
           Em caso de negativa, o cliente não poderá ter o caso patrocinado por este Departamento Jurídico.
@@ -410,11 +395,9 @@
             <div class="form-group col-md-12 col-sm-12">
               <%= f.label :categoria, "O cliente se enquadra­ na hipótese da Lei no 1.060/50?", :class => 'control-label' %>
               <div class="controls">
-                <%= f.fields_for @atendimento do |c| %>
-                  <%= c.select :status, options_for_select([['Sim', true], ['Não', false]]), {:include_blank => true}, {:class => 'form-control'} %>
-                <% end %>
+                <%= f.select :aprovado, options_for_select([['Sim', true], ['Não', false]]), {:include_blank => true}, {:class => 'form-control'} %>
               </div>
-              <%= error_span(@atendimento[:status]) %>
+              <%= error_span(@cliente[:aprovado]) %>
             </div>
           </div>
         </div>

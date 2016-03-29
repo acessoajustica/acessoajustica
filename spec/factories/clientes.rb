@@ -10,6 +10,7 @@ FactoryGirl.define do
     profissao_nome "Assistente Administrativo"
     familia_quantidade 9
     contribuintes_quantidade 4
+    aprovado true
 
     trait :cliente_with_atendimento do
       after(:stub) do |c|
@@ -26,7 +27,7 @@ FactoryGirl.define do
     trait :cliente_invalid do
       nome nil
     end
-    
+
     trait :another do
       nome "Mario da Silva"
     end
