@@ -8,7 +8,7 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos
   # GET /atendimentos.json
   def index
-    @atendimentos = Atendimento.waiting_list
+    @atendimentos = order_atendimentos_by_especialidades(current_user)
   end
 
   def active
@@ -119,5 +119,28 @@ class AtendimentosController < ApplicationController
       unless current_user.role? :diretor
         redirect_to root_path, flash: { warning: "Você não tem autorização para ver a página requisitada!"}
       end
+    end
+
+    #TODO refactor
+    #order by especialidade do estagiario
+    def order_atendimentos_by_especialidades(user)
+      atendimentos = Atendimento.waiting_list
+      if user.role?(:estagiário) && user.membro.present?
+        estagiario = Estagiario.find(user.membro_id)
+        if estagiario.present?
+          especialidades = estagiario.especialidades.map{|e| e.id }
+          atendimentos = atendimentos.sort_by{|a|
+            if a.especialidade_id.blank?
+              order = 1
+            elsif especialidades.include?(a.especialidade_id)
+              order = -1
+            else
+              order = 0
+            end
+            [order, a.created_at] #order by the order and creation date
+          }
+        end
+      end
+      atendimentos
     end
 end
