@@ -98,7 +98,12 @@
               <div class="list-group-separator"></div>
             </div>
           <% end %>
-          <%= link_to 'Novo atendimento', new_atendimento_path(cliente_id: @cliente.id), class: 'btn btn-md btn-info' %>
+          <% if @cliente.aprovado %>
+            <%= link_to 'Novo atendimento', new_atendimento_path(cliente_id: @cliente.id), class: 'btn btn-md btn-info' %>
+          <% else %>
+            <%= link_to 'Novo atendimento', new_atendimento_path(cliente_id: @cliente.id), class: 'btn btn-md btn-info', disabled: "disabled" %>
+            <span>Cliente com Perfil Socioeconômico recusado.</span>
+          <% end %>
         </div>
       </div>
       <%= link_to t('.back', :default => t("helpers.links.back")),
