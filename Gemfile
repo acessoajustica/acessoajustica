@@ -36,7 +36,7 @@ gem 'angularjs-rails', '~> 1.4', '>= 1.4.8'
 
 gem 'bootstrap-material-design'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
