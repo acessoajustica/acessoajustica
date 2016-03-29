@@ -7,8 +7,9 @@ class Cliente < ActiveRecord::Base
 
   validates :aprovado, :presence => true
 
-  scope :search, -> (search) { where("lower(pessoas.nome) like :search
-  								        or pessoas.CPF like :search", search: "%#{search.downcase}%")
+
+  scope :search, -> (search) { joins(:pessoa).where("lower(nome) like :search
+  								        or CPF like :search", search: "%#{search.downcase}%")
     								}
 
   def moradia_description
