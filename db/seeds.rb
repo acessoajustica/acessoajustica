@@ -62,6 +62,9 @@ calouro_user.roles << calouro_role
 vareiro_user.roles << vareiro_role
 diretor_user.roles << diretor_role
 
+estagiario_user.membro_id = estagiario.membro.id
+estagiario_user.save
+
 
 case Rails.env
   when "development"
