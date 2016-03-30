@@ -12,10 +12,18 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
 
   belongs_to :membro
-  
+
+  def active_for_authentication?
+    super && self.active? # i.e. super && self.is_active
+  end
+
+  def inactive_message
+    "Desculpe, esta conta foi desativada por um diretor."
+  end
+
   def role?( role )
     !roles.find_by_name( role.to_s ).nil?
-  end 
+  end
 
   def login=(login)
     @login = login

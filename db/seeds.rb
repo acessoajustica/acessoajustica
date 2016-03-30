@@ -88,6 +88,17 @@ case Rails.env
     estagiario_user.membro_id = estagiario.membro.id
     estagiario_user.save
 
+    estagiario_diretor = Estagiario.create!(:nome => "Joana Diretora",
+              :cpf =>"123.456.789-01",
+              :nome_da_mae  =>  "Maria Diretora",
+              :rg  => "12.345.678-0",
+              :cor  => "Negro",
+              :identidade_de_genero  => "Mulher",
+              :ano_faculdade  => "1991-03-02")
+
+    diretor_user.membro_id = estagiario_diretor.membro.id
+    diretor_user.save
+
     resultado_type = AtendimentoResultado.create!(:description => "Orientação")
 
     # Creating atendimento

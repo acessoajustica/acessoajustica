@@ -9,10 +9,10 @@
 <body>
 
 <% if notice %>
-<p class="alert alert-success"><%= notice %></p>
+  <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
-<p class="alert alert-danger"><%= alert %></p>
+  <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
 <% if user_signed_in? %>
@@ -33,6 +33,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Cadastrar Usuário", new_user_registration_path %> </li>
               <li role="separator" class="divider"></li>
+              <li><%= link_to "Lista de Diretores", diretores_path %></li>
               <li><%= link_to "Lista de Estagiários", estagiarios_path %></li>
               <li><%= link_to "Lista de Calouros", calouros_path %></li>
               <li><%= link_to "Lista de Vareiros", vareiros_path %></li>

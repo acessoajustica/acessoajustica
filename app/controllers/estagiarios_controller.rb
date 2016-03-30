@@ -1,12 +1,18 @@
 class EstagiariosController < ApplicationController
   include EstagiariosHelper
   authorize_resource
-  before_action :set_estagiario, only: [:show, :edit, :update, :destroy]
+  before_action :set_estagiario, only: [:show, :edit, :update, :destroy, :active, :remove_director, :add_director]
 
   # GET /estagiarios
   # GET /estagiarios.json
   def index
-    @estagiarios = Estagiario.all
+    @estagiarios = Estagiario.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC")
+  end
+
+  # GET /estagiarios
+  def diretores
+    @users = User.all.joins(:roles).joins(:membro).where("roles.name = 'diretor'")
+    @estagiarios = Estagiario.all.joins(:membro).joins(:user).where("users.id in (?)", @users.ids).order("users.active DESC, users.last_sign_in_at DESC")
   end
 
   # GET /estagiarios/1
@@ -22,6 +28,26 @@ class EstagiariosController < ApplicationController
 
   # GET /estagiarios/1/edit
   def edit
+  end
+
+  # POST /estagiarios/1/active
+  def active
+    @estagiario.membro.user.active = !@estagiario.membro.user.active
+    @estagiario.membro.user.save
+    redirect_to estagiarios_path
+  end
+
+  # POST /estagiarios/1/remove_director
+  def remove_director
+    @estagiario.membro.user.roles.delete_all
+    @estagiario.membro.user.roles << Role.find_by_name("estagiário")
+    redirect_to diretores_path  end
+
+  # POST /estagiarios/1/remove_director
+  def add_director
+    @estagiario.membro.user.roles.delete_all
+    @estagiario.membro.user.roles << Role.find_by_name("diretor")
+    redirect_to diretores_path
   end
 
   # POST /estagiarios

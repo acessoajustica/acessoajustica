@@ -11,7 +11,8 @@
           <tr>
             <th><%= model_class.human_attribute_name(:id) %></th>
             <th><%= model_class.human_attribute_name(:nome) %></th>
-            <th><%= model_class.human_attribute_name(:created_at) %></th>
+            <th>Último acesso</th>
+            <th>Ativo</th>
             <th><%=t '.actions', :default => t("helpers.actions") %></th>
           </tr>
         </thead>
@@ -20,11 +21,13 @@
             <tr>
               <td><%= link_to vareiro.id, vareiro_path(vareiro) %></td>
               <td><%= vareiro.nome %></td>
-              <td><%=vareiro.created_at.strftime("%d/%m/%Y - %H:%M")  %></td>
+              <td><%= vareiro.membro.user.last_sign_in_at != nil ? vareiro.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
+              <td><%= vareiro.membro.user.active? ? "Ativo" : "Desativado" %></td>
               <td>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_vareiro_path(vareiro), :class => 'btn btn-default btn-xs' %>
                 <%= link_to "Ver detalhes", vareiro_path(vareiro), :class => 'btn btn-default btn-xs'%>
+                <%= link_to vareiro.membro.user.active? ? "Desativar" : "Ativar", active_vareiro_path(vareiro), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'} %>
               </td>
             </tr>
           <% end %>
@@ -33,7 +36,7 @@
       <hr>
       <div class="text-right">
         <%= link_to t('.new', :default => t("helpers.links.new")),
-                    new_vareiro_path,
+                    new_user_registration_path,
                     :class => 'btn btn-primary' %>
       </div>
     </div><!-- /col-md-8 -->

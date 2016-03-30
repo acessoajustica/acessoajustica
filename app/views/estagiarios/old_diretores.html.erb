@@ -1,6 +1,6 @@
-<%- model_class = Calouro -%>
+<%- model_class = Estagiario -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => "Diretores" %></h1>
 </div>
 <div class="container-fluid">
   <div class="row">
@@ -17,17 +17,17 @@
           </tr>
         </thead>
         <tbody>
-          <% @calouros.each do |calouro| %>
+          <% @diretores.each do |diretor| %>
             <tr>
-              <td><%= link_to calouro.id, calouro_path(calouro) %></td>
-              <td><%= calouro.nome %></td>
-              <td><%= calouro.membro.user.last_sign_in_at != nil ? calouro.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
-              <td><%= calouro.membro.user.active? ? "Ativo" : "Desativado" %></td>
+              <td><%= link_to diretor.id, estagiario_path(diretor) %></td>
+              <td><%= diretor.membro.nome %></td>
+              <td><%= diretor.membro.user.last_sign_in_at != nil ? diretor.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
+              <td><%= diretor.membro.user.active? ? "Ativo" : "Desativado" %></td>
               <td>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                            edit_calouro_path(calouro), :class => 'btn btn-default btn-xs' %>
-                <%= link_to "Ver detalhes", calouro_path(calouro), :class => 'btn btn-default btn-xs'%>
-                <%= link_to calouro.membro.user.active? ? "Desativar" : "Ativar", active_calouro_path(calouro), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'} %>
+                            estagiario_path(diretor), :class => 'btn btn-default btn-xs' %>
+                <%= link_to "Ver detalhes", estagiario_path(diretor), :class => 'btn btn-default btn-xs'%>
+                <%= link_to "Remover da Diretoria", remove_director_path(diretor), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
               </td>
             </tr>
           <% end %>

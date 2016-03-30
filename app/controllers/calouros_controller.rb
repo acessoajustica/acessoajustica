@@ -1,11 +1,11 @@
 class CalourosController < ApplicationController
   authorize_resource
-  before_action :set_calouro, only: [:show, :edit, :update, :destroy]
+  before_action :set_calouro, only: [:show, :edit, :update, :destroy, :active]
 
   # GET /calouros
   # GET /calouros.json
   def index
-    @calouros = Calouro.all
+    @calouros = Calouro.all.joins(:membro).joins(:user).order("users.active DESC").order("users.last_sign_in_at DESC")
   end
 
   # GET /calouros/1
@@ -21,6 +21,13 @@ class CalourosController < ApplicationController
 
   # GET /calouros/1/edit
   def edit
+  end
+
+  # POST /calouros/1/active
+  def active
+    @calouro.membro.user.active = !@calouro.membro.user.active
+    @calouro.membro.user.save
+    redirect_to calouros_path
   end
 
   # POST /calouros

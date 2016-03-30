@@ -2,9 +2,18 @@ Rails.application.routes.draw do
 
   resources :estagiarios
 
+  get "estagiarios/:id/active" => "estagiarios#active" , as: :active_estagiario
+  get "diretores" => "estagiarios#diretores" , as: :diretores
+  get "remove_director/:id" => "estagiarios#remove_director" , as: :remove_director
+  get "add_director/:id" => "estagiarios#add_director" , as: :add_director
+
   resources :vareiros
 
+  get "vareiros/:id/active" => "vareiros#active" , as: :active_vareiro
+
   resources :calouros
+
+  get "calouros/:id/active" => "calouros#active" , as: :active_calouro
 
   resources :relatos
 

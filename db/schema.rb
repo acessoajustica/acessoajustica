@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702002805) do
+ActiveRecord::Schema.define(version: 20160322210917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,33 +48,6 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "caso_resultados", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "caso_types", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "casos", force: :cascade do |t|
-    t.boolean  "status"
-    t.integer  "cliente_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "estagiario_id"
-    t.integer  "caso_type_id"
-    t.integer  "caso_resultado_id"
-  end
-
-  add_index "casos", ["caso_resultado_id"], name: "index_casos_on_caso_resultado_id", using: :btree
-  add_index "casos", ["caso_type_id"], name: "index_casos_on_caso_type_id", using: :btree
-  add_index "casos", ["cliente_id"], name: "index_casos_on_cliente_id", using: :btree
-  add_index "casos", ["estagiario_id"], name: "index_casos_on_estagiario_id", using: :btree
-
   create_table "clientes", force: :cascade do |t|
     t.integer  "filhos_quantidade"
     t.string   "profissao_nome"
@@ -103,14 +76,6 @@ ActiveRecord::Schema.define(version: 20150702002805) do
 
   add_index "especialidades_atendimento_types", ["atendimento_type_id"], name: "index_especialidades_atendimento_types_on_atendimento_type_id", using: :btree
   add_index "especialidades_atendimento_types", ["especialidade_id"], name: "index_especialidades_atendimento_types_on_especialidade_id", using: :btree
-
-  create_table "especialidades_caso_types", id: false, force: :cascade do |t|
-    t.integer "especialidade_id"
-    t.integer "caso_type_id"
-  end
-
-  add_index "especialidades_caso_types", ["caso_type_id"], name: "index_especialidades_caso_types_on_caso_type_id", using: :btree
-  add_index "especialidades_caso_types", ["especialidade_id"], name: "index_especialidades_caso_types_on_especialidade_id", using: :btree
 
   create_table "estado_civils", force: :cascade do |t|
     t.string   "description"
@@ -144,6 +109,8 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "moradia_types", ["description"], name: "index_moradia_types_on_description", unique: true, using: :btree
 
   create_table "pessoas", force: :cascade do |t|
     t.string   "nome"
@@ -185,12 +152,12 @@ ActiveRecord::Schema.define(version: 20150702002805) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -199,6 +166,7 @@ ActiveRecord::Schema.define(version: 20150702002805) do
     t.datetime "updated_at"
     t.string   "username"
     t.integer  "membro_id"
+    t.boolean  "active",                 default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -215,8 +183,6 @@ ActiveRecord::Schema.define(version: 20150702002805) do
   add_foreign_key "atendimentos", "atendimento_types"
   add_foreign_key "atendimentos", "clientes"
   add_foreign_key "atendimentos", "estagiarios"
-  add_foreign_key "casos", "caso_resultados"
-  add_foreign_key "casos", "caso_types"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"

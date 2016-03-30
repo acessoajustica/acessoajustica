@@ -1,6 +1,6 @@
 <%- model_class = Estagiario -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => "Estagiários" %></h1>
+  <h1><%=t '.title', :default => "Diretores" %></h1>
 </div>
 <div class="container-fluid">
   <div class="row">
@@ -28,9 +28,7 @@
                             edit_estagiario_path(estagiario), :class => 'btn btn-default btn-xs' %>
                 <%= link_to "Ver detalhes", estagiario_path(estagiario), :class => 'btn btn-default btn-xs'%>
                 <%= link_to estagiario.membro.user.active? ? "Desativar" : "Ativar", active_estagiario_path(estagiario), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
-                <% if !estagiario.is_diretor %>
-                  <%= link_to "Tornar Diretor", add_director_path(estagiario), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
-                <% end %>
+                <%= link_to "Remover da Diretoria", remove_director_path(estagiario), :class => 'btn btn-default btn-xs', :data => {:confirm => 'Você tem certeza?'}%>
               </td>
             </tr>
           <% end %>

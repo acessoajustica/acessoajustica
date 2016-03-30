@@ -1,11 +1,11 @@
 class VareirosController < ApplicationController
   authorize_resource
-  before_action :set_vareiro, only: [:show, :edit, :update, :destroy]
+  before_action :set_vareiro, only: [:show, :edit, :update, :destroy, :active]
 
   # GET /vareiros
   # GET /vareiros.json
   def index
-    @vareiros = Vareiro.all
+    @vareiros = Vareiro.all.joins(:membro).joins(:user).order("users.active DESC").order("users.last_sign_in_at DESC")
   end
 
   # GET /vareiros/1
@@ -21,6 +21,13 @@ class VareirosController < ApplicationController
 
   # GET /vareiros/1/edit
   def edit
+  end
+
+  # POST /vareiros/1/active
+  def active
+    @vareiro.membro.user.active = !@vareiro.membro.user.active
+    @vareiro.membro.user.save
+    redirect_to vareiros_path
   end
 
   # POST /vareiros
