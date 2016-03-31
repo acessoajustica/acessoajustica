@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322210917) do
+ActiveRecord::Schema.define(version: 20160328233818) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,16 +32,22 @@ ActiveRecord::Schema.define(version: 20160322210917) do
   create_table "atendimentos", force: :cascade do |t|
     t.boolean  "status"
     t.integer  "cliente_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "estagiario_id"
     t.integer  "atendimento_type_id"
     t.integer  "atendimento_resultado_id"
+    t.string   "initial_description"
+    t.string   "detailed_description"
+    t.string   "justification"
+    t.boolean  "active",                   default: true
+    t.integer  "especialidade_id"
   end
 
   add_index "atendimentos", ["atendimento_resultado_id"], name: "index_atendimentos_on_atendimento_resultado_id", using: :btree
   add_index "atendimentos", ["atendimento_type_id"], name: "index_atendimentos_on_atendimento_type_id", using: :btree
   add_index "atendimentos", ["cliente_id"], name: "index_atendimentos_on_cliente_id", using: :btree
+  add_index "atendimentos", ["especialidade_id"], name: "index_atendimentos_on_especialidade_id", using: :btree
   add_index "atendimentos", ["estagiario_id"], name: "index_atendimentos_on_estagiario_id", using: :btree
 
   create_table "calouros", force: :cascade do |t|
@@ -49,7 +56,6 @@ ActiveRecord::Schema.define(version: 20160322210917) do
   end
 
   create_table "clientes", force: :cascade do |t|
-    t.integer  "filhos_quantidade"
     t.string   "profissao_nome"
     t.string   "familia_quantidade"
     t.decimal  "familia_renda"
@@ -57,13 +63,46 @@ ActiveRecord::Schema.define(version: 20160322210917) do
     t.integer  "estado_civil_id"
     t.integer  "moradia_type_id"
     t.integer  "profissao_type_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "endereco"
+    t.string   "bairro"
+    t.string   "cep"
+    t.string   "cidade"
+    t.string   "estado"
+    t.boolean  "tem_filhos"
+    t.integer  "menores_moram_quantidades"
+    t.integer  "maiores_moram_quantidades"
+    t.boolean  "faz_bicos"
+    t.decimal  "salario"
+    t.decimal  "contribuicao_valor"
+    t.decimal  "alimentacao_despesa"
+    t.decimal  "saude"
+    t.decimal  "aluguel"
+    t.decimal  "condominio"
+    t.decimal  "agua"
+    t.decimal  "luz"
+    t.decimal  "gas"
+    t.decimal  "telefone_despesa"
+    t.decimal  "transporte"
+    t.decimal  "educacao"
+    t.decimal  "obrigacoes_judiciais"
+    t.decimal  "financiamentos"
+    t.decimal  "iptu"
+    t.decimal  "total_despesas_fixas"
+    t.decimal  "valor_liquido_rendimento_mensal"
+    t.string   "codigo"
+    t.integer  "menores_nao_moram_quantidades"
+    t.integer  "maiores_nao_moram_quantidades"
+    t.integer  "user_id"
+    t.string   "telefone_contato"
+    t.boolean  "aprovado"
   end
 
   add_index "clientes", ["estado_civil_id"], name: "index_clientes_on_estado_civil_id", using: :btree
   add_index "clientes", ["moradia_type_id"], name: "index_clientes_on_moradia_type_id", using: :btree
   add_index "clientes", ["profissao_type_id"], name: "index_clientes_on_profissao_type_id", using: :btree
+  add_index "clientes", ["user_id"], name: "index_clientes_on_user_id", using: :btree
 
   create_table "especialidades", force: :cascade do |t|
     t.string "description"
@@ -131,15 +170,6 @@ ActiveRecord::Schema.define(version: 20160322210917) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "relatos", force: :cascade do |t|
-    t.string   "description"
-    t.integer  "atendimento_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "relatos", ["atendimento_id"], name: "index_relatos_on_atendimento_id", using: :btree
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -182,9 +212,10 @@ ActiveRecord::Schema.define(version: 20160322210917) do
   add_foreign_key "atendimentos", "atendimento_resultados"
   add_foreign_key "atendimentos", "atendimento_types"
   add_foreign_key "atendimentos", "clientes"
+  add_foreign_key "atendimentos", "especialidades"
   add_foreign_key "atendimentos", "estagiarios"
   add_foreign_key "clientes", "estado_civils"
   add_foreign_key "clientes", "moradia_types"
   add_foreign_key "clientes", "profissao_types"
-  add_foreign_key "relatos", "atendimentos"
+  add_foreign_key "clientes", "users"
 end

@@ -20,10 +20,15 @@ Rails.application.routes.draw do
   resources :atendimentos do
     collection do
       get 'my-cases'
+      get 'active'
+    end
+    member do
+      put 'archive'
     end
   end
 
   get "atendimentos/:id/select-case" => "atendimentos#select_case" , as: :select_case
+  get "verifica_cpf" => "clientes#verifica_cpf" , as: :verifica_cpf
 
   resources :clientes do
     collection do

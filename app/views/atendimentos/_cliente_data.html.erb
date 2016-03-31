@@ -1,95 +1,86 @@
-<div class = "row">
-  <h3> Dados do Cliente</h3>
-</div>
-
 <div class="row">
-  <h4> Dados Pessoais</h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Dados do Cliente</h3>
+    </div>
+    <div class="panel-body">
+      <div class='col-md-6'>
+        <table class="table table-hover">
+          <tr>
+            <td colspan="2">
+              <strong>Dados Pessoais</strong>
+            </td>
+          </tr>
+          <tr>
+            <td>Nome</td>
+            <td><%=@atendimento.cliente.nome%></td>
+          </tr>
+          <tr>
+            <td>Nome da mae</td>
+            <td><%=@atendimento.cliente.nome_da_mae%></td>
+          </tr>
+          <tr>
+            <td>CPF</td>
+            <td><%=@atendimento.cliente.cpf%></td>
+          </tr>
+          <tr>
+            <td>RG</td>
+            <td><%=@atendimento.cliente.rg%></td>
+          </tr>
+          <tr>
+            <td>Cor</td>
+            <td><%=@atendimento.cliente.cor%></td>
+          </tr>
+          <tr>
+            <td>Identidade de gênero</td>
+            <td><%=@atendimento.cliente.identidade_de_genero%></td>
+          </tr>
+          <tr>
+            <td>Estado civil</td>
+            <td><%=@atendimento.cliente.estado_civil_description%></td>
+          </tr>
+          <tr>
+            <td>Tipo de moradia</td>
+            <td><%=@atendimento.cliente.moradia_description%></td>
+          </tr>
+        </table>
+      </div>
+      <div class='col-md-6'>
+        <table class="table table-hover">
+          <tr>
+            <td colspan="2">
+              <strong>Dados Familiares</strong>
+            </td>
+          </tr>
+          <tr>
+            <td>Renda total</td>
+            <td><%=@atendimento.cliente.familia_renda%></td>
+          </tr>
+          <tr>
+            <td>Quantidade total de pessoas</td>
+            <td><%=@atendimento.cliente.familia_quantidade%></td>
+          </tr>
+          <tr>
+            <td>Quantidade de contribuites</td>
+            <td><%=@atendimento.cliente.contribuintes_quantidade%></td>
+          </tr>
+        </table>
+        <table class="table table-hover">
+          <tr>
+            <td colspan="2">
+              <strong>Dados Profissionais</strong>
+            </td>
+          </tr>
+          <tr>
+            <td>Profissão</td>
+            <td><%=@atendimento.cliente.profissao_nome%></td>
+          </tr>
+          <tr>
+            <td>Categoria</td>
+            <td><%=@atendimento.cliente.profissao_type_description%></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="row">
-  <table class = "col-md-9 col-sm-9 col-xs-12">
-    <tr>
-      <td width="50%"><b>Nome: </b></td>
-      <td><%=@atendimento.cliente.nome%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Nome da mae: </b></td>
-      <td><%=@atendimento.cliente.nome_da_mae%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Cpf: </b></td>
-      <td><%=@atendimento.cliente.cpf%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Rg: </b></td>
-      <td><%=@atendimento.cliente.rg%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Cor: </b></td>
-      <td><%=@atendimento.cliente.cor%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Identidade de gênero: </b></td>
-      <td><%=@atendimento.cliente.identidade_de_genero%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Estado civil: </b></td>
-      <td><%=@atendimento.cliente.estado_civil_description%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Tipo de moradia: </b></td>
-      <td><%=@atendimento.cliente.moradia_description%></td>
-    </tr>
-  </table>
-</div>
-
-<div class = "row">
-  <h4> Dados Familiares</h4>
-</div>
-
-<div class = "row">
-  <table class = "col-md-9 col-sm-9 col-xs-12">
-    <tr>
-      <td width="50%"><b>Renda total: </b></td>
-      <td><%=@atendimento.cliente.familia_renda%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Quantidade total de pessoas: </b></td>
-      <td><%=@atendimento.cliente.familia_quantidade%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Quantidade de filhos: </b></td>
-      <td><%=@atendimento.cliente.filhos_quantidade%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Quantidade de contribuites: </b></td>
-      <td><%=@atendimento.cliente.contribuintes_quantidade%></td>
-    </tr>
-  </table>
-</div>
-
-<div class = "row">
-  <h4> Dados Profissionais</h4>
-</div>
-
-<div class = "row">
-  <table class = "col-md-9 col-sm-9 col-xs-12">
-    <tr>
-      <td width="50%"><b>Profissão: </b></td>
-      <td><%=@atendimento.cliente.profissao_nome%></td>
-    </tr>
-    <tr>
-      <td width="50%"><b>Categoria: </b></td>
-      <td><%=@atendimento.cliente.profissao_type_description%></td>
-    </tr>
-  </table>
-</div>
-
-
-
-
-
-
-
-
-

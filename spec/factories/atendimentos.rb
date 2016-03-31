@@ -1,27 +1,25 @@
 FactoryGirl.define do
   factory :atendimento do
     status true
-    # association :cliente, factory: :cliente, strategy: :build
-    cliente Cliente.new()
-    # association :cliente, factory: :cliente, strategy: :build
-    relatos [Relato.new({:description => 'Uma descrição'})]
-  end
+    association :cliente, factory: :cliente, strategy: :build
+    initial_description "Um relato inicial"
+    detailed_description "Um relato detalhado"
 
-  trait :old do
-    created_at Date.new(1970, 1, 1)
-  end
+    trait :old do
+      created_at Date.new(1970, 1, 1)
+    end
 
-  trait :rejected do
-    status false
-  end
+    trait :rejected do
+      status false
+    end
 
-  trait :invalid do
-    cliente nil
-  end
-  
-  trait :restless do
-    relatos [Relato.new({:description => 'Uma descrição'}),
-             Relato.new({:description => 'Outra descrição'}),
-             Relato.new({:description => 'Mais uma descrição'})]
+    trait :invalid do
+      initial_description nil
+    end
+
+    trait :restless do
+      initial_description "Um relato inicial"
+      detailed_description "Um relato detalhado"
+    end
   end
 end

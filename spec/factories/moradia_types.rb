@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :moradia_type do
-    description "Casa"
+    description "Outra"
   end
 end

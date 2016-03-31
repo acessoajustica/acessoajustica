@@ -25,19 +25,19 @@ RSpec.describe AtendimentosController, type: :controller do
   # Atendimento. As you add validations to Atendimento, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    FactoryGirl.attributes_for(:atendimento)
+    FactoryGirl.build(:atendimento).attributes
   end
 
   let(:valid_old_atendimento) do
-    FactoryGirl.attributes_for(:atendimento, :old)
+    FactoryGirl.build(:atendimento, :old).attributes
   end
 
   let(:valid_non_accepted) do
-    FactoryGirl.attributes_for(:atendimento, :rejected)
+    FactoryGirl.build(:atendimento, :rejected).attributes
   end
 
   let(:invalid_attributes) do
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.build(:atendimento, :invalid).attributes
   end
 
   # This should return the minimal set of values that should be in the session
@@ -77,7 +77,7 @@ RSpec.describe AtendimentosController, type: :controller do
       atendimento = Atendimento.create! valid_attributes
       already_attended_atendimento = Atendimento.create! valid_attributes
       already_attended_atendimento.stubs(:estagiario).returns(FactoryGirl.build(:estagiario))
-      Atendimento.stubs(:where).returns([atendimento, already_attended_atendimento])
+      Atendimento.stubs(:waiting_list).returns([atendimento])
       get :index, {}, valid_session
       expect(assigns(:atendimentos)).to eq([atendimento])
     end

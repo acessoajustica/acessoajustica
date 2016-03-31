@@ -16,8 +16,6 @@ class ClientesController < ApplicationController
   # GET /clientes/new
   def new
     @cliente = Cliente.new
-    @atendimento = Atendimento.new
-    @relato = Relato.new
   end
 
   # GET /clientes/1/edit
@@ -35,24 +33,17 @@ class ClientesController < ApplicationController
   # POST /clientes.json
   def create
     @cliente = Cliente.new(cliente_params)
+
     respond_to do |format|
-      if @cliente.save
-
-        @atendimento = Atendimento.new(atendimento_params)
-        @relato = Relato.new(relato_params)
-        @relato.save
-        @atendimento.relatos << @relato
-        @atendimento.cliente_id = @cliente.id
-        @atendimento.save
-
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
-        format.json { render :show, status: :created, location: @cliente }
-      else
-        format.html { render :new }
-        format.json { render json: @cliente.errors, status: :unprocessable_entity }
-      end
+    if @cliente.save
+      format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
+      format.json { render :show, status: :created, location: @cliente }
+    else
+      format.html { render :new }
+      format.json { render json: @cliente.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # PATCH/PUT /clientes/1
   # PATCH/PUT /clientes/1.json
@@ -68,6 +59,11 @@ class ClientesController < ApplicationController
     end
   end
 
+  def verifica_cpf
+    pessoa = Pessoa.where(:cpf => params[:cpf])
+    render json: pessoa
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
@@ -76,17 +72,10 @@ class ClientesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
-      params.require(:cliente).permit(:filhos_quantidade, :profissao_nome, :familia_quantidade,
+      params.require(:cliente).permit(:profissao_nome, :familia_quantidade,
                                       :familia_renda, :contribuintes_quantidade, :estado_civil_id,
                                       :moradia_type_id, :profissao_type_id, :nome, :cpf,
-                                      :nome_da_mae, :rg, :cor, :identidade_de_genero)
+                                      :nome_da_mae, :rg, :cor, :identidade_de_genero, :aprovado)
     end
 
-    def atendimento_params
-      params.require(:cliente).permit(:atendimento).permit(:status)
-    end
-
-    def relato_params
-      params.require(:cliente).permit(:relato).permit(:description)
-    end
 end

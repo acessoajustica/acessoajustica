@@ -13,36 +13,36 @@
   </div>
 </div>
 
-<% if @search.present? %>
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Nome</th>
-          <th>CPF</th>
-          <th>Data de Registro</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @search.each do |cliente| %>
+  <% if @search.present? %>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= link_to cliente.id, cliente_path(cliente) %></td>
-            <td><%= cliente.nome %></td>
-            <td><%= cliente.cpf %></td>
-            <td><%=cliente.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
-            <td>
-              <%= link_to "Ver detalhes", cliente_path(cliente), :class => 'btn btn-default btn-xs'%>
-            </td>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data de Registro</th>
+            <th>Ações</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @search.each do |cliente| %>
+            <tr>
+              <td><%= link_to cliente.id, cliente_path(cliente) %></td>
+              <td><%= cliente.nome %></td>
+              <td><%= cliente.cpf %></td>
+              <td><%=cliente.created_at.strftime("%d/%m/%Y - %H:%M") %></td>
+              <td>
+                <%= link_to "Ver detalhes", cliente_path(cliente), :class => 'btn btn-default btn-xs'%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-  </div><!-- /col-md-8 -->
-</div><!-- /row -->
-<% end %>
+    </div><!-- /col-md-8 -->
+  </div><!-- /row -->
+  <% end %>
 <% end %>

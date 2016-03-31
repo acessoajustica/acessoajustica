@@ -46,6 +46,10 @@ And(/^I fill in "([^\"]*)" with "([^\"]*)"$/) do |field, value|
   fill_in(field.gsub(' ', '_'), :with => value)
 end
 
+And(/^I choose "([^\"]*)"$/) do |field|
+  choose(field.gsub(' ', '_'))
+end
+
 When (/^I press "([^\"]*)"$/) do |button|
   click_button(button)
 end
@@ -57,6 +61,10 @@ end
 When(/^I select the option "([^"]*)" in "([^"]*)"$/) do |option, select|
   find(:select, select.gsub(' ', '_')).first(:option, option).select_option
   # select(option, :from => select.gsub(' ', '_'))
+end
+
+When(/^I choose the option "([^"]*)" in "([^"]*)"$/) do |option, select|
+  choose(select.gsub(' ', '_'), option: option)
 end
 
 When(/^I take "([^"]*)" picture of the page$/) do |text|

@@ -2,40 +2,37 @@
 <div class="container">
   <h1>Lista de Espera</h1>
   <div class="row">
-
-  <br><br><br><br><br>
-  <table class = "table table-bordered table-striped col-md-12">
-      <div id="accordion" role="tablist" aria-multiselectable="false">
-          <% @atendimentos.sort{ |atendimento1,atendimento2| atendimento1.created_at <=> atendimento2.created_at }.each_with_index do |atendimento, index| %>
-    <tr><td>
-      <div role="tab" id="heading<%= index %>">
-        <h5>
-          <div data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>" style="cursor: pointer;">
+    <div class="col-md-12">
+      <ul class="list-group well">
+        <% if @atendimentos.each_with_index do |atendimento, index| %>
+          <li class="list-group-item">
             <div class="row">
-              <div id="<%=atendimento.cliente.nome.gsub(' ','_')%>" class = "col-md-8 col-sm-8"><%= atendimento.cliente.nome%></div>
-              <div class = "col-md-2 col-sm-2 text-right register_time"><%= atendimento.created_at.strftime("%H:%M") %></div>
-              <div class = "col-md-2 col-sm-2 text-right"><span class="badge"><%= atendimento.type_description %></span></div>
+              <div class='col-md-3'>
+                [<%= atendimento.created_at.strftime("%H:%M") %>] <%= time_ago_in_words(atendimento.created_at) %> <br>
+                <%= waiting_progress_bar(atendimento) %>
+              </div>
+              <div class='col-md-7 text-center'>
+                <strong><%= atendimento.cliente.nome%></strong>
+                <span class="label label-success"><%= atendimento.especialidade.description if atendimento.especialidade.present? %></span>
+                <span class="badge"><%= atendimento.type_description %></span>
+              </div>
+              <div class='col-md-2'>
+                <span><%= link_to "Ver", atendimento_path(atendimento), :class => 'btn btn-default btn-xs' %></span>
+                <span><%= link_to 'Escolher', select_case_path(atendimento.id), :class => "btn-info btn-xs", :id => 'btn-escolher-' + index.to_s %></span>
+              </div>
             </div>
-          </div>
-        </h5>
-      </div>
-      <div id="collapse<%= index %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
-        <div class="panel-body">
-        <div class="row">
-        <div class = "col-md-10 col-sm-8 text-left">
-          <% Relato.where(:atendimento => atendimento).each do |relato| %>
-            <%= relato.description %>
-          <% end %>
-        </div>
-        <div class = "col-md-2 col-sm-2">
-            <%= link_to 'Escolher', select_case_path(atendimento.id), :class => "btn-info btn-xs pull-right", :id =>  "Escolher_" + index.to_s %>
-        </div>
-        </div>
-        </div>
-      </div>
-    </td></tr>
-  <% end %>
-  </div>
-  </table>
+            <div class="row">
+              <div class='col-md-12'>
+                <h4>Relato inicial</h4>
+                <p><%= simple_format(truncate(atendimento.initial_description, length: 50)) %></p>
+                <hr>
+              </div>
+            </div>
+          </li>
+        <% end.empty? %>
+          <li class="list-group-item">Nenhum atendimento em aberto.</li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

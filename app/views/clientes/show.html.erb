@@ -6,8 +6,7 @@
 <div class="container-fluid">
 
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class = "col-md-8">
+    <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Dados Pessoais</h3>
@@ -56,10 +55,6 @@
               <%= @cliente.familia_quantidade %>
             </li>
             <li class="list-group-item">
-              <strong>Qtd. de Filhos:</strong>
-              <%= @cliente.filhos_quantidade %>
-            </li>
-            <li class="list-group-item">
               <strong>Qtd. de Contribuintes:</strong>
               <%= @cliente.contribuintes_quantidade %>
             </li>
@@ -88,39 +83,37 @@
           <h3 class="panel-title">Atendimentos</h3>
         </div>
         <div class="panel-body">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <% @cliente.atendimentos.each_with_index do |atendimento, index| %>
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="heading<%= index %>">
-                      <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
-                          <%= index+1%> Atendimento
-                          <%= link_to "Ver detalhes", atendimento_path(atendimento), :class => 'btn btn-default btn-xs pull-right'%>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
-                      <div class="panel-body">
-                        <% atendimento.relatos.each do |relato| %>
-                          <%= relato.description %>
-                          <hr>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
+          <% @cliente.atendimentos.each_with_index do |atendimento, index| %>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="row-content">
+                  <div class="least-content"><td><%= time_ago_in_words(atendimento.created_at) %> <br> <%= waiting_progress_bar(atendimento) %></td></div>
+                  <h4 class="list-group-item-heading">Atendimento #<%= index + 1%></h4>
+                  <p class="list-group-item-text"><%= truncate(atendimento.initial_description, length: 20) %></p>
+                  <p class="list-group-item-text">
+                    <%= link_to "Ver detalhes", atendimento_path(atendimento), :class => 'btn btn-xs btn-raised btn-link'%>
+                  </p>
                 </div>
-              <% end %>
-            </li>
-          </ul>
+              </div>
+              <div class="list-group-separator"></div>
+            </div>
+          <% end %>
+          <% if @cliente.aprovado %>
+            <%= link_to 'Novo atendimento', new_atendimento_path(cliente_id: @cliente.id), class: 'btn btn-md btn-info' %>
+          <% else %>
+            <%= link_to 'Novo atendimento', new_atendimento_path(cliente_id: @cliente.id), class: 'btn btn-md btn-info', disabled: "disabled" %>
+            <span>Cliente com Perfil Socioeconômico recusado.</span>
+          <% end %>
         </div>
       </div>
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     clientes_path, :class => 'btn btn-default'  %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                    edit_cliente_path(@cliente), :class => 'btn btn-default' %>
+                    edit_cliente_path(@cliente), :class => 'btn btn-primary' %>
       <hr>
-    </div><!-- /col-md-8 -->
-  </div><!-- /row -->
-</div><!-- /container-fluid -->
+    </div>
+    <!-- /col-md-8 -->
+  </div>
+  <!-- /row -->
+</div>
+<!-- /container-fluid -->
