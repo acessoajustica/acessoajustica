@@ -24,9 +24,10 @@ ProfissaoType.find_or_create_by!(:description => "Aposentado")
 ProfissaoType.find_or_create_by!(:description => "Desempregado")
 
 # Creating atendimento_types
-AtendimentoType.find_or_create_by!(:description => "Orientação")
+AtendimentoType.find_or_create_by!(:description => "Orientação Apenas")
+AtendimentoType.find_or_create_by!(:description => "Orientação Cancelada")
 AtendimentoType.find_or_create_by!(:description => "Mediação")
-AtendimentoType.find_or_create_by!(:description => "Ação")
+AtendimentoType.find_or_create_by!(:description => "Caso")
 
 # Creating roles.
 admin_role      = Role.find_or_create_by!(:name => "admin")
@@ -46,8 +47,18 @@ MoradiaType.find_or_create_by!(:description => "Própria")
 MoradiaType.find_or_create_by!(:description => "Cedida")
 MoradiaType.find_or_create_by!(:description => "Outra")
 
-#case Rails.env
-#  when "development"
+#Creating especialidades
+Especialidade.find_or_create_by!(:description => "Cível");
+Especialidade.find_or_create_by!(:description => "Família");
+Especialidade.find_or_create_by!(:description => "Penal");
+Especialidade.find_or_create_by!(:description => "Previdenciário");
+Especialidade.find_or_create_by!(:description => "Trabalhista");
+Especialidade.find_or_create_by!(:description => "Tributário");
+Especialidade.find_or_create_by!(:description => "N/D");
+
+
+case Rails.env
+ when "development"
 
     # Creating admin users
     estagiario_user = User.create!(:email=>'estagiario@test.com',:username=>'estagiario',:password=>'password')
@@ -55,9 +66,7 @@ MoradiaType.find_or_create_by!(:description => "Outra")
     vareiro_user    = User.create!(:email=>'vareiro@test.com',:username=>'vareiro',:password=>'password')
     diretor_user    = User.create!(:email=>'diretor@test.com',:username=>'diretor',:password=>'password')
 
-    #Creating especialidades
-    Especialidade.find_or_create_by!(:description => "Criminal");
-    Especialidade.find_or_create_by!(:description => "Penal");
+
 
     # assign the admin role to the admin user.  (This bit of rails
     # magic creates a user_role record in the database.)
@@ -136,4 +145,4 @@ MoradiaType.find_or_create_by!(:description => "Outra")
     atendimento4 = Atendimento.find_or_create_by!(:status => true,
                                                   :cliente => cliente2,
                                                   :initial_description => "Relato inicial.")
-#end
+end
