@@ -1,9 +1,10 @@
 language: ruby
 
 rvm:
-  - 2.2.0
+  - 2.2.1
 
 before_script:
+  - bundle update rake
   - cp config/database.travis.yml config/database.yml
   - RAILS_ENV=test bundle exec rake db:reset && rake db:test:prepare --trace
   - export BUNDLE_GEMFILE=$PWD/Gemfile
