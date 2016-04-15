@@ -1,3 +1,24 @@
+$(document).ready ->
+  $('.cpf').mask '999.999.999-99', placeholder: ' '
+  $('.rg').mask '99.999.999-99', placeholder: ' '
+  $('.telefone').mask '(99) 99999-9999', placeholder: ' '
+  $('.cep').mask '99999-999', placeholder: ' '
+  $('.moeda').mask '###.###.##0,00', reverse: true
+  $('#qtd_filhos').hide()
+  $('#cliente_tem_filhos_true').change ->
+    if $(this).is(':checked')
+      $('#qtd_filhos').show()
+    else
+      $('#qtd_filhos').hide()
+    return
+  $('#cliente_tem_filhos_false').change ->
+    if $(this).is(':checked')
+      $('#qtd_filhos').hide()
+    else
+      $('#qtd_filhos').show()
+    return
+  return
+
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
