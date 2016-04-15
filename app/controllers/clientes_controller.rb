@@ -34,6 +34,9 @@ class ClientesController < ApplicationController
   def create
     @cliente = Cliente.new(cliente_params)
 
+    @cliente.cpf = @cliente.cpf.gsub!(/\D/, "")
+    @cliente.rg = @cliente.rg.gsub!(/\D/, "")
+
     respond_to do |format|
     if @cliente.save
       format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }

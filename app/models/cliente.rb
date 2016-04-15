@@ -9,7 +9,7 @@ class Cliente < ActiveRecord::Base
 
 
   scope :search, -> (search) { joins(:pessoa).where("lower(nome) like :search
-  								        or CPF like :search", search: "%#{search.downcase}%")
+  								        or CPF like :cpf", search: "%#{search.downcase}%", cpf: "%#{search.gsub!(/\D/, "")}%")
     								}
 
   def moradia_description

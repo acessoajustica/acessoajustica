@@ -45,9 +45,9 @@ clienteCenter.controller 'ClientesController', [
     $scope.verifica_success = ->
       if $scope.cliente.length > 0
         showHref = $('#showCliente').attr('href')
-        $('#showCliente').attr 'href', showHref +  $scope.cliente[0].id
+        $('#showCliente').attr 'href', showHref +  $scope.cliente[0].actable_id
         editHref = $('#editCliente').attr('href')
-        $('#editCliente').attr 'href', editHref + $scope.cliente[0].id + "/edit"
+        $('#editCliente').attr 'href', editHref + $scope.cliente[0].actable_id + "/edit"
 
         $('#MyModal').modal()
 
@@ -56,6 +56,6 @@ clienteCenter.controller 'ClientesController', [
       # Growlyflash.error("Ocorreu um erro ao tentar verifica a propota. Por favor, tente novamente mais tarde.")
       return
     $scope.verifica = () ->
-      $scope.cliente = Api.Cliente.index({cpf: $scope.cpf},$scope.cpf,$scope.verifica_success,$scope.verifica_fail)
+      $scope.cliente = Api.Cliente.index({cpf: $scope.cpf.replace(/\D/g, "")},$scope.cpf.replace(/\D/g, ""),$scope.verifica_success,$scope.verifica_fail)
     return
 ]
