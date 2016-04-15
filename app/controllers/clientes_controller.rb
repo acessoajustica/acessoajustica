@@ -78,7 +78,7 @@ end
       params.require(:cliente).permit(:profissao_nome, :familia_quantidade,
                                       :familia_renda, :contribuintes_quantidade, :estado_civil_id,
                                       :moradia_type_id, :profissao_type_id, :nome, :cpf,
-                                      :nome_da_mae, :rg, :cor, :identidade_de_genero, :aprovado)
+                                      :nome_da_mae, :rg, :identidade_de_genero, :aprovado)
     end
 
 end

@@ -80,7 +80,6 @@ case Rails.env
               :cpf  => "123.456.789-00",
               :nome_da_mae => "Maria da Penha",
               :rg  => "12.345.678-9",
-              :cor  => "Negro",
               :identidade_de_genero => "Homem",
               :familia_renda  => 1500.00,
               :profissao_nome  => "Assistente Administrativo",
@@ -92,7 +91,6 @@ case Rails.env
                                                :cpf =>"123.456.789-00",
                                                :nome_da_mae  =>  "Maria da Penha",
                                                :rg  => "12.345.678-9",
-                                               :cor  => "Negro",
                                                :identidade_de_genero  => "Homem",
                                                :ano_faculdade  => "1991-03-02")
 
@@ -103,7 +101,6 @@ case Rails.env
               :cpf =>"123.456.789-01",
               :nome_da_mae  =>  "Maria Diretora",
               :rg  => "12.345.678-0",
-              :cor  => "Negro",
               :identidade_de_genero  => "Mulher",
               :ano_faculdade  => "1991-03-02")
 
@@ -133,7 +130,6 @@ case Rails.env
               :cpf  =>"123.456.789-00",
               :nome_da_mae => "Maria da Penha",
               :rg  => "12.345.678-9",
-              :cor  => "Negro",
               :identidade_de_genero => "Homem",
               :familia_renda  => 1500.00,
               :profissao_nome  =>"Assistente Administrativo",

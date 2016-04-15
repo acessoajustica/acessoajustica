@@ -70,7 +70,7 @@ class CalourosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calouro_params
-      params.require(:calouro).permit(:ano_faculdade, :nome, :cpf, :nome_da_mae, :rg, :cor, :identidade_de_genero, :user_id)
+      params.require(:calouro).permit(:ano_faculdade, :nome, :cpf, :nome_da_mae, :rg, :identidade_de_genero, :user_id)
     end
 
 end

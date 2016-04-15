@@ -73,6 +73,6 @@ class VareirosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def vareiro_params
       params.require(:vareiro).permit(:forum, :ano_faculdade, :nome, :cpf,
-                                      :nome_da_mae, :rg, :cor, :identidade_de_genero, :user_id)
+                                      :nome_da_mae, :rg, :identidade_de_genero, :user_id)
     end
 end

@@ -93,7 +93,7 @@ class EstagiariosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def estagiario_params
       params.require(:estagiario).permit(:ano_faculdade, :nome,
-                                         :cpf, :nome_da_mae, :rg, :cor,
+                                         :cpf, :nome_da_mae, :rg,
                                          :identidade_de_genero, :user_id, :especialidades => [])
     end
 end

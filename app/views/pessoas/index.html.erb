@@ -10,7 +10,6 @@
       <th><%= model_class.human_attribute_name(:cpf) %></th>
       <th><%= model_class.human_attribute_name(:nome_da_mae) %></th>
       <th><%= model_class.human_attribute_name(:rg) %></th>
-      <th><%= model_class.human_attribute_name(:cor) %></th>
       <th><%= model_class.human_attribute_name(:identidade_de_genero) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -24,7 +23,6 @@
         <td><%= pessoa.cpf %></td>
         <td><%= pessoa.nome_da_mae %></td>
         <td><%= pessoa.rg %></td>
-        <td><%= pessoa.cor %></td>
         <td><%= pessoa.identidade_de_genero %></td>
         <td><%=l pessoa.created_at %></td>
         <td>

@@ -48,15 +48,8 @@
     <%= error_span(@pessoa[:rg]) %>
   </div>
 </div>
-<!-- Cor / Identidade de Gênero -->
+<!-- Identidade de Gênero -->
 <div class="row">
-  <div class="form-group col-md-6 col-sm-6">
-    <%= f.label :cor, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :cor, :class => 'form-control' %>
-    </div>
-    <%= error_span(@pessoa[:cor]) %>
-  </div>
   <div class="form-group col-md-6 col-sm-6">
     <%= f.label :identidade_de_genero, "Identidade de Gênero", :class => 'control-label' %>
     <div class="controls">
