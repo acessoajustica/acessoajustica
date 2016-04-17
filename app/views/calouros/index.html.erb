@@ -9,7 +9,6 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th><%= model_class.human_attribute_name(:id) %></th>
             <th><%= model_class.human_attribute_name(:nome) %></th>
             <th>Último acesso</th>
             <th>Ativo</th>
@@ -19,10 +18,9 @@
         <tbody>
           <% @calouros.each do |calouro| %>
             <tr>
-              <td><%= link_to calouro.id, calouro_path(calouro) %></td>
-              <td><%= calouro.nome %></td>
-              <td><%= calouro.membro.user.last_sign_in_at != nil ? calouro.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
-              <td><%= calouro.membro.user.active? ? "Ativo" : "Desativado" %></td>
+              <td style="vertical-align:middle;height: 100%;"><%= link_to calouro.nome, calouro_path(calouro) %></td>
+              <td style="vertical-align:middle;height: 100%;"><%= calouro.membro.user.last_sign_in_at != nil ? calouro.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
+              <td style="vertical-align:middle;height: 100%;"><%= calouro.membro.user.active? ? "Ativo" : "Desativado" %></td>
               <td>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_calouro_path(calouro), :class => 'btn btn-default btn-xs' %>

@@ -9,7 +9,6 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th><%= model_class.human_attribute_name(:id) %></th>
             <th><%= model_class.human_attribute_name(:nome) %></th>
             <th>Último acesso</th>
             <th>Ativo</th>
@@ -19,10 +18,9 @@
         <tbody>
           <% @vareiros.each do |vareiro| %>
             <tr>
-              <td><%= link_to vareiro.id, vareiro_path(vareiro) %></td>
-              <td><%= vareiro.nome %></td>
-              <td><%= vareiro.membro.user.last_sign_in_at != nil ? vareiro.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
-              <td><%= vareiro.membro.user.active? ? "Ativo" : "Desativado" %></td>
+              <td style="vertical-align:middle;height: 100%;"><%= link_to vareiro.nome, vareiro_path(vareiro) %></td>
+              <td style="vertical-align:middle;height: 100%;"><%= vareiro.membro.user.last_sign_in_at != nil ? vareiro.membro.user.last_sign_in_at.strftime("%d/%m/%Y - %H:%M") : "Nunca acessou" %></td>
+              <td style="vertical-align:middle;height: 100%;"><%= vareiro.membro.user.active? ? "Ativo" : "Desativado" %></td>
               <td>
                 <%= link_to t('.edit', :default => t("helpers.links.edit")),
                             edit_vareiro_path(vareiro), :class => 'btn btn-default btn-xs' %>
