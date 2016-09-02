@@ -92,7 +92,7 @@ group :development, :test do
 
 end
 group :users, :authentication do
-    gem 'devise'
+  gem 'devise', '~> 3.5.6'
 end
 
 group :test do
