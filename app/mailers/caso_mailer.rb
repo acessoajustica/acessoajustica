@@ -1,0 +1,2 @@
+class CasoMailer < ApplicationMailer
+end
