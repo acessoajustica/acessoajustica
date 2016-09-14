@@ -1,10 +1,11 @@
 class CasoMailer < ApplicationMailer
   default from: 'noreplyparajas@gmail.com'
 
-  def feed_de_casos(user)
+  def feed_de_casos(user, content)
     @user = user
+    @content = content
 
-    mail(to: @user.mail, subject: 'Intimações do dia ' \
+    mail(to: @user.email, subject: 'Intimações do dia ' \
          + Time.now.strftime("%d/%m/%Y"))
   end
 end
