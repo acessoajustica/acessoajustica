@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe CasoMailer, type: :mailer do
 
    let(:user) { FactoryGirl.create(:user) }
-   let(:content) { "Fulano" }
    let(:mail) { described_class.feed_de_casos(user, atualizacao).deliver_now }
    let(:atualizacao) {
     {
@@ -56,7 +55,8 @@ RSpec.describe CasoMailer, type: :mailer do
      expect(mail.from).to eq(['noreplyparajas@gmail.com'])
    end
 
-   it 'renders the content' do
-     expect(mail.body.encoded).to match(content)
+   it 'renders the cliente name' do
+     expect(mail.body.encoded).to match("Fulano")
+     expect(mail.body.encoded).to match("Gubi")
    end
 end
