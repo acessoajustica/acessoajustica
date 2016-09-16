@@ -2,7 +2,8 @@
 class CasoMailerPreview < ActionMailer::Preview
   def teste
   	@user = User.new
-  	@user.email = "teste@teste.com"
+  	@user.email = "oraposa@hotmail.com"
+    @user.id = 123456789
   	@atualizacao = 
     {
         date: Time.new(2016,9,16).strftime("%d/%m/%Y"),
@@ -40,5 +41,6 @@ class CasoMailerPreview < ActionMailer::Preview
         ]
     }
     CasoMailer.feed_de_casos(@user, @atualizacao)
+    #EmailTesteJob.new(@user, @atualizacao).perform_now
   end
 end
