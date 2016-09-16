@@ -55,8 +55,37 @@ RSpec.describe CasoMailer, type: :mailer do
      expect(mail.from).to eq(['noreplyparajas@gmail.com'])
    end
 
+   it 'renders the atualizacao date' do
+    expect(mail.body.encoded).to match("16/09/2016")
+   end
+
+   it 'renders the caso id' do
+     expect(mail.body.encoded).to match("42")
+     expect(mail.body.encoded).to match("1789")
+   end
+
    it 'renders the cliente name' do
      expect(mail.body.encoded).to match("Fulano")
      expect(mail.body.encoded).to match("Gubi")
+   end
+
+   it 'renders the processo ids' do
+     expect(mail.body.encoded).to match("7")
+     expect(mail.body.encoded).to match("13")
+     expect(mail.body.encoded).to match("713")
+   end
+
+   it 'renders the diario oficial' do
+     expect(mail.body.encoded).to match("STF")
+     expect(mail.body.encoded).to match("DOM - SP")
+   end
+
+   it 'renders the secao' do
+     expect(mail.body.encoded).to match("III - Avisos")
+     expect(mail.body.encoded).to match("II - Capital")
+   end
+
+   it 'renders the atualizacao' do
+     expect(mail.body.encoded).to match("HueHueHueBRBRBRBR")
    end
 end
