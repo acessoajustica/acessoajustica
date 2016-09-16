@@ -6,6 +6,6 @@ class CasoMailer < ApplicationMailer
     @atualizacao = atualizacao
 
     mail(to: @user.email, subject: 'Intimações do dia ' \
-         + Time.now.strftime("%d/%m/%Y"))
+         + atualizacao[:date])
   end
 end

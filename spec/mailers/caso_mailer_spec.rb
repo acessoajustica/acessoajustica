@@ -44,7 +44,7 @@ RSpec.describe CasoMailer, type: :mailer do
 
    it 'renders the subject' do
      expect(mail.subject).to eq('Intimações do dia ' \
-                                + Time.now.strftime("%d/%m/%Y"))
+                                + atualizacao[:date])
    end
 
    it 'renders the receiver email' do
