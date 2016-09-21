@@ -1,10 +1,10 @@
 # Preview all emails at http://localhost:3000/rails/mailers/caso_mailer
 class CasoMailerPreview < ActionMailer::Preview
-  def teste
+  def test
   	@user = User.new
-  	@user.email = "oraposa@hotmail.com"
+    @user.email = "noreplyparajas@gmail.com"
     @user.id = 123456789
-  	@atualizacao = 
+  	@atualizacao =
     {
         date: Time.new(2016,9,16).strftime("%d/%m/%Y"),
         casos: [
@@ -41,6 +41,6 @@ class CasoMailerPreview < ActionMailer::Preview
         ]
     }
     CasoMailer.feed_de_casos(@user, @atualizacao)
-    #EmailTesteJob.new(@user, @atualizacao).perform_now
+    EmailTestJob.new(@user, @atualizacao).perform_now
   end
 end

@@ -1,4 +1,4 @@
-class EmailTesteJob < ActiveJob::Base
+class EmailTestJob < ActiveJob::Base
 	queue_as :default
 
 	def perform(user, atualizacao)
