@@ -1,32 +1,34 @@
 #! /bin/bash
 #
-# Builds the Docker image using Docker-Compose,
-# Wraps running bundler and rspec tests,
-# Starts and Restarts the app;
-# (requires docker, docker-compose and sudo privileges)
+# Builds a docker image using docker-compose.
+# Wraps running rake, bundler, rspec and cucumber.
+# (requires docker and docker-compose to run)
 #
 
-GEMS='Gemfile'
+RAILS_ENV=${RAILS_ENV:-development}
 
 function usage {
-    echo "usage: ./scripts/init.sh [OPTIONS]:"
-    echo " "
-    echo " build:      Builds everything, images and containers."
-    echo " run:        Runs the app on the latest container."
-    echo " db:         Enters the database Container."
-    echo " db:reset:   Resets the database."
-    echo " rspec:      Runs unit tests."
-    echo " cucumber:   Runs acceptance tests."
-    echo " test:       Runs all tests."
-    echo " clean:      Stops and Removes all containers."
-    echo " purge:      Stops and Removes all containers and images."
-    echo " update:     Runs bundle update."
-    echo " migrate:    Runs all migrations. (also done by 'run' and 'all')"
-    echo " restart:    Stops all containers and then 'run'."
-    echo " seed:       Puts initial values on the database."
-    echo " help:       Prints this message."
-    echo " "
+    echo "usage: $0 [OPTIONS]:"
+    echo ""
+    echo " build:      Build everything, images and containers"
+    echo " create:     Create the database"
+    echo " migrate:    Run all migrations"
+    echo " seed:       Put initial values on the database"
+    echo " run:        Run the app on the latest container"
+    echo " all:        Run all commands above"
+    echo ""
+    echo " rspec:      Run unit tests"
+    echo " cucumber:   Run acceptance tests"
+    echo ""
+    echo " install:    Run bundle install"
+    echo " update:     Run bundle update"
+    echo ""
+    echo " clean:      Stop and removes all containers"
+    echo ""
+    echo " help:       Print this message"
+    echo ""
 }
+
 function check_deps {
     # Check dependencies.
     command -v docker > /dev/null 2>&1 || { echo >&2 "I require '${DOCKER}', but it's not installed.  Aborting."; exit 1; }
@@ -34,42 +36,71 @@ function check_deps {
     return 0
 }
 
-function build
-{
+function build {
     docker-compose build
 }
 
-function migrate
-{
-    docker-compose run web rake db:migrate
+function create {
+    docker-compose run web rake db:create RAILS_ENV=${RAILS_ENV}
 }
 
-function seed
-{
-    docker-compose run web rake db:seed
+function migrate {
+    docker-compose run web rake db:migrate RAILS_ENV=${RAILS_ENV}
 }
 
-function run
-{
+function seed {
+    docker-compose run web rake db:seed RAILS_ENV=${RAILS_ENV}
+}
+
+function run {
     docker-compose up
 }
 
+function all {
+    build
+    create
+    migrate
+    seed
+    run
+}
+
+function rspec {
+    docker-compose run web rake spec
+}
+
+function cucumber {
+    docker-compose run web ./script/cucumber
+}
+
+function install {
+    docker-compose run web bundle install
+}
+
+function update {
+    docker-compose run web bundle update
+}
+
+function clean {
+    CONTAINERS=$(docker ps -a -q)
+    if [[ -n $CONTAINERS ]]
+    then
+        sudo docker stop $CONTAINERS
+        sudo docker rm $CONTAINERS
+    fi
+}
 
 if check_deps; then
     if [[ $1 == build ]]; then build;
-    elif [[ $1 == purge ]]; then build_purge;
-    elif [[ $1 == update ]]; then build_update;
-    elif [[ $1 == clean ]]; then build_clean;
-    elif [[ $1 == restart ]]; then app_restart;
-    elif [[ $1 == run ]]; then run;
-    elif [[ $1 == db ]]; then app_db;
-    elif [[ $1 == db:reset ]]; then app_db_reset;
+    elif [[ $1 == create ]]; then create;
     elif [[ $1 == migrate ]]; then migrate;
-    elif [[ $1 == cucumber ]]; then app_cucumber;
-    elif [[ $1 == rspec ]]; then app_rspec;
-    elif [[ $1 == test ]]; then app_test;
     elif [[ $1 == seed ]]; then seed;
-    elif [[ $1 == help ]]; then usage;
-    else { echo ""; echo "Error: no valid argument."; echo ""; usage; echo "Exiting..."; exit 0; }
+    elif [[ $1 == run ]]; then run;
+    elif [[ $1 == all ]]; then all;
+    elif [[ $1 == rspec ]]; then rspec;
+    elif [[ $1 == cucumber ]]; then cucumber;
+    elif [[ $1 == install ]]; then install;
+    elif [[ $1 == update ]]; then update;
+    elif [[ $1 == clean ]]; then clean;
+    else { echo ""; echo "Error: no valid argument"; echo ""; usage; exit 1; }
     fi
 fi
