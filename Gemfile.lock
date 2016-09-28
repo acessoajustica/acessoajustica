@@ -110,6 +110,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    email_spec (2.1.0)
+      htmlentities (~> 4.3.3)
+      launchy (~> 2.1)
+      mail (~> 2.6.3)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -125,6 +129,7 @@ GEM
     growlyflash (0.9.0)
       coffee-rails (>= 3.2.1)
       railties (>= 3.2, < 5.1)
+    htmlentities (4.3.4)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -134,6 +139,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.7.1)
@@ -308,6 +315,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise (~> 3.5.6)
+  email_spec
   factory_girl_rails
   growlyflash
   jbuilder (~> 2.0)
