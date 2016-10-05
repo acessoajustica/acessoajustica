@@ -10,7 +10,5 @@ RUN bundle install
 COPY . /acessoajustica
 
 # PhantomJS
-RUN bundle install --jobs 8
-ADD . /acessoajustica
 RUN mv lib/assets/phantomjs-1.9.8-linux-x86_64 /opt/
 RUN ln -s /opt/phantomjs-1.9.8-linux-x86_64/bin/phantomjs /bin/phantomjs
