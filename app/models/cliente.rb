@@ -12,6 +12,8 @@ class Cliente < ActiveRecord::Base
   								        or CPF like :search", search: "%#{search.downcase}%")
     								}
 
+  scope :from_estagiario, -> (estagiario_id) { joins(:pessoa, :atendimentos).where("atendimentos.estagiario_id = :estagiario_id AND atendimentos.cliente_id = pessoas.actable_id AND pessoas.actable_type = 'Cliente'", estagiario_id: "#{estagiario_id}") }
+
   def moradia_description
   	if (moradia_type)
   	  moradia_type.description

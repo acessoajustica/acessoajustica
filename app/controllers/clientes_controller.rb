@@ -5,7 +5,11 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    @clientes = Cliente.all
+    if current_user.role?('estagiário') then
+      @clientes = Cliente.from_estagiario(current_user.id)
+    else
+      @clientes = Cliente.all
+    end
   end
 
   # GET /clientes/1
