@@ -22,6 +22,7 @@ ProfissaoType.find_or_create_by!(:description => "Registrado")
 ProfissaoType.find_or_create_by!(:description => "Informal")
 ProfissaoType.find_or_create_by!(:description => "Aposentado")
 ProfissaoType.find_or_create_by!(:description => "Desempregado")
+ProfissaoType.find_or_create_by!(:description => "Outro")
 
 # Creating atendimento_types
 AtendimentoType.find_or_create_by!(:description => "Orientação Apenas")
