@@ -6,7 +6,9 @@ class EstagiariosController < ApplicationController
   # GET /estagiarios
   # GET /estagiarios.json
   def index
-    @estagiarios = Estagiario.all.joins(:membro).joins(:user).order("users.active DESC, users.last_sign_in_at DESC")
+    @estagiarios = Estagiario.all
+    # TODO: Missing feature. This sorting should be done at the view.
+    # .joins(:user).joins(:membro).order("users.active DESC, users.last_sign_in_at DESC")
   end
 
   # GET /estagiarios
