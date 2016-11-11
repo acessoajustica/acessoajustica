@@ -1,3 +1,4 @@
+# coding: utf-8
 class EstagiariosController < ApplicationController
   include EstagiariosHelper
   authorize_resource
@@ -7,8 +8,9 @@ class EstagiariosController < ApplicationController
   # GET /estagiarios.json
   def index
     @estagiarios = Estagiario.all
-    # TODO: Missing feature. This sorting should be done at the view.
-    # .joins(:user).joins(:membro).order("users.active DESC, users.last_sign_in_at DESC")
+                   .sort_by {|estagiario| estagiario.membro.nome }
+                   .sort_by {|estagiario| estagiario.membro.user.active? }
+                   .sort_by {|estagiario| estagiario.membro.user.last_sign_in_at}
   end
 
   # GET /estagiarios
