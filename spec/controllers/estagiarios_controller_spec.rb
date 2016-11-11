@@ -148,5 +148,5 @@ RSpec.describe EstagiariosController, type: :controller do
     end
   end
 
-  
+
 end

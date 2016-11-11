@@ -6,11 +6,8 @@ class EstagiariosController < ApplicationController
 
   # GET /estagiarios
   # GET /estagiarios.json
-  def index
+  def index()
     @estagiarios = Estagiario.all
-                   .sort_by {|estagiario| estagiario.membro.nome }
-                   .sort_by {|estagiario| estagiario.membro.user.active? }
-                   .sort_by {|estagiario| estagiario.membro.user.last_sign_in_at}
   end
 
   # GET /estagiarios

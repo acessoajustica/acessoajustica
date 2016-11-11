@@ -7,7 +7,7 @@ FactoryGirl.define do
     cor "Negro"
     identidade_de_genero "Homem"
     ano_faculdade "1991-03-02"
-
+    
     trait :estagiario_invalid do
       nome nil
     end

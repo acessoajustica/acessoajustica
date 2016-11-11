@@ -14,9 +14,7 @@ describe EstagiariosHelper do
       ]
       expect(helper.get_especialidades_helper(list)).to eq(filteredList)
     end
-end
 
-describe EstagiariosHelper do
     it "can add a lot of 'especialidades'" do
       estagiario = FactoryGirl.build(:estagiario)
       especialidade = FactoryGirl.build(:especialidade)
@@ -28,5 +26,22 @@ describe EstagiariosHelper do
         especialidade,
         especialidade
       ])
+    end
+
+    it "sorts 'estagiarios'" do
+      user = FactoryGirl.build(:user)
+      estagiario1 = FactoryGirl.build(:estagiario)
+      estagiario1.membro.user = user
+
+      estagiario2 = FactoryGirl.build(:estagiario, :new_estagiario)
+      estagiario2.membro.user = user
+
+      estagiario3 = FactoryGirl.build(:estagiario, :another)
+      estagiario3.membro.user = user
+
+      estagiarios = [estagiario1, estagiario2, estagiario3]
+
+      estagiarios_ordenados = helper.estagiarios_ordenados(estagiarios)
+      expect(estagiarios_ordenados).to eq([estagiario2, estagiario1, estagiario3])
     end
 end

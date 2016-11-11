@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @estagiarios.each do |estagiario| %>
+          <% estagiarios_ordenados(@estagiarios).each do |estagiario| %>
             <tr>
               <td><%= link_to estagiario.id, estagiario_path(estagiario) %></td>
               <td><%= estagiario.nome %></td>
