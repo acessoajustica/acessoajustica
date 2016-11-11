@@ -5,6 +5,7 @@ module EstagiariosHelper
     end
     return especialidades.  collect {|especialidade| [especialidade.description, especialidade.id]}
   end
+
   def add_all_especialidades(estagiario, especialidades)
   	if especialidades
       especialidades.each do |id|
