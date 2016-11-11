@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @calouros.each do |calouro| %>
+          <% calouros_ordenados(@calouros).each do |calouro| %>
             <tr>
               <td><%= link_to calouro.id, calouro_path(calouro) %></td>
               <td><%= calouro.nome %></td>
