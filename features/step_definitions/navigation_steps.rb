@@ -104,3 +104,7 @@ end
 Then(/^I should see the pattern "([^"]*)"$/) do |arg1|
   page.text.should match(arg1)
 end
+
+When /^I dump.* the response$/ do
+  puts body
+end

@@ -75,6 +75,11 @@ Feature: RestrictAccess
     When I am on "new estagiarios page"
     Then I should be on " new estagiarios page"
 
+  Scenario: Authenticated estagiario tries to Access 'estagiarios New'
+    Given I am logged as "estagiario"
+    When I am on "new estagiarios page"
+    Then I should be on "home page"
+
   Scenario: Non authenticated user tries to Access 'calouros'
     Given I am not authenticated
     When I am on "calouros page"
@@ -168,6 +173,7 @@ Feature: RestrictAccess
     And I fill in "user password" with "adilson123"
     And I press "submit"
     When I am on "clientes page"
+    Then I should be on "clientes page"
 
   Scenario: Non authenticated user tries to Access 'clientes New'
     Given I am not authenticated
@@ -181,7 +187,12 @@ Feature: RestrictAccess
     And I fill in "user password" with "adilson123"
     And I press "submit"
     When I am on "new clientes page"
-    Then I should be on " new clientes page"
+    Then I should be on "new clientes page"
+
+  Scenario: Authenticated estagiario tries to Access 'clientes New'
+    Given I am logged as "estagiario"
+    When I am on "new clientes page"
+    Then I should be on "home page"
 
   Scenario: Non authenticated user tries to Access 'atendimentos'
     Given I am not authenticated
