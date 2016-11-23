@@ -13,10 +13,10 @@ class Ability
       can :manage, Estagiario
     elsif user.role? :estagiário
       can :manage, Atendimento
-      can :manage, Cliente
+      can :read,   Cliente
       can :edit,   Estagiario
     elsif user.role? :calouro
-      can :manage, Cliente
+      can :read,   Cliente
       can :manage, Atendimento
       can :edit,   Calouro
     elsif user.role? :vareiro

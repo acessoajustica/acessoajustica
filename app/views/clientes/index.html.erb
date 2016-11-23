@@ -30,12 +30,17 @@
           <% end %>
         </tbody>
       </table>
+
+    <% if can? :create, current_user %>
       <hr>
       <div class="text-right">
         <%= link_to t('.new', :default => t("helpers.links.new")),
                     new_cliente_path,
                     :class => 'btn btn-primary' %>
       </div>
+    <% end %>
+
+
 
     </div><!-- /col-md-8 -->
   </div><!-- /row -->

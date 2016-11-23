@@ -42,7 +42,7 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <% if current_user.role?("diretor") %>
+                <% if can? :create, current_user %>
                   <li><%= link_to "Criar Cliente - Formulário Socioeconômico", new_cliente_path %>
                   </li>
                 <% end %>
