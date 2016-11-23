@@ -54,7 +54,7 @@ class EstagiariosController < ApplicationController
   # POST /estagiarios
   # POST /estagiarios.json
   def create
-    @estagiario = Estagiario.new(estagiario_params.select { | key, value | key != "user_id" and key != "especialidades"})
+        @estagiario = Estagiario.new(estagiario_params.select { | key, value | key != "user_id" and key != "especialidades"})
     add_all_especialidades(@estagiario, estagiario_params[:especialidades])
     respond_to do |format|
       if @estagiario.save
@@ -95,6 +95,7 @@ class EstagiariosController < ApplicationController
     def estagiario_params
       params.require(:estagiario).permit(:ano_faculdade, :nome,
                                          :cpf, :nome_da_mae, :rg, :cor,
+			  		 :created_at, :updated_at,
                                          :identidade_de_genero, :user_id, :especialidades => [])
     end
 end
