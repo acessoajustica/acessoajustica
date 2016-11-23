@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @vareiros.each do |vareiro| %>
+          <% vareiros_ordenados(@vareiros).each do |vareiro| %>
             <tr>
               <td><%= link_to vareiro.id, vareiro_path(vareiro) %></td>
               <td><%= vareiro.nome %></td>
