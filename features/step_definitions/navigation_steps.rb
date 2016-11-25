@@ -1,9 +1,9 @@
 def sign_in (user_role)
   user = bind_user(user_role)
-	visit path_to('login page')
-	fill_in "user_login", :with => user.username
-	fill_in "user_password", :with => user.password
-	click_button("submit")
+  visit path_to('login page')
+  fill_in "user_login", :with => user.username
+  fill_in "user_password", :with => user.password
+  click_button("submit")
 end
 
 def bind_user (user_role)
@@ -16,11 +16,13 @@ end
 
 def bind (property, owners_list)
   property_entity = create(property)
+  
   owners_list.each do |owner|
     owner_entity = create(owner)
     owner_name = owner.split.last
     property_entity.send("#{owner_name}=", owner_entity)
   end
+  
   property_entity
 end
 
