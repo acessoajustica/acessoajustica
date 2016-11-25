@@ -6,14 +6,14 @@ Feature: Wait list
   Scenario: Estagiário sees avaiable case
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     Then I should see "Joana Silveira"
 
   Scenario: Estagiário does not see a taken case
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente and to an estagiario"
     And exists a "atendimento" that belongs to an "another cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     Then I should not see "Joana Silveira"
     But I should see "Mario da Silva"
 
@@ -21,7 +21,7 @@ Feature: Wait list
     Given I am logged as "estagiario"
     And exists an "old atendimento" that belongs to a "cliente"
     And exists a "atendimento" that belongs to an "another cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     Then I should not see "Joana Silveira"
     But I should see "Mario da Silva"
 
@@ -29,7 +29,7 @@ Feature: Wait list
     Given I am logged as "estagiario"
     And exists a "rejected atendimento" that belongs to a "cliente"
     And exists a "atendimento" that belongs to an "another cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     Then I should not see "Joana Silveira"
     But I should see "Mario da Silva"
 
@@ -37,20 +37,20 @@ Feature: Wait list
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "another cliente"
     And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     Then the list should be sorted by "register_time"
 
   #@wip
   #Scenario: See Atendimento Type
   #  Given I am logged as "estagiario"
   #  And exists a "atendimento" that belongs to a "cliente and to a atendimento_type"
-  #  And I am on "the atendimentos page"
+  #  And I am on "the atendimentos" page
   #  Then I should see "Orientação"
 
   Scenario: See Atendimento Time
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     Then I should see the pattern "\d\d:\d\d"
 
 # TODO descobrir pq ele reclama de membro not found
@@ -59,7 +59,7 @@ Feature: Wait list
 # Scenario: Select a atendimento
 #   Given I am logged as "estagiario"
 #   And exists a "atendimento" that belongs to a "cliente"
-#   And I am on "the atendimentos page"
+#   And I am on "the atendimentos" page
 #   When I click at css "#btn-escolher-0"
 #   And I wait a second
 #   Then I should not see "Joana Silveira"

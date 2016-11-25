@@ -10,7 +10,7 @@ Feature: Register a Cliente
     And exists a "estado_civil"
     And exists a "profissao_type"
     And exists a "profissao_type"
-    And I am on "new clientes page"
+    And I am on "new clientes" page
     And I fill in "cliente codigo" with "10.XX.0392023"
     And I fill in "cliente nome" with "Athena"
     And I fill in "cliente nome da mae" with "Métis"

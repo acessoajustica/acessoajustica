@@ -29,14 +29,14 @@ Feature: My Cases
 
   Scenario: Access my cases
     Given I am logged as "estagiario"
-    When I am on "login page"
+    When I am on "login" page
     Then I should see "Meus Atendimentos"
 
   @javascript
   Scenario: User selects a case
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     When I click at css "#btn-escolher-0"
     And I wait a second
     Then I should not see "Joana Silveira"
@@ -46,8 +46,8 @@ Feature: My Cases
   Scenario: User sees a selected case
     Given I am logged as "estagiario"
     And exists a "atendimento" that belongs to a "cliente"
-    And I am on "the atendimentos page"
+    And I am on "the atendimentos" page
     When I click at css "#btn-escolher-0"
     And I wait a second
-    And I am on "atendimentos page"
+    And I am on "atendimentos" page
     Then I should not see "Joana Silveira"

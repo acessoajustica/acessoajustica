@@ -1,6 +1,6 @@
 def sign_in (user_role)
   user = bind_user(user_role)
-  visit path_to('login page')
+  visit path_to('login')
   fill_in "user_login", :with => user.username
   fill_in "user_password", :with => user.password
   click_button("submit")
@@ -34,6 +34,10 @@ def create (factory_names)
 end
 
 Given(/^I am on "([^"]*)"$/) do |page_name|
+  visit path_to(page_name)
+end
+
+Given(/^I am on "([^"]*)" page$/) do |page_name|
   visit path_to(page_name)
 end
 
@@ -73,7 +77,11 @@ When(/^I take "([^"]*)" picture of the page$/) do |text|
   page.save_screenshot("./tmp/" + text.gsub(" ", "_") + "_picture.png")
 end
 
-Then (/^I should be on "([^\"]*)"$/) do |page_name|
+Then (/^I should be on "homepage"$/) do
+  current_path.should == path_to('homepage')
+end
+
+Then (/^I should be on "([^\"]*)" page$/) do |page_name|
   current_path.should == path_to(page_name)
 end
 

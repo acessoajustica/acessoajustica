@@ -2,45 +2,45 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
+    when /^homepage?$/
+      '/'
     when /^my cases$/
       '/atendimentos/my-cases'
-    when /^login page$/
+  	when /^login$/
       '/users/sign_in'
     when /^edit atendimento (\d+)$/
       '/atendimentos/' + $1 + '/edit'
-    when /^the home\s?page$/
-      '/'
-    when /^pessoas page$/
+    when /^pessoas$/
       '/pessoas'
-    when /^new pessoas page$/
+    when /^new pessoas$/
       '/pessoas/new'
-    when /^estagiarios page$/
+    when /^estagiarios$/
       '/estagiarios'
-    when /^new estagiarios page$/
+    when /^new estagiarios$/
       '/estagiarios/new'
-    when /^calouros page$/
+    when /^calouros$/
       '/calouros'
-    when /^new calouros page$/
+    when /^new calouros$/
       '/calouros/new'
-    when /^vareiros page$/
+    when /^vareiros$/
       '/vareiros'
-    when /^new vareiros page$/
+    when /^new vareiros$/
       '/vareiros/new'
-    when /^membros page$/
+    when /^membros$/
       '/membros'
-    when /^new membros page$/
+    when /^new membros$/
       '/membros/new'
-    when /^clientes page$/
+    when /^clientes$/
       '/clientes'
-    when /^new clientes page$/
+    when /^new clientes$/
       '/clientes/new'
-    when /^atendimentos page$/
+    when /^atendimentos$/
       '/atendimentos'
-    when /^new atendimentos page$/
+    when /^new atendimentos$/
       '/clientes/new'
     else
       begin
-        page_name =~ /the (.*) page/
+        page_name =~ /the (.*)/
         path_components = $1.split(/\s+/)
         self.send(path_components.push('path').join('_').to_sym)
       rescue Object => e
