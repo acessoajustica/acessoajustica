@@ -27,12 +27,9 @@ Feature: RestrictAccess
     Then I should be on "home page"
 
   Scenario: Authenticated user tries to Access 'Pessoas'
-    Given exists an "admin_user user"
-    And I am on "login page"
-    And I fill in "user login" with "adilson"
-    And I fill in "user password" with "adilson123"
-    And I press "submit"
+    Given I am logged as "admin"
     When I am on "pessoas page"
+    Then I should be on "pessoas page"
 
   Scenario: Non authenticated user tries to Access 'Pessoas New'
     Given I am not authenticated
