@@ -6,15 +6,15 @@ FactoryGirl.define do
     rg "12.345.678-9"
     cor "Negro"
     identidade_de_genero "Homem"
-    ano_faculdade "1980-01-01"
+    ano_faculdade 2007
 
     trait :membro_invalid do
-      ano_faculdade "1980"
+      ano_faculdade 1579
     end
 
     trait :new_membro do
       nome "Mario da Silva"
-      ano "1981-01-01"
+      ano 2012
     end
   end
 end

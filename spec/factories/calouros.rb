@@ -6,7 +6,7 @@ FactoryGirl.define do
     rg "12.345.678-9"
     cor "Negro"
     identidade_de_genero "Homem"
-    ano_faculdade "1991-03-02"
+    ano_faculdade 1991
 
     trait :calouro_invalid do
       nome nil
