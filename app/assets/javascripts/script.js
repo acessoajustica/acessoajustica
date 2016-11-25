@@ -6,6 +6,8 @@ $(document).ready(function() {
 	$(".cep").mask("99999-999",{placeholder:" "});
 	$('.moeda').mask("###.###.##0,00", {reverse: true});
 
+	$(".ano_faculdade").mask("9999",{placeholder:" "});
+
 	$("#qtd_filhos").hide();
 
 	$("#cliente_tem_filhos_true").change(function() {
