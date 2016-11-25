@@ -1,7 +1,12 @@
 $(document).ready(function() {
 
 	$(".cpf").mask("999.999.999-99",{placeholder:" "});
-	$(".rg").mask("99.999.999-99",{placeholder:" "});
+	$(".rg").mask("99.999.999-X", {
+								  translation: {
+								  	'X':{
+								  		pattern: /[X0-9]/
+								  	}
+								  }});
 	$(".telefone").mask("(99) 99999-9999",{placeholder:" "});
 	$(".cep").mask("99999-999",{placeholder:" "});
 	$('.moeda').mask("###.###.##0,00", {reverse: true});
