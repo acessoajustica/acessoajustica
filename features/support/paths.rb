@@ -2,43 +2,41 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /my cases/
+    when /^my cases$/
       '/atendimentos/my-cases'
-    when /clientes new/
-      '/clientes/new'
-  	when /login page/
+    when /^login page$/
       '/users/sign_in'
-    when /edit atendimento (\d+)/
+    when /^edit atendimento (\d+)$/
       '/atendimentos/' + $1 + '/edit'
-    when /home\s?page/
+    when /^the home\s?page$/
       '/'
-    when /pessoas page/
+    when /^pessoas page$/
       '/pessoas'
-    when /new pessoas page/
+    when /^new pessoas page$/
       '/pessoas/new'
-    when /estagiarios page/
+    when /^estagiarios page$/
       '/estagiarios'
-    when /new estagiarios page/
+    when /^new estagiarios page$/
       '/estagiarios/new'
-    when /calouros page/
+    when /^calouros page$/
       '/calouros'
-    when /new calouros page/
+    when /^new calouros page$/
       '/calouros/new'
-    when /vareiros page/
+    when /^vareiros page$/
       '/vareiros'
-    when /new vareiros page/
+    when /^new vareiros page$/
       '/vareiros/new'
-    when /membros page/
+    when /^membros page$/
       '/membros'
-    when /new membros page/
+    when /^new membros page$/
       '/membros/new'
-    when /clientes page/
+    when /^clientes page$/
       '/clientes'
-    when /new clientes page/
+    when /^new clientes page$/
       '/clientes/new'
-    when /atendimentos page/
+    when /^atendimentos page$/
       '/atendimentos'
-    when /new atendimentos page/
+    when /^new atendimentos page$/
       '/clientes/new'
     else
       begin
