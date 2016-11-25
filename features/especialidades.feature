@@ -8,7 +8,7 @@ Feature: Register a Cliente
     Given I am logged as "admin"
     And exists a "estagiario_role role"
     And exists an "especialidade"
-    And I am on "the homepage"
+    And I am on "homepage"
     When I click on "Usuários" link
     When I click on "Cadastrar Usuário" link
     And I fill in "user username" with "username"
