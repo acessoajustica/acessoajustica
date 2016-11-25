@@ -17,7 +17,7 @@
   <div class="control-group col-md-3 col-sm-6">
     <%= f.label :ano_da_faculdade, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_field :ano_faculdade, :class => 'form-control' %>
+      <%= f.text_field :ano_faculdade, :class => 'form-control ano_faculdade' %>
     </div>
     <%= error_span(@membro[:ano_faculdade]) %>
   </div>

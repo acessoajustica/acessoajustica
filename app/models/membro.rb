@@ -9,5 +9,7 @@ class Membro < ActiveRecord::Base
   validates :rg, presence: true
   validates :cor, presence: true
   validates :identidade_de_genero, presence: true
-  validates :ano_faculdade, presence: true
+  validates :ano_faculdade, numericality: { only_integer: true,
+                                            less_than_or_equal_to: Time.now.year,
+                                            greater_than: 1900 }
 end
