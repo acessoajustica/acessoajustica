@@ -49,5 +49,5 @@ Feature: My Cases
     And I am on "the atendimentos page"
     When I click at css "#btn-escolher-0"
     And I wait a second
-    And I am on "my atendimentos page"
+    And I am on "atendimentos page"
     Then I should not see "Joana Silveira"
