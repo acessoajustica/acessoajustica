@@ -18,4 +18,9 @@ RSpec.describe Vareiro, type: :model do
     @vareiro.updated_at = nil
     expect(@vareiro).to_not be_valid
   end 
+
+  it "forum is nil" do
+    @vareiro.forum = nil
+    expect(@vareiro).to_not be_valid
+  end
 end
