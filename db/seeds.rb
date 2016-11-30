@@ -1,3 +1,4 @@
+# coding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -41,12 +42,12 @@ admin_user = User.create!(:email=>'test@test.com',:username=>'admin',:password=>
 admin_user.roles << admin_role
 
 # Creating moradia_types
-MoradiaType.find_or_create_by!(:description => "Morador de Rua")
-MoradiaType.find_or_create_by!(:description => "Aluguel / Pensão")
-MoradiaType.find_or_create_by!(:description => "Moradia Irregular")
-MoradiaType.find_or_create_by!(:description => "Própria")
-MoradiaType.find_or_create_by!(:description => "Cedida")
-MoradiaType.find_or_create_by!(:description => "Outra")
+MoradiaType.find_or_create_by!(:description => "Morador de Rua", :created_at => Time.now, :updated_at => Time.now)
+MoradiaType.find_or_create_by!(:description => "Aluguel / Pensão", :created_at => Time.now, :updated_at => Time.now)
+MoradiaType.find_or_create_by!(:description => "Moradia Irregular", :created_at => Time.now, :updated_at => Time.now)
+MoradiaType.find_or_create_by!(:description => "Própria", :created_at => Time.now, :updated_at => Time.now)
+MoradiaType.find_or_create_by!(:description => "Cedida" , :created_at => Time.now, :updated_at => Time.now)
+MoradiaType.find_or_create_by!(:description => "Outra", :created_at => Time.now, :updated_at => Time.now)
 
 #Creating especialidades
 Especialidade.find_or_create_by!(:description => "Cível");
