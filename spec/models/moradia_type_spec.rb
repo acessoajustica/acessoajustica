@@ -5,7 +5,7 @@ RSpec.describe MoradiaType, type: :model do
     FactoryGirl.attributes_for(:moradia_type)
   end
 
-  before :each do
+  before :all do
     @moradia_type = MoradiaType.create! valid_attributes
   end
 
