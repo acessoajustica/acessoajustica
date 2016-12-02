@@ -119,7 +119,7 @@ RSpec.describe ClientesController, type: :controller do
         cliente = Cliente.create! valid_attributes
         put :update, {:id => cliente.to_param, :cliente => new_attributes}, valid_session
         cliente.reload
-        skip("Add assertions for updated state")
+        expect( cliente.nome ).to eq(new_attributes[:nome])
       end
 
       it "assigns the requested cliente as @cliente" do
