@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe MoradiaType, type: :model do
   before :each do
     valid_attributes = FactoryGirl.attributes_for(:moradia_type)
-    @moradia_type = MoradiaType.create! valid_attributes
+    @moradia_type = MoradiaType.new valid_attributes
   end
 
   it "created_at is not nil" do
@@ -15,5 +15,4 @@ RSpec.describe MoradiaType, type: :model do
     @moradia_type.updated_at = nil
     expect(@moradia_type).to_not be_valid
   end
-
 end
