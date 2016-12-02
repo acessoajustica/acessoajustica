@@ -1,3 +1,4 @@
+# coding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -18,11 +19,11 @@ EstadoCivil.find_or_create_by!(:description => "Viúvo")
 EstadoCivil.find_or_create_by!(:description => "Vive em União Estável")
 
 # Creating profissao's
-ProfissaoType.find_or_create_by!(:description => "Registrado")
-ProfissaoType.find_or_create_by!(:description => "Informal")
-ProfissaoType.find_or_create_by!(:description => "Aposentado")
-ProfissaoType.find_or_create_by!(:description => "Desempregado")
-ProfissaoType.find_or_create_by!(:description => "Outro")
+ProfissaoType.find_or_create_by!(:description => "Registrado", :created_at => Time.now, :updated_at => Time.now)
+ProfissaoType.find_or_create_by!(:description => "Informal", :created_at => Time.now, :updated_at => Time.now)
+ProfissaoType.find_or_create_by!(:description => "Aposentado", :created_at => Time.now, :updated_at => Time.now)
+ProfissaoType.find_or_create_by!(:description => "Desempregado", :created_at => Time.now, :updated_at => Time.now)
+ProfissaoType.find_or_create_by!(:description => "Outro", :created_at => Time.now, :updated_at => Time.now)
 
 # Creating atendimento_types
 AtendimentoType.find_or_create_by!(:description => "Orientação Apenas")
