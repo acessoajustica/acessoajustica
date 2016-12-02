@@ -1,5 +1,5 @@
 require 'rails_helper'
 
 RSpec.describe Estagiario, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # Nothing to do, since Estagiario has no specific business rules
 end
