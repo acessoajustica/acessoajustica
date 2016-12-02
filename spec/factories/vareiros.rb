@@ -8,6 +8,8 @@ FactoryGirl.define do
     identidade_de_genero "Homem"
     ano_faculdade 1991
     forum "Huevos"
+    created_at "2016-11-23"
+    updated_at "2016-11-23"
 
     trait :vareiro_invalid do
       nome nil
