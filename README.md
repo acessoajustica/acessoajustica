@@ -14,17 +14,6 @@ LabXP 2015: Acesso à Justiça
 [![License](https://img.shields.io/github/license/acessoajustica/acessoajustica.svg)]
            (https://github.com/acessoajustica/acessoajustica/blob/master/LICENSE)
 
-[![Backlog](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Backlog)]
-           (http://waffle.io/acessoajustica/acessoajustica)
-[![Ready](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Ready)]
-         (http://waffle.io/acessoajustica/acessoajustica)
-[![In Progress](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=In Progress)]
-               (http://waffle.io/acessoajustica/acessoajustica)
-[![Testing](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Testing)]
-           (http://waffle.io/acessoajustica/acessoajustica)
-[![Done](https://badge.waffle.io/acessoajustica/acessoajustica.svg?title=Done)]
-        (http://waffle.io/acessoajustica/acessoajustica)
-
 This repository contains a ruby on rails project for the
 [Legal Department XI de Agosto](http://djonzedeagosto.org.br/). The project
 started in the
