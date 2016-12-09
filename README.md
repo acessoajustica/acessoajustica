@@ -1,4 +1,4 @@
-LabXP 2015: Acesso à Justiça
+Acesso à Justiça
 ==============================
 
 [![Build Status](https://img.shields.io/travis/acessoajustica/acessoajustica.svg)]
@@ -14,12 +14,13 @@ LabXP 2015: Acesso à Justiça
 [![License](https://img.shields.io/github/license/acessoajustica/acessoajustica.svg)]
            (https://github.com/acessoajustica/acessoajustica/blob/master/LICENSE)
 
-This repository contains a ruby on rails project for the
-[Legal Department XI de Agosto](http://djonzedeagosto.org.br/). The project
-started in the
+This repository contains a Ruby on Rails app for managing the activities at
+[Legal Department XI de Agosto](http://djonzedeagosto.org.br/). The project started in the
 [eXtreme Programming course of 2015](http://ccsl.ime.usp.br/wiki/LabXP2015) and continued
 in the [eXtreme Programming course of 2016](http://ccsl.ime.usp.br/wiki/LabXP2016)
 of the University of São Paulo.
+
+You can check the release at <http://parajas.herokuapp.com/>, while the staging environment is at <http://parajas-staging.herokuapp.com/>
 
 ## Dependencies ##
 
