@@ -21,14 +21,17 @@ started in the
 in the [eXtreme Programming course of 2016](http://ccsl.ime.usp.br/wiki/LabXP2016)
 of the University of São Paulo.
 
-# Dependencies #
+## Dependencies ##
 
 We use Docker and Compose, but still haven't hosted a Docker
 image at DockerHub.
+
 To get your dev environment up and running, simply follow the instructions to
 install [Docker](https://docs.docker.com/installation/) and
 [Compose](https://docs.docker.com/compose/install/) for your
 operating system.
+
+## Building and running ##
 
 Get the source code:
 ```
@@ -36,11 +39,13 @@ git clone https://github.com/acessoajustica/acessoajustica.git
 cd acessoajustica
 ```
 
-Then make sure that the Docker daemon is running!
+Then make sure that the Docker daemon is running.
+
 The bootstrap process is like any other Rails app, except that it is wrapped with
 Docker, for maximum portability. Don't worry, we got [Alfredo](script/alfredo) to help us!
 
 To run the app, you will have to:
+
 1) Build your Docker images. As simple as
 
 ```
@@ -50,6 +55,7 @@ To run the app, you will have to:
 This might take some time at the first run. It gets better, I promise.
 
 2) Create the database
+
 As usual at the early development stage at any Rails app. We have wrapped the usual `bundle exec` at Alfredo too.
 To create the database:
 ```
@@ -57,6 +63,7 @@ To create the database:
 ```
 
 3) Run the migrations and seed the database
+
 With the database created, run the migrations and seed your fresh tables:
 ```
 ./script/alfredo exec rake db:migrate
@@ -107,10 +114,10 @@ The acceptance tests should be ran with Cucumber:
 The `alfredo` script provides the following functionalities:
 
 ```
-# Build Docker images.
+# Build Docker images
 ./script/alfredo build
 
-# Stop and removes all containers.
+# Stop and remove all containers
 ./script/alfredo clean
 
 # Run the app on the latest container
