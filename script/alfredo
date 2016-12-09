@@ -5,24 +5,11 @@
 # (requires docker and docker-compose to run)
 #
 
-RAILS_ENV=${RAILS_ENV:-development}
-
 function usage {
     echo "usage: $0 [OPTIONS]:"
     echo ""
-    echo " build:      Build everything, images and containers"
-    echo " create:     Create the database"
-    echo " migrate:    Run all migrations"
-    echo " seed:       Put initial values on the database"
+    echo " build:      Build all images (app and db)"
     echo " run:        Run the app on the latest container"
-    echo " all:        Run all commands above"
-    echo ""
-    echo " rspec:      Run unit tests"
-    echo " cucumber:   Run acceptance tests"
-    echo ""
-    echo " install:    Run bundle install"
-    echo " update:     Run bundle update"
-    echo ""
     echo " clean:      Stop and removes all containers"
     echo ""
     echo " help:       Print this message"
@@ -40,44 +27,12 @@ function build {
     docker-compose build
 }
 
-function create {
-    docker-compose run web rake db:create RAILS_ENV=${RAILS_ENV}
-}
-
-function migrate {
-    docker-compose run web rake db:migrate RAILS_ENV=${RAILS_ENV}
-}
-
-function seed {
-    docker-compose run web rake db:seed RAILS_ENV=${RAILS_ENV}
-}
-
 function run {
     docker-compose up
 }
 
-function all {
-    build
-    create
-    migrate
-    seed
-    run
-}
-
-function rspec {
-    docker-compose run web rake spec
-}
-
-function cucumber {
-    docker-compose run web ./script/cucumber
-}
-
-function install {
-    docker-compose run web bundle install
-}
-
-function update {
-    docker-compose run web bundle update
+function _exec {
+    docker-compose run web "$@"
 }
 
 function clean {
@@ -91,16 +46,11 @@ function clean {
 
 if check_deps; then
     if [[ $1 == build ]]; then build;
-    elif [[ $1 == create ]]; then create;
-    elif [[ $1 == migrate ]]; then migrate;
-    elif [[ $1 == seed ]]; then seed;
     elif [[ $1 == run ]]; then run;
-    elif [[ $1 == all ]]; then all;
-    elif [[ $1 == rspec ]]; then rspec;
-    elif [[ $1 == cucumber ]]; then cucumber;
-    elif [[ $1 == install ]]; then install;
-    elif [[ $1 == update ]]; then update;
     elif [[ $1 == clean ]]; then clean;
-    else { echo ""; echo "Error: no valid argument"; echo ""; usage; exit 1; }
+    elif [[ $1 == exec ]]; then
+        shift
+        _exec "$@"
+    else { echo ""; echo "Error: invalid argument: "$1; echo ""; usage; exit 1; }
     fi
 fi
